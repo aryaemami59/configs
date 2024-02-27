@@ -15,10 +15,10 @@ export const prettierConfig: Config = {
  * the need for manual type annotations using JSDoc comments.
  *
  * @param additionalOverrides - Optional additional overrides to apply to the configuration.
- * @returns An augmented version of the default `prettierConfig`, incorporating any provided overrides.
+ * @returns An augmented version of the default {@linkcode prettierConfig}, incorporating any provided overrides.
  */
 export const createPrettierConfig = (
-  additionalOverrides: Partial<Config> = {},
+  additionalOverrides: Config = {},
 ): Config => ({
   ...prettierConfig,
   ...additionalOverrides,

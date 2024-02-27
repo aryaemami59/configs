@@ -22,7 +22,7 @@ export const vitestConfig = defineConfig({
  * along with optional additional overrides.
  *
  * @param additionalOverrides - Optional additional overrides to apply to the configuration.
- * @returns An augmented version of the default `vitestConfig`, incorporating any provided overrides.
+ * @returns An augmented version of the default {@linkcode vitestConfig}, incorporating any provided overrides.
  */
 export const createVitestConfig = (additionalOverrides: UserConfig) =>
   mergeConfig(vitestConfig, defineConfig(additionalOverrides))
