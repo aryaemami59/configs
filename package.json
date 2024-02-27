@@ -17,6 +17,8 @@
   },
   "scripts": {
     "build": "yarn workspaces foreach -Atp run build",
+    "clean": "yarn workspaces foreach -Atp run clean",
+    "install": "yarn build",
     "format": "prettier -w . --cache --cache-strategy content",
     "format:check": "prettier -c . --cache --cache-strategy content",
     "lint": "eslint . --cache --cache-strategy content",
