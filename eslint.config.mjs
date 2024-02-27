@@ -1,3 +1,17 @@
-import { createESLintConfig } from '@arya/eslint-config'
+import { createESLintConfig, flatESLintConfig } from '@arya/eslint-config'
 
-export default createESLintConfig()
+// console.log(flatESLintConfig.at(-1))
+
+export default createESLintConfig([
+  {
+    // ...flatESLintConfig.at(-1),
+    languageOptions: {
+      ...flatESLintConfig.at(-1)?.languageOptions,
+      parserOptions: {
+        // ecmaVersion: 'latest',
+        project: ['./packages/*/tsconfig.json'],
+        // tsconfigRootDir: './packages/*',
+      },
+    },
+  },
+])
