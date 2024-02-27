@@ -1,0 +1,6 @@
+{
+  "extends": "@arya/tsconfig/base",
+  "compilerOptions": {
+    "outDir": "dist"
+  }
+}

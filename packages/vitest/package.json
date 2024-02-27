@@ -1,0 +1,46 @@
+{
+  "name": "@arya/vitest-config",
+  "version": "0.0.1",
+  "description": "Vitest configuration for TypeScript projects",
+  "main": "./dist/vitest.config.mjs",
+  "types": "./dist/vitest.config.d.mts",
+  "module": "./dist/vitest.config.mjs",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/vitest.config.mjs",
+        "types": "./dist/vitest.config.d.mts"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "clean": "rimraf dist",
+    "prepack": "yarn build",
+    "preinstall": "yarn prepack"
+  },
+  "keywords": [
+    "config",
+    "vitest-config",
+    "vitest",
+    "vite",
+    "configuration"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "^4.3.1",
+    "vitest": "^1.3.1"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "vite-tsconfig-paths": "^4.3.1",
+    "vitest": "^1.3.1"
+  }
+}

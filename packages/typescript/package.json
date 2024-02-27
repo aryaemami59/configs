@@ -1,0 +1,21 @@
+{
+  "name": "@arya/tsconfig",
+  "version": "0.0.1",
+  "description": "TypeScript configuration",
+  "main": "base/tsconfig.json",
+  "exports": {
+    ".": "./base/tsconfig.json",
+    "./base": "./base/tsconfig.json",
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "config",
+    "tsconfig",
+    "typescript",
+    "ts",
+    "configuration"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

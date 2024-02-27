@@ -1,0 +1,26 @@
+{
+  "name": "monorepo",
+  "description": "monorepo",
+  "private": true,
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@arya/eslint-config": "workspace:^",
+    "@arya/prettier-config": "workspace:^",
+    "@arya/tsconfig": "workspace:^",
+    "@arya/vitest-config": "workspace:^",
+    "@types/node": "^20.11.20",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
+  },
+  "scripts": {
+    "build": "yarn workspaces foreach -Atp run build",
+    "format": "prettier -w . --cache --cache-strategy content",
+    "format:check": "prettier -c . --cache --cache-strategy content",
+    "lint": "eslint . --cache --cache-strategy content",
+    "lint:fix": "eslint . --fix --cache --cache-strategy content"
+  },
+  "packageManager": "yarn@4.1.0"
+}

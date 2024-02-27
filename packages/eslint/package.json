@@ -1,0 +1,62 @@
+{
+  "name": "@arya/eslint-config",
+  "version": "0.0.1",
+  "description": "ESLint configuration for TypeScript projects",
+  "types": "./dist/eslint.config.d.ts",
+  "main": "./dist/eslint.config.js",
+  "module": "./dist/eslint.config.js",
+  "exports": {
+    ".": {
+      "require": {
+        "default": "./dist/eslint.config.js",
+        "types": "./dist/eslint.config.d.ts"
+      },
+      "import": {
+        "default": "./dist/eslint.config.js",
+        "types": "./dist/eslint.config.d.ts"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "clean": "rimraf dist",
+    "prepack": "yarn build",
+    "preinstall": "yarn prepack"
+  },
+  "keywords": [
+    "eslint",
+    "config",
+    "eslint-config",
+    "configuration"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/parser": "^7.1.0",
+    "@typescript-eslint/utils": "^7.1.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@types/eslint": "^8.56.3",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__eslintrc": "^2.1.1",
+    "@types/eslint__js": "^8.42.3",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^7.1.0",
+    "globals": "^14.0.0",
+    "typescript-eslint": "^7.1.0"
+  }
+}
