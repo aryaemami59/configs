@@ -64,6 +64,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arya/vitest-config@workspace:packages/vitest"
   dependencies:
+    "@arya/tsconfig": "workspace:^"
     rimraf: "npm:^5.0.5"
     typescript: "npm:^5.3.3"
     vite-tsconfig-paths: "npm:^4.3.1"
