@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Pack @arya/${{ matrix.packages }}
-        working-directory: packages/@arya/${{ matrix.packages }}
+      - name: Pack ${{ matrix.packages }}
+        working-directory: packages/${{ matrix.packages }}
         run: yarn pack
         # run: yarn workspace @arya/${{ matrix.packages }} pack
