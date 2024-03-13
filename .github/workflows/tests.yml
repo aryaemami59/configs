@@ -47,7 +47,7 @@ jobs:
     runs-on: ${{ needs.build.runs-on }}
     strategy:
       matrix:
-        ${{needs.build.matrix}}
+        ${{ needs.build.matrix }}
         # node: [18.x, 20.x]
         # packages: ['eslint', 'prettier', 'typescript', 'vitest']
     steps:
