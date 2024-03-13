@@ -69,7 +69,7 @@ jobs:
           # name: ${{ needs.build.outputs.artifact }}
           path: examples/${{ matrix.packages }}
 
-      - run: ls -lah
+      - run: ls -R
 
       - name: Install dependencies
         working-directory: examples/${{ matrix.packages }}
