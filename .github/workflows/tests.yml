@@ -67,9 +67,10 @@ jobs:
         with:
           name: ${{ matrix.packages }}-${{ matrix.node }}
           # name: ${{ needs.build.outputs.artifact }}
-          # path: examples/${{ matrix.packages }}
+          path: examples/${{ matrix.packages }}
 
       - run: ls -lah
 
       - name: Test examples for ${{ matrix.packages }}
+        working-directory: examples/${{ matrix.packages }}
         run: yarn test
