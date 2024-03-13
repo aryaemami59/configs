@@ -42,9 +42,9 @@ jobs:
           path: packages/${{ matrix.packages }}/*.tgz
 
   test:
-    defaults:
-      run:
-        working-directory: examples/${{ matrix.packages }}
+    # defaults:
+    #   run:
+    #     working-directory: examples/${{ matrix.packages }}
     name: Test
     needs: [build]
     runs-on: ubuntu-latest
