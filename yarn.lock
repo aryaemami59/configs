@@ -2896,6 +2896,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "typescript-config-example@workspace:examples/typescript"
   dependencies:
+    "@arya/tsconfig": "workspace:^"
     typescript: "npm:^5.4.2"
   languageName: unknown
   linkType: soft
