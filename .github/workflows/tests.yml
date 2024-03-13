@@ -9,7 +9,7 @@ jobs:
     outputs:
       artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
     name: Build
-    runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [18.x, 20.x]
@@ -44,7 +44,7 @@ jobs:
     #     working-directory: examples/${{ matrix.packages }}
     name: Test
     needs: [build]
-    runs-on: jobs.build.runs-on
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [18.x, 20.x]
