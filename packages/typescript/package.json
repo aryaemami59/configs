@@ -2,6 +2,7 @@
   "name": "@arya/tsconfig",
   "version": "0.0.1",
   "description": "TypeScript configuration",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "main": "base/tsconfig.json",
   "exports": {
     "./package.json": "./package.json",
@@ -17,5 +18,13 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aryaemami59/configs",
+    "directory": "packages/typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
   }
 }

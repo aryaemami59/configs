@@ -1011,6 +1011,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"configs-monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "configs-monorepo@workspace:."
+  dependencies:
+    "@arya/eslint-config": "workspace:^"
+    "@arya/prettier-config": "workspace:^"
+    "@arya/tsconfig": "workspace:^"
+    "@arya/vitest-config": "workspace:^"
+    "@types/node": "npm:^20.11.20"
+    eslint: "npm:^8.57.0"
+    prettier: "npm:^3.2.5"
+  languageName: unknown
+  linkType: soft
+
 "cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
@@ -2130,20 +2144,6 @@ __metadata:
   checksum: 10/00b4c355236eb3d0294106f208718db486f6e34e28bbb7f6965bd9d6237db338e566f2e13489fbf8bfa9b1337c0f2568d4aeac1840f9963054c91881acc974a9
   languageName: node
   linkType: hard
-
-"monorepo@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "monorepo@workspace:."
-  dependencies:
-    "@arya/eslint-config": "workspace:^"
-    "@arya/prettier-config": "workspace:^"
-    "@arya/tsconfig": "workspace:^"
-    "@arya/vitest-config": "workspace:^"
-    "@types/node": "npm:^20.11.20"
-    eslint: "npm:^8.57.0"
-    prettier: "npm:^3.2.5"
-  languageName: unknown
-  linkType: soft
 
 "ms@npm:2.1.2":
   version: 2.1.2

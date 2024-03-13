@@ -2,6 +2,7 @@
   "name": "@arya/vitest-config",
   "version": "0.0.1",
   "description": "Vitest configuration for TypeScript projects",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "main": "./dist/vitest.config.mjs",
   "types": "./dist/vitest.config.d.mts",
   "module": "./dist/vitest.config.mjs",
@@ -36,6 +37,14 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aryaemami59/configs",
+    "directory": "packages/vitest"
+  },
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
   },
   "devDependencies": {
     "@arya/tsconfig": "workspace:^",

@@ -1,11 +1,18 @@
 {
-  "name": "monorepo",
-  "description": "monorepo",
+  "name": "configs-monorepo",
+  "description": "A set of config files for ease of use",
   "private": true,
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "workspaces": [
     "packages/*"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aryaemami59/configs"
+  },
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
+  },
   "devDependencies": {
     "@arya/eslint-config": "workspace:^",
     "@arya/prettier-config": "workspace:^",
