@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "ESLint configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "license": "MIT",
   "types": "./dist/eslint.config.d.mts",
   "main": "./dist/eslint.config.mjs",
   "module": "./dist/eslint.config.mjs",

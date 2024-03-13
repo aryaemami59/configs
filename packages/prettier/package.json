@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Prettier configuration",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "license": "MIT",
   "types": "./dist/prettier.config.d.mts",
   "module": "./dist/prettier.config.mjs",
   "main": "./dist/prettier.config.mjs",

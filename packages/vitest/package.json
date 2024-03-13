@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Vitest configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "license": "MIT",
   "main": "./dist/vitest.config.mjs",
   "types": "./dist/vitest.config.d.mts",
   "module": "./dist/vitest.config.mjs",

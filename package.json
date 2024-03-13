@@ -3,6 +3,7 @@
   "description": "A set of config files for ease of use",
   "private": true,
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
