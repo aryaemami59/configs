@@ -6,6 +6,8 @@ jobs:
     defaults:
       run:
         working-directory: packages/${{ matrix.packages }}
+    outputs:
+      artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
     name: Build
     runs-on: ubuntu-latest
     strategy:
@@ -31,3 +33,42 @@ jobs:
       - name: Pack ${{ matrix.packages }}
         # working-directory: packages/${{ matrix.packages }}
         run: yarn pack
+
+      - name: Upload Artifact ${{ matrix.packages }}
+        uses: actions/upload-artifact@v4
+        id: artifact-upload-step
+        with:
+          name: ${{ matrix.packages }}-${{ matrix.node }}
+          path: packages/${{ matrix.packages }}/*.tgz
+
+  test:
+    defaults:
+      run:
+        working-directory: examples/${{ matrix.packages }}
+    name: Test
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18.x, 20.x]
+        packages: ['eslint', 'prettier', 'typescript', 'vitest']
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact }}
+          path: examples/${{ matrix.packages }}
+
+      - run: ls -lah
+
+      - name: Test examples for ${{ matrix.packages }}
+        run: yarn test
