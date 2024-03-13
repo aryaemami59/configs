@@ -1,13 +1,8 @@
 import eslint from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
-import {
-  ConfigWithExtends,
-  config,
-  configs,
-  parser,
-  plugin,
-} from 'typescript-eslint'
+import type { ConfigWithExtends } from 'typescript-eslint'
+import { config, configs, parser, plugin } from 'typescript-eslint'
 const { browser, node, nodeBuiltin } = globals
 
 /**
