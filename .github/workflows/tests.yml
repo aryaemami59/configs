@@ -77,7 +77,7 @@ jobs:
 
       - name: Install Build Artifact for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
-        run: yarn add package.tgz
+        run: yarn add ./package.tgz
 
       - name: Test examples for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
