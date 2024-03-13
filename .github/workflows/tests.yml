@@ -9,7 +9,7 @@ jobs:
     outputs:
       artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
     name: Build
-    runs-on: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: [ubuntu-latest, windows-latest]
     strategy:
       matrix:
         node: [18.x, 20.x]
