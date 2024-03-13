@@ -44,11 +44,12 @@ jobs:
     #     working-directory: examples/${{ matrix.packages }}
     name: Test
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ${{ needs.build.runs-on }}
     strategy:
       matrix:
-        node: [18.x, 20.x]
-        packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        ${{needs.build.matrix}}
+        # node: [18.x, 20.x]
+        # packages: ['eslint', 'prettier', 'typescript', 'vitest']
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
