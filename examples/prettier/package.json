@@ -1,0 +1,6 @@
+{
+  "name": "prettier-config-example",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "typescript-config-example",
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
+}
