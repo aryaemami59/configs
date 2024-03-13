@@ -9,13 +9,11 @@ jobs:
     outputs:
       artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, windows-latest, macos-latest]
     strategy:
       matrix:
         node: [18.x, 20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
-        # packages:
-        #   ['eslint-config', 'prettier-config', 'tsconfig', 'vitest-config']
 
     steps:
       - name: Checkout repo
@@ -31,14 +29,13 @@ jobs:
         run: yarn install
 
       - name: Pack ${{ matrix.packages }}
-        # working-directory: packages/${{ matrix.packages }}
         run: yarn pack
 
       - name: Upload Artifact ${{ matrix.packages }}
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
         with:
-          name: ${{ matrix.packages }}-${{ matrix.node }}
+          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ runner.os }}
           path: packages/${{ matrix.packages }}/*.tgz
 
   test:
@@ -47,7 +44,7 @@ jobs:
     #     working-directory: examples/${{ matrix.packages }}
     name: Test
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: jobs.build.runs-on
     strategy:
       matrix:
         node: [18.x, 20.x]
@@ -69,7 +66,8 @@ jobs:
           # name: ${{ needs.build.outputs.artifact }}
           path: examples/${{ matrix.packages }}
 
-      - run: ls -R
+      - name: List files recursively
+        run: ls -R
 
       - name: Install dependencies
         working-directory: examples/${{ matrix.packages }}
