@@ -2,6 +2,23 @@ import type { Config } from 'prettier'
 
 /**
  * Prettier configuration
+ *
+ * @example
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ *
+ * ```js
+ * import { prettierConfig } from '@arya/prettier-config'
+ *
+ * export default prettierConfig
+ * ```
+ *
+ * @example
+ * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cjs`__</caption>
+ *
+ * ```js
+ * module.exports = (async () =>
+ *   (await import('@arya/prettier-config')).prettierConfig)()
+ * ```
  */
 export const prettierConfig: Config = {
   semi: false,
@@ -16,12 +33,30 @@ export const prettierConfig: Config = {
  *
  * @param additionalOverrides - Optional additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode prettierConfig}, incorporating any provided overrides.
+ *
+ * @example
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ * ```js
+ * import { createPrettierConfig } from '@arya/prettier-config'
+ *
+ * export default createPrettierConfig({
+ *   arrowParens: 'avoid',
+ *   // ...Other additional overrides
+ * })
+ * ```
+ *
+ * @example
+ * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cjs`__</caption>
+ * ```js
+ * module.exports = (async () =>
+ *   (await import('@arya/prettier-config')).createPrettierConfig({
+ *     arrowParens: 'avoid',
+ *     // ...Other additional overrides
+ *   }))()
+ * ```
  */
 export const createPrettierConfig = (
   additionalOverrides: Config = {},
-): Config => ({
-  ...prettierConfig,
-  ...additionalOverrides,
-})
+): Config => ({ ...prettierConfig, ...additionalOverrides })
 
 export default prettierConfig
