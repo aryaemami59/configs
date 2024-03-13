@@ -2408,6 +2408,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "prettier-config-example@workspace:examples/prettier"
   dependencies:
+    "@arya/prettier-config": "workspace:^"
     prettier: "npm:^3.2.5"
   languageName: unknown
   linkType: soft
