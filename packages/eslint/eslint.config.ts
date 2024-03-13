@@ -1,8 +1,14 @@
 import eslint from '@eslint/js'
-import type { TSESLint } from '@typescript-eslint/utils'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
-import tsEslint from 'typescript-eslint'
+import {
+  ConfigWithExtends,
+  config,
+  configs,
+  parser,
+  plugin,
+} from 'typescript-eslint'
+const { browser, node, nodeBuiltin } = globals
 
 /**
  * An object representing the globals provided by Vitest for use in testing.
@@ -26,23 +32,40 @@ export const vitestGlobals = {
 
 /**
  * Flat ESLint configuration tailored for projects using TypeScript.
+ *
+ * @example
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
+ *
+ * ```js
+ * import { flatESLintConfig } from '@arya/eslint-config'
+ *
+ * export default flatESLintConfig
+ * ```
+ *
+ * @example
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cjs`__</caption>
+ *
+ * ```js
+ * module.exports = (async () =>
+ *   (await import('@arya/eslint-config')).flatESLintConfig)()
+ * ```
  */
-export const flatESLintConfig = tsEslint.config(
+export const flatESLintConfig = config(
   // `ignores` must be first.
   { ignores: ['dist/', '.*'] },
   eslint.configs.recommended,
-  ...tsEslint.configs.recommended,
-  ...tsEslint.configs.stylistic,
+  ...configs.recommended,
+  ...configs.stylistic,
   prettierConfig,
   {
     languageOptions: {
       globals: {
         ...vitestGlobals,
-        ...globals.nodeBuiltin,
-        ...globals.browser,
-        ...globals.node,
+        ...nodeBuiltin,
+        ...browser,
+        ...node,
       },
-      parser: tsEslint.parser,
+      parser,
       parserOptions: {
         project: ['./tsconfig.json'],
         ecmaVersion: 'latest',
@@ -79,7 +102,7 @@ export const flatESLintConfig = tsEslint.config(
         },
       ],
     },
-    plugins: { '@typescript-eslint': tsEslint.plugin },
+    plugins: { ts: plugin },
     linterOptions: { reportUnusedDisableDirectives: 2 },
   },
 )
@@ -92,9 +115,43 @@ export const flatESLintConfig = tsEslint.config(
  *
  * @param additionalOverrides - Optional additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode flatESLintConfig}, incorporating any provided overrides.
+ *
+ * @example
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
+ * ```js
+ * import { createESLintConfig } from '@arya/eslint-config'
+ *
+ * export default createESLintConfig([
+ *   {
+ *     rules: {
+ *       'no-console': [0],
+ *     },
+ *   },
+ *   {
+ *     // ...Other additional overrides
+ *   },
+ * ])
+ *
+ * ```
+ *
+ * @example
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cjs`__</caption>
+ * ```js
+ * module.exports = (async () =>
+ *   (await import('@arya/eslint-config')).createESLintConfig([
+ *     {
+ *       rules: {
+ *         'no-console': [0],
+ *       },
+ *     },
+ *     {
+ *       // ...Other additional overrides
+ *     },
+ *   ]))()
+ * ```
  */
 export const createESLintConfig = (
-  additionalOverrides: TSESLint.FlatConfig.ConfigArray = [],
-) => [...flatESLintConfig, ...additionalOverrides]
+  additionalOverrides: ConfigWithExtends[] = [],
+) => flatESLintConfig.concat(additionalOverrides)
 
 export default flatESLintConfig
