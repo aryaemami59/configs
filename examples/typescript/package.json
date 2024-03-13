@@ -1,6 +1,10 @@
 {
   "name": "typescript-config-example",
+  "scripts": {
+    "test": "tsc --noEmit"
+  },
   "devDependencies": {
+    "@arya/tsconfig": "workspace:^",
     "typescript": "^5.4.2"
   }
 }
