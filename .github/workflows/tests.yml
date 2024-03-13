@@ -66,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ needs.build.outputs.artifact }}
-          path: examples/${{ matrix.packages }}
+          # path: examples/${{ matrix.packages }}
 
       - run: ls -lah
 
