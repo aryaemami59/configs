@@ -71,6 +71,14 @@ jobs:
 
       - run: ls -lah
 
+      - name: Install dependencies
+        working-directory: examples/${{ matrix.packages }}
+        run: yarn install
+
+      - name: Install Build Artifact for ${{ matrix.packages }}
+        working-directory: examples/${{ matrix.packages }}
+        run: yarn add $(pwd)/${{ matrix.packages }}.tgz
+
       - name: Test examples for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
         run: yarn test
