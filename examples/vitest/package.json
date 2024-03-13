@@ -1,6 +1,11 @@
 {
   "name": "vitest-config-example",
+  "scripts": {
+    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts"
+  },
   "devDependencies": {
+    "@arya/vitest-config": "workspace:^",
+    "jsdom": "^24.0.0",
     "vitest": "^1.3.1"
   }
 }
