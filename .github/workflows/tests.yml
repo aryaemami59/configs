@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
         with:
-          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ runner.os }}
+          name: ${{ matrix.packages }}-${{ matrix.node }}
           path: packages/${{ matrix.packages }}/*.tgz
 
   test:
