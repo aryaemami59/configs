@@ -47,6 +47,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arya/prettier-config@workspace:packages/prettier"
   dependencies:
+    "@arya/tsconfig": "workspace:^"
     prettier: "npm:^3.2.5"
     rimraf: "npm:^5.0.5"
     typescript: "npm:^5.4.2"

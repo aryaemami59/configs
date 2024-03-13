@@ -37,6 +37,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@arya/tsconfig": "workspace:^",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.2"
