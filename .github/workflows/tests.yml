@@ -8,21 +8,24 @@ jobs:
     strategy:
       matrix:
         node: [18.x, 20.x]
-        # packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        # packages:
+        #   ['eslint-config', 'prettier-config', 'tsconfig', 'vitest-config']
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          filter:
 
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Build project
-        run: yarn build
+      - name: Pack @arya/${{ matrix.packages }}
+        working-directory: packages/@arya/${{ matrix.packages }}
+        run: yarn pack
+        # run: yarn workspace @arya/${{ matrix.packages }} pack
