@@ -19,7 +19,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node }}
@@ -34,7 +34,7 @@ jobs:
       - name: Pack ${{ matrix.packages }}
         run: yarn pack
 
-      - name: Upload Artifact ${{ matrix.packages }}
+      - name: Upload artifact ${{ matrix.packages }}
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
         with:
@@ -55,7 +55,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node }}
@@ -64,18 +64,21 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'yarn'
 
-      - name: Download Artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
           # name: ${{ needs.build.outputs.artifact }}
           path: examples/${{ matrix.packages }}
 
+      - name: Display structure of downloaded artifact
+        run: ls -R examples/${{ matrix.packages }}
+
       - name: Install dependencies
         working-directory: examples/${{ matrix.packages }}
         run: yarn install
 
-      - name: Install Build Artifact for ${{ matrix.packages }}
+      - name: Install build artifact for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
         run: yarn add ./package.tgz
 
