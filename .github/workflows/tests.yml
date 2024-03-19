@@ -69,7 +69,7 @@ jobs:
         with:
           name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
           # name: ${{ needs.build.outputs.artifact }}
-          path: examples/${{ matrix.packages }}
+          # path: examples/${{ matrix.packages }}
 
       - name: Display structure of downloaded artifact
         run: ls -R examples/${{ matrix.packages }}
