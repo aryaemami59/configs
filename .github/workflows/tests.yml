@@ -7,9 +7,6 @@ jobs:
       run:
         working-directory: packages/${{ matrix.packages }}
 
-    outputs:
-      artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
-
     name: Build ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -42,9 +39,6 @@ jobs:
           path: packages/${{ matrix.packages }}/*.tgz
 
   test:
-    # defaults:
-    #   run:
-    #     working-directory: examples/${{ matrix.packages }}
     name: Test ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
     needs: [build]
     runs-on: ${{ matrix.os }}
@@ -68,7 +62,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
-          # name: ${{ needs.build.outputs.artifact }}
           path: examples/${{ matrix.packages }}
 
       - name: Display structure of downloaded artifact
