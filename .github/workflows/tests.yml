@@ -6,9 +6,11 @@ jobs:
     defaults:
       run:
         working-directory: packages/${{ matrix.packages }}
+
     outputs:
       artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
-    name: Build
+
+    name: Build ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -43,7 +45,7 @@ jobs:
     # defaults:
     #   run:
     #     working-directory: examples/${{ matrix.packages }}
-    name: Test
+    name: Test ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
     needs: [build]
     runs-on: ${{ matrix.os }}
     strategy:
