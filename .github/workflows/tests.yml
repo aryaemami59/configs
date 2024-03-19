@@ -7,6 +7,9 @@ jobs:
       run:
         working-directory: packages/${{ matrix.packages }}
 
+    outputs:
+      artifact: ${{ steps.pack.outputs.tarball }}
+
     name: Build ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -29,7 +32,9 @@ jobs:
         run: yarn install
 
       - name: Pack ${{ matrix.packages }}
-        run: yarn pack
+        id: pack
+        run: |
+          echo "tarball=$(yarn pack)" >> $GITHUB_OUTPUT
 
       - name: Upload artifact ${{ matrix.packages }}
         uses: actions/upload-artifact@v4
@@ -73,7 +78,7 @@ jobs:
 
       - name: Install build artifact for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
-        run: yarn add ./package.tgz
+        run: yarn add ${{ needs.build.outputs.artifact }}
 
       - name: Test examples for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
