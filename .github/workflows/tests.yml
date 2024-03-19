@@ -9,11 +9,12 @@ jobs:
     outputs:
       artifact: ${{ steps.artifact-upload-step.outputs.artifact-id }}
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node: [18.x, 20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repo
@@ -35,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
         with:
-          name: ${{ matrix.packages }}-${{ matrix.node }}
+          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
           path: packages/${{ matrix.packages }}/*.tgz
 
   test:
@@ -44,12 +45,13 @@ jobs:
     #     working-directory: examples/${{ matrix.packages }}
     name: Test
     needs: [build]
-    runs-on: ${{ needs.build.runs-on }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        ${{ needs.build.matrix }}
-        # node: [18.x, 20.x]
-        # packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        node: [18.x, 20.x]
+        packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -63,12 +65,9 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.packages }}-${{ matrix.node }}
+          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
           # name: ${{ needs.build.outputs.artifact }}
           path: examples/${{ matrix.packages }}
-
-      - name: List files recursively
-        run: ls -R
 
       - name: Install dependencies
         working-directory: examples/${{ matrix.packages }}
@@ -81,4 +80,3 @@ jobs:
       - name: Test examples for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
         run: yarn test
-
