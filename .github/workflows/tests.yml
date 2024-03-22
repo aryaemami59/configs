@@ -3,26 +3,79 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/${{ matrix.packages }}
+
+    name: Build ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node: [18.x, 20.x]
-        # packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          filter:
 
-      - name: Use Node.js ${{ matrix.node }}
+      - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Build project
-        run: yarn build
+      - name: Pack ${{ matrix.packages }}
+        id: pack
+        run: yarn pack
+
+      - name: Upload artifact ${{ matrix.packages }}
+        uses: actions/upload-artifact@v4
+        id: artifact-upload-step
+        with:
+          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
+          path: packages/${{ matrix.packages }}/*.tgz
+
+  test:
+    name: Test ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
+    needs: [build]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: [18.x, 20.x]
+        packages: ['eslint', 'prettier', 'typescript', 'vitest']
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
+          path: examples/${{ matrix.packages }}
+
+      - name: Display structure of downloaded artifact
+        run: ls -R examples/${{ matrix.packages }}
+
+      - name: Install dependencies
+        working-directory: examples/${{ matrix.packages }}
+        run: yarn install
+
+      - name: Install build artifact for ${{ matrix.packages }}
+        working-directory: examples/${{ matrix.packages }}
+        run: yarn add ./package.tgz
+
+      - name: Test examples for ${{ matrix.packages }}
+        working-directory: examples/${{ matrix.packages }}
+        run: yarn test
