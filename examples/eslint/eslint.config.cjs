@@ -1,5 +1,5 @@
 module.exports = (async () =>
-  (await import('@aryaemami/eslint-config')).createESLintConfig([
+  (await import('@aryaemami59/eslint-config')).createESLintConfig([
     {
       rules: {
         'no-console': [2],

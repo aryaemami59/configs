@@ -1,5 +1,5 @@
 {
-  "name": "@aryaemami/eslint-config",
+  "name": "@aryaemami59/eslint-config",
   "version": "0.0.2",
   "description": "ESLint configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
@@ -50,7 +50,7 @@
     "typescript": "^5.4.2"
   },
   "devDependencies": {
-    "@aryaemami/tsconfig": "workspace:^",
+    "@aryaemami59/tsconfig": "workspace:^",
     "@types/eslint": "^8.56.5",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint__eslintrc": "^2.1.1",

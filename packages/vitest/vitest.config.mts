@@ -10,7 +10,7 @@ import { defineConfig, mergeConfig } from 'vitest/config'
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
- * import { vitestConfig } from '@aryaemami/vitest-config'
+ * import { vitestConfig } from '@aryaemami59/vitest-config'
  *
  * export default vitestConfig
  * ```
@@ -20,7 +20,7 @@ import { defineConfig, mergeConfig } from 'vitest/config'
  *
  * ```ts
  * module.exports = (async () =>
- *   (await import('@aryaemami/vitest-config')).vitestConfig)()
+ *   (await import('@aryaemami59/vitest-config')).vitestConfig)()
  * ```
  */
 export const vitestConfig = defineConfig({
@@ -44,7 +44,7 @@ export const vitestConfig = defineConfig({
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  * ```ts
- * import { createVitestConfig } from '@aryaemami/vitest-config'
+ * import { createVitestConfig } from '@aryaemami59/vitest-config'
  *
  * export default createVitestConfig({
  *   test: {
@@ -58,7 +58,7 @@ export const vitestConfig = defineConfig({
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs`__</caption>
  * ```ts
  * module.exports = (async () =>
- *   (await import('@aryaemami/vitest-config')).createVitestConfig({
+ *   (await import('@aryaemami59/vitest-config')).createVitestConfig({
  *     test: {
  *       environment: 'jsdom',
  *       // Other additional overrides
