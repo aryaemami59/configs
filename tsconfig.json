@@ -1,5 +1,5 @@
 {
-  "extends": "@arya/tsconfig/base",
+  "extends": "@aryaemami/tsconfig/base",
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,

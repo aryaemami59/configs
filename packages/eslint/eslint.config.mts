@@ -32,7 +32,7 @@ export const vitestGlobals = {
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
  *
  * ```js
- * import { flatESLintConfig } from '@arya/eslint-config'
+ * import { flatESLintConfig } from '@aryaemami/eslint-config'
  *
  * export default flatESLintConfig
  * ```
@@ -42,7 +42,7 @@ export const vitestGlobals = {
  *
  * ```js
  * module.exports = (async () =>
- *   (await import('@arya/eslint-config')).flatESLintConfig)()
+ *   (await import('@aryaemami/eslint-config')).flatESLintConfig)()
  * ```
  */
 export const flatESLintConfig = config(
@@ -114,7 +114,7 @@ export const flatESLintConfig = config(
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
  * ```js
- * import { createESLintConfig } from '@arya/eslint-config'
+ * import { createESLintConfig } from '@aryaemami/eslint-config'
  *
  * export default createESLintConfig([
  *   {
@@ -133,7 +133,7 @@ export const flatESLintConfig = config(
  * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cjs`__</caption>
  * ```js
  * module.exports = (async () =>
- *   (await import('@arya/eslint-config')).createESLintConfig([
+ *   (await import('@aryaemami/eslint-config')).createESLintConfig([
  *     {
  *       rules: {
  *         'no-console': [0],

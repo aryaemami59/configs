@@ -1,5 +1,5 @@
 module.exports = (async () =>
-  (await import('@arya/vitest-config')).createVitestConfig({
+  (await import('@aryaemami/vitest-config')).createVitestConfig({
     test: {
       environment: 'jsdom',
       // Other additional overrides
