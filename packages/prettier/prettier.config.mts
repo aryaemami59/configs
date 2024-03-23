@@ -7,7 +7,7 @@ import type { Config } from 'prettier'
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
  *
  * ```js
- * import { prettierConfig } from '@aryaemami/prettier-config'
+ * import { prettierConfig } from '@aryaemami59/prettier-config'
  *
  * export default prettierConfig
  * ```
@@ -17,7 +17,7 @@ import type { Config } from 'prettier'
  *
  * ```js
  * module.exports = (async () =>
- *   (await import('@aryaemami/prettier-config')).prettierConfig)()
+ *   (await import('@aryaemami59/prettier-config')).prettierConfig)()
  * ```
  */
 export const prettierConfig: Config = {
@@ -37,7 +37,7 @@ export const prettierConfig: Config = {
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
  * ```js
- * import { createPrettierConfig } from '@aryaemami/prettier-config'
+ * import { createPrettierConfig } from '@aryaemami59/prettier-config'
  *
  * export default createPrettierConfig({
  *   arrowParens: 'avoid',
@@ -49,7 +49,7 @@ export const prettierConfig: Config = {
  * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cjs`__</caption>
  * ```js
  * module.exports = (async () =>
- *   (await import('@aryaemami/prettier-config')).createPrettierConfig({
+ *   (await import('@aryaemami59/prettier-config')).createPrettierConfig({
  *     arrowParens: 'avoid',
  *     // ...Other additional overrides
  *   }))()

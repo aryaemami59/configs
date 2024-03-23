@@ -1,5 +1,5 @@
 {
-  "name": "@aryaemami/vitest-config",
+  "name": "@aryaemami59/vitest-config",
   "version": "0.0.1",
   "description": "Vitest configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
@@ -48,7 +48,7 @@
     "url": "https://github.com/aryaemami59/configs/issues"
   },
   "devDependencies": {
-    "@aryaemami/tsconfig": "workspace:^",
+    "@aryaemami59/tsconfig": "workspace:^",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.2"
   },

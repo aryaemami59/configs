@@ -16,10 +16,10 @@
     "url": "https://github.com/aryaemami59/configs/issues"
   },
   "devDependencies": {
-    "@aryaemami/eslint-config": "workspace:^",
-    "@aryaemami/prettier-config": "workspace:^",
-    "@aryaemami/tsconfig": "workspace:^",
-    "@aryaemami/vitest-config": "workspace:^",
+    "@aryaemami59/eslint-config": "workspace:^",
+    "@aryaemami59/prettier-config": "workspace:^",
+    "@aryaemami59/tsconfig": "workspace:^",
+    "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^20.11.29",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5"
