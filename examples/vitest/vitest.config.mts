@@ -1,4 +1,4 @@
-import { createVitestConfig } from '@arya/vitest-config'
+import { createVitestConfig } from '@aryaemami/vitest-config'
 
 export default createVitestConfig({
   test: {
