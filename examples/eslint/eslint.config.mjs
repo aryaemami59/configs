@@ -1,4 +1,4 @@
-import { createESLintConfig } from '@arya/eslint-config'
+import { createESLintConfig } from '@aryaemami/eslint-config'
 
 export default createESLintConfig([
   {

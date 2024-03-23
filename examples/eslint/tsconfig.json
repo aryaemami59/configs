@@ -1,1 +1,1 @@
-{ "extends": "@arya/tsconfig" }
+{ "extends": "@aryaemami/tsconfig" }

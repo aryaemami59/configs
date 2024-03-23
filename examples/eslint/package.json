@@ -4,8 +4,8 @@
     "test": "eslint . || echo \"no config specified\" && eslint . -c eslint.config.js || echo \".js\" && eslint . -c eslint.config.cjs || echo \".cjs\" && eslint . -c eslint.config.mjs || echo \".mjs\""
   },
   "devDependencies": {
-    "@arya/eslint-config": "workspace:^",
-    "@arya/tsconfig": "workspace:^",
+    "@aryaemami/eslint-config": "workspace:^",
+    "@aryaemami/tsconfig": "workspace:^",
     "eslint": "^8.57.0"
   }
 }
