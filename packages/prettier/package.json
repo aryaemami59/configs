@@ -1,5 +1,5 @@
 {
-  "name": "@aryaemami/prettier-config",
+  "name": "@aryaemami59/prettier-config",
   "version": "0.0.2",
   "description": "Prettier configuration",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
@@ -44,7 +44,7 @@
     "url": "https://github.com/aryaemami59/configs/issues"
   },
   "devDependencies": {
-    "@aryaemami/tsconfig": "workspace:^",
+    "@aryaemami59/tsconfig": "workspace:^",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.2"
