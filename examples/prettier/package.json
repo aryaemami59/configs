@@ -4,7 +4,7 @@
     "test": "prettier -c . || echo \"no config specified\" && prettier -c . --config prettier.config.js || echo \".js\" && prettier -c . --config prettier.config.cjs || echo \".cjs\" && prettier -c . --config prettier.config.mjs || echo \".mjs\""
   },
   "devDependencies": {
-    "@arya/prettier-config": "workspace:^",
+    "@aryaemami/prettier-config": "workspace:^",
     "prettier": "^3.2.5"
   }
 }

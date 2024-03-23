@@ -1,4 +1,4 @@
-# @arya/vitest-config
+# @aryaemami/vitest-config
 
 Vitest configuration tailored for projects using TypeScript.
 
@@ -7,25 +7,25 @@ Vitest configuration tailored for projects using TypeScript.
 #### NPM
 
 ```bash
-npm install --save-dev @arya/vitest-config
+npm install --save-dev @aryaemami/vitest-config
 ```
 
 #### Yarn
 
 ```bash
-yarn add --dev @arya/vitest-config
+yarn add --dev @aryaemami/vitest-config
 ```
 
 #### PNPM
 
 ```bash
-pnpm add --save-dev @arya/vitest-config
+pnpm add --save-dev @aryaemami/vitest-config
 ```
 
 #### Bun
 
 ```bash
-bun add --dev @arya/vitest-config
+bun add --dev @aryaemami/vitest-config
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ bun add --dev @arya/vitest-config
 **ECMAScript Modules (ESM) usage inside a file like `vitest.config.mjs`**:
 
 ```js
-import { vitestConfig } from '@arya/vitest-config'
+import { vitestConfig } from '@aryaemami/vitest-config'
 
 export default vitestConfig
 ```
@@ -42,7 +42,7 @@ export default vitestConfig
 
 ```js
 module.exports = (async () =>
-  (await import('@arya/vitest-config')).vitestConfig)()
+  (await import('@aryaemami/vitest-config')).vitestConfig)()
 ```
 
 To avoid having to write JSDocs we also provide a `createVitestConfig` function. This function already includes the default `vitestConfig` and you can pass in additional overrides as an argument.
@@ -50,7 +50,7 @@ To avoid having to write JSDocs we also provide a `createVitestConfig` function.
 **ECMAScript Modules (ESM) usage inside a file like `vitest.config.mjs` or `vitest.config.mts`**:
 
 ```ts
-import { createVitestConfig } from '@arya/vitest-config'
+import { createVitestConfig } from '@aryaemami/vitest-config'
 
 export default createVitestConfig({
   test: {
@@ -64,7 +64,7 @@ export default createVitestConfig({
 
 ```ts
 module.exports = (async () =>
-  (await import('@arya/vitest-config')).createVitestConfig({
+  (await import('@aryaemami/vitest-config')).createVitestConfig({
     test: {
       environment: 'jsdom',
       // Other additional overrides

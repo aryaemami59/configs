@@ -1,3 +1,3 @@
-import { createPrettierConfig } from '@arya/prettier-config'
+import { createPrettierConfig } from '@aryaemami/prettier-config'
 
 export default createPrettierConfig()

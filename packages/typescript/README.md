@@ -1,4 +1,4 @@
-# @arya/tsconfig
+# @aryaemami/tsconfig
 
 Simple TypeScript configuration.
 
@@ -7,25 +7,25 @@ Simple TypeScript configuration.
 #### NPM
 
 ```bash
-npm install --save-dev @arya/tsconfig
+npm install --save-dev @aryaemami/tsconfig
 ```
 
 #### Yarn
 
 ```bash
-yarn add --dev @arya/tsconfig
+yarn add --dev @aryaemami/tsconfig
 ```
 
 #### PNPM
 
 ```bash
-pnpm add --save-dev @arya/tsconfig
+pnpm add --save-dev @aryaemami/tsconfig
 ```
 
 #### Bun
 
 ```bash
-bun add --dev @arya/tsconfig
+bun add --dev @aryaemami/tsconfig
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ bun add --dev @arya/tsconfig
 
 ```json
 {
-  "extends": "@arya/tsconfig/base",
+  "extends": "@aryaemami/tsconfig/base",
   "compilerOptions": {
     "outDir": "dist"
   }
