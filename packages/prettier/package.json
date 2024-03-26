@@ -12,10 +12,7 @@
     ".": {
       "import": {
         "types": "./dist/prettier.config.d.mts",
-        "default": "./dist/prettier.config.mjs"
-      },
-      "node": {
-        "types": "./dist/prettier.config.d.mts",
+        "import": "./dist/prettier.config.mjs",
         "default": "./dist/prettier.config.mjs"
       }
     }
