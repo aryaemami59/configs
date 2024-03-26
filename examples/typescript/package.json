@@ -1,5 +1,6 @@
 {
   "name": "typescript-config-example",
+  "private": true,
   "scripts": {
     "test": "tsc --noEmit"
   },
