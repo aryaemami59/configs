@@ -1,6 +1,6 @@
 {
   "name": "@arya/vitest-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vitest configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "license": "MIT",
