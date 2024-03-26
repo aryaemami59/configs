@@ -1,5 +1,6 @@
 {
   "name": "eslint-config-example",
+  "private": true,
   "scripts": {
     "test": "eslint . || echo \"no config specified\" && eslint . -c eslint.config.js || echo \".js\" && eslint . -c eslint.config.cjs || echo \".cjs\" && eslint . -c eslint.config.mjs || echo \".mjs\""
   },
