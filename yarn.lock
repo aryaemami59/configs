@@ -62,6 +62,9 @@ __metadata:
 "@aryaemami59/tsconfig@workspace:^, @aryaemami59/tsconfig@workspace:packages/typescript":
   version: 0.0.0-use.local
   resolution: "@aryaemami59/tsconfig@workspace:packages/typescript"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
   languageName: unknown
   linkType: soft
 
