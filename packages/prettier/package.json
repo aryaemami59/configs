@@ -43,6 +43,14 @@
   "bugs": {
     "url": "https://github.com/aryaemami59/configs/issues"
   },
+  "peerDependencies": {
+    "prettier": "^3"
+  },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",
     "prettier": "^3.2.5",
