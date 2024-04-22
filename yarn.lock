@@ -18,7 +18,6 @@ __metadata:
   dependencies:
     "@aryaemami59/tsconfig": "workspace:^"
     "@eslint/js": "npm:^8.57.0"
-    "@types/eslint": "npm:^8.56.10"
     "@types/eslint-config-prettier": "npm:^6.11.3"
     "@types/eslint__js": "npm:^8.42.3"
     eslint: "npm:^8.57.0"
@@ -50,7 +49,7 @@ __metadata:
     "@aryaemami59/tsconfig": "workspace:^"
     prettier: "npm:^3.2.5"
     rimraf: "npm:^5.0.5"
-    typescript: "npm:^5.4.2"
+    typescript: "npm:^5.4.5"
   peerDependencies:
     prettier: ^3
   peerDependenciesMeta:
@@ -521,16 +520,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^8.56.10":
-  version: 8.56.10
-  resolution: "@types/eslint@npm:8.56.10"
-  dependencies:
-    "@types/estree": "npm:*"
-    "@types/json-schema": "npm:*"
-  checksum: 10/0cdd914b944ebba51c35827d3ef95bc3e16eb82b4c2741f6437fa57cdb00a4407c77f89c220afe9e4c9566982ec8a0fb9b97c956ac3bd4623a3b6af32eed8424
-  languageName: node
-  linkType: hard
-
 "@types/eslint__js@npm:^8.42.3":
   version: 8.42.3
   resolution: "@types/eslint__js@npm:8.42.3"
@@ -700,17 +689,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/expect@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@vitest/expect@npm:1.3.1"
-  dependencies:
-    "@vitest/spy": "npm:1.3.1"
-    "@vitest/utils": "npm:1.3.1"
-    chai: "npm:^4.3.10"
-  checksum: 10/7c2818b2080ec107cffcc1566195132695c8e87cba883e878c2f36ac4d8107bb0a1f8d3823ccc0da5989e245ea114b8afffe790512aebcde8537ac8c1bcf3454
-  languageName: node
-  linkType: hard
-
 "@vitest/expect@npm:1.5.0":
   version: 1.5.0
   resolution: "@vitest/expect@npm:1.5.0"
@@ -719,17 +697,6 @@ __metadata:
     "@vitest/utils": "npm:1.5.0"
     chai: "npm:^4.3.10"
   checksum: 10/9ee8014a4ee25fbebd702e171abd60a461d51144d19cc3c8fb5309c6836305f2cbfced66af12ab52a114810ddca651329c1e4e1de065df05a3a488ba8b98bb44
-  languageName: node
-  linkType: hard
-
-"@vitest/runner@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@vitest/runner@npm:1.3.1"
-  dependencies:
-    "@vitest/utils": "npm:1.3.1"
-    p-limit: "npm:^5.0.0"
-    pathe: "npm:^1.1.1"
-  checksum: 10/dcd452216b83406df49e298da5e49dbc45c542f755a726a132461b94a84c386b6cabcdfce17fc2d31fa66fd5ea4e57be3618c7dc627b17791e2a1a065d919616
   languageName: node
   linkType: hard
 
@@ -744,17 +711,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@vitest/snapshot@npm:1.3.1"
-  dependencies:
-    magic-string: "npm:^0.30.5"
-    pathe: "npm:^1.1.1"
-    pretty-format: "npm:^29.7.0"
-  checksum: 10/2212ae82eb8d458ddaa6c28c7e33b6a8c8897e298b88e458bf83e7f9bf767fd716ed507f3cd41ebbe145d59baa72220e9f494552f92cc22b39241dc32b8ad8e1
-  languageName: node
-  linkType: hard
-
 "@vitest/snapshot@npm:1.5.0":
   version: 1.5.0
   resolution: "@vitest/snapshot@npm:1.5.0"
@@ -766,33 +722,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@vitest/spy@npm:1.3.1"
-  dependencies:
-    tinyspy: "npm:^2.2.0"
-  checksum: 10/544c8a30fdeb32fb7bf2c2b5816519be943f5ef90668c306b14efdde7676771d0e83cf0e0a5c79fad722be3839432226bcf74173110a032299821e00b67f47e6
-  languageName: node
-  linkType: hard
-
 "@vitest/spy@npm:1.5.0":
   version: 1.5.0
   resolution: "@vitest/spy@npm:1.5.0"
   dependencies:
     tinyspy: "npm:^2.2.0"
   checksum: 10/4e692d4a7c043728d046670f611da1d418a733e2d2212b674e55e7137b67b66097fe4e723c09a4bb56c3943f4b62eb1b9cd69238e26af0f876612357099dbad3
-  languageName: node
-  linkType: hard
-
-"@vitest/utils@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@vitest/utils@npm:1.3.1"
-  dependencies:
-    diff-sequences: "npm:^29.6.3"
-    estree-walker: "npm:^3.0.3"
-    loupe: "npm:^2.3.7"
-    pretty-format: "npm:^29.7.0"
-  checksum: 10/170c62e6c348562f611d8caddc893e8cba75ed89986e09aa2f0fe6812c96664e8d0f6e329f7a96a4c9cdecf147f4853e4054c3db597b111ec993d3cdd546eddc
   languageName: node
   linkType: hard
 
@@ -3077,13 +3012,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinypool@npm:^0.8.2":
-  version: 0.8.2
-  resolution: "tinypool@npm:0.8.2"
-  checksum: 10/5e2cdddc1caf437e3b8d8c56c1c66dffcb46008be4b2e37d457b0921699c6b79930dd8d652e4890c5e1e24688489259da83fd853bc0ce348d8a0375dedefc2ba
-  languageName: node
-  linkType: hard
-
 "tinypool@npm:^0.8.3":
   version: 0.8.4
   resolution: "tinypool@npm:0.8.4"
@@ -3186,7 +3114,7 @@ __metadata:
   resolution: "typescript-config-example@workspace:examples/typescript"
   dependencies:
     "@aryaemami59/tsconfig": "workspace:^"
-    typescript: "npm:^5.4.2"
+    typescript: "npm:^5.4.5"
   languageName: unknown
   linkType: soft
 
@@ -3206,16 +3134,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.4.2":
-  version: 5.4.2
-  resolution: "typescript@npm:5.4.2"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/f8cfdc630ab1672f004e9561eb2916935b2d267792d07ce93e97fc601c7a65191af32033d5e9c0169b7dc37da7db9bf320f7432bc84527cb7697effaa4e4559d
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"
@@ -3223,16 +3141,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/d04a9e27e6d83861f2126665aa8d84847e8ebabcea9125b9ebc30370b98cb38b5dff2508d74e2326a744938191a83a69aa9fddab41f193ffa43eabfdf3f190a5
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A^5.4.2#optional!builtin<compat/typescript>":
-  version: 5.4.2
-  resolution: "typescript@patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=5adc0c"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/f5f9a4133c2670761f0166eae5b3bafbc4a3fc24f0f42a93c9c893d9e9d6e66ea066969c5e7483fa66b4ae0e99125592553f3b92fd3599484de8be13b0615176
   languageName: node
   linkType: hard
 
@@ -3301,21 +3209,6 @@ __metadata:
     querystringify: "npm:^2.1.1"
     requires-port: "npm:^1.0.0"
   checksum: 10/c9e96bc8c5b34e9f05ddfeffc12f6aadecbb0d971b3cc26015b58d5b44676a99f50d5aeb1e5c9e61fa4d49961ae3ab1ae997369ed44da51b2f5ac010d188e6ad
-  languageName: node
-  linkType: hard
-
-"vite-node@npm:1.3.1":
-  version: 1.3.1
-  resolution: "vite-node@npm:1.3.1"
-  dependencies:
-    cac: "npm:^6.7.14"
-    debug: "npm:^4.3.4"
-    pathe: "npm:^1.1.1"
-    picocolors: "npm:^1.0.0"
-    vite: "npm:^5.0.0"
-  bin:
-    vite-node: vite-node.mjs
-  checksum: 10/d6ca8cd5b84768f9a0f12d4327a6aca5200001bd9111991df89ad742e059566a95f8298047af7144ca128120fc67cbd7d37b3fda9700ab07f8fc130d2ad58665
   languageName: node
   linkType: hard
 
@@ -3396,59 +3289,8 @@ __metadata:
   dependencies:
     "@aryaemami59/vitest-config": "workspace:^"
     jsdom: "npm:^24.0.0"
-    vitest: "npm:^1.3.1"
   languageName: unknown
   linkType: soft
-
-"vitest@npm:^1.3.1":
-  version: 1.3.1
-  resolution: "vitest@npm:1.3.1"
-  dependencies:
-    "@vitest/expect": "npm:1.3.1"
-    "@vitest/runner": "npm:1.3.1"
-    "@vitest/snapshot": "npm:1.3.1"
-    "@vitest/spy": "npm:1.3.1"
-    "@vitest/utils": "npm:1.3.1"
-    acorn-walk: "npm:^8.3.2"
-    chai: "npm:^4.3.10"
-    debug: "npm:^4.3.4"
-    execa: "npm:^8.0.1"
-    local-pkg: "npm:^0.5.0"
-    magic-string: "npm:^0.30.5"
-    pathe: "npm:^1.1.1"
-    picocolors: "npm:^1.0.0"
-    std-env: "npm:^3.5.0"
-    strip-literal: "npm:^2.0.0"
-    tinybench: "npm:^2.5.1"
-    tinypool: "npm:^0.8.2"
-    vite: "npm:^5.0.0"
-    vite-node: "npm:1.3.1"
-    why-is-node-running: "npm:^2.2.2"
-  peerDependencies:
-    "@edge-runtime/vm": "*"
-    "@types/node": ^18.0.0 || >=20.0.0
-    "@vitest/browser": 1.3.1
-    "@vitest/ui": 1.3.1
-    happy-dom: "*"
-    jsdom: "*"
-  peerDependenciesMeta:
-    "@edge-runtime/vm":
-      optional: true
-    "@types/node":
-      optional: true
-    "@vitest/browser":
-      optional: true
-    "@vitest/ui":
-      optional: true
-    happy-dom:
-      optional: true
-    jsdom:
-      optional: true
-  bin:
-    vitest: vitest.mjs
-  checksum: 10/41a8405d65b3b3a48b97b020fae50bdc928a8ebb55b4d24e8867e1ba23d298ea810b37ca6530ab87f6b51d3dc1ada1e067e7bc252a99d8f5439ca4ce6831d1f6
-  languageName: node
-  linkType: hard
 
 "vitest@npm:^1.5.0":
   version: 1.5.0
