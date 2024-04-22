@@ -2553,6 +2553,7 @@ __metadata:
   dependencies:
     "@aryaemami59/prettier-config": "workspace:^"
     prettier: "npm:^3.2.5"
+    vitest: "npm:*"
   languageName: unknown
   linkType: soft
 
