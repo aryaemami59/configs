@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@aryaemami59/prettier-config": "workspace:^",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "vitest": "*"
   }
 }
