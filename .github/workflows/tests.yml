@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
         with:
-          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
+          name: artifact
           path: packages/${{ matrix.packages }}/*.tgz
 
   test:
@@ -62,7 +62,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.packages }}-${{ matrix.node }}-${{ matrix.os }}
+          name: artifact
           path: examples/${{ matrix.packages }}
 
       - name: Display structure of downloaded artifact
