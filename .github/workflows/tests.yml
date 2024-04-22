@@ -39,6 +39,10 @@ jobs:
           name: ${{ matrix.packages }}-artifact
           path: packages/${{ matrix.packages }}/*.tgz
 
+      - name: Did we fail?
+        if: failure()
+        run: ls -R
+
   test:
     name: Test ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
     needs: [build]
@@ -79,3 +83,7 @@ jobs:
       - name: Test examples for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
         run: yarn test
+
+      - name: Did we fail?
+        if: failure()
+        run: ls -R
