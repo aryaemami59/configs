@@ -1,5 +1,5 @@
 import { createVitestConfig, vitestConfig } from '@aryaemami59/vitest-config'
-import { platform } from 'os'
+import { platform } from 'node:os'
 
 export default createVitestConfig({
   test: {
