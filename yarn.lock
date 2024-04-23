@@ -3111,7 +3111,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "typescript-config-example@workspace:examples/typescript"
   dependencies:
+    "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
+    "@aryaemami59/vitest-config": "workspace:^"
+    eslint: "npm:^8.57.0"
     typescript: "npm:^5.4.5"
   languageName: unknown
   linkType: soft
