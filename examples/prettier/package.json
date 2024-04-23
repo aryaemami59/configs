@@ -2,10 +2,14 @@
   "name": "prettier-config-example",
   "private": true,
   "scripts": {
-    "test": "prettier -c . || echo \"no config specified\" && prettier -c . --config prettier.config.js || echo \".js\" && prettier -c . --config prettier.config.cjs || echo \".cjs\" && prettier -c . --config prettier.config.mjs || echo \".mjs\""
+    "test": "vitest"
   },
   "devDependencies": {
+    "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
+    "@aryaemami59/tsconfig": "workspace:^",
+    "@aryaemami59/vitest-config": "workspace:^",
+    "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "vitest": "*"
   }
