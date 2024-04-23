@@ -3116,6 +3116,7 @@ __metadata:
     "@aryaemami59/vitest-config": "workspace:^"
     eslint: "npm:^8.57.0"
     typescript: "npm:^5.4.5"
+    vitest: "npm:*"
   languageName: unknown
   linkType: soft
 
