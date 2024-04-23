@@ -2,13 +2,14 @@
   "name": "typescript-config-example",
   "private": true,
   "scripts": {
-    "test": "tsc --noEmit"
+    "test": "vitest"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
     "eslint": "^8.57.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "*"
   }
 }
