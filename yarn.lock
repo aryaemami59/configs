@@ -1275,8 +1275,10 @@ __metadata:
   dependencies:
     "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
+    "@aryaemami59/vitest-config": "workspace:^"
     eslint: "npm:^8.57.0"
     prettier: "npm:^3.2.5"
+    vitest: "npm:*"
   languageName: unknown
   linkType: soft
 
