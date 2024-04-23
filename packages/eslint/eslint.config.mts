@@ -49,7 +49,8 @@ export const vitestGlobals = {
  */
 export const flatESLintConfig = config(
   // `ignores` must be first.
-  { ignores: ['**/dist/', '.*'] },
+  // config with just `ignores` is the replacement for `.eslintignore`
+  { ignores: ['**/dist/', '.*/'] },
   eslint.configs.recommended,
   ...configs.recommended,
   ...configs.stylistic,
@@ -69,6 +70,7 @@ export const flatESLintConfig = config(
       },
     },
     rules: {
+      'no-undef': [0],
       '@typescript-eslint/consistent-type-imports': [
         2,
         { fixStyle: 'separate-type-imports', disallowTypeAnnotations: false },
@@ -99,8 +101,16 @@ export const flatESLintConfig = config(
         },
       ],
     },
-    plugins: { ts: plugin },
+    plugins: { '@typescript-eslint': plugin },
     linterOptions: { reportUnusedDisableDirectives: 2 },
+  },
+  {
+    files: ['**/*.cjs'],
+    languageOptions: { sourceType: 'commonjs' },
+    rules: {
+      '@typescript-eslint/no-var-requires': [0],
+      '@typescript-eslint/no-require-imports': [0],
+    },
   },
 )
 
