@@ -7,6 +7,6 @@
   "devDependencies": {
     "@aryaemami59/vitest-config": "workspace:^",
     "jsdom": "^24.0.0",
-    "vitest": "*"
+    "vitest": "^1.5.2"
   }
 }
