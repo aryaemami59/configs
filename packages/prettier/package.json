@@ -44,7 +44,7 @@
     "url": "https://github.com/aryaemami59/configs/issues"
   },
   "peerDependencies": {
-    "prettier": "^3"
+    "prettier": ">= 3"
   },
   "peerDependenciesMeta": {
     "prettier": {
@@ -53,8 +53,9 @@
   },
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",
-    "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
-    "typescript": "^5.4.5"
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.2"
   }
 }
