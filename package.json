@@ -33,5 +33,5 @@
     "lint": "eslint . --cache --cache-strategy content",
     "lint:fix": "eslint . --fix --cache --cache-strategy content"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.5.0"
 }
