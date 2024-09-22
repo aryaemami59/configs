@@ -43,6 +43,7 @@ export const vitestConfig = defineConfig({
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
+ *
  * ```ts
  * import { createVitestConfig } from '@aryaemami59/vitest-config'
  *
@@ -56,6 +57,7 @@ export const vitestConfig = defineConfig({
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs`__</caption>
+ *
  * ```ts
  * module.exports = (async () =>
  *   (await import('@aryaemami59/vitest-config')).createVitestConfig({

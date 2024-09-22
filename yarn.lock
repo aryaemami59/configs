@@ -1238,6 +1238,8 @@ __metadata:
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
     eslint: "npm:^9.11.0"
+    rimraf: "npm:^6.0.1"
+    typescript: "npm:^5.6.2"
     vitest: "npm:^2.1.1"
   languageName: unknown
   linkType: soft
@@ -2344,6 +2346,8 @@ __metadata:
     "@aryaemami59/vitest-config": "workspace:^"
     eslint: "npm:^9.11.0"
     prettier: "npm:^3.3.3"
+    rimraf: "npm:^6.0.1"
+    typescript: "npm:^5.6.2"
     vitest: "npm:^2.1.1"
   languageName: unknown
   linkType: soft
@@ -2831,6 +2835,7 @@ __metadata:
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
     eslint: "npm:^9.11.0"
+    rimraf: "npm:^6.0.1"
     typescript: "npm:^5.6.2"
     vitest: "npm:^2.1.1"
   languageName: unknown
@@ -2983,6 +2988,8 @@ __metadata:
   dependencies:
     "@aryaemami59/vitest-config": "workspace:^"
     jsdom: "npm:^25.0.1"
+    rimraf: "npm:^6.0.1"
+    typescript: "npm:^5.6.2"
     vitest: "npm:^2.1.1"
   languageName: unknown
   linkType: soft

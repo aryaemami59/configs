@@ -36,7 +36,8 @@ bun add --dev @aryaemami59/tsconfig
 {
   "extends": "@aryaemami59/tsconfig/base",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./src"
   }
 }
 ```
