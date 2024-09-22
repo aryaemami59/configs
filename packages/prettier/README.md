@@ -1,6 +1,6 @@
 # @aryaemami59/prettier-config
 
-Prettier configuration
+Prettier configuration.
 
 ## Installation
 
@@ -38,7 +38,15 @@ import { prettierConfig } from '@aryaemami59/prettier-config'
 export default prettierConfig
 ```
 
-**CommonJS (CJS) usage inside a file like `prettier.config.cjs`**:
+**CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)**:
+
+```js
+const { prettierConfig } = require('@aryaemami59/prettier-config')
+
+module.exports = prettierConfig
+```
+
+**CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)**:
 
 ```js
 module.exports = (async () =>
@@ -58,7 +66,18 @@ export default createPrettierConfig({
 })
 ```
 
-**CommonJS (CJS) usage inside a file like `prettier.config.cjs`**:
+**CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)**:
+
+```js
+const { createPrettierConfig } = require('@aryaemami59/prettier-config')
+
+module.exports = createPrettierConfig({
+  arrowParens: 'avoid',
+  // ...Other additional overrides
+})
+```
+
+**CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)**:
 
 ```js
 module.exports = (async () =>
