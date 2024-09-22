@@ -13,6 +13,7 @@ __metadata:
     "@eslint/js": "npm:^9.11.0"
     "@types/eslint-config-prettier": "npm:^6.11.3"
     "@types/eslint__js": "npm:^8.42.3"
+    "@typescript-eslint/utils": "npm:^8.6.0"
     eslint: "npm:^9.11.0"
     eslint-config-prettier: "npm:^9.1.0"
     globals: "npm:^15.9.0"
@@ -861,7 +862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:8.6.0":
+"@typescript-eslint/utils@npm:8.6.0, @typescript-eslint/utils@npm:^8.6.0":
   version: 8.6.0
   resolution: "@typescript-eslint/utils@npm:8.6.0"
   dependencies:
