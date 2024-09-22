@@ -8,8 +8,7 @@
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
-    "vitest": "^1.5.2"
+    "eslint": "^9.11.0",
+    "vitest": "^2.1.1"
   }
 }
