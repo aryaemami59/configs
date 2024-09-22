@@ -84,7 +84,6 @@ export const flatESLintConfig = config(
         { allowSingleExtends: true },
       ],
       '@typescript-eslint/no-unsafe-argument': [0],
-      '@typescript-eslint/ban-types': [2],
       '@typescript-eslint/no-namespace': [
         2,
         { allowDeclarations: true, allowDefinitionFiles: true },

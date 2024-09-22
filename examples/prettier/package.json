@@ -1,6 +1,8 @@
 {
   "name": "prettier-config-example",
   "private": true,
+  "type": "commonjs",
+  "files": [],
   "scripts": {
     "test": "vitest"
   },

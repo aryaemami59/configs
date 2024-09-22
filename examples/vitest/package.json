@@ -1,6 +1,8 @@
 {
   "name": "vitest-config-example",
   "private": true,
+  "type": "commonjs",
+  "files": [],
   "scripts": {
     "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts"
   },
