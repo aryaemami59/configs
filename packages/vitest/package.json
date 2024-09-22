@@ -66,5 +66,6 @@
   },
   "dependencies": {
     "vite-tsconfig-paths": "^5.0.1"
-  }
+  },
+  "sideEffects": false
 }

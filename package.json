@@ -35,5 +35,6 @@
     "lint-fix": "eslint . --fix"
   },
   "packageManager": "yarn@4.5.0",
-  "version": ""
+  "version": "",
+  "sideEffects": false
 }
