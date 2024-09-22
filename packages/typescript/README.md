@@ -1,6 +1,6 @@
 # @aryaemami59/tsconfig
 
-Simple TypeScript configuration.
+A collection of different TypeScript configurations.
 
 ## Installation
 
