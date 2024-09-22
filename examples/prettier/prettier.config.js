@@ -1,6 +1,5 @@
-const { createPrettierConfig } = require('@aryaemami59/prettier-config')
-
-module.exports = createPrettierConfig({
-  arrowParens: 'avoid',
-  // ...Other additional overrides
-})
+module.exports = (async () =>
+  (await import('@aryaemami59/prettier-config')).createPrettierConfig({
+    arrowParens: 'avoid',
+    // ...Other additional overrides
+  }))()

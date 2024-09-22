@@ -1,7 +1,9 @@
-module.exports = (async () =>
-  (await import('@aryaemami59/vitest-config')).createVitestConfig({
-    test: {
-      environment: 'jsdom',
-      // Other additional overrides
-    },
-  }))()
+import vitestConfigModule = require('@aryaemami59/vitest-config')
+import createVitestConfig = vitestConfigModule.createVitestConfig
+
+export = createVitestConfig({
+  test: {
+    environment: 'jsdom',
+    // Other additional overrides
+  },
+})
