@@ -2,13 +2,25 @@
   "name": "@aryaemami59/prettier-config",
   "version": "0.0.2",
   "description": "Prettier configuration",
-  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "keywords": [
+    "prettier",
+    "config",
+    "prettier-config",
+    "configuration"
+  ],
+  "homepage": "https://github.com/aryaemami59/configs/tree/master/packages/prettier#readme",
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryaemami59/configs.git",
+    "directory": "packages/prettier"
+  },
   "license": "MIT",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "sideEffects": false,
   "type": "module",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -22,6 +34,10 @@
       }
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -31,22 +47,13 @@
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
-  "keywords": [
-    "prettier",
-    "config",
-    "prettier-config",
-    "configuration"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git",
-    "directory": "packages/prettier"
-  },
-  "bugs": {
-    "url": "https://github.com/aryaemami59/configs/issues"
+  "devDependencies": {
+    "@aryaemami59/tsconfig": "workspace:^",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tslib": "^2.7.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "prettier": ">= 3"
@@ -56,13 +63,7 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@aryaemami59/tsconfig": "workspace:^",
-    "prettier": "^3.3.3",
-    "rimraf": "^6.0.1",
-    "tslib": "^2.7.0",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.2"
-  },
-  "sideEffects": false
+  "publishConfig": {
+    "access": "public"
+  }
 }
