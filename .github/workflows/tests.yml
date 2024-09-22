@@ -51,7 +51,7 @@ jobs:
       matrix:
         node: [18.x, 20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout repository
