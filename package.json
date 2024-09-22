@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/aryaemami59/configs"
+    "url": "git+https://github.com/aryaemami59/configs.git"
   },
   "bugs": {
     "url": "https://github.com/aryaemami59/configs/issues"
@@ -33,5 +33,6 @@
     "lint": "eslint . --cache --cache-strategy content",
     "lint:fix": "eslint . --fix --cache --cache-strategy content"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.0",
+  "version": ""
 }
