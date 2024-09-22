@@ -1,0 +1,9 @@
+{
+  "extends": "@aryaemami59/tsconfig/bundler/esnext",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "Preserve",
+    "moduleResolution": "Bundler"
+  },
+  "display": "TypeScript configuration with module set to `Preserve` and module resolution set to `Bundler`"
+}

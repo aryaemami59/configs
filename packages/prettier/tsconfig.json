@@ -1,6 +1,7 @@
 {
-  "extends": "@aryaemami59/tsconfig/base",
+  "extends": "@aryaemami59/tsconfig/node-next",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./"
   }
 }

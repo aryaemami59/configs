@@ -4,23 +4,24 @@
   "description": "Vitest configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "license": "MIT",
-  "main": "./dist/vitest.config.mjs",
-  "types": "./dist/vitest.config.d.mts",
-  "module": "./dist/vitest.config.mjs",
+  "source": "./src/index.mts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "module": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/vitest.config.d.mts",
-      "import": "./dist/vitest.config.mjs",
-      "default": "./dist/vitest.config.mjs"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     }
   },
   "files": [
     "dist",
-    "*.mts"
+    "src"
   ],
   "scripts": {
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },

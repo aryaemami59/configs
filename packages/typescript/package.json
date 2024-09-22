@@ -8,7 +8,16 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./base/tsconfig.json",
-    "./base": "./base/tsconfig.json"
+    "./base": "./base/tsconfig.json",
+    "./node": "./base/tsconfig.json",
+    "./node-10": "./node-10/tsconfig.json",
+    "./node-next": "./node-next/tsconfig.json",
+    "./node-16": "./node-16/tsconfig.json",
+    "./cra": "./create-react-app/tsconfig.json",
+    "./create-react-app": "./create-react-app/tsconfig.json",
+    "./bundler": "./bundler/esnext/tsconfig.json",
+    "./bundler/esnext": "./bundler/esnext/tsconfig.json",
+    "./bundler/preserve": "./bundler/preserve/tsconfig.json"
   },
   "keywords": [
     "config",

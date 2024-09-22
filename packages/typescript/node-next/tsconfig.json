@@ -1,0 +1,9 @@
+{
+  "extends": "@aryaemami59/tsconfig/base",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  },
+  "display": "TypeScript configuration with `NodeNext` module resolution"
+}
