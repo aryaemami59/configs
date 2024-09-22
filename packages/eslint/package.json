@@ -4,23 +4,24 @@
   "description": "ESLint configuration for TypeScript projects",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "license": "MIT",
-  "types": "./dist/eslint.config.d.mts",
-  "main": "./dist/eslint.config.mjs",
-  "module": "./dist/eslint.config.mjs",
+  "source": "./src/index.mts",
+  "types": "./dist/index.d.mts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/eslint.config.d.mts",
-      "import": "./dist/eslint.config.mjs",
-      "default": "./dist/eslint.config.mjs"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     }
   },
   "files": [
     "dist",
-    "*.mts"
+    "src"
   ],
   "scripts": {
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },

@@ -4,25 +4,26 @@
   "description": "Prettier configuration",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "license": "MIT",
-  "types": "./dist/prettier.config.d.mts",
-  "module": "./dist/prettier.config.mjs",
-  "main": "./dist/prettier.config.mjs",
+  "source": "./src/index.mts",
+  "types": "./dist/index.d.mts",
+  "module": "./dist/index.mjs",
+  "main": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/prettier.config.d.mts",
-        "import": "./dist/prettier.config.mjs",
-        "default": "./dist/prettier.config.mjs"
+        "types": "./dist/index.d.mts",
+        "import": "./dist/index.mjs",
+        "default": "./dist/index.mjs"
       }
     }
   },
   "files": [
     "dist",
-    "*.mts"
+    "src"
   ],
   "scripts": {
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
