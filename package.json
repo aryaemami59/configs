@@ -28,10 +28,10 @@
     "build": "yarn workspaces foreach -Atp run build",
     "clean": "yarn workspaces foreach -Atp run clean",
     "install": "yarn build",
-    "format": "prettier -w . --cache --cache-strategy content",
-    "format:check": "prettier -c . --cache --cache-strategy content",
-    "lint": "eslint . --cache --cache-strategy content",
-    "lint:fix": "eslint . --fix --cache --cache-strategy content"
+    "format": "prettier -w .",
+    "format-check": "prettier -c .",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "packageManager": "yarn@4.5.0",
   "version": ""
