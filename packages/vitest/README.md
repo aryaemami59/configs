@@ -30,24 +30,41 @@ bun add --dev @aryaemami59/vitest-config
 
 ## Usage
 
-**ECMAScript Modules (ESM) usage inside a file like `vitest.config.mjs`**:
+**ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`**:
 
-```js
+```ts
 import { vitestConfig } from '@aryaemami59/vitest-config'
 
 export default vitestConfig
 ```
 
-**CommonJS (CJS) usage inside a file like `vitest.config.cjs`**:
+**CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)**:
 
-```js
+```ts
+const { vitestConfig } = require('@aryaemami59/vitest-config')
+
+module.exports = vitestConfig
+```
+
+**CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)**:
+
+```ts
 module.exports = (async () =>
   (await import('@aryaemami59/vitest-config')).vitestConfig)()
 ```
 
+**CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)**:
+
+```ts
+import vitestConfigModule = require('@aryaemami59/vitest-config')
+import vitestConfig = vitestConfigModule.vitestConfig
+
+export = vitestConfig
+```
+
 To avoid having to write JSDocs we also provide a `createVitestConfig` function. This function already includes the default `vitestConfig` and you can pass in additional overrides as an argument.
 
-**ECMAScript Modules (ESM) usage inside a file like `vitest.config.mjs` or `vitest.config.mts`**:
+**ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`**:
 
 ```ts
 import { createVitestConfig } from '@aryaemami59/vitest-config'
@@ -60,7 +77,20 @@ export default createVitestConfig({
 })
 ```
 
-**CommonJS (CJS) usage inside a file like `vitest.config.cjs` or `vitest.config.cts`**:
+**CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)**:
+
+```ts
+const { createVitestConfig } = require('@aryaemami59/vitest-config')
+
+module.exports = createVitestConfig({
+  test: {
+    environment: 'jsdom',
+    // Other additional overrides
+  },
+})
+```
+
+**CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)**:
 
 ```ts
 module.exports = (async () =>
@@ -70,4 +100,18 @@ module.exports = (async () =>
       // Other additional overrides
     },
   }))()
+```
+
+**CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)**:
+
+```ts
+import vitestConfigModule = require('@aryaemami59/vitest-config')
+import createVitestConfig = vitestConfigModule.createVitestConfig
+
+export = createVitestConfig({
+  test: {
+    environment: 'jsdom',
+    // Other additional overrides
+  },
+})
 ```
