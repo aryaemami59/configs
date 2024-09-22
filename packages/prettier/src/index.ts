@@ -1,10 +1,10 @@
 import type { Config } from 'prettier'
 
 /**
- * Prettier configuration
+ * Prettier configuration.
  *
  * @example
- * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
  *
  * ```js
  * import { prettierConfig } from '@aryaemami59/prettier-config'
@@ -13,12 +13,24 @@ import type { Config } from 'prettier'
  * ```
  *
  * @example
- * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cjs`__</caption>
+ * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)__</caption>
+ *
+ * ```js
+ * const { prettierConfig } = require('@aryaemami59/prettier-config')
+ *
+ * module.exports = prettierConfig
+ * ```
+ *
+ * @example
+ * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)__</caption>
  *
  * ```js
  * module.exports = (async () =>
  *   (await import('@aryaemami59/prettier-config')).prettierConfig)()
  * ```
+ *
+ * @public
+ * @since 0.0.3
  */
 export const prettierConfig: Config = {
   semi: false,
@@ -35,7 +47,7 @@ export const prettierConfig: Config = {
  * @returns An augmented version of the default {@linkcode prettierConfig}, incorporating any provided overrides.
  *
  * @example
- * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
  *
  * ```js
  * import { createPrettierConfig } from '@aryaemami59/prettier-config'
@@ -47,7 +59,19 @@ export const prettierConfig: Config = {
  * ```
  *
  * @example
- * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cjs`__</caption>
+ * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)__</caption>
+ *
+ * ```js
+ * const { createPrettierConfig } = require('@aryaemami59/prettier-config')
+ *
+ * module.exports = createPrettierConfig({
+ *   arrowParens: 'avoid',
+ *   // ...Other additional overrides
+ * })
+ * ```
+ *
+ * @example
+ * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)__</caption>
  *
  * ```js
  * module.exports = (async () =>
@@ -56,9 +80,10 @@ export const prettierConfig: Config = {
  *     // ...Other additional overrides
  *   }))()
  * ```
+ *
+ * @public
+ * @since 0.0.3
  */
 export const createPrettierConfig = (
   additionalOverrides: Config = {},
 ): Config => ({ ...prettierConfig, ...additionalOverrides })
-
-export default prettierConfig

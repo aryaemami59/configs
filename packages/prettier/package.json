@@ -6,19 +6,19 @@
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
-  "types": "./dist/esm/index.d.ts",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       },
       "default": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
       }
     }
   },
@@ -27,7 +27,7 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn clean && tsc -p tsconfig.build.json --outDir dist/esm && echo '{ \"type\": \"module\" }' > dist/esm/package.json && tsc -p tsconfig.build.json --outDir dist/cjs --module CommonJS --moduleResolution Node10 && echo '{ \"type\": \"commonjs\" }' > dist/cjs/package.json",
+    "build": "yarn clean && tsup",
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
@@ -61,6 +61,7 @@
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
     "tslib": "^2.7.0",
+    "tsup": "^8.3.0",
     "typescript": "^5.6.2"
   },
   "sideEffects": false
