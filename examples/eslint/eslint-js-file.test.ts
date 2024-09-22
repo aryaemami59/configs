@@ -19,7 +19,7 @@ describe<LocalTestContext>('JS file', async (test) => {
 
   const filePath = path.join(tempDir, 'test.js')
 
-  beforeEach<LocalTestContext>(async (context) => {
+  beforeEach<LocalTestContext>((context) => {
     context.tempDir = tempDir
 
     context.filePath = filePath
