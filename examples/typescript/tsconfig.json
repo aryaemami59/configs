@@ -1,8 +1,8 @@
 {
-  "extends": "@aryaemami59/tsconfig",
+  "extends": "@aryaemami59/tsconfig/node-next",
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "noEmit": true
+    "outDir": "./dist"
   }
 }

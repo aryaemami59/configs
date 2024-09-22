@@ -36,6 +36,7 @@ export const prettierConfig: Config = {
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ *
  * ```js
  * import { createPrettierConfig } from '@aryaemami59/prettier-config'
  *
@@ -47,6 +48,7 @@ export const prettierConfig: Config = {
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cjs`__</caption>
+ *
  * ```js
  * module.exports = (async () =>
  *   (await import('@aryaemami59/prettier-config')).createPrettierConfig({

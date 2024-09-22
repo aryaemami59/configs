@@ -1,8 +1,8 @@
-import eslint from '@eslint/js'
+import js from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier'
 import globals from 'globals'
 import type { ConfigWithExtends } from 'typescript-eslint'
-import { config, configs, parser, plugin } from 'typescript-eslint'
+import { config, configs, parser } from 'typescript-eslint'
 const { browser, node, nodeBuiltin } = globals
 
 /**
@@ -50,22 +50,36 @@ export const vitestGlobals = {
 export const flatESLintConfig = config(
   // `ignores` must be first.
   // config with just `ignores` is the replacement for `.eslintignore`
-  { ignores: ['**/dist/', '.*/'] },
-  eslint.configs.recommended,
+  {
+    name: '@aryaemami59/global-ignores',
+    ignores: [
+      '**/dist/',
+      '**/.yalc/',
+      '**/build/',
+      '**/lib/',
+      '**/temp/',
+      '**/.yarn/',
+    ],
+  },
+  { name: '@aryaemami59/javascript', ...js.configs.recommended },
   ...configs.recommended,
   ...configs.stylistic,
-  prettierConfig,
+  { name: '@aryaemami59/prettier-config', ...prettierConfig },
   {
+    name: '@aryaemami59/main',
     languageOptions: {
       globals: {
         ...vitestGlobals,
-        ...nodeBuiltin,
         ...browser,
         ...node,
+        ...nodeBuiltin,
       },
       parser,
       parserOptions: {
-        project: ['./tsconfig.json'],
+        projectService: {
+          allowDefaultProject: ['.*.js', '.*.mjs', '.*.cjs'],
+          defaultProject: './tsconfig.json',
+        },
         ecmaVersion: 'latest',
       },
     },
@@ -77,18 +91,27 @@ export const flatESLintConfig = config(
       ],
       '@typescript-eslint/consistent-type-exports': [2],
       '@typescript-eslint/no-unused-vars': [0],
-      '@typescript-eslint/array-type': [2, { default: 'array-simple' }],
       '@typescript-eslint/no-explicit-any': [0],
-      '@typescript-eslint/no-empty-interface': [
+      '@typescript-eslint/no-empty-object-type': [
         2,
-        { allowSingleExtends: true },
+        { allowInterfaces: 'with-single-extends' },
       ],
-      '@typescript-eslint/no-unsafe-argument': [0],
+      '@typescript-eslint/no-restricted-types': [
+        2,
+        {
+          types: {
+            '{}': {
+              suggest: ['AnyNonNullishValue', 'EmptyObject', 'AnyObject'],
+            },
+          },
+        },
+      ],
       '@typescript-eslint/no-namespace': [
         2,
         { allowDeclarations: true, allowDefinitionFiles: true },
       ],
       '@typescript-eslint/ban-ts-comment': [0],
+      '@typescript-eslint/consistent-type-definitions': [0, 'type'],
       'sort-imports': [
         2,
         {
@@ -100,14 +123,13 @@ export const flatESLintConfig = config(
         },
       ],
     },
-    plugins: { '@typescript-eslint': plugin },
     linterOptions: { reportUnusedDisableDirectives: 2 },
   },
   {
-    files: ['**/*.cjs'],
+    name: '@aryaemami59/commonjs',
+    files: ['**/*.c[jt]s'],
     languageOptions: { sourceType: 'commonjs' },
     rules: {
-      '@typescript-eslint/no-var-requires': [0],
       '@typescript-eslint/no-require-imports': [0],
     },
   },
@@ -124,6 +146,7 @@ export const flatESLintConfig = config(
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
+ *
  * ```js
  * import { createESLintConfig } from '@aryaemami59/eslint-config'
  *
@@ -142,6 +165,7 @@ export const flatESLintConfig = config(
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cjs`__</caption>
+ *
  * ```js
  * module.exports = (async () =>
  *   (await import('@aryaemami59/eslint-config')).createESLintConfig([
