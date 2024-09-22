@@ -59,11 +59,11 @@ export const vitestConfig: UserConfig = /* @__PURE__ */ defineConfig({
 })
 
 /**
- * A function that returns {@linkcode vitestConfig }
+ * A function that returns {@linkcode vitestConfig}
  * along with optional additional overrides.
  *
  * @param additionalOverrides - Optional additional overrides to apply to the configuration.
- * @returns An augmented version of the default {@linkcode vitestConfig }, incorporating any provided overrides.
+ * @returns An augmented version of the default {@linkcode vitestConfig}, incorporating any provided overrides.
  *
  * @example
  * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>

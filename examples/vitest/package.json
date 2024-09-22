@@ -4,7 +4,7 @@
   "type": "commonjs",
   "files": [],
   "scripts": {
-    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts && vitest -c vitest.config.js",
+    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts && vitest -c vitest.config.cjs",
     "clean": "rimraf dist",
     "test-types": "yarn clean && tsc -p tsconfig.json"
   },

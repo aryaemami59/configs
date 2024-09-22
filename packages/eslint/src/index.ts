@@ -7,6 +7,9 @@ const { browser, node, nodeBuiltin } = globals
 
 /**
  * An object representing the globals provided by Vitest for use in testing.
+ *
+ * @since 0.0.3
+ * @public
  */
 export const vitestGlobals = {
   suite: false,
@@ -31,23 +34,45 @@ export const vitestGlobals = {
  * Flat ESLint configuration tailored for projects using TypeScript.
  *
  * @example
- * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
+ * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
  *
- * ```js
+ * ```ts
  * import { flatESLintConfig } from '@aryaemami59/eslint-config'
  *
  * export default flatESLintConfig
  * ```
  *
  * @example
- * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cjs`__</caption>
+ * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
  *
- * ```js
+ * ```ts
+ * const { flatESLintConfig } = require('@aryaemami59/eslint-config')
+ *
+ * module.exports = flatESLintConfig
+ * ```
+ *
+ * @example
+ * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cjs` or `eslint.config.cts` (using dynamic import)__</caption>
+ *
+ * ```ts
  * module.exports = (async () =>
  *   (await import('@aryaemami59/eslint-config')).flatESLintConfig)()
  * ```
+ *
+ * @example
+ * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
+ *
+ * ```ts
+ * import eslintConfigModule = require('@aryaemami59/eslint-config')
+ * import flatESLintConfig = eslintConfigModule.flatESLintConfig
+ *
+ * export = flatESLintConfig
+ * ```
+ *
+ * @since 0.0.3
+ * @public
  */
-export const flatESLintConfig = config(
+export const flatESLintConfig = /* @__PURE__ */ config(
   // `ignores` must be first.
   // config with just `ignores` is the replacement for `.eslintignore`
   {
@@ -145,9 +170,9 @@ export const flatESLintConfig = config(
  * @returns An augmented version of the default {@linkcode flatESLintConfig}, incorporating any provided overrides.
  *
  * @example
- * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mjs`__</caption>
+ * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
  *
- * ```js
+ * ```ts
  * import { createESLintConfig } from '@aryaemami59/eslint-config'
  *
  * export default createESLintConfig([
@@ -160,13 +185,30 @@ export const flatESLintConfig = config(
  *     // ...Other additional overrides
  *   },
  * ])
- *
  * ```
  *
  * @example
- * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cjs`__</caption>
+ * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
  *
- * ```js
+ * ```ts
+ * const { createESLintConfig } = require('@aryaemami59/eslint-config')
+ *
+ * module.exports = createESLintConfig([
+ *   {
+ *     rules: {
+ *       'no-console': [0],
+ *     },
+ *   },
+ *   {
+ *     // ...Other additional overrides
+ *   },
+ * ])
+ * ```
+ *
+ * @example
+ * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using dynamic import)__</caption>
+ *
+ * ```ts
  * module.exports = (async () =>
  *   (await import('@aryaemami59/eslint-config')).createESLintConfig([
  *     {
@@ -179,9 +221,29 @@ export const flatESLintConfig = config(
  *     },
  *   ]))()
  * ```
+ *
+ * @example
+ * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
+ *
+ * ```ts
+ * import eslintConfigModule = require('@aryaemami59/eslint-config')
+ * import createESLintConfig = eslintConfigModule.createESLintConfig
+ *
+ * export = createESLintConfig([
+ *   {
+ *     rules: {
+ *       'no-console': [0],
+ *     },
+ *   },
+ *   {
+ *     // ...Other additional overrides
+ *   },
+ * ])
+ * ```
+ *
+ * @since 0.0.3
+ * @public
  */
 export const createESLintConfig = (
   additionalOverrides: ConfigWithExtends[] = [],
-) => flatESLintConfig.concat(additionalOverrides)
-
-export default flatESLintConfig
+) => /* @__PURE__ */ config(...flatESLintConfig, ...additionalOverrides)
