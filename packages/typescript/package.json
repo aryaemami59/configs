@@ -2,10 +2,26 @@
   "name": "@aryaemami59/tsconfig",
   "version": "0.0.2",
   "description": "TypeScript configuration",
-  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "keywords": [
+    "config",
+    "tsconfig",
+    "typescript",
+    "ts",
+    "configuration"
+  ],
+  "homepage": "https://github.com/aryaemami59/configs/tree/master/packages/typescript#readme",
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryaemami59/configs.git",
+    "directory": "packages/typescript"
+  },
   "license": "MIT",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "sideEffects": false,
   "type": "module",
-  "main": "base/tsconfig.json",
   "exports": {
     "./package.json": "./package.json",
     ".": "./base/tsconfig.json",
@@ -20,23 +36,8 @@
     "./bundler/esnext": "./bundler/esnext/tsconfig.json",
     "./bundler/preserve": "./bundler/preserve/tsconfig.json"
   },
-  "keywords": [
-    "config",
-    "tsconfig",
-    "typescript",
-    "ts",
-    "configuration"
-  ],
+  "main": "./base/tsconfig.json",
   "publishConfig": {
     "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git",
-    "directory": "packages/typescript"
-  },
-  "bugs": {
-    "url": "https://github.com/aryaemami59/configs/issues"
-  },
-  "sideEffects": false
+  }
 }

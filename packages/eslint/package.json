@@ -2,13 +2,25 @@
   "name": "@aryaemami59/eslint-config",
   "version": "0.0.2",
   "description": "ESLint configuration for TypeScript projects",
-  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "keywords": [
+    "eslint",
+    "config",
+    "eslint-config",
+    "configuration"
+  ],
+  "homepage": "https://github.com/aryaemami59/configs/tree/master/packages/eslint#readme",
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryaemami59/configs.git",
+    "directory": "packages/eslint"
+  },
   "license": "MIT",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "sideEffects": false,
   "type": "module",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -22,6 +34,10 @@
       }
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -31,30 +47,12 @@
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
-  "keywords": [
-    "eslint",
-    "config",
-    "eslint-config",
-    "configuration"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git",
-    "directory": "packages/eslint"
-  },
-  "bugs": {
-    "url": "https://github.com/aryaemami59/configs/issues"
-  },
-  "peerDependencies": {
-    "eslint": ">= 8.56.0"
-  },
-  "peerDependenciesMeta": {
-    "eslint": {
-      "optional": true
-    }
+  "dependencies": {
+    "@eslint/js": "^9.11.0",
+    "@typescript-eslint/utils": "^8.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
+    "typescript-eslint": "^8.6.0"
   },
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",
@@ -66,12 +64,15 @@
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
   },
-  "dependencies": {
-    "@eslint/js": "^9.11.0",
-    "@typescript-eslint/utils": "^8.6.0",
-    "eslint-config-prettier": "^9.1.0",
-    "globals": "^15.9.0",
-    "typescript-eslint": "^8.6.0"
+  "peerDependencies": {
+    "eslint": ">= 8.56.0"
   },
-  "sideEffects": false
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

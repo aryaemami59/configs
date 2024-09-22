@@ -1,11 +1,13 @@
 {
   "name": "vitest-config-example",
+  "version": "0.0.0",
   "private": true,
+  "sideEffects": false,
   "type": "commonjs",
   "files": [],
   "scripts": {
-    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts && vitest -c vitest.config.cjs",
     "clean": "rimraf dist",
+    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts && vitest -c vitest.config.cjs",
     "test-types": "yarn clean && tsc -p tsconfig.json"
   },
   "devDependencies": {
@@ -15,6 +17,5 @@
     "typescript": "^5.6.2",
     "vitest": "^2.1.1"
   },
-  "version": "",
-  "sideEffects": false
+  "homepage": "https://github.com/aryaemami59/configs"
 }

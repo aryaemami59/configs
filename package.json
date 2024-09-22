@@ -1,20 +1,31 @@
 {
   "name": "configs-monorepo",
-  "description": "A set of config files for ease of use",
+  "version": "0.0.0",
   "private": true,
-  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "description": "A set of config files for ease of use",
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryaemami59/configs.git"
+  },
   "license": "MIT",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "sideEffects": false,
   "type": "module",
   "workspaces": [
     "packages/*",
     "examples/*"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git"
-  },
-  "bugs": {
-    "url": "https://github.com/aryaemami59/configs/issues"
+  "scripts": {
+    "build": "yarn workspaces foreach -Atp run build",
+    "clean": "yarn workspaces foreach -Atp run clean",
+    "format": "prettier -w .",
+    "format-check": "prettier -c .",
+    "install": "yarn build",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",
@@ -26,16 +37,6 @@
     "prettier": "^3.3.3",
     "typescript": "^5.6.2"
   },
-  "scripts": {
-    "build": "yarn workspaces foreach -Atp run build",
-    "clean": "yarn workspaces foreach -Atp run clean",
-    "install": "yarn build",
-    "format": "prettier -w .",
-    "format-check": "prettier -c .",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
-  },
   "packageManager": "yarn@4.5.0",
-  "version": "",
-  "sideEffects": false
+  "homepage": "https://github.com/aryaemami59/configs"
 }

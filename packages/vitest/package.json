@@ -2,13 +2,26 @@
   "name": "@aryaemami59/vitest-config",
   "version": "0.0.2",
   "description": "Vitest configuration for TypeScript projects",
-  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "keywords": [
+    "config",
+    "vitest-config",
+    "vitest",
+    "vite",
+    "configuration"
+  ],
+  "homepage": "https://github.com/aryaemami59/configs/tree/master/packages/vitest#readme",
+  "bugs": {
+    "url": "https://github.com/aryaemami59/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryaemami59/configs.git",
+    "directory": "packages/vitest"
+  },
   "license": "MIT",
+  "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
+  "sideEffects": false,
   "type": "module",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -22,6 +35,10 @@
       }
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -31,23 +48,18 @@
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
-  "keywords": [
-    "config",
-    "vitest-config",
-    "vitest",
-    "vite",
-    "configuration"
-  ],
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "vite-tsconfig-paths": "^5.0.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git",
-    "directory": "packages/vitest"
-  },
-  "bugs": {
-    "url": "https://github.com/aryaemami59/configs/issues"
+  "devDependencies": {
+    "@aryaemami59/tsconfig": "workspace:^",
+    "@types/node": "^22.5.5",
+    "rimraf": "^6.0.1",
+    "tslib": "^2.7.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.7",
+    "vitest": "^2.1.1"
   },
   "peerDependencies": {
     "vite": "*",
@@ -61,18 +73,7 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "@aryaemami59/tsconfig": "workspace:^",
-    "@types/node": "^22.5.5",
-    "rimraf": "^6.0.1",
-    "tslib": "^2.7.0",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.7",
-    "vitest": "^2.1.1"
-  },
-  "dependencies": {
-    "vite-tsconfig-paths": "^5.0.1"
-  },
-  "sideEffects": false
+  "publishConfig": {
+    "access": "public"
+  }
 }
