@@ -4,6 +4,7 @@
   "private": true,
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "license": "MIT",
+  "type": "module",
   "workspaces": [
     "packages/*",
     "examples/*"
