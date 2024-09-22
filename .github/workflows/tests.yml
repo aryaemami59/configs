@@ -1,7 +1,43 @@
 name: CI
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
+  check-lint-and-formatting:
+    name: Check lint and formatting
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20.x]
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check for duplicate packages
+        run: yarn dedupe --check --strategy highest
+
+      - name: Check formatting
+        run: yarn workspaces foreach -Ap -j unlimited run format-check
+
+      - name: Lint files
+        run: yarn workspaces foreach -Ap -j unlimited run lint
+
+      - name: Run type tests
+        run: yarn workspaces foreach -Ap -j unlimited run test-types
+
   build:
     defaults:
       run:
@@ -40,8 +76,8 @@ jobs:
         uses: actions/upload-artifact@v4
         id: artifact-upload-step
         with:
-          name: ${{ matrix.packages }}-artifact
-          path: packages/${{ matrix.packages }}/*.tgz
+          name: ${{ matrix.packages }}
+          path: packages/${{ matrix.packages }}/package.tgz
 
       - name: Did we fail?
         if: failure()
@@ -56,7 +92,7 @@ jobs:
       matrix:
         node: [20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
@@ -68,22 +104,21 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'yarn'
 
-      - name: Download artifact
+      - name: Download build artifact for ${{ matrix.packages }}
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.packages }}-artifact
+          name: ${{ matrix.packages }}
           path: examples/${{ matrix.packages }}
 
-      - name: Display structure of downloaded artifact
-        run: ls -R examples/${{ matrix.packages }}
-
       - name: Install dependencies
-        working-directory: examples/${{ matrix.packages }}
         run: yarn install
+
+      - name: Display folder structure of examples/${{ matrix.packages }}
+        run: ls -R examples/${{ matrix.packages }}
 
       - name: Install build artifact for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
-        run: yarn add ./package.tgz
+        run: yarn add -D ./package.tgz
 
       - name: Test examples for ${{ matrix.packages }}
         working-directory: examples/${{ matrix.packages }}
@@ -96,6 +131,7 @@ jobs:
   are-the-types-wrong:
     name: Check if the type definitions are correct
     runs-on: ${{ matrix.os }}
+    needs: [build]
     strategy:
       fail-fast: false
       matrix:
@@ -106,7 +142,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
@@ -115,17 +151,17 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Download artifact
+      - name: Download build artifact for ${{ matrix.packages }}
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.packages }}-artifact
+          name: ${{ matrix.packages }}
           path: packages/${{ matrix.packages }}
 
-      - name: show folder
+      - name: Display folder structure
         run: ls -l .
 
       - name: Run are-the-types-wrong
-        run: npx @arethetypeswrong/cli@latest ./package.tgz --format table
+        run: npx @arethetypeswrong/cli@latest packages/${{ matrix.packages }}/package.tgz --format table
 
       - name: Did we fail?
         if: failure()
