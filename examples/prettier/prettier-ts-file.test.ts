@@ -28,30 +28,32 @@ describe<LocalTestContext>('TS file', async test => {
     }
   })
 
-  beforeEach<LocalTestContext>(async context => {
+  beforeEach<LocalTestContext>(context => {
     context.tempDir = tempDir
 
     context.filePath = filePath
   })
 
   test('no config specified', async ({ expect, filePath, tempDir }) => {
-    await expect(() => exec(`${cli} ${filePath}`)).rejects.toThrowError(tempDir)
+    await expect(async () => exec(`${cli} ${filePath}`)).rejects.toThrowError(
+      tempDir,
+    )
   })
 
   test('prettier.config.js', async ({ expect, filePath, tempDir, task }) => {
-    await expect(() =>
+    await expect(async () =>
       exec(`${cli} ${filePath} --config ${task.name}`),
     ).rejects.toThrowError(tempDir)
   })
 
   test('prettier.config.cjs', async ({ expect, filePath, tempDir, task }) => {
-    await expect(() =>
+    await expect(async () =>
       exec(`${cli} ${filePath} --config ${task.name}`),
     ).rejects.toThrowError(tempDir)
   })
 
   test('prettier.config.mjs', async ({ expect, filePath, tempDir, task }) => {
-    await expect(() =>
+    await expect(async () =>
       exec(`${cli} ${filePath} --config ${task.name}`),
     ).rejects.toThrowError(tempDir)
   })
