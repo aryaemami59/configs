@@ -42,7 +42,7 @@
     "check-package-json": "publint --strict ."
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.16.4",
+    "@arethetypeswrong/cli": "^0.17.0",
     "publint": "^0.2.12"
   },
   "publishConfig": {
