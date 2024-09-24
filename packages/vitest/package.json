@@ -63,19 +63,18 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^5.1.2"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.16.4",
+    "@arethetypeswrong/cli": "^0.17.0",
     "@aryaemami59/tsconfig": "workspace:^",
-    "@types/node": "^22.5.5",
+    "@types/node": "^22.9.0",
     "publint": "^0.2.12",
     "rimraf": "^6.0.1",
-    "tslib": "^2.7.0",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.7",
-    "vitest": "^2.1.1"
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.5"
   },
   "peerDependencies": {
     "vite": "*",
