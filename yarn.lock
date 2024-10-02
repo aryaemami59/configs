@@ -24,8 +24,11 @@ __metadata:
     typescript-eslint: "npm:^8.6.0"
   peerDependencies:
     eslint: ">= 8.56.0"
+    typescript: "*"
   peerDependenciesMeta:
     eslint:
+      optional: true
+    typescript:
       optional: true
   languageName: unknown
   linkType: soft
