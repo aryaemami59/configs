@@ -7,7 +7,7 @@
   "files": [],
   "scripts": {
     "clean": "rimraf dist",
-    "test": "vitest",
+    "test": "DEBUG='vite-node:*' vitest",
     "test-types": "yarn clean && tsc -p tsconfig.json"
   },
   "devDependencies": {
