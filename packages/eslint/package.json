@@ -65,10 +65,14 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
-    "eslint": ">= 8.56.0"
+    "eslint": ">= 8.56.0",
+    "typescript": "*"
   },
   "peerDependenciesMeta": {
     "eslint": {
+      "optional": true
+    },
+    "typescript": {
       "optional": true
     }
   },
