@@ -1,4 +1,4 @@
-export = (async () =>
+module.exports = (async () =>
   (await import('@aryaemami59/vitest-config')).createVitestConfig({
     test: {
       dir: 'tests',
