@@ -38,6 +38,7 @@
   },
   "main": "base/tsconfig.json",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   }
 }
