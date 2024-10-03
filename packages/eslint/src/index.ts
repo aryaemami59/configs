@@ -1,35 +1,110 @@
 import js from '@eslint/js'
 import type { TSESLint } from '@typescript-eslint/utils'
+import type { Linter } from 'eslint'
 import prettierConfig from 'eslint-config-prettier'
-import globals from 'globals'
+import globalIdentifiers from 'globals'
 import type { ConfigWithExtends } from 'typescript-eslint'
 import { config, configs, parser } from 'typescript-eslint'
-const { browser, node, nodeBuiltin } = globals
+
+const { browser, node, nodeBuiltin } = globalIdentifiers
 
 /**
- * An object representing the globals provided by Vitest for use in testing.
+ * An object representing
+ * {@link https://eslint.org/docs/latest/use/configure/ignore#ignoring-files | **global ignore patterns**}
+ * for ESLint configuration.
+ *
+ * @since 0.0.3
+ * @public
+ */
+export const globalIgnores = {
+  name: '@aryaemami59/global-ignores',
+  ignores: [
+    '**/dist/',
+    '**/.yalc/',
+    '**/build/',
+    '**/lib/',
+    '**/temp/',
+    '**/.yarn/',
+    '**/coverage/',
+  ],
+} as const satisfies Linter.Config
+
+/**
+ * An object representing the
+ * {@link https://vitest.dev/config/#globals | globals} provided by
+ * {@link https://vitest.dev | **Vitest**} for use in testing.
  *
  * @since 0.0.3
  * @public
  */
 export const vitestGlobals = {
-  suite: false,
-  test: false,
-  describe: false,
-  it: false,
-  expectTypeOf: false,
-  assertType: false,
-  expect: false,
-  assert: false,
-  vitest: false,
-  vi: false,
-  beforeAll: false,
-  afterAll: false,
-  beforeEach: false,
-  afterEach: false,
-  onTestFailed: false,
-  onTestFinished: false,
-} satisfies Record<string, boolean>
+  suite: 'writable',
+  test: 'writable',
+  describe: 'writable',
+  it: 'writable',
+  expectTypeOf: 'writable',
+  assertType: 'writable',
+  expect: 'writable',
+  assert: 'writable',
+  vitest: 'writable',
+  vi: 'writable',
+  beforeAll: 'writable',
+  afterAll: 'writable',
+  beforeEach: 'writable',
+  afterEach: 'writable',
+  onTestFailed: 'writable',
+  onTestFinished: 'writable',
+} as const satisfies Linter.Globals
+
+/**
+ * An object that specifies which global
+ * variables are available during linting.
+ *
+ * @since 0.0.3
+ * @public
+ */
+export const globals: typeof vitestGlobals &
+  typeof browser &
+  typeof node &
+  typeof nodeBuiltin = /* @__PURE__ */ Object.assign(
+  vitestGlobals,
+  browser,
+  node,
+  nodeBuiltin,
+) satisfies Linter.Globals
+
+/**
+ * An object comprised of ESLint rules to disable.
+ * These rules are disabled in {@linkcode flatESLintConfig}.
+ *
+ * @since 0.0.3
+ * @public
+ */
+export const rulesToDisable = {
+  'no-undef': [0],
+  '@typescript-eslint/no-unused-vars': [
+    0,
+    {
+      vars: 'all',
+      args: 'after-used',
+      caughtErrors: 'all',
+      ignoreRestSiblings: false,
+      reportUsedIgnorePattern: false,
+    },
+  ],
+  '@typescript-eslint/ban-ts-comment': [
+    0,
+    [
+      {
+        'ts-expect-error': 'allow-with-description',
+        'ts-ignore': true,
+        'ts-nocheck': true,
+        'ts-check': false,
+        minimumDescriptionLength: 3,
+      },
+    ],
+  ],
+} as const satisfies Linter.RulesRecord
 
 /**
  * Flat ESLint configuration tailored for projects using TypeScript.
@@ -77,17 +152,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
   /* @__PURE__ */ config(
     // `ignores` must be first.
     // config with just `ignores` is the replacement for `.eslintignore`
-    {
-      name: '@aryaemami59/global-ignores',
-      ignores: [
-        '**/dist/',
-        '**/.yalc/',
-        '**/build/',
-        '**/lib/',
-        '**/temp/',
-        '**/.yarn/',
-      ],
-    },
+    globalIgnores,
     { name: '@aryaemami59/javascript', ...js.configs.recommended },
     ...configs.recommended,
     ...configs.stylistic,
@@ -95,12 +160,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     {
       name: '@aryaemami59/main',
       languageOptions: {
-        globals: {
-          ...vitestGlobals,
-          ...browser,
-          ...node,
-          ...nodeBuiltin,
-        },
+        globals,
         parser,
         parserOptions: {
           projectService: {
@@ -111,34 +171,53 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         },
       },
       rules: {
-        'no-undef': [0],
         '@typescript-eslint/consistent-type-imports': [
           2,
-          { fixStyle: 'separate-type-imports', disallowTypeAnnotations: false },
+          {
+            prefer: 'type-imports',
+            fixStyle: 'separate-type-imports',
+            disallowTypeAnnotations: true,
+          },
         ],
-        '@typescript-eslint/consistent-type-exports': [2],
-        '@typescript-eslint/no-unused-vars': [0],
-        '@typescript-eslint/no-explicit-any': [0],
+        '@typescript-eslint/consistent-type-exports': [
+          2,
+          { fixMixedExportsWithInlineTypeSpecifier: false },
+        ],
+        '@typescript-eslint/no-explicit-any': [
+          2,
+          { fixToUnknown: false, ignoreRestArgs: false },
+        ],
         '@typescript-eslint/no-empty-object-type': [
           2,
-          { allowInterfaces: 'with-single-extends' },
+          { allowInterfaces: 'never', allowObjectTypes: 'never' },
         ],
         '@typescript-eslint/no-restricted-types': [
           2,
           {
             types: {
               '{}': {
-                suggest: ['AnyNonNullishValue', 'EmptyObject', 'AnyObject'],
+                message: `
+- If you want to represent an empty object, use \`type EmptyObject = Record<string, never>\`.
+- If you want to represent an object literal, use either \`type AnyObject = Record<string, any>\` or \`object\`.
+- If you want to represent any non-nullish value, use \`type AnyNonNullishValue = NonNullable<unknown>\`.`,
+                suggest: [
+                  'AnyNonNullishValue',
+                  'EmptyObject',
+                  'AnyObject',
+                  'object',
+                  'Record<string, never>',
+                  'Record<string, any>',
+                  'NonNullable<unknown>',
+                ],
               },
             },
           },
         ],
         '@typescript-eslint/no-namespace': [
           2,
-          { allowDeclarations: true, allowDefinitionFiles: true },
+          { allowDeclarations: false, allowDefinitionFiles: true },
         ],
-        '@typescript-eslint/ban-ts-comment': [0],
-        '@typescript-eslint/consistent-type-definitions': [0, 'type'],
+        '@typescript-eslint/consistent-type-definitions': [2, 'type'],
         'sort-imports': [
           2,
           {
@@ -149,6 +228,51 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
             allowSeparatedGroups: true,
           },
         ],
+        '@typescript-eslint/unified-signatures': [2],
+        '@typescript-eslint/dot-notation': [
+          2,
+          {
+            // Related issue: https://github.com/typescript-eslint/typescript-eslint/issues/10338
+            // Base ESLint default options
+            allowKeywords: true,
+            allowPattern: '',
+            // TypeScript ESLint default options
+            allowPrivateClassPropertyAccess: false,
+            allowProtectedClassPropertyAccess: false,
+            allowIndexSignaturePropertyAccess: false,
+          },
+        ],
+        '@typescript-eslint/no-unnecessary-type-parameters': [2],
+        '@typescript-eslint/no-invalid-void-type': [2],
+        '@typescript-eslint/no-confusing-void-expression': [2],
+        '@typescript-eslint/no-duplicate-type-constituents': [2],
+        '@typescript-eslint/require-await': [2],
+        '@typescript-eslint/no-redundant-type-constituents': [2],
+        '@typescript-eslint/no-unnecessary-type-arguments': [2],
+        '@typescript-eslint/no-unnecessary-type-assertion': [2],
+        '@typescript-eslint/prefer-nullish-coalescing': [2],
+        '@typescript-eslint/no-inferrable-types': [2],
+        '@typescript-eslint/no-empty-function': [
+          2,
+          {
+            // Related issue: https://github.com/typescript-eslint/typescript-eslint/issues/10338
+            // Base ESLint default options
+            allow: [],
+          },
+        ],
+        '@typescript-eslint/no-unused-expressions': [
+          2,
+          {
+            // Related issue: https://github.com/typescript-eslint/typescript-eslint/issues/10338
+            // Base ESLint default options
+            allowShortCircuit: false,
+            allowTernary: false,
+            allowTaggedTemplates: false,
+            enforceForJSX: false,
+          },
+        ],
+        'object-shorthand': [2],
+        ...rulesToDisable,
       },
       linterOptions: { reportUnusedDisableDirectives: 2 },
     },
@@ -157,7 +281,10 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
       files: ['**/*.c[jt]s'],
       languageOptions: { sourceType: 'commonjs' },
       rules: {
-        '@typescript-eslint/no-require-imports': [0],
+        '@typescript-eslint/no-require-imports': [
+          0,
+          [{ allow: [], allowAsImport: false }],
+        ],
       },
     },
   )
@@ -168,7 +295,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
  * It's made mainly to provide intellisense and eliminate
  * the need for manual type annotations using JSDoc comments.
  *
- * @param additionalOverrides - Optional additional overrides to apply to the configuration.
+ * @param additionalOverrides - **Optional** additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode flatESLintConfig}, incorporating any provided overrides.
  *
  * @example
