@@ -2,7 +2,7 @@ import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
 import { cli, exec } from './test-utils.js'
 
-describe<LocalTestContext>('JS file', async (test) => {
+describe<LocalTestContext>('JS file', (test) => {
   beforeEach<LocalTestContext>((context) => {
     context.fileToBeLinted = path.resolve('temp', 'js', 'test.js')
   })
