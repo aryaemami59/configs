@@ -10,7 +10,7 @@ export const cli = `prettier --check --ignore-path null`
  *
  * @internal
  */
-export interface LocalTestContext {
+export type LocalTestContext = {
   /**
    * Temporary directory path which houses the file to be formatted.
    */
