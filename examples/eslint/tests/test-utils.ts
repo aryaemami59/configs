@@ -12,7 +12,7 @@ export const cli = `eslint --no-ignore`
  *
  * @internal
  */
-export interface LocalTestContext {
+export type LocalTestContext = {
   /**
    * Path to the file to be linted.
    */

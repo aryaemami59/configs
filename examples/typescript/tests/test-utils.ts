@@ -10,7 +10,7 @@ export const cli = `tsc -p`
  *
  * @internal
  */
-export interface LocalTestContext {
+export type LocalTestContext = {
   /**
    * Temporary directory path which houses the file to be type checked.
    */
