@@ -1,0 +1,23 @@
+name: Prepare
+
+description: Prepares the repo for a typical CI job
+
+inputs:
+  node-version:
+    description: 'The Node.js version to use'
+    required: true
+    default: '20.x'
+
+runs:
+  using: composite
+
+  steps:
+    - name: Setup Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'yarn'
+
+    - name: Install dependencies
+      run: yarn install
+      shell: bash

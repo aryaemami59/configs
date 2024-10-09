@@ -9,23 +9,21 @@ jobs:
   check-lint-and-formatting:
     name: Check lint and formatting
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
+
       matrix:
-        node: [20.x]
+        node-version: [20.x]
         os: [ubuntu-latest]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v4
+      - uses: ./.github/actions/prepare
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
+          node-version: ${{ matrix.node-version }}
 
       - name: Check for duplicate packages
         run: yarn dedupe --check --strategy highest
@@ -44,12 +42,14 @@ jobs:
       run:
         working-directory: packages/${{ matrix.packages }}
 
-    name: Build ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
+    name: Build ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
+
       matrix:
-        node: [20.x]
+        node-version: [20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
         os: [ubuntu-latest]
 
@@ -57,14 +57,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v4
+      - uses: ./.github/actions/prepare
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
+          node-version: ${{ matrix.node-version }}
 
       - name: Run publint
         run: npx publint@latest --strict
@@ -85,13 +80,15 @@ jobs:
         run: ls -R
 
   test:
-    name: Test ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node }}
+    name: Test ${{ matrix.packages }} on ${{ matrix.os }} with Node.js ${{ matrix.node-version }}
     needs: [build]
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
+
       matrix:
-        node: [20.x]
+        node-version: [20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
         os: [ubuntu-latest, windows-latest, macos-latest]
 
@@ -99,20 +96,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v4
+      - uses: ./.github/actions/prepare
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.packages }}
         uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.packages }}
           path: examples/${{ matrix.packages }}
-
-      - name: Install dependencies
-        run: yarn install
 
       - name: Display folder structure of examples/${{ matrix.packages }}
         run: ls -R examples/${{ matrix.packages }}
@@ -133,24 +125,22 @@ jobs:
     name: Check if the type definitions are correct
     runs-on: ${{ matrix.os }}
     needs: [build]
+
     strategy:
       fail-fast: false
+
       matrix:
-        node: [20.x]
+        node-version: [20.x]
         packages: ['eslint', 'prettier', 'typescript', 'vitest']
         os: [ubuntu-latest]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v4
+      - uses: ./.github/actions/prepare
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install
+          node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.packages }}
         uses: actions/download-artifact@v4
