@@ -25,6 +25,14 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "module-sync": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "module": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
       "import": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
@@ -45,6 +53,8 @@
   ],
   "scripts": {
     "build": "yarn clean && tsup",
+    "check-exports": "attw --pack",
+    "check-package-json": "publint --strict .",
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
@@ -52,8 +62,10 @@
     "vite-tsconfig-paths": "^5.0.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4",
     "@aryaemami59/tsconfig": "workspace:^",
     "@types/node": "^22.5.5",
+    "publint": "^0.2.12",
     "rimraf": "^6.0.1",
     "tslib": "^2.7.0",
     "tsup": "^8.3.0",
