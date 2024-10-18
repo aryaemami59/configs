@@ -40,5 +40,11 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4"
+  },
+  "scripts": {
+    "check-exports": "attw --pack"
   }
 }
