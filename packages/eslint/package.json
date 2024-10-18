@@ -24,6 +24,14 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "module-sync": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "module": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
       "import": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
@@ -44,6 +52,8 @@
   ],
   "scripts": {
     "build": "yarn clean && tsup",
+    "check-exports": "attw --pack",
+    "check-package-json": "publint --strict .",
     "clean": "rimraf dist",
     "prepack": "yarn build"
   },
@@ -55,10 +65,12 @@
     "typescript-eslint": "^8.6.0"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4",
     "@aryaemami59/tsconfig": "workspace:^",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint__js": "^8.42.3",
     "eslint": "^9.11.0",
+    "publint": "^0.2.12",
     "rimraf": "^6.0.1",
     "tslib": "^2.7.0",
     "tsup": "^8.3.0",
