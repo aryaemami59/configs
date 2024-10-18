@@ -40,5 +40,13 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4",
+    "publint": "^0.2.12"
+  },
+  "scripts": {
+    "check-exports": "attw --pack",
+    "check-package-json": "publint --strict ."
   }
 }
