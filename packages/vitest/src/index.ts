@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import type { UserConfig } from 'vitest/config'
+import type { ViteUserConfig } from 'vitest/config'
 import { defineConfig, mergeConfig } from 'vitest/config'
 
 /**
@@ -45,7 +45,7 @@ import { defineConfig, mergeConfig } from 'vitest/config'
  * @since 0.0.3
  * @public
  */
-export const vitestConfig: UserConfig = /* @__PURE__ */ defineConfig({
+export const vitestConfig: ViteUserConfig = /* @__PURE__ */ defineConfig({
   plugins: [/* @__PURE__ */ tsconfigPaths({ projects: ['./tsconfig.json'] })],
   test: {
     watch: false,
@@ -125,5 +125,6 @@ export const vitestConfig: UserConfig = /* @__PURE__ */ defineConfig({
  * @public
  */
 export const createVitestConfig = (
-  additionalOverrides: UserConfig = {},
-): UserConfig => /* @__PURE__ */ mergeConfig(vitestConfig, additionalOverrides)
+  additionalOverrides: ViteUserConfig = {},
+): ViteUserConfig =>
+  /* @__PURE__ */ mergeConfig(vitestConfig, additionalOverrides)
