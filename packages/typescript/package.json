@@ -23,30 +23,30 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    "./package.json": "./package.json",
     ".": "./base/tsconfig.json",
     "./base": "./base/tsconfig.json",
-    "./node": "./base/tsconfig.json",
-    "./node-10": "./node-10/tsconfig.json",
-    "./node-next": "./node-next/tsconfig.json",
-    "./node-16": "./node-16/tsconfig.json",
-    "./cra": "./create-react-app/tsconfig.json",
-    "./create-react-app": "./create-react-app/tsconfig.json",
     "./bundler": "./bundler/esnext/tsconfig.json",
     "./bundler/esnext": "./bundler/esnext/tsconfig.json",
-    "./bundler/preserve": "./bundler/preserve/tsconfig.json"
+    "./bundler/preserve": "./bundler/preserve/tsconfig.json",
+    "./cra": "./create-react-app/tsconfig.json",
+    "./create-react-app": "./create-react-app/tsconfig.json",
+    "./node": "./base/tsconfig.json",
+    "./node-10": "./node-10/tsconfig.json",
+    "./node-16": "./node-16/tsconfig.json",
+    "./node-next": "./node-next/tsconfig.json",
+    "./package.json": "./package.json"
   },
   "main": "base/tsconfig.json",
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
+  "scripts": {
+    "check-exports": "attw --pack",
+    "check-package-json": "publint --strict ."
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.16.4",
     "publint": "^0.2.12"
   },
-  "scripts": {
-    "check-exports": "attw --pack",
-    "check-package-json": "publint --strict ."
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }
