@@ -1,10 +1,43 @@
 import { createVitestConfig } from '@aryaemami59/vitest-config'
+import { cpus } from 'node:os'
+import packageJson from './package.json' with { type: 'json' }
 
 export default createVitestConfig({
   test: {
+    name: packageJson.name,
+    root: import.meta.dirname,
     dir: 'tests',
-    maxConcurrency: 100,
-    reporters: ['verbose'],
+
+    server: {
+      deps: {
+        fallbackCJS: false,
+        external: ['@aryaemami59/prettier-config', 'prettier'],
+      },
+    },
+
+    deps: {
+      interopDefault: false,
+      optimizer: {
+        ssr: {
+          exclude: ['@aryaemami59/prettier-config', 'prettier'],
+        },
+      },
+    },
+
+    reporters: process.env.GITHUB_ACTIONS
+      ? [['github-actions'], ['verbose']]
+      : [['verbose']],
+
+    poolOptions: {
+      forks: {
+        isolate: false,
+        maxForks: cpus().length,
+        minForks: cpus().length,
+      },
+    },
+
+    maxConcurrency: cpus().length,
     sequence: { concurrent: true },
+    isolate: false,
   },
 })

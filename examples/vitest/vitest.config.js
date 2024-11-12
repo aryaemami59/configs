@@ -3,7 +3,7 @@ module.exports = (async () =>
     test: {
       dir: 'tests',
       environment: 'jsdom',
-      reporters: ['verbose'],
+      reporters: [['verbose']],
       // Other additional overrides
     },
   }))()
