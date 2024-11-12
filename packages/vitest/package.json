@@ -23,7 +23,6 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "bun": {
         "types": "./dist/index.d.ts",
@@ -45,7 +44,8 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
-    }
+    },
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -79,7 +79,7 @@
   },
   "peerDependencies": {
     "vite": "*",
-    "vitest": ">= 1"
+    "vitest": ">=1"
   },
   "peerDependenciesMeta": {
     "vite": {

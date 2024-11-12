@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "A set of config files for ease of use",
+  "homepage": "https://github.com/aryaemami59/configs",
   "bugs": {
     "url": "https://github.com/aryaemami59/configs/issues"
   },
@@ -24,8 +25,8 @@
     "format": "prettier -w .",
     "format-check": "prettier -c .",
     "install": "yarn build",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "lint": "eslint",
+    "lint-fix": "eslint --fix"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",
@@ -37,6 +38,5 @@
     "prettier": "^3.3.3",
     "typescript": "^5.6.2"
   },
-  "packageManager": "yarn@4.5.0",
-  "homepage": "https://github.com/aryaemami59/configs"
+  "packageManager": "yarn@4.5.0"
 }
