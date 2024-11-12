@@ -1,18 +1,29 @@
 import { createVitestConfig, vitestConfig } from '@aryaemami59/vitest-config'
 import { cpus } from 'node:os'
+import packageJson from './package.json' with { type: 'json' }
 
 export default createVitestConfig({
   test: {
+    name: packageJson.name,
+    root: import.meta.dirname,
+    dir: 'tests',
+
     server: {
-      deps: { external: ['@aryaemami59/eslint-config', 'eslint', 'jiti'] },
+      deps: {
+        fallbackCJS: false,
+        external: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
+      },
     },
+
     deps: {
+      interopDefault: false,
       optimizer: {
-        web: { exclude: ['@aryaemami59/eslint-config', 'eslint', 'jiti'] },
+        ssr: {
+          exclude: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
+        },
       },
     },
     globalSetup: ['./tests/vitest.setup.mts'],
-    dir: 'tests',
     poolOptions: {
       forks: {
         isolate: false,
@@ -20,11 +31,15 @@ export default createVitestConfig({
         minForks: cpus().length,
       },
     },
+
     maxConcurrency: cpus().length,
-    reporters: ['verbose'],
+
+    reporters: process.env.GITHUB_ACTIONS
+      ? [['github-actions'], ['verbose']]
+      : [['verbose']],
+
     testTimeout: process.env.CI ? 30_000 : vitestConfig.test?.testTimeout,
     sequence: { concurrent: true },
     isolate: false,
-    fileParallelism: true,
   },
 })

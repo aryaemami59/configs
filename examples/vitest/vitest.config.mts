@@ -4,7 +4,7 @@ export default createVitestConfig({
   test: {
     dir: 'tests',
     environment: 'jsdom',
-    reporters: ['verbose'],
+    reporters: [['verbose']],
     // Other additional overrides
   },
 })
