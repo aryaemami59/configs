@@ -25,6 +25,10 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "bun": {
+        "types": "./dist/index.d.ts",
+        "default": "./src/index.ts"
+      },
       "module-sync": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
