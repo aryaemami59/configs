@@ -3,17 +3,16 @@ import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
 import { cli, exec } from './test-utils.js'
 
-describe<LocalTestContext>('JS file', async test => {
+describe('JS file', async () => {
   const tempDirectory = await fs.mkdtemp('temp-js-')
 
   const fileContent = `const someString = ''\n`
 
   const fileToBeFormatted = path.join(tempDirectory, 'test.js')
 
-  beforeEach<LocalTestContext>(context => {
-    context.tempDirectory = tempDirectory
-
-    context.fileToBeFormatted = fileToBeFormatted
+  const localTest = test.extend<LocalTestContext>({
+    fileToBeFormatted,
+    tempDirectory,
   })
 
   beforeAll(async () => {
@@ -24,14 +23,14 @@ describe<LocalTestContext>('JS file', async test => {
     await fs.rm(tempDirectory, { recursive: true, force: true })
   })
 
-  test('no config specified', async ({ expect, fileToBeFormatted }) => {
+  localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
     await expect(exec(`${cli} ${fileToBeFormatted}`)).resolves.toEqual({
       stderr: '',
       stdout: `Checking formatting...\nAll matched files use Prettier code style!\n`,
     })
   })
 
-  test.for([
+  localTest.for([
     'prettier.config.js',
     'prettier.config.cjs',
     'prettier.config.mjs',
