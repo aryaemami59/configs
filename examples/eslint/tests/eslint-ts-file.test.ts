@@ -16,7 +16,7 @@ describe('linting TS files', () => {
     )
   })
 
-  test.for([
+  localTest.for([
     `eslint.config.js`,
     'eslint.config.mjs',
     'eslint.config.cjs',

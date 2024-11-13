@@ -3,17 +3,16 @@ import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
 import { cli, exec } from './test-utils.js'
 
-describe<LocalTestContext>('TS file', async (test) => {
+describe<LocalTestContext>('TS file', async () => {
   const tempDirectory = await fs.mkdtemp('temp-ts-')
 
   const fileContent = `const someNumber: number | string = 1\n`
 
   const fileToGetTypeChecked = path.join(tempDirectory, 'test.ts')
 
-  beforeEach<LocalTestContext>((context) => {
-    context.tempDirectory = tempDirectory
-
-    context.fileToGetTypeChecked = fileToGetTypeChecked
+  const localTest = test.extend<LocalTestContext>({
+    fileToGetTypeChecked,
+    tempDirectory,
   })
 
   beforeAll(async () => {
@@ -29,7 +28,7 @@ describe<LocalTestContext>('TS file', async (test) => {
     await fs.rm(tempDirectory, { recursive: true, force: true })
   })
 
-  test('tsc works', async ({ expect, tempDirectory }) => {
+  localTest('tsc works', async ({ expect, tempDirectory }) => {
     await expect(exec(`${cli} ${tempDirectory}`)).resolves.toEqual({
       stderr: '',
       stdout: '',
