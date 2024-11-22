@@ -1,6 +1,7 @@
 import { createESLintConfig } from '@aryaemami59/eslint-config'
 
-export default createESLintConfig([
+const eslintConfig = createESLintConfig([
+  { ignores: ['!temp/'] },
   {
     rules: {
       'no-console': [2],
@@ -10,3 +11,5 @@ export default createESLintConfig([
     // ...Other additional overrides
   },
 ])
+
+export default eslintConfig

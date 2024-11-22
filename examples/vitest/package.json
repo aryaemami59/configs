@@ -8,10 +8,11 @@
   "files": [],
   "scripts": {
     "clean": "rimraf dist",
-    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.cts && vitest -c vitest.config.mts && vitest -c vitest.config.cjs",
+    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.mts && vitest -c vitest.config.cts && vitest -c vitest.config.js && vitest -c vitest.config.mjs && vitest -c vitest.config.cjs",
     "test-types": "yarn clean && tsc -p tsconfig.json"
   },
   "devDependencies": {
+    "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
     "jsdom": "^25.0.1",
     "rimraf": "^6.0.1",

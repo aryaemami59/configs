@@ -6,10 +6,6 @@ concurrency:
   group: '${{ github.workflow }} - ${{ github.head_ref || github.ref }}'
   cancel-in-progress: true
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   check-lint-and-formatting:
     name: Check lint and formatting with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
@@ -55,7 +51,7 @@ jobs:
 
       matrix:
         node-version: [18, 20, 22, latest]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         package:
           [
             { directory: 'eslint', name: '@aryaemami59/eslint-config' },
@@ -106,7 +102,7 @@ jobs:
             { directory: 'typescript', name: '@aryaemami59/tsconfig' },
             { directory: 'vitest', name: '@aryaemami59/vitest-config' },
           ]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
