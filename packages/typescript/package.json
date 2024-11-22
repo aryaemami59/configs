@@ -48,6 +48,9 @@
     "./node-next": "./node-next/tsconfig.json",
     "./nodenext": "./node-next/tsconfig.json",
     "./NodeNext": "./node-next/tsconfig.json",
+    "./node-next/with-js": "./node-next/with-js/tsconfig.json",
+    "./nodenext/with-js": "./node-next/with-js/tsconfig.json",
+    "./NodeNext/with-js": "./node-next/with-js/tsconfig.json",
     "./package.json": "./package.json"
   },
   "main": "./base/tsconfig.json",
