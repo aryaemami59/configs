@@ -29,10 +29,10 @@
     "lint-fix": "eslint --fix"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.0",
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
-    "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^22.9.1",
     "eslint": "^9.15.0",
     "prettier": "^3.3.3",
