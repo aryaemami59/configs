@@ -1763,6 +1763,7 @@ __metadata:
     "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
+    "@types/node": "npm:^22.9.1"
     eslint: "npm:^9.15.0"
     jiti: "npm:^2.4.0"
     rimraf: "npm:^6.0.1"
@@ -3148,11 +3149,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "prettier-config-example@workspace:examples/prettier"
   dependencies:
-    "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/prettier-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    eslint: "npm:^9.15.0"
+    "@types/node": "npm:^22.9.1"
     prettier: "npm:^3.3.3"
     rimraf: "npm:^6.0.1"
     typescript: "npm:^5.6.3"
@@ -3667,21 +3667,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^6.1.62":
-  version: 6.1.62
-  resolution: "tldts-core@npm:6.1.62"
-  checksum: 10c0/f079dca38c69751529ea468213154be4a98e7693df7f50e7ed074048bbd42c44d6ec5a8466523777f51be47a632c7523be499c4e6767bc4b82e899f21a4e3bfe
+"tldts-core@npm:^6.1.63":
+  version: 6.1.63
+  resolution: "tldts-core@npm:6.1.63"
+  checksum: 10c0/2e3d040b2142e7e63eaa46499c508475315ceb88080635e7fe5c4aa90d3618c8957af8fb7341b1c21be744962d631928775583f3505018f83635ee265c3f159f
   languageName: node
   linkType: hard
 
 "tldts@npm:^6.1.32":
-  version: 6.1.62
-  resolution: "tldts@npm:6.1.62"
+  version: 6.1.63
+  resolution: "tldts@npm:6.1.63"
   dependencies:
-    tldts-core: "npm:^6.1.62"
+    tldts-core: "npm:^6.1.63"
   bin:
     tldts: bin/cli.js
-  checksum: 10c0/774441ef4e2e3b3dc53bcb1a9597c37964fc550e2eca379dbe6b885e35629386f480950b88fd394aa3958050768bdb0e3ab09fa9e136f48e56ff0c5848cad818
+  checksum: 10c0/d9642599258e80b0b1543e470ee06830bc38c7d4d3dbd84569daef407122600392af2869471baed6f45fdac93038487d89986219c472dc38324018c27fdf788a
   languageName: node
   linkType: hard
 
@@ -3814,10 +3814,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "typescript-config-example@workspace:examples/typescript"
   dependencies:
-    "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    eslint: "npm:^9.15.0"
+    "@types/node": "npm:^22.9.1"
     rimraf: "npm:^6.0.1"
     typescript: "npm:^5.6.3"
     vitest: "npm:^2.1.5"
@@ -4006,6 +4005,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "vitest-config-example@workspace:examples/vitest"
   dependencies:
+    "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
     jsdom: "npm:^25.0.1"
     rimraf: "npm:^6.0.1"

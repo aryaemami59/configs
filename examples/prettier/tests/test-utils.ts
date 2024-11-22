@@ -1,9 +1,15 @@
-import { exec as _exec } from 'node:child_process'
+import type { ExecFileOptionsWithStringEncoding } from 'node:child_process'
+import * as childProcess from 'node:child_process'
 import { promisify } from 'node:util'
 
-export const exec = promisify(_exec)
+export const execFile = promisify(childProcess.execFile)
 
-export const cli = `prettier --check --ignore-path null`
+export const cliCommand = 'prettier'
+
+export const execFileOptions = {
+  encoding: 'utf-8',
+  shell: true,
+} as const satisfies ExecFileOptionsWithStringEncoding
 
 /**
  * Represents the context for a local test.
@@ -11,11 +17,6 @@ export const cli = `prettier --check --ignore-path null`
  * @internal
  */
 export type LocalTestContext = {
-  /**
-   * Temporary directory path which houses the file to be formatted.
-   */
-  tempDirectory: string
-
   /**
    * Path to the file to be formatted.
    */

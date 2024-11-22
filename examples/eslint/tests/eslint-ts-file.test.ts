@@ -1,18 +1,19 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { execFile } from './test-utils.js'
+import { cliCommand, execFile, execFileOptions } from './test-utils.js'
 
 describe('linting TS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.resolve('temp', 'ts', 'test.ts'),
+    fileToBeLinted: path.posix.join('temp', 'ts', 'test.ts'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = ['--no-ignore', fileToBeLinted]
+    const cliArguments = [fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).rejects.toThrow(
-      Error(`Command failed: ${command} ${args.join(' ')}\n`),
+    await expect(
+      execFile(cliCommand, cliArguments, execFileOptions),
+    ).rejects.toThrow(
+      Error(`Command failed: ${cliCommand} ${cliArguments.join(' ')}\n`),
     )
   })
 
@@ -21,14 +22,15 @@ describe('linting TS files', () => {
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = ['--no-ignore', fileToBeLinted, '--config', configFileName]
+    const cliArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).rejects.toThrow(
+    await expect(
+      execFile(cliCommand, cliArguments, execFileOptions),
+    ).rejects.toThrow(
       process.versions.node.startsWith('23') &&
         configFileName === 'eslint.config.cjs'
-        ? `Command failed: ${command} ${args.join(' ')}\n`
-        : Error(`Command failed: ${command} ${args.join(' ')}\n`),
+        ? `Command failed: ${cliCommand} ${cliArguments.join(' ')}\n`
+        : Error(`Command failed: ${cliCommand} ${cliArguments.join(' ')}\n`),
     )
   })
 
@@ -37,18 +39,18 @@ describe('linting TS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = [
-      '--no-ignore',
+    const cliArguments = [
       '--flag',
       'unstable_ts_config',
-      fileToBeLinted,
       '--config',
       configFileName,
+      fileToBeLinted,
     ]
 
-    await expect(execFile(command, args, { shell: true })).rejects.toThrow(
-      Error(`Command failed: ${command} ${args.join(' ')}\n`),
+    await expect(
+      execFile(cliCommand, cliArguments, execFileOptions),
+    ).rejects.toThrow(
+      Error(`Command failed: ${cliCommand} ${cliArguments.join(' ')}\n`),
     )
   })
 })

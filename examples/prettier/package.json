@@ -12,11 +12,10 @@
     "test-types": "yarn clean && tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "eslint": "^9.15.0",
+    "@types/node": "^22.9.1",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
     "typescript": "^5.6.3",

@@ -1,6 +1,7 @@
 const { createESLintConfig } = require('@aryaemami59/eslint-config')
 
-module.exports = createESLintConfig([
+const eslintConfig = createESLintConfig([
+  { ignores: ['!temp/'] },
   {
     rules: {
       'no-console': [2],
@@ -10,3 +11,5 @@ module.exports = createESLintConfig([
     // ...Other additional overrides
   },
 ])
+
+module.exports = eslintConfig

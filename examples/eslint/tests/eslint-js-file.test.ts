@@ -1,16 +1,16 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { execFile } from './test-utils.js'
+import { cliCommand, execFile, execFileOptions } from './test-utils.js'
 
 describe('linting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.resolve('temp', 'js', 'test.js'),
+    fileToBeLinted: path.posix.join('temp', 'js', 'test.js'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
     await expect(
-      execFile(`eslint`, ['--no-ignore', fileToBeLinted], { shell: true }),
-    ).resolves.toEqual({
+      execFile(cliCommand, [fileToBeLinted], execFileOptions),
+    ).resolves.toStrictEqual({
       stderr: '',
       stdout: '',
     })
@@ -21,10 +21,11 @@ describe('linting JS files', () => {
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = ['--no-ignore', fileToBeLinted, '--config', configFileName]
+    const cliArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).resolves.toEqual({
+    await expect(
+      execFile(cliCommand, cliArguments, execFileOptions),
+    ).resolves.toStrictEqual({
       stderr:
         process.versions.node.startsWith('23') &&
         configFileName === 'eslint.config.cjs'
@@ -39,17 +40,17 @@ describe('linting JS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = [
-      '--no-ignore',
+    const cliArguments = [
       '--flag',
       'unstable_ts_config',
-      fileToBeLinted,
       '--config',
       configFileName,
+      fileToBeLinted,
     ]
 
-    await expect(execFile(command, args, { shell: true })).resolves.toEqual({
+    await expect(
+      execFile(cliCommand, cliArguments, execFileOptions),
+    ).resolves.toStrictEqual({
       stderr: '',
       stdout: '',
     })

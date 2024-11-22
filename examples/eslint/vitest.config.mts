@@ -1,5 +1,4 @@
 import { createVitestConfig, vitestConfig } from '@aryaemami59/vitest-config'
-import { cpus } from 'node:os'
 import packageJson from './package.json' with { type: 'json' }
 
 export default createVitestConfig({
@@ -23,22 +22,10 @@ export default createVitestConfig({
         },
       },
     },
+
     globalSetup: ['./tests/vitest.setup.mts'],
-    poolOptions: {
-      forks: {
-        isolate: false,
-        maxForks: cpus().length,
-        minForks: cpus().length,
-      },
-    },
 
-    maxConcurrency: cpus().length,
-
-    reporters: process.env.GITHUB_ACTIONS
-      ? [['github-actions'], ['verbose']]
-      : [['verbose']],
-
-    testTimeout: process.env.CI ? 30_000 : vitestConfig.test?.testTimeout,
+    testTimeout: process.env.CI ? 60_000 : vitestConfig.test?.testTimeout,
     sequence: { concurrent: true },
     isolate: false,
   },
