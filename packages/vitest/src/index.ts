@@ -1,7 +1,40 @@
-import { existsSync } from 'node:fs'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import type { ViteUserConfig } from 'vitest/config'
+import type { Plugin, ViteUserConfig } from 'vitest/config'
 import { defineConfig, mergeConfig } from 'vitest/config'
+
+const plugins: [Plugin] = [
+  /* @__PURE__ */ tsconfigPaths({ projects: ['./tsconfig.json'] }),
+] as const satisfies [Plugin]
+
+const vitestConfigDefaults = {
+  plugins,
+  test: {
+    disableConsoleIntercept: true,
+    printConsoleTrace: true,
+
+    reporters: process.env.GITHUB_ACTIONS
+      ? ([['github-actions'], ['verbose']] as const)
+      : ([['verbose']] as const),
+
+    clearMocks: true,
+    mockReset: true,
+    restoreMocks: true,
+
+    typecheck: {
+      tsconfig: './tsconfig.json',
+    },
+
+    unstubEnvs: true,
+    unstubGlobals: true,
+    watch: false,
+    globals: true,
+    testTimeout: 10_000,
+  },
+
+  define: {
+    'import.meta.vitest': 'undefined',
+  },
+} as const satisfies ViteUserConfig
 
 /**
  * Vitest configuration tailored for projects using TypeScript.
@@ -45,18 +78,8 @@ import { defineConfig, mergeConfig } from 'vitest/config'
  * @since 0.0.3
  * @public
  */
-export const vitestConfig: ViteUserConfig = /* @__PURE__ */ defineConfig({
-  plugins: [/* @__PURE__ */ tsconfigPaths({ projects: ['./tsconfig.json'] })],
-  test: {
-    watch: false,
-    globals: true,
-    testTimeout: 10_000,
-    setupFiles: /* @__PURE__ */ existsSync('./vitest.setup.ts')
-      ? ['./vitest.setup.ts']
-      : [],
-  },
-  define: { 'import.meta.vitest': 'undefined' },
-})
+export const vitestConfig: ViteUserConfig =
+  /* @__PURE__ */ defineConfig(vitestConfigDefaults)
 
 /**
  * A function that returns {@linkcode vitestConfig}
