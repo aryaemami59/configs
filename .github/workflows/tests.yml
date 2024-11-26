@@ -36,11 +36,35 @@ jobs:
       - name: Lint files
         run: yarn workspaces foreach -Ap -j unlimited run lint
 
-      - name: Run type tests
-        run: yarn workspaces foreach -Ap -j unlimited run test-types
-
       - name: Run publint
         run: yarn workspaces foreach -Ap -j unlimited run check-package-json
+
+  test-types:
+    name: Test types with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        node-version: [22]
+        os: [ubuntu-latest]
+        ts: [5.3, 5.4, 5.5, 5.6, 5.7]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+        uses: ./.github/actions/prepare
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install TypeScript ${{ matrix.ts }}
+        run: yarn up typescript@${{ matrix.ts }}
+
+      - name: Run type tests
+        run: yarn workspaces foreach -Ap -j unlimited run test-types
 
   build:
     name: Build ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
