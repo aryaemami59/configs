@@ -59,7 +59,8 @@
     "check-exports": "attw --pack",
     "check-package-json": "publint --strict .",
     "clean": "rimraf dist",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "test-types": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.0",
