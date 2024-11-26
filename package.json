@@ -33,10 +33,10 @@
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
-    "@types/node": "^22.9.1",
-    "eslint": "^9.15.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3"
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2"
   },
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "yarn@4.5.3"
 }
