@@ -56,11 +56,11 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn clean && tsup",
+    "build": "tsup --config tsup.config.mts",
     "check-exports": "attw --pack",
     "check-package-json": "publint --strict .",
     "clean": "rimraf dist",
-    "prepack": "yarn build",
+    "prepack": "yarn clean && yarn build",
     "test-types": "tsc -p tsconfig.json"
   },
   "dependencies": {
