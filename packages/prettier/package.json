@@ -63,9 +63,9 @@
     "test-types": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
+    "@arethetypeswrong/cli": "^0.17.2",
     "@aryaemami59/tsconfig": "workspace:^",
-    "prettier": "^3.4.1",
+    "prettier": "^3.4.2",
     "publint": "^0.2.12",
     "rimraf": "^6.0.1",
     "tsup": "^8.3.5",

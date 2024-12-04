@@ -4,7 +4,7 @@ import { defaultCLICommand, runESLintCLI } from './test-utils.js'
 
 describe('linting TS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.posix.join('temp', 'ts', 'test.ts'),
+    fileToBeLinted: path.posix.join(__dirname, '..', 'temp', 'ts', 'test.ts'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
@@ -16,14 +16,15 @@ describe('linting TS files', () => {
   })
 
   localTest.for([
-    `eslint.config.js`,
+    'eslint.config.js',
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
     const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
     await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
-      process.versions.node.startsWith('23') &&
+      (process.versions.node.startsWith('23') ||
+        process.versions.node.startsWith('22')) &&
         configFileName === 'eslint.config.cjs'
         ? `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`
         : Error(

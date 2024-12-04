@@ -4,7 +4,13 @@ import { defaultCLICommand, runPrettierCLI } from './test-utils.js'
 
 describe('formatting TS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeFormatted: path.posix.join('temp', 'ts', 'test.ts'),
+    fileToBeFormatted: path.posix.join(
+      __dirname,
+      '..',
+      'temp',
+      'ts',
+      'test.ts',
+    ),
   })
 
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
@@ -35,7 +41,8 @@ describe('formatting TS files', () => {
     ]
 
     await expect(runPrettierCLI(CLIArguments)).rejects.toThrow(
-      process.versions.node.startsWith('23') &&
+      (process.versions.node.startsWith('23') ||
+        process.versions.node.startsWith('22')) &&
         (configFileName === 'prettier.config.cjs' ||
           configFileName === '.prettierrc.cjs')
         ? `\n[warn] Code style issues found in the above file. Run Prettier with --write to fix.\n`

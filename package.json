@@ -29,15 +29,15 @@
     "lint-fix": "eslint --fix"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
+    "@arethetypeswrong/cli": "^0.17.2",
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
-    "@types/node": "^22.10.1",
-    "@typescript-eslint/utils": "^8.17.0",
-    "@vitest/eslint-plugin": "^1.1.14",
-    "eslint": "^9.16.0",
-    "prettier": "^3.4.1",
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/utils": "^8.18.2",
+    "@vitest/eslint-plugin": "^1.1.20",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
     "typescript": "^5.7.2"
   },
   "packageManager": "yarn@4.5.3"

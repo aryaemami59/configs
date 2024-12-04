@@ -4,7 +4,13 @@ import { runPrettierCLI } from './test-utils.js'
 
 describe('formatting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeFormatted: path.posix.join('temp', 'js', 'test.js'),
+    fileToBeFormatted: path.posix.join(
+      __dirname,
+      '..',
+      'temp',
+      'js',
+      'test.js',
+    ),
   })
 
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
@@ -35,7 +41,8 @@ describe('formatting JS files', () => {
 
     await expect(runPrettierCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
-        process.versions.node.startsWith('23') &&
+        (process.versions.node.startsWith('23') ||
+          process.versions.node.startsWith('22')) &&
         (configFileName === 'prettier.config.cjs' ||
           configFileName === '.prettierrc.cjs')
           ? expect.stringContaining(`ExperimentalWarning: CommonJS module`)

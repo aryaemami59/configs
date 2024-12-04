@@ -4,7 +4,7 @@ import { runESLintCLI } from './test-utils.js'
 
 describe('linting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.posix.join('temp', 'js', 'test.js'),
+    fileToBeLinted: path.posix.join(__dirname, '..', 'temp', 'js', 'test.js'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
@@ -15,7 +15,7 @@ describe('linting JS files', () => {
   })
 
   localTest.for([
-    `eslint.config.js`,
+    'eslint.config.js',
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
@@ -23,7 +23,8 @@ describe('linting JS files', () => {
 
     await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
-        process.versions.node.startsWith('23') &&
+        (process.versions.node.startsWith('23') ||
+          process.versions.node.startsWith('22')) &&
         configFileName === 'eslint.config.cjs'
           ? expect.stringContaining(`ExperimentalWarning: CommonJS module`)
           : '',
