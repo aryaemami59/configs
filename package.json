@@ -29,7 +29,7 @@
     "lint-fix": "eslint --fix"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
+    "@arethetypeswrong/cli": "^0.17.1",
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
@@ -37,7 +37,7 @@
     "@typescript-eslint/utils": "^8.17.0",
     "@vitest/eslint-plugin": "^1.1.14",
     "eslint": "^9.16.0",
-    "prettier": "^3.4.1",
+    "prettier": "^3.4.2",
     "typescript": "^5.7.2"
   },
   "packageManager": "yarn@4.5.3"

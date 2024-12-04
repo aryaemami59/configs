@@ -70,7 +70,7 @@
     "typescript-eslint": "^8.17.0"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
+    "@arethetypeswrong/cli": "^0.17.1",
     "@aryaemami59/tsconfig": "workspace:^",
     "@types/eslint-config-prettier": "^6.11.3",
     "eslint": "^9.16.0",
