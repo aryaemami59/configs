@@ -34,6 +34,8 @@
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@types/node": "^22.10.1",
+    "@typescript-eslint/utils": "^8.17.0",
+    "@vitest/eslint-plugin": "^1.1.14",
     "eslint": "^9.16.0",
     "prettier": "^3.4.1",
     "typescript": "^5.7.2"

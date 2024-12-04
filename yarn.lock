@@ -971,6 +971,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vitest/eslint-plugin@npm:^1.1.14":
+  version: 1.1.14
+  resolution: "@vitest/eslint-plugin@npm:1.1.14"
+  peerDependencies:
+    "@typescript-eslint/utils": ">= 8.0"
+    eslint: ">= 8.57.0"
+    typescript: ">= 5.0.0"
+    vitest: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+    vitest:
+      optional: true
+  checksum: 10c0/83fe9dfa2b5d22f576cbd89c7f039c79f81c172552972aa4688d098dac712a0d35e10f54e9626928598da8615f768a88d637aa873c2bb8fe409684b8349dae67
+  languageName: node
+  linkType: hard
+
 "@vitest/expect@npm:2.1.8":
   version: 2.1.8
   resolution: "@vitest/expect@npm:2.1.8"
@@ -1424,6 +1441,8 @@ __metadata:
     "@aryaemami59/prettier-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@types/node": "npm:^22.10.1"
+    "@typescript-eslint/utils": "npm:^8.17.0"
+    "@vitest/eslint-plugin": "npm:^1.1.14"
     eslint: "npm:^9.16.0"
     prettier: "npm:^3.4.1"
     typescript: "npm:^5.7.2"
