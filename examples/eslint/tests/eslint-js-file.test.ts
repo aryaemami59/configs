@@ -1,6 +1,6 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { cliCommand, execFile, execFileOptions } from './test-utils.js'
+import { runESLintCLI } from './test-utils.js'
 
 describe('linting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
@@ -8,9 +8,7 @@ describe('linting JS files', () => {
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
-    await expect(
-      execFile(cliCommand, [fileToBeLinted], execFileOptions),
-    ).resolves.toStrictEqual({
+    await expect(runESLintCLI([fileToBeLinted])).resolves.toStrictEqual({
       stderr: '',
       stdout: '',
     })
@@ -21,11 +19,9 @@ describe('linting JS files', () => {
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const cliArguments = ['--config', configFileName, fileToBeLinted]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(
-      execFile(cliCommand, cliArguments, execFileOptions),
-    ).resolves.toStrictEqual({
+    await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
         process.versions.node.startsWith('23') &&
         configFileName === 'eslint.config.cjs'
@@ -40,7 +36,7 @@ describe('linting JS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const cliArguments = [
+    const CLIArguments = [
       '--flag',
       'unstable_ts_config',
       '--config',
@@ -48,9 +44,7 @@ describe('linting JS files', () => {
       fileToBeLinted,
     ]
 
-    await expect(
-      execFile(cliCommand, cliArguments, execFileOptions),
-    ).resolves.toStrictEqual({
+    await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr: '',
       stdout: '',
     })

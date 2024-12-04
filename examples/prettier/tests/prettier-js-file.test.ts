@@ -1,6 +1,6 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { cliCommand, execFile, execFileOptions } from './test-utils.js'
+import { runPrettierCLI } from './test-utils.js'
 
 describe('formatting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
@@ -8,11 +8,9 @@ describe('formatting JS files', () => {
   })
 
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
-    const cliArguments = ['--ignore-path', 'null', '--check', fileToBeFormatted]
+    const CLIArguments = ['--ignore-path', 'null', '--check', fileToBeFormatted]
 
-    await expect(
-      execFile(cliCommand, cliArguments, execFileOptions),
-    ).resolves.toStrictEqual({
+    await expect(runPrettierCLI(CLIArguments)).resolves.toStrictEqual({
       stderr: '',
       stdout: `Checking formatting...\nAll matched files use Prettier code style!\n`,
     })
@@ -26,7 +24,7 @@ describe('formatting JS files', () => {
     '.prettierrc.cjs',
     '.prettierrc.mjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeFormatted }) => {
-    const cliArguments = [
+    const CLIArguments = [
       '--ignore-path',
       'null',
       '--config',
@@ -35,9 +33,7 @@ describe('formatting JS files', () => {
       fileToBeFormatted,
     ]
 
-    await expect(
-      execFile(cliCommand, cliArguments, execFileOptions),
-    ).resolves.toStrictEqual({
+    await expect(runPrettierCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
         process.versions.node.startsWith('23') &&
         (configFileName === 'prettier.config.cjs' ||
