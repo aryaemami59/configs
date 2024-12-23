@@ -1,7 +1,7 @@
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import type { TestProject } from 'vitest/node'
-import { fixturesDirectoryName } from './test-utils.js'
+import { fixturesDirectoryPath } from './test-utils.js'
 
 type FixtureFile = {
   content: string
@@ -59,18 +59,18 @@ class FileFixtures<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> {
   public constructor(public readonly fileExtension: FileExtension) {}
 
   public getFixtureDirectory(type: 'good' | 'bad'): string {
-    return path.resolve(fixturesDirectoryName, type, this.fileExtension)
+    return path.join(fixturesDirectoryPath, type, this.fileExtension)
   }
 
   public getFileContent(type: 'good' | 'bad'): string {
     if (this.fileExtension === 'ts') {
       return type === 'good'
-        ? `export const someNumber: number = 1\n`
-        : `export const someNumber: string = 1\n`
+        ? 'export const someNumber: number = 1\n'
+        : 'export const someNumber: string = 1\n'
     } else if (this.fileExtension === 'js') {
       return type === 'good'
-        ? `/** \n * @type {string}\n */\nexport const someString = ''\n`
-        : `/** \n * @type {number}\n */\nexport const someString = ''\n`
+        ? "/** \n * @type {string}\n */\nexport const someString = ''\n"
+        : "/** \n * @type {number}\n */\nexport const someString = ''\n"
     }
 
     throw new Error('Unsupported file extension')
@@ -192,8 +192,8 @@ const TSFiles = new FileFixtures('ts')
 
 const JSFiles = new FileFixtures('js')
 
-export async function setup({ config, provide }: TestProject) {
-  await fs.rm(fixturesDirectoryName, { recursive: true, force: true })
+export async function setup({ config, provide }: TestProject): Promise<void> {
+  await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
 
   await fs.mkdir(TSFiles.bad.fixtureDirectory, { recursive: true })
 
@@ -215,14 +215,16 @@ export async function setup({ config, provide }: TestProject) {
     { encoding: 'utf-8' },
   )
 
-  await fs.copyFile(
+  await fs.cp(
     TSFiles.bad.files.ts.absolutePath,
     TSFiles.bad.files.mts.absolutePath,
+    { recursive: true },
   )
 
-  await fs.copyFile(
+  await fs.cp(
     TSFiles.good.files.ts.absolutePath,
     TSFiles.good.files.mts.absolutePath,
+    { recursive: true },
   )
 
   await fs.writeFile(
@@ -237,14 +239,22 @@ export async function setup({ config, provide }: TestProject) {
     { encoding: 'utf-8' },
   )
 
-  await fs.copyFile(
+  await fs.cp(
     JSFiles.good.files.js.absolutePath,
     JSFiles.good.files.mjs.absolutePath,
+    { recursive: true },
   )
 
-  await fs.copyFile(
+  await fs.cp(
     JSFiles.bad.files.js.absolutePath,
     JSFiles.bad.files.mjs.absolutePath,
+    { recursive: true },
+  )
+
+  await fs.cp(
+    JSFiles.bad.files.js.absolutePath,
+    JSFiles.bad.files.mjs.absolutePath,
+    { recursive: true },
   )
 
   await fs.writeFile(TSFiles.bad.tsconfigPath, TSFiles.tsconfigContent, {
@@ -264,6 +274,6 @@ export async function setup({ config, provide }: TestProject) {
   })
 }
 
-export async function teardown() {
-  await fs.rm(fixturesDirectoryName, { recursive: true, force: true })
+export async function teardown(): Promise<void> {
+  await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
 }

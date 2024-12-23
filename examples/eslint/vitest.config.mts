@@ -1,21 +1,26 @@
-import { createVitestConfig, vitestConfig } from '@aryaemami59/vitest-config'
+import {
+  createVitestConfig,
+  vitestConfigDefaults,
+} from '@aryaemami59/vitest-config'
 import packageJson from './package.json' with { type: 'json' }
 
-export default createVitestConfig({
+const vitestConfig = createVitestConfig({
   test: {
     name: packageJson.name,
-    root: import.meta.dirname,
     dir: 'tests',
+    root: import.meta.dirname,
 
     server: {
       deps: {
         fallbackCJS: false,
+
         external: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
       },
     },
 
     deps: {
       interopDefault: false,
+
       optimizer: {
         ssr: {
           exclude: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
@@ -25,8 +30,16 @@ export default createVitestConfig({
 
     globalSetup: ['./tests/vitest.setup.mts'],
 
-    testTimeout: process.env.CI ? 60_000 : vitestConfig.test?.testTimeout,
-    sequence: { concurrent: true },
+    testTimeout: process.env.CI
+      ? 60_000
+      : vitestConfigDefaults.test.testTimeout,
+
+    sequence: {
+      concurrent: true,
+    },
+
     isolate: false,
   },
 })
+
+export default vitestConfig

@@ -3,7 +3,7 @@ import * as path from 'node:path'
 import {
   defaultCLIArguments,
   defaultCLICommand,
-  fixturesDirectoryName,
+  fixturesDirectoryPath,
   runTypeScriptCLI,
 } from './test-utils.js'
 
@@ -15,7 +15,7 @@ describe('tsc catches type errors as expected', () => {
     'typechecking %s (.%s) files',
     async ([, directoryToGetTypeChecked], { expect }) => {
       const cwd = path.join(
-        fixturesDirectoryName,
+        fixturesDirectoryPath,
         'bad',
         directoryToGetTypeChecked,
       )
@@ -30,7 +30,7 @@ describe('tsc catches type errors as expected', () => {
         ),
       )
 
-      const distFolder = path.resolve(cwd, 'dist')
+      const distFolder = path.join(cwd, 'dist')
 
       await expect(fs.access(distFolder)).rejects.toThrow(Error)
 
@@ -49,7 +49,7 @@ describe('tsc compiles successfully', () => {
     'typechecking %s (.%s) files',
     async ([, directoryToGetTypeChecked], { expect }) => {
       const cwd = path.join(
-        fixturesDirectoryName,
+        fixturesDirectoryPath,
         'good',
         directoryToGetTypeChecked,
       )
@@ -61,7 +61,7 @@ describe('tsc compiles successfully', () => {
         stdout: '',
       })
 
-      const distFolder = path.resolve(cwd, 'dist')
+      const distFolder = path.join(cwd, 'dist')
 
       await expect(fs.access(distFolder)).resolves.toBeUndefined()
 

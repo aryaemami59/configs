@@ -1,5 +1,6 @@
 import type { ExecFileOptionsWithOtherEncoding } from 'node:child_process'
 import * as childProcess from 'node:child_process'
+import * as path from 'node:path'
 import { promisify } from 'node:util'
 
 export const execFile = promisify(childProcess.execFile)
@@ -23,6 +24,12 @@ export const runESLintCLI = (
   })
 
 export const fixturesDirectoryName = 'temp'
+
+export const fixturesDirectoryPath = path.join(
+  __dirname,
+  '..',
+  fixturesDirectoryName,
+)
 
 /**
  * Represents the context for a local test.

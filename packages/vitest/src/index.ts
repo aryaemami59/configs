@@ -6,7 +6,13 @@ const plugins: [Plugin] = [
   /* @__PURE__ */ tsconfigPaths({ projects: ['./tsconfig.json'] }),
 ] as const satisfies [Plugin]
 
-const vitestConfigDefaults = {
+/**
+ * Default configuration for {@linkcode vitestConfig}.
+ *
+ * @since 0.0.5
+ * @public
+ */
+export const vitestConfigDefaults = {
   plugins,
   test: {
     disableConsoleIntercept: true,

@@ -1,8 +1,15 @@
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Options } from 'tsup'
 import { defineConfig } from 'tsup'
 import packageJson from './package.json' with { type: 'json' }
 
-const tsconfig = 'tsconfig.build.json' satisfies Options['tsconfig']
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const tsconfig = path.join(
+  __dirname,
+  'tsconfig.build.json',
+) satisfies Options['tsconfig']
 
 const tsupConfig = defineConfig((overrideOptions): Options[] => {
   const commonOptions = {
