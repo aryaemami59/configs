@@ -14,10 +14,8 @@ const plugins: [Plugin] = [
  */
 export const vitestConfigDefaults = {
   plugins,
-  test: {
-    disableConsoleIntercept: true,
-    printConsoleTrace: true,
 
+  test: {
     reporters: process.env.GITHUB_ACTIONS
       ? ([['github-actions'], ['verbose']] as const)
       : ([['verbose']] as const),
