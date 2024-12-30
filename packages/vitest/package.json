@@ -71,15 +71,15 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.2",
+    "@arethetypeswrong/cli": "^0.17.4",
     "@aryaemami59/tsconfig": "workspace:^",
-    "@types/node": "^22.10.2",
-    "publint": "^0.2.12",
+    "@types/node": "^22.13.9",
+    "publint": "^0.3.8",
     "rimraf": "^6.0.1",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
-    "vite": "^5 || ^6.0.3",
-    "vitest": "^2.1.8"
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.7"
   },
   "peerDependencies": {
     "vite": "*",

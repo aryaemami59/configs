@@ -3,7 +3,10 @@ import type { Plugin, ViteUserConfig } from 'vitest/config'
 import { defineConfig, mergeConfig } from 'vitest/config'
 
 const plugins: [Plugin] = [
-  /* @__PURE__ */ tsconfigPaths({ projects: ['./tsconfig.json'] }),
+  /* @__PURE__ */ tsconfigPaths({
+    projects: ['./tsconfig.json'],
+    configNames: ['tsconfig.json'],
+  }),
 ] as const satisfies [Plugin]
 
 /**
@@ -16,6 +19,11 @@ export const vitestConfigDefaults = {
   plugins,
 
   test: {
+    coverage: {
+      include: ['src'],
+      extension: ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs'],
+    },
+
     reporters: process.env.GITHUB_ACTIONS
       ? ([['github-actions'], ['verbose']] as const)
       : ([['verbose']] as const),
