@@ -37,6 +37,7 @@ describe('linting JS files', () => {
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
     const CLIArguments = [
+      // TODO: Unflag in eslint v9.18.0
       '--flag',
       'unstable_ts_config',
       '--config',
