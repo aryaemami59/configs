@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "description": "A set of config files for ease of use",
-  "homepage": "https://github.com/aryaemami59/configs",
+  "homepage": "https://github.com/aryaemami59/configs#readme",
   "bugs": {
     "url": "https://github.com/aryaemami59/configs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git"
+    "url": "git+https://github.com/aryaemami59/configs.git",
+    "directory": "."
   },
   "license": "MIT",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
