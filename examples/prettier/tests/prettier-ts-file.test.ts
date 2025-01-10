@@ -13,7 +13,7 @@ describe('formatting TS files', () => {
     await expect(runPrettierCLI(CLIArguments)).rejects.toThrow(
       Error(
         `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n[warn] ${fileToBeFormatted}\n[warn] Code style issues found in the above file. Run Prettier with --write to fix.\n`,
-      ),
+      ).message,
     )
   })
 
@@ -41,7 +41,7 @@ describe('formatting TS files', () => {
         ? '\n[warn] Code style issues found in the above file. Run Prettier with --write to fix.\n'
         : Error(
             `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n[warn] ${fileToBeFormatted}\n[warn] Code style issues found in the above file. Run Prettier with --write to fix.\n`,
-          ),
+          ).message,
     )
   })
 })

@@ -1,6 +1,8 @@
 const { createPrettierConfig } = require('@aryaemami59/prettier-config')
 
-module.exports = createPrettierConfig({
+const prettierConfig = createPrettierConfig({
   arrowParens: 'avoid',
   // ...Other additional overrides
 })
+
+module.exports = prettierConfig

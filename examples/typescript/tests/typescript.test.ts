@@ -27,7 +27,7 @@ describe('tsc catches type errors as expected', () => {
       await expect(execFileResults).rejects.toThrow(
         Error(
           `Command failed: ${defaultCLICommand} ${defaultCLIArguments.join(' ')}\n`,
-        ),
+        ).message,
       )
 
       const distFolder = path.join(cwd, 'dist')
@@ -35,7 +35,8 @@ describe('tsc catches type errors as expected', () => {
       await expect(fs.access(distFolder)).rejects.toThrow(Error)
 
       await expect(fs.access(distFolder)).rejects.toThrow(
-        Error(`ENOENT: no such file or directory, access '${distFolder}'`),
+        Error(`ENOENT: no such file or directory, access '${distFolder}'`)
+          .message,
       )
     },
   )

@@ -21,9 +21,12 @@ describe('linting JS files', () => {
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
     const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
+    const nodeVersion = parseFloat(process.versions.node)
+
     await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
-        process.versions.node.startsWith('22') &&
+        nodeVersion >= 22 &&
+        nodeVersion < 22.13 &&
         configFileName === 'eslint.config.cjs'
           ? expect.stringContaining('ExperimentalWarning: CommonJS module')
           : '',
@@ -36,14 +39,7 @@ describe('linting JS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const CLIArguments = [
-      // TODO: Unflag in eslint v9.18.0
-      '--flag',
-      'unstable_ts_config',
-      '--config',
-      configFileName,
-      fileToBeLinted,
-    ]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
     await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr: '',

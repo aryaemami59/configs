@@ -15,7 +15,8 @@ describe('linting TS files', () => {
     const CLIArguments = [fileToBeLinted]
 
     await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
-      Error(`Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`),
+      Error(`Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`)
+        .message,
     )
   })
 
@@ -32,7 +33,7 @@ describe('linting TS files', () => {
         ? `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`
         : Error(
             `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`,
-          ),
+          ).message,
     )
   })
 
@@ -41,17 +42,11 @@ describe('linting TS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const CLIArguments = [
-      // TODO: Unflag in eslint v9.18.0
-      '--flag',
-      'unstable_ts_config',
-      '--config',
-      configFileName,
-      fileToBeLinted,
-    ]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
     await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
-      Error(`Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`),
+      Error(`Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`)
+        .message,
     )
   })
 })

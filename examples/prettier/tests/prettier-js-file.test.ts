@@ -33,9 +33,12 @@ describe('formatting JS files', () => {
       fileToBeFormatted,
     ]
 
+    const nodeVersion = parseFloat(process.versions.node)
+
     await expect(runPrettierCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
-        process.versions.node.startsWith('22') &&
+        nodeVersion >= 22 &&
+        nodeVersion < 22.13 &&
         (configFileName === 'prettier.config.cjs' ||
           configFileName === '.prettierrc.cjs')
           ? expect.stringContaining('ExperimentalWarning: CommonJS module')

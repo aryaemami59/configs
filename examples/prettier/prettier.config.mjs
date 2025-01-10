@@ -1,3 +1,7 @@
 import { createPrettierConfig } from '@aryaemami59/prettier-config'
 
-export default createPrettierConfig({ arrowParens: 'avoid' })
+const prettierConfig = createPrettierConfig({
+  arrowParens: 'avoid',
+})
+
+export default prettierConfig
