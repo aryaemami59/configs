@@ -20,6 +20,10 @@ const eslintConfig = createESLintConfig([
         },
       },
     },
+
+    rules: {
+      'vitest/no-alias-methods': [2],
+    },
     settings: {
       vitest: {
         typecheck: true,
