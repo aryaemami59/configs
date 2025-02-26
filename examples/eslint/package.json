@@ -7,9 +7,9 @@
   "type": "commonjs",
   "files": [],
   "scripts": {
-    "clean": "rimraf dist",
-    "test": "vitest",
-    "test-types": "yarn clean && tsc -p tsconfig.json"
+    "clean": "rimraf $INIT_CWD/dist/ $INIT_CWD/coverage/ $INIT_CWD/temp/",
+    "test": "vitest --config=$INIT_CWD/vitest.config.mts",
+    "test-types": "yarn clean && tsc -p $INIT_CWD/tsconfig.json"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",

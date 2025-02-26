@@ -7,9 +7,9 @@
   "type": "commonjs",
   "files": [],
   "scripts": {
-    "clean": "rimraf dist",
-    "test": "vitest && vitest -c vitest.config.ts && vitest -c vitest.config.mts && vitest -c vitest.config.cts && vitest -c vitest.config.js && vitest -c vitest.config.mjs && vitest -c vitest.config.cjs",
-    "test-types": "yarn clean && tsc -p tsconfig.json"
+    "clean": "rimraf $INIT_CWD/dist/ $INIT_CWD/coverage/ $INIT_CWD/temp/",
+    "test": "vitest && vitest -c $INIT_CWD/vitest.config.ts && vitest -c $INIT_CWD/vitest.config.mts && vitest -c $INIT_CWD/vitest.config.cts && vitest -c $INIT_CWD/vitest.config.js && vitest -c $INIT_CWD/vitest.config.mjs && vitest -c $INIT_CWD/vitest.config.cjs",
+    "test-types": "yarn clean && tsc -p $INIT_CWD/tsconfig.json"
   },
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",

@@ -11,7 +11,7 @@ module.exports = (async () => {
     test: {
       name: `${packageJson.name}/${path.basename(__filename)}`,
       environment: 'jsdom',
-      dir: 'tests',
+      dir: `${__dirname}/tests`,
       root: __dirname,
       // Other additional overrides
     },

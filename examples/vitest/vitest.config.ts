@@ -10,7 +10,7 @@ export = (async () => {
   ).createVitestConfig({
     test: {
       name: `${packageJson.name}/${path.basename(__filename)}`,
-      dir: 'tests',
+      dir: `${__dirname}/tests`,
       environment: 'jsdom',
       root: __dirname,
       // Other additional overrides

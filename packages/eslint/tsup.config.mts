@@ -6,23 +6,18 @@ import packageJson from './package.json' with { type: 'json' }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const tsconfig = path.join(
-  __dirname,
-  'tsconfig.build.json',
-) satisfies Options['tsconfig']
-
 const tsupConfig = defineConfig((overrideOptions): Options[] => {
   const commonOptions = {
     clean: true,
     entry: {
-      index: 'src/index.ts',
+      index: path.join(__dirname, 'src', 'index.ts'),
     },
     removeNodeProtocol: false,
     shims: true,
     sourcemap: true,
     splitting: false,
     target: ['esnext', 'node20'],
-    tsconfig,
+    tsconfig: path.join(__dirname, 'tsconfig.build.json'),
     ...overrideOptions,
   } satisfies Options
 

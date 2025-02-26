@@ -5,7 +5,7 @@ import packageJson from './package.json' with { type: 'json' }
 const vitestConfig = createVitestConfig({
   test: {
     name: `${packageJson.name}/${path.basename(import.meta.filename)}`,
-    dir: 'tests',
+    dir: `${import.meta.dirname}/tests`,
     environment: 'jsdom',
     root: import.meta.dirname,
     // Other additional overrides

@@ -55,12 +55,12 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.mts",
+    "build": "tsup --config=$INIT_CWD/tsup.config.mts",
     "check-exports": "attw --pack",
-    "check-package-json": "publint --strict .",
-    "clean": "rimraf dist",
+    "check-package-json": "publint --strict $INIT_CWD",
+    "clean": "rimraf $INIT_CWD/dist/",
     "prepack": "yarn clean && yarn build",
-    "test-types": "tsc -p tsconfig.json"
+    "test-types": "tsc -p $INIT_CWD/tsconfig.json"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.2",

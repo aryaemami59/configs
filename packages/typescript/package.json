@@ -56,7 +56,7 @@
   "main": "./base/tsconfig.json",
   "scripts": {
     "check-exports": "attw --pack",
-    "check-package-json": "publint --strict ."
+    "check-package-json": "publint --strict $INIT_CWD"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.2",

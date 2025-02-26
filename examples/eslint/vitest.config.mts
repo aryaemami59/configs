@@ -7,7 +7,7 @@ import packageJson from './package.json' with { type: 'json' }
 const vitestConfig = createVitestConfig({
   test: {
     name: packageJson.name,
-    dir: 'tests',
+    dir: `${import.meta.dirname}/tests`,
     root: import.meta.dirname,
 
     server: {
