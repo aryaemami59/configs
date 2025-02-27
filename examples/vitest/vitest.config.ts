@@ -9,9 +9,9 @@ export = (async () => {
     await import('@aryaemami59/vitest-config')
   ).createVitestConfig({
     test: {
-      name: `${packageJson.name}/${path.basename(__filename)}`,
       dir: `${__dirname}/tests`,
       environment: 'jsdom',
+      name: `${packageJson.name}/${path.basename(__filename)}`,
       root: __dirname,
       // Other additional overrides
     },

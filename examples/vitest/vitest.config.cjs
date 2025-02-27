@@ -4,9 +4,9 @@ const { createVitestConfig } = require('@aryaemami59/vitest-config')
 
 const vitestConfig = createVitestConfig({
   test: {
-    name: `${packageJson.name}/${path.basename(__filename)}`,
     dir: `${__dirname}/tests`,
     environment: 'jsdom',
+    name: `${packageJson.name}/${path.basename(__filename)}`,
     root: __dirname,
     // Other additional overrides
   },
