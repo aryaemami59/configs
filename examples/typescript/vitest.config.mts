@@ -9,8 +9,6 @@ const vitestConfig = createVitestConfig({
 
     server: {
       deps: {
-        fallbackCJS: false,
-
         external: ['@aryaemami59/tsconfig', 'typescript'],
       },
     },

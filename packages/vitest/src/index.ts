@@ -21,8 +21,6 @@ export const vitestConfigDefaults = {
       : ([['verbose']] as const),
 
     clearMocks: true,
-    mockReset: true,
-    restoreMocks: true,
 
     typecheck: {
       tsconfig: './tsconfig.json',
@@ -30,9 +28,9 @@ export const vitestConfigDefaults = {
 
     unstubEnvs: true,
     unstubGlobals: true,
+
     watch: false,
     globals: true,
-    testTimeout: 10_000,
   },
 
   define: {

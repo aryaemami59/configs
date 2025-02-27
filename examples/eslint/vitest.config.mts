@@ -1,7 +1,4 @@
-import {
-  createVitestConfig,
-  vitestConfigDefaults,
-} from '@aryaemami59/vitest-config'
+import { createVitestConfig } from '@aryaemami59/vitest-config'
 import packageJson from './package.json' with { type: 'json' }
 
 const vitestConfig = createVitestConfig({
@@ -12,8 +9,6 @@ const vitestConfig = createVitestConfig({
 
     server: {
       deps: {
-        fallbackCJS: false,
-
         external: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
       },
     },
@@ -30,9 +25,7 @@ const vitestConfig = createVitestConfig({
 
     globalSetup: ['./tests/vitest.setup.mts'],
 
-    testTimeout: process.env.CI
-      ? 60_000
-      : vitestConfigDefaults.test.testTimeout,
+    testTimeout: process.env.CI ? 60_000 : undefined,
 
     sequence: {
       concurrent: true,
