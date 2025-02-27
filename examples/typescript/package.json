@@ -8,8 +8,12 @@
   "files": [],
   "scripts": {
     "clean": "rimraf $INIT_CWD/dist/ $INIT_CWD/coverage/ $INIT_CWD/temp/",
-    "test": "vitest --config=$INIT_CWD/vitest.config.mts",
-    "test-types": "yarn clean && tsc -p $INIT_CWD/tsconfig.json"
+    "format-check": "yarn run -T format-check",
+    "format": "yarn run -T format",
+    "lint-fix": "yarn run -T lint-fix",
+    "lint": "yarn run -T lint",
+    "test-types": "yarn clean && tsc -p $INIT_CWD/tsconfig.json",
+    "test": "vitest --config=$INIT_CWD/vitest.config.mts"
   },
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",

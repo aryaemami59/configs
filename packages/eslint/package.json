@@ -56,9 +56,13 @@
   ],
   "scripts": {
     "build": "tsup --config=$INIT_CWD/tsup.config.mts",
-    "check-exports": "attw --pack",
+    "check-exports": "attw --pack $INIT_CWD",
     "check-package-json": "publint --strict $INIT_CWD",
     "clean": "rimraf $INIT_CWD/dist/",
+    "format-check": "yarn run -T format-check",
+    "format": "yarn run -T format",
+    "lint-fix": "yarn run -T lint-fix",
+    "lint": "yarn run -T lint",
     "prepack": "yarn clean && yarn build",
     "test-types": "tsc -p $INIT_CWD/tsconfig.json"
   },

@@ -35,13 +35,17 @@ const tsupConfig = defineConfig((overrideOptions): Options[] => {
     {
       ...commonOptions,
       name: `${packageJson.name} ESM Type definitions`,
-      dts: { only: true },
+      dts: {
+        only: true,
+      },
       format: ['esm'],
     },
     {
       ...commonOptions,
       name: `${packageJson.name} CJS Type definitions`,
-      dts: { only: true },
+      dts: {
+        only: true,
+      },
       format: ['cjs'],
     },
   ]

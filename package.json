@@ -23,11 +23,11 @@
   "scripts": {
     "build": "yarn workspaces foreach -Atp run build",
     "clean": "yarn workspaces foreach -Atp run clean",
-    "format": "prettier -w .",
-    "format-check": "prettier -c .",
+    "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -c $INIT_CWD",
+    "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -w $INIT_CWD",
     "install": "yarn build",
-    "lint": "eslint",
-    "lint-fix": "eslint --fix"
+    "lint-fix": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern --fix $INIT_CWD",
+    "lint": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern $INIT_CWD"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.2",
