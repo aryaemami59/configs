@@ -25,6 +25,7 @@ export const globalIgnores = {
     '**/lib/',
     '**/temp/',
     '**/.temp/',
+    '**/.tmp/',
     '**/.yarn/',
     '**/coverage/',
   ],
