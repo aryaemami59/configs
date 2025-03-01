@@ -24,6 +24,7 @@ export const globalIgnores = {
     '**/build/',
     '**/lib/',
     '**/temp/',
+    '**/.temp/',
     '**/.yarn/',
     '**/coverage/',
   ],
@@ -229,19 +230,6 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
           },
         ],
         '@typescript-eslint/unified-signatures': [2],
-        '@typescript-eslint/dot-notation': [
-          2,
-          {
-            // Related issue: https://github.com/typescript-eslint/typescript-eslint/issues/10338
-            // Base ESLint default options
-            allowKeywords: true,
-            allowPattern: '',
-            // TypeScript ESLint default options
-            allowPrivateClassPropertyAccess: false,
-            allowProtectedClassPropertyAccess: false,
-            allowIndexSignaturePropertyAccess: false,
-          },
-        ],
         '@typescript-eslint/no-unnecessary-type-parameters': [2],
         '@typescript-eslint/no-invalid-void-type': [2],
         '@typescript-eslint/no-confusing-void-expression': [2],
@@ -252,25 +240,6 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         '@typescript-eslint/no-unnecessary-type-assertion': [2],
         '@typescript-eslint/prefer-nullish-coalescing': [2],
         '@typescript-eslint/no-inferrable-types': [2],
-        '@typescript-eslint/no-empty-function': [
-          2,
-          {
-            // Related issue: https://github.com/typescript-eslint/typescript-eslint/issues/10338
-            // Base ESLint default options
-            allow: [],
-          },
-        ],
-        '@typescript-eslint/no-unused-expressions': [
-          2,
-          {
-            // Related issue: https://github.com/typescript-eslint/typescript-eslint/issues/10338
-            // Base ESLint default options
-            allowShortCircuit: false,
-            allowTernary: false,
-            allowTaggedTemplates: false,
-            enforceForJSX: false,
-          },
-        ],
         'object-shorthand': [2],
         ...rulesToDisable,
       },
