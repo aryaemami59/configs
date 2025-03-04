@@ -82,7 +82,7 @@ export const globals: typeof vitestGlobals &
  * @since 0.0.3
  * @public
  */
-export const rulesToDisable = {
+export const disabledRules = {
   'no-undef': [0],
   '@typescript-eslint/no-unused-vars': [
     0,
@@ -158,7 +158,6 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     { name: '@aryaemami59/javascript', ...js.configs.recommended },
     ...configs.recommended,
     ...configs.stylistic,
-    { name: '@aryaemami59/prettier-config', ...prettierConfig },
     {
       name: '@aryaemami59/main',
       languageOptions: {
@@ -242,7 +241,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         '@typescript-eslint/prefer-nullish-coalescing': [2],
         '@typescript-eslint/no-inferrable-types': [2],
         'object-shorthand': [2],
-        ...rulesToDisable,
+        ...disabledRules,
       },
       linterOptions: { reportUnusedDisableDirectives: 2 },
     },
@@ -257,6 +256,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         ],
       },
     },
+    { name: '@aryaemami59/prettier-config', ...prettierConfig },
   )
 
 /**
