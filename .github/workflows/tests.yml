@@ -36,9 +36,6 @@ jobs:
       - name: Lint files
         run: yarn workspaces foreach -Ap -j unlimited run lint
 
-      - name: Run publint
-        run: yarn workspaces foreach -Ap -j unlimited run check-package-json
-
   test-types:
     name: Test types with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
@@ -199,6 +196,50 @@ jobs:
 
       - name: Run are-the-types-wrong for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
         run: yarn attw packages/${{ matrix.package.directory }}/package.tgz --format table
+
+      - name: Did we fail?
+        if: failure()
+        run: ls -R
+
+  publint:
+    name: Check if the package.json for ${{ matrix.package.name }} is correct with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: [build]
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        node-version: [22, latest]
+        package:
+          [
+            { directory: 'eslint', name: '@aryaemami59/eslint-config' },
+            { directory: 'prettier', name: '@aryaemami59/prettier-config' },
+            { directory: 'typescript', name: '@aryaemami59/tsconfig' },
+            { directory: 'vitest', name: '@aryaemami59/vitest-config' },
+          ]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+        uses: ./.github/actions/prepare
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
+          path: packages/${{ matrix.package.directory }}
+
+      - name: Display folder structure
+        run: ls -l .
+
+      - name: Run publint for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        run: yarn packages/${{ matrix.package.directory }} run publint --strict ./package.tgz
 
       - name: Did we fail?
         if: failure()
