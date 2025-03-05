@@ -16,8 +16,6 @@ const TSFileToBeLinted = path.join(tempDirPathTS, 'test.ts')
 
 const JSFileToBeLinted = path.join(tempDirPathJS, 'test.js')
 
-const originalCwd = process.cwd()
-
 export async function setup(testProject: TestProject) {
   await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
 
@@ -28,12 +26,8 @@ export async function setup(testProject: TestProject) {
   await fs.writeFile(TSFileToBeLinted, TSFileContent, { encoding: 'utf-8' })
 
   await fs.writeFile(JSFileToBeLinted, JSFileContent, { encoding: 'utf-8' })
-
-  process.chdir(path.join(__dirname, '..'))
 }
 
 export async function teardown() {
   await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
-
-  process.chdir(originalCwd)
 }
