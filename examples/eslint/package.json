@@ -13,7 +13,7 @@
     "lint-fix": "yarn run -T lint-fix",
     "lint": "yarn run -T lint",
     "test-types": "yarn clean && tsc -p $INIT_CWD/tsconfig.json",
-    "test": "vitest --config=$INIT_CWD/vitest.config.mts"
+    "test": "yarn run -T test"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",

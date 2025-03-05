@@ -12,11 +12,12 @@ export const defaultCLIArguments = []
 export const defaultExecFileOptions = {
   encoding: 'utf-8',
   shell: true,
+  cwd: path.join(__dirname, '..'),
 } as const satisfies ExecFileOptionsWithOtherEncoding
 
 export const runPrettierCLI = (
   CLIArguments: readonly string[] = [],
-  execFileOptions?: ExecFileOptionsWithOtherEncoding,
+  execFileOptions?: Partial<ExecFileOptionsWithOtherEncoding>,
 ) =>
   execFile(defaultCLICommand, [...defaultCLIArguments, ...CLIArguments], {
     ...defaultExecFileOptions,

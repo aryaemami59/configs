@@ -23,7 +23,7 @@ const vitestConfig = createVitestConfig({
       },
     },
 
-    globalSetup: ['./tests/vitest.setup.mts'],
+    globalSetup: [`${import.meta.dirname}/tests/vitest.setup.mts`],
 
     sequence: {
       concurrent: true,

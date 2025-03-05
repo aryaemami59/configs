@@ -25,9 +25,10 @@
     "clean": "yarn workspaces foreach -Atp run clean",
     "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -c $INIT_CWD",
     "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -w $INIT_CWD",
-    "postinstall": "yarn build",
     "lint-fix": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern --fix $INIT_CWD",
-    "lint": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern $INIT_CWD"
+    "lint": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern $INIT_CWD",
+    "postinstall": "yarn build",
+    "test": "vitest --run --config=$INIT_CWD/vitest.config.mts"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.4",
@@ -39,7 +40,8 @@
     "@vitest/eslint-plugin": "^1.1.36",
     "eslint": "^9.21.0",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.7"
   },
   "packageManager": "yarn@4.6.0"
 }

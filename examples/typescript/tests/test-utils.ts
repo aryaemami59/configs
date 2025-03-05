@@ -12,6 +12,7 @@ export const defaultCLIArguments = ['-p', 'tsconfig.json']
 export const defaultExecFileOptions = {
   encoding: 'utf-8',
   shell: true,
+  cwd: path.join(__dirname, '..'),
 } as const satisfies ExecFileOptionsWithOtherEncoding
 
 export const runTypeScriptCLI = (

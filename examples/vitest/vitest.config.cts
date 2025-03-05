@@ -7,7 +7,7 @@ const vitestConfig = createVitestConfig({
   test: {
     dir: `${__dirname}/tests`,
     environment: 'jsdom',
-    name: `${packageJson.name}/${path.basename(__filename)}`,
+    name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
     root: __dirname,
     // Other additional overrides
   },

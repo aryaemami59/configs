@@ -192,7 +192,7 @@ const TSFiles = new FileFixtures('ts')
 
 const JSFiles = new FileFixtures('js')
 
-export async function setup({ config, provide }: TestProject): Promise<void> {
+export async function setup(testProject: TestProject): Promise<void> {
   await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
 
   await fs.mkdir(TSFiles.bad.fixtureDirectory, { recursive: true })
