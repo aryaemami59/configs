@@ -1,7 +1,7 @@
 import js from '@eslint/js'
 import type { TSESLint } from '@typescript-eslint/utils'
 import type { Linter } from 'eslint'
-import prettierConfig from 'eslint-config-prettier'
+import prettierConfig from 'eslint-config-prettier/flat'
 import globalIdentifiers from 'globals'
 import type { ConfigWithExtends } from 'typescript-eslint'
 import { config, configs, parser } from 'typescript-eslint'
@@ -155,7 +155,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     // `ignores` must be first.
     // config with just `ignores` is the replacement for `.eslintignore`
     globalIgnores,
-    { name: '@aryaemami59/javascript', ...js.configs.recommended },
+    { name: `${js.meta.name}/recommended`, ...js.configs.recommended },
     ...configs.recommended,
     ...configs.stylistic,
     {
@@ -256,7 +256,8 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         ],
       },
     },
-    { name: '@aryaemami59/prettier-config', ...prettierConfig },
+
+    prettierConfig,
   )
 
 /**
