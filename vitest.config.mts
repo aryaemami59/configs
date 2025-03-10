@@ -1,9 +1,7 @@
-import { defineConfig } from 'vitest/config'
+import { createVitestConfig } from '@aryaemami59/vitest-config'
 
-const vitestConfig = defineConfig({
+const vitestConfig = createVitestConfig({
   test: {
-    watch: false,
-
     // Without this we get `ERR_REQUIRE_CYCLE_MODULE` error.
     env: {
       NODE_OPTIONS: '--no-experimental-require-module',

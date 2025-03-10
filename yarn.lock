@@ -1369,6 +1369,7 @@ __metadata:
     "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/prettier-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
+    "@aryaemami59/vitest-config": "workspace:^"
     "@types/node": "npm:^22.13.10"
     "@typescript-eslint/utils": "npm:^8.26.1"
     "@vitest/eslint-plugin": "npm:^1.1.36"
