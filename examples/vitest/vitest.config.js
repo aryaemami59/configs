@@ -7,7 +7,7 @@ module.exports = (async () => {
 
   const vitestConfig = (
     await import('@aryaemami59/vitest-config')
-  ).createVitestConfig({
+  ).createVitestProject({
     test: {
       dir: `${__dirname}/tests`,
       environment: 'jsdom',

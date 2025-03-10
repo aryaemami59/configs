@@ -1,8 +1,8 @@
 const path = require('node:path')
 const packageJson = require('./package.json')
-const { createVitestConfig } = require('@aryaemami59/vitest-config')
+const { createVitestProject } = require('@aryaemami59/vitest-config')
 
-const vitestConfig = createVitestConfig({
+const vitestConfig = createVitestProject({
   test: {
     dir: `${__dirname}/tests`,
     environment: 'jsdom',

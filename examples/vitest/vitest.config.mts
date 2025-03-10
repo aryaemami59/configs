@@ -1,8 +1,8 @@
-import { createVitestConfig } from '@aryaemami59/vitest-config'
+import { createVitestProject } from '@aryaemami59/vitest-config'
 import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
-const vitestConfig = createVitestConfig({
+const vitestConfig = createVitestProject({
   test: {
     dir: `${import.meta.dirname}/tests`,
     environment: 'jsdom',
