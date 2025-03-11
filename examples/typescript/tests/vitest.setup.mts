@@ -192,6 +192,12 @@ const TSFiles = new FileFixtures('ts')
 
 const JSFiles = new FileFixtures('js')
 
+/**
+ * setup function for
+ * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
+ *
+ * @param testProject - The {@linkcode TestProject} object
+ */
 export async function setup(testProject: TestProject): Promise<void> {
   await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
 
@@ -274,6 +280,10 @@ export async function setup(testProject: TestProject): Promise<void> {
   })
 }
 
+/**
+ * teardown function for
+ * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
+ */
 export async function teardown(): Promise<void> {
   await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
 }
