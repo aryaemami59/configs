@@ -2,7 +2,7 @@ import { createESLintConfig } from '@aryaemami59/eslint-config'
 import vitestPlugin from '@vitest/eslint-plugin'
 
 const eslintConfig = createESLintConfig([
-  { name: 'vitest/recommended', ...vitestPlugin.configs.recommended },
+  vitestPlugin.configs.recommended,
 
   {
     name: '@aryaemami59/overrides',
@@ -33,6 +33,7 @@ const eslintConfig = createESLintConfig([
       'vitest/prefer-to-contain': [2],
       'vitest/prefer-to-have-length': [2],
     },
+
     settings: {
       vitest: {
         typecheck: true,

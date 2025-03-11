@@ -28,6 +28,7 @@ export const globalIgnores = {
     '**/.tmp/',
     '**/.yarn/',
     '**/coverage/',
+    '**/.docusaurus/',
   ],
 } as const satisfies Linter.Config
 
@@ -87,11 +88,13 @@ export const disabledRules = {
   '@typescript-eslint/no-unused-vars': [
     0,
     {
-      vars: 'all',
-      args: 'after-used',
+      args: 'all',
+      argsIgnorePattern: '^_',
       caughtErrors: 'all',
-      ignoreRestSiblings: false,
-      reportUsedIgnorePattern: false,
+      caughtErrorsIgnorePattern: '^_',
+      destructuredArrayIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+      ignoreRestSiblings: true,
     },
   ],
   '@typescript-eslint/ban-ts-comment': [
@@ -155,19 +158,22 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     // `ignores` must be first.
     // config with just `ignores` is the replacement for `.eslintignore`
     globalIgnores,
-    { name: `${js.meta.name}/recommended`, ...js.configs.recommended },
+
+    {
+      name: `${js.meta.name}/recommended`,
+      ...js.configs.recommended,
+    },
+
     ...configs.recommended,
     ...configs.stylistic,
+
     {
       name: '@aryaemami59/main',
       languageOptions: {
         globals,
         parser,
         parserOptions: {
-          projectService: {
-            allowDefaultProject: ['.*.js', '.*.mjs', '.*.cjs'],
-            defaultProject: './tsconfig.json',
-          },
+          projectService: true,
           ecmaVersion: 'latest',
         },
       },
@@ -241,14 +247,21 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         '@typescript-eslint/prefer-nullish-coalescing': [2],
         '@typescript-eslint/no-inferrable-types': [2],
         'object-shorthand': [2],
+
         ...disabledRules,
       },
-      linterOptions: { reportUnusedDisableDirectives: 2 },
+
+      linterOptions: {
+        reportUnusedDisableDirectives: 2,
+      },
     },
+
     {
       name: '@aryaemami59/commonjs',
       files: ['**/*.c[jt]s'],
-      languageOptions: { sourceType: 'commonjs' },
+      languageOptions: {
+        sourceType: 'commonjs',
+      },
       rules: {
         '@typescript-eslint/no-require-imports': [
           0,
