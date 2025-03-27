@@ -3,7 +3,7 @@ import { defineConfig, defineProject } from 'vitest/config'
 import { vitestConfigDefaults } from './defaults.js'
 
 /**
- * Shareable **{@linkcode https://vitest.dev | Vitest}**
+ * Shareable **{@link https://vitest.dev | Vitest}**
  * configuration tailored for projects using TypeScript.
  *
  * @example
@@ -49,7 +49,7 @@ export const vitestConfig: ViteUserConfig =
   /* @__PURE__ */ defineConfig(vitestConfigDefaults)
 
 /**
- * Shareable **{@linkcode https://vitest.dev | Vitest}**
+ * Shareable **{@link https://vitest.dev | Vitest}**
  * configuration tailored for projects using TypeScript.
  *
  * @example
