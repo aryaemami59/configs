@@ -192,11 +192,17 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         ],
         '@typescript-eslint/no-explicit-any': [
           2,
-          { fixToUnknown: false, ignoreRestArgs: false },
+          {
+            fixToUnknown: false,
+            ignoreRestArgs: false,
+          },
         ],
         '@typescript-eslint/no-empty-object-type': [
           2,
-          { allowInterfaces: 'never', allowObjectTypes: 'never' },
+          {
+            allowInterfaces: 'never',
+            allowObjectTypes: 'never',
+          },
         ],
         '@typescript-eslint/no-restricted-types': [
           2,
@@ -222,7 +228,10 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         ],
         '@typescript-eslint/no-namespace': [
           2,
-          { allowDeclarations: false, allowDefinitionFiles: true },
+          {
+            allowDeclarations: false,
+            allowDefinitionFiles: true,
+          },
         ],
         '@typescript-eslint/consistent-type-definitions': [2, 'type'],
         'sort-imports': [
@@ -265,7 +274,12 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
       rules: {
         '@typescript-eslint/no-require-imports': [
           0,
-          [{ allow: [], allowAsImport: false }],
+          [
+            {
+              allow: [],
+              allowAsImport: false,
+            },
+          ],
         ],
       },
     },

@@ -62,7 +62,8 @@ export const vitestConfigDefaults = {
 } as const satisfies ViteUserConfig
 
 /**
- * Vitest configuration tailored for projects using TypeScript.
+ * Shareable **{@linkcode https://vitest.dev | Vitest}**
+ * configuration tailored for projects using TypeScript.
  *
  * @example
  * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
@@ -107,7 +108,8 @@ export const vitestConfig: ViteUserConfig =
   /* @__PURE__ */ defineConfig(vitestConfigDefaults)
 
 /**
- * Vitest configuration tailored for projects using TypeScript.
+ * Shareable **{@linkcode https://vitest.dev | Vitest}**
+ * configuration tailored for projects using TypeScript.
  *
  * @example
  * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
