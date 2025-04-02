@@ -14,6 +14,7 @@ const { browser, node, nodeBuiltin } = globalIdentifiers
 export const vitestGlobals = {
   suite: 'writable',
   test: 'writable',
+  chai: 'writable',
   describe: 'writable',
   it: 'writable',
   expectTypeOf: 'writable',
