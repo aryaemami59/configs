@@ -36,13 +36,13 @@
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "@types/node": "^22.13.17",
-    "@typescript-eslint/utils": "^8.29.0",
-    "@vitest/eslint-plugin": "^1.1.38",
-    "eslint": "^9.23.0",
+    "@types/node": "^22.14.1",
+    "@typescript-eslint/utils": "^8.31.0",
+    "@vitest/eslint-plugin": "^1.1.43",
+    "eslint": "^9.25.1",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.2",
-    "vitest": "^3.1.1"
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
   },
   "packageManager": "yarn@4.8.1"
 }
