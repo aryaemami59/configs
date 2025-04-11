@@ -4,6 +4,7 @@ import packageJson from './package.json' with { type: 'json' }
 
 const eslintConfig = createESLintConfig([
   vitestPlugin.configs.recommended,
+  vitestPlugin.configs.env,
 
   {
     name: `${packageJson.name}/overrides`,
