@@ -32,6 +32,7 @@ const eslintConfig = createESLintConfig([
       'vitest/prefer-to-be': [2],
       'vitest/prefer-to-contain': [2],
       'vitest/prefer-to-have-length': [2],
+      'vitest/prefer-describe-function-title': [2],
     },
 
     settings: {
