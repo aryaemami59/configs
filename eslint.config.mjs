@@ -1,11 +1,12 @@
 import { createESLintConfig } from '@aryaemami59/eslint-config'
 import vitestPlugin from '@vitest/eslint-plugin'
+import packageJson from './package.json' with { type: 'json' }
 
 const eslintConfig = createESLintConfig([
   vitestPlugin.configs.recommended,
 
   {
-    name: '@aryaemami59/overrides',
+    name: `${packageJson.name}/overrides`,
     languageOptions: {
       parserOptions: {
         projectService: {

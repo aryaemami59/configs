@@ -1,4 +1,5 @@
 import type { Linter } from 'eslint'
+import { packageName } from './packageName.js'
 
 /**
  * An object representing
@@ -9,7 +10,7 @@ import type { Linter } from 'eslint'
  * @public
  */
 export const globalIgnores = {
-  name: '@aryaemami59/global-ignores',
+  name: `${packageName}/global-ignores`,
   ignores: [
     '**/dist/',
     '**/.yalc/',

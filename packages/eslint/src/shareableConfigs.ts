@@ -5,6 +5,7 @@ import { config, configs, parser } from 'typescript-eslint'
 import { disabledRules } from './disabledRules.js'
 import { globalIgnores } from './globalIgnores.js'
 import { globals } from './globals.js'
+import { packageName } from './packageName.js'
 
 /**
  * Flat ESLint configuration tailored for projects using TypeScript.
@@ -63,7 +64,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     ...configs.stylistic,
 
     {
-      name: '@aryaemami59/main',
+      name: `${packageName}/main`,
       languageOptions: {
         globals,
         parser,
@@ -177,7 +178,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     },
 
     {
-      name: '@aryaemami59/commonjs-files',
+      name: `${packageName}/commonjs-files`,
       files: ['**/*.cjs'],
       languageOptions: {
         sourceType: 'commonjs',
