@@ -60,8 +60,8 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
       ...js.configs.recommended,
     },
 
-    ...configs.recommended,
-    ...configs.stylistic,
+    configs.recommended,
+    configs.stylistic,
 
     {
       name: `${packageName}/main`,
@@ -140,17 +140,67 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
             memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
           },
         ],
-        '@typescript-eslint/unified-signatures': [2],
+        '@typescript-eslint/unified-signatures': [
+          2,
+          {
+            ignoreDifferentlyNamedParameters: false,
+            ignoreOverloadsWithDifferentJSDoc: false,
+          },
+        ],
         '@typescript-eslint/no-unnecessary-type-parameters': [2],
-        '@typescript-eslint/no-invalid-void-type': [2],
-        '@typescript-eslint/no-confusing-void-expression': [2],
-        '@typescript-eslint/no-duplicate-type-constituents': [2],
+        '@typescript-eslint/no-invalid-void-type': [
+          2,
+          {
+            allowAsThisParameter: false,
+            allowInGenericTypeArguments: true,
+          },
+        ],
+        '@typescript-eslint/no-confusing-void-expression': [
+          2,
+          {
+            ignoreArrowShorthand: false,
+            ignoreVoidOperator: false,
+            ignoreVoidReturningFunctions: false,
+          },
+        ],
+        '@typescript-eslint/no-duplicate-type-constituents': [
+          2,
+          {
+            ignoreIntersections: false,
+            ignoreUnions: false,
+          },
+        ],
         '@typescript-eslint/require-await': [2],
         '@typescript-eslint/no-redundant-type-constituents': [2],
         '@typescript-eslint/no-unnecessary-type-arguments': [2],
-        '@typescript-eslint/no-unnecessary-type-assertion': [2],
-        '@typescript-eslint/prefer-nullish-coalescing': [2],
-        '@typescript-eslint/no-inferrable-types': [2],
+        '@typescript-eslint/no-unnecessary-type-assertion': [
+          2,
+          { typesToIgnore: [] },
+        ],
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          2,
+          {
+            allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: false,
+            ignoreBooleanCoercion: false,
+            ignoreConditionalTests: true,
+            ignoreIfStatements: false,
+            ignoreMixedLogicalExpressions: false,
+            ignorePrimitives: {
+              bigint: false,
+              boolean: false,
+              number: false,
+              string: false,
+            },
+            ignoreTernaryTests: false,
+          },
+        ],
+        '@typescript-eslint/no-inferrable-types': [
+          2,
+          {
+            ignoreParameters: false,
+            ignoreProperties: false,
+          },
+        ],
         '@typescript-eslint/no-require-imports': [
           2,
           {

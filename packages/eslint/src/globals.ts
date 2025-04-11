@@ -1,7 +1,7 @@
 import type { Linter } from 'eslint'
 import globalIdentifiers from 'globals'
 
-const { browser, node, nodeBuiltin } = globalIdentifiers
+const { browser, node, nodeBuiltin, vitest } = globalIdentifiers
 
 /**
  * An object representing the
@@ -38,12 +38,14 @@ export const vitestGlobals = {
  * @since 0.0.3
  * @public
  */
-export const globals: typeof vitestGlobals &
+export const globals: typeof vitest &
   typeof browser &
   typeof node &
-  typeof nodeBuiltin = /* @__PURE__ */ Object.assign(
-  vitestGlobals,
+  typeof nodeBuiltin &
+  typeof vitestGlobals = /* @__PURE__ */ Object.assign(
+  vitest,
   browser,
   node,
   nodeBuiltin,
+  vitestGlobals,
 ) satisfies Linter.Globals
