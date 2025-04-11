@@ -13,14 +13,16 @@ export const globalIgnores = {
   name: `${packageName}/global-ignores`,
   ignores: [
     '**/dist/',
-    '**/.yalc/',
     '**/build/',
     '**/lib/',
+    '**/coverage/',
+    '**/__snapshots__/',
     '**/temp/',
     '**/.temp/',
     '**/.tmp/',
+    '**/.yalc/',
     '**/.yarn/',
-    '**/coverage/',
     '**/.docusaurus/',
+    '**/.next/',
   ],
 } as const satisfies Linter.Config
