@@ -1,15 +1,19 @@
+import eslintConfigPackageJson from '@aryaemami59/eslint-config/package.json' with { type: 'json' }
 import { createVitestProject } from '@aryaemami59/vitest-config'
+import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
 const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    dir: `${import.meta.dirname}/tests`,
+    dir: path.join(import.meta.dirname, 'tests'),
     name: packageJson.name,
     root: import.meta.dirname,
 
     server: {
       deps: {
-        external: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
+        external: [eslintConfigPackageJson.name, 'eslint', 'jiti'],
       },
     },
 
@@ -18,7 +22,7 @@ const vitestConfig = createVitestProject({
 
       optimizer: {
         ssr: {
-          exclude: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
+          exclude: [eslintConfigPackageJson.name, 'eslint', 'jiti'],
         },
       },
     },

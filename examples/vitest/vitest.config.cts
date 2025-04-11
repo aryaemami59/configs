@@ -4,8 +4,10 @@ import vitestConfigModule = require('@aryaemami59/vitest-config')
 import createVitestProject = vitestConfigModule.createVitestProject
 
 const vitestConfig = createVitestProject({
+  root: __dirname,
+
   test: {
-    dir: `${__dirname}/tests`,
+    dir: path.join(__dirname, 'tests'),
     environment: 'jsdom',
     name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
     root: __dirname,

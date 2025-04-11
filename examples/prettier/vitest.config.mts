@@ -1,15 +1,19 @@
+import prettierConfigPackageJson from '@aryaemami59/prettier-config/package.json' with { type: 'json' }
 import { createVitestProject } from '@aryaemami59/vitest-config'
+import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
 const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    dir: `${import.meta.dirname}/tests`,
+    dir: path.join(import.meta.dirname, 'tests'),
     name: packageJson.name,
     root: import.meta.dirname,
 
     server: {
       deps: {
-        external: ['@aryaemami59/prettier-config', 'prettier'],
+        external: [prettierConfigPackageJson.name, 'prettier'],
       },
     },
 
@@ -18,12 +22,12 @@ const vitestConfig = createVitestProject({
 
       optimizer: {
         ssr: {
-          exclude: ['@aryaemami59/prettier-config', 'prettier'],
+          exclude: [prettierConfigPackageJson.name, 'prettier'],
         },
       },
     },
 
-    globalSetup: [`${import.meta.dirname}/tests/vitest.setup.mts`],
+    globalSetup: ['./tests/vitest.setup.mts'],
 
     sequence: {
       concurrent: true,

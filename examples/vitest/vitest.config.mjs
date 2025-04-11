@@ -3,10 +3,12 @@ import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
 const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    dir: `${import.meta.dirname}/tests`,
+    dir: path.join(import.meta.dirname, 'tests'),
     environment: 'jsdom',
-    name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
+    name: `${packageJson.name}-${path.extname(import.meta.filename).replace('.', '')}`,
     root: import.meta.dirname,
     // Other additional overrides
   },

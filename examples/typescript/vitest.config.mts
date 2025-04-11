@@ -1,15 +1,19 @@
+import tsConfigPackageJson from '@aryaemami59/tsconfig/package.json' with { type: 'json' }
 import { createVitestProject } from '@aryaemami59/vitest-config'
+import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
 const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    dir: `${import.meta.dirname}/tests`,
+    dir: path.join(import.meta.dirname, 'tests'),
     name: packageJson.name,
     root: import.meta.dirname,
 
     server: {
       deps: {
-        external: ['@aryaemami59/tsconfig', 'typescript'],
+        external: [tsConfigPackageJson.name, 'typescript'],
       },
     },
 
@@ -18,7 +22,7 @@ const vitestConfig = createVitestProject({
 
       optimizer: {
         ssr: {
-          exclude: ['@aryaemami59/tsconfig', 'typescript'],
+          exclude: [tsConfigPackageJson.name, 'typescript'],
         },
       },
     },

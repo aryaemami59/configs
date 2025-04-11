@@ -8,8 +8,10 @@ export = (async () => {
   const vitestConfig = (
     await import('@aryaemami59/vitest-config')
   ).createVitestProject({
+    root: __dirname,
+
     test: {
-      dir: `${__dirname}/tests`,
+      dir: path.join(__dirname, 'tests'),
       environment: 'jsdom',
       name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
       root: __dirname,
