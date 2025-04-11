@@ -76,9 +76,9 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         '@typescript-eslint/consistent-type-imports': [
           2,
           {
-            prefer: 'type-imports',
-            fixStyle: 'separate-type-imports',
             disallowTypeAnnotations: true,
+            fixStyle: 'separate-type-imports',
+            prefer: 'type-imports',
           },
         ],
         '@typescript-eslint/consistent-type-exports': [
@@ -132,11 +132,11 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         'sort-imports': [
           2,
           {
+            allowSeparatedGroups: true,
             ignoreCase: false,
             ignoreDeclarationSort: true,
             ignoreMemberSort: false,
             memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-            allowSeparatedGroups: true,
           },
         ],
         '@typescript-eslint/unified-signatures': [2],
@@ -150,7 +150,23 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
         '@typescript-eslint/no-unnecessary-type-assertion': [2],
         '@typescript-eslint/prefer-nullish-coalescing': [2],
         '@typescript-eslint/no-inferrable-types': [2],
-        'object-shorthand': [2],
+        '@typescript-eslint/no-require-imports': [
+          2,
+          {
+            allow: [],
+            allowAsImport: true,
+          },
+        ],
+        'object-shorthand': [
+          2,
+          'always',
+          {
+            avoidQuotes: true,
+            ignoreConstructors: true,
+            methodsIgnorePattern: '',
+            avoidExplicitReturnArrows: true,
+          },
+        ],
 
         ...disabledRules,
       },
@@ -161,20 +177,18 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     },
 
     {
-      name: '@aryaemami59/commonjs',
-      files: ['**/*.c[jt]s'],
+      name: '@aryaemami59/commonjs-files',
+      files: ['**/*.cjs'],
       languageOptions: {
         sourceType: 'commonjs',
       },
       rules: {
         '@typescript-eslint/no-require-imports': [
           0,
-          [
-            {
-              allow: [],
-              allowAsImport: false,
-            },
-          ],
+          {
+            allow: [],
+            allowAsImport: false,
+          },
         ],
       },
     },
