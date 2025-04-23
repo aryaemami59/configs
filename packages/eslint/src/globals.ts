@@ -38,14 +38,17 @@ export const vitestGlobals = {
  * @since 0.0.3
  * @public
  */
-export const globals: typeof vitest &
-  typeof browser &
-  typeof node &
-  typeof nodeBuiltin &
-  typeof vitestGlobals = /* @__PURE__ */ Object.assign(
-  vitest,
-  browser,
-  node,
-  nodeBuiltin,
-  vitestGlobals,
-) satisfies Linter.Globals
+export const globals =
+  /* @__PURE__ */
+  Object.assign(
+    {
+      ...browser,
+      ...node,
+      ...nodeBuiltin,
+    } as const satisfies Linter.Globals,
+
+    {
+      ...vitest,
+      ...vitestGlobals,
+    } as const satisfies Linter.Globals,
+  ) satisfies Linter.Globals

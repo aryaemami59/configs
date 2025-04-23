@@ -1,3 +1,4 @@
+import type { TSESLint } from '@typescript-eslint/utils'
 import type { Linter } from 'eslint'
 import { packageName } from './packageName.js'
 
@@ -25,4 +26,4 @@ export const globalIgnores = {
     '**/.docusaurus/',
     '**/.next/',
   ],
-} as const satisfies Linter.Config
+} as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config
