@@ -20,11 +20,9 @@ const JSFileToBeLinted = path.join(tempDirPathJS, 'test.js')
  * setup function for
  * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
  *
- * @param testProject - The {@linkcode TestProject} object
+ * @param project - The {@linkcode TestProject} object
  */
-export async function setup(testProject: TestProject) {
-  await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
-
+export async function setup(project: TestProject): Promise<void> {
   await fs.mkdir(tempDirPathTS, { recursive: true })
 
   await fs.mkdir(tempDirPathJS, { recursive: true })
@@ -38,6 +36,8 @@ export async function setup(testProject: TestProject) {
  * teardown function for
  * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
  */
-export async function teardown() {
-  await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
+export async function teardown(): Promise<void> {
+  if (process.env.KEEP_TEMP_DIR !== 'true') {
+    await fs.rm(fixturesDirectoryPath, { recursive: true })
+  }
 }

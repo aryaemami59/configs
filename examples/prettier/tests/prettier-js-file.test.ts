@@ -1,14 +1,14 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { runPrettierCLI } from './test-utils.js'
+import { fixturesDirectoryName, runPrettierCLI } from './test-utils.js'
 
 describe('formatting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeFormatted: path.posix.join('temp', 'js', 'test.js'),
+    fileToBeFormatted: path.posix.join(fixturesDirectoryName, 'js', 'test.js'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
-    const CLIArguments = ['--ignore-path', 'null', '--check', fileToBeFormatted]
+    const CLIArguments = ['--check', fileToBeFormatted]
 
     await expect(runPrettierCLI(CLIArguments)).resolves.toStrictEqual({
       stderr: '',
@@ -25,8 +25,6 @@ describe('formatting JS files', () => {
     '.prettierrc.mjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeFormatted }) => {
     const CLIArguments = [
-      '--ignore-path',
-      'null',
       '--config',
       configFileName,
       '--check',

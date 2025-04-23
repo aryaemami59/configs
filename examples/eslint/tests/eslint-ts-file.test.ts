@@ -1,22 +1,24 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
 import {
+  defaultCLIArguments,
   defaultCLICommand,
-  fixturesDirectoryPath,
+  fixturesDirectoryName,
   runESLintCLI,
 } from './test-utils.js'
 
 describe('linting TS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.posix.join(fixturesDirectoryPath, 'ts', 'test.ts'),
+    fileToBeLinted: path.posix.join(fixturesDirectoryName, 'ts', 'test.ts'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
     const CLIArguments = [fileToBeLinted]
 
     await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
-      Error(`Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`)
-        .message,
+      Error(
+        `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
+      ).message,
     )
   })
 
@@ -30,9 +32,9 @@ describe('linting TS files', () => {
     await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
       process.versions.node.startsWith('22') &&
         configFileName === 'eslint.config.cjs'
-        ? `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`
+        ? `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`
         : Error(
-            `Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`,
+            `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
           ).message,
     )
   })
@@ -45,8 +47,9 @@ describe('linting TS files', () => {
     const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
     await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
-      Error(`Command failed: ${defaultCLICommand} ${CLIArguments.join(' ')}\n`)
-        .message,
+      Error(
+        `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
+      ).message,
     )
   })
 })

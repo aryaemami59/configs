@@ -7,12 +7,15 @@ export const execFile = promisify(childProcess.execFile)
 
 export const defaultCLICommand = 'prettier'
 
-export const defaultCLIArguments = []
+export const defaultCLIArguments = [
+  '--ignore-path',
+  'null',
+] as const satisfies readonly string[]
 
 export const defaultExecFileOptions = {
+  cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
   shell: true,
-  cwd: path.join(__dirname, '..'),
 } as const satisfies ExecFileOptionsWithOtherEncoding
 
 export const runPrettierCLI = (

@@ -7,12 +7,12 @@ export const execFile = promisify(childProcess.execFile)
 
 export const defaultCLICommand = 'tsc'
 
-export const defaultCLIArguments = ['-p', 'tsconfig.json']
+export const defaultCLIArguments = [] as const satisfies readonly string[]
 
 export const defaultExecFileOptions = {
+  cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
   shell: true,
-  cwd: path.join(__dirname, '..'),
 } as const satisfies ExecFileOptionsWithOtherEncoding
 
 export const runTypeScriptCLI = (
@@ -31,3 +31,15 @@ export const fixturesDirectoryPath = path.join(
   '..',
   fixturesDirectoryName,
 )
+
+/**
+ * Represents the context for a local test.
+ *
+ * @internal
+ */
+export type LocalTestContext = {
+  /**
+   * Path to the parent directory containing files to be type-checked.
+   */
+  parentDirectoryToGetTypeChecked: string
+}

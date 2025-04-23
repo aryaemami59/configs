@@ -59,7 +59,7 @@ class FileFixtures<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> {
   public constructor(public readonly fileExtension: FileExtension) {}
 
   public getFixtureDirectory(type: 'good' | 'bad'): string {
-    return path.join(fixturesDirectoryPath, type, this.fileExtension)
+    return path.join(fixturesDirectoryPath, this.fileExtension, type)
   }
 
   public getFileContent(type: 'good' | 'bad'): string {
@@ -196,11 +196,9 @@ const JSFiles = new FileFixtures('js')
  * setup function for
  * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
  *
- * @param testProject - The {@linkcode TestProject} object
+ * @param project - The {@linkcode TestProject} object
  */
-export async function setup(testProject: TestProject): Promise<void> {
-  await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
-
+export async function setup(project: TestProject): Promise<void> {
   await fs.mkdir(TSFiles.bad.fixtureDirectory, { recursive: true })
 
   await fs.mkdir(TSFiles.good.fixtureDirectory, { recursive: true })
@@ -285,5 +283,7 @@ export async function setup(testProject: TestProject): Promise<void> {
  * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
  */
 export async function teardown(): Promise<void> {
-  await fs.rm(fixturesDirectoryPath, { force: true, recursive: true })
+  if (process.env.KEEP_TEMP_DIR !== 'true') {
+    await fs.rm(fixturesDirectoryPath, { recursive: true })
+  }
 }

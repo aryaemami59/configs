@@ -7,12 +7,12 @@ export const execFile = promisify(childProcess.execFile)
 
 export const defaultCLICommand = 'eslint'
 
-export const defaultCLIArguments = []
+export const defaultCLIArguments = [] as const satisfies readonly string[]
 
 export const defaultExecFileOptions = {
+  cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
   shell: true,
-  cwd: path.join(__dirname, '..'),
 } as const satisfies ExecFileOptionsWithOtherEncoding
 
 export const runESLintCLI = (

@@ -1,10 +1,10 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { fixturesDirectoryPath, runESLintCLI } from './test-utils.js'
+import { fixturesDirectoryName, runESLintCLI } from './test-utils.js'
 
 describe('linting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.posix.join(fixturesDirectoryPath, 'js', 'test.js'),
+    fileToBeLinted: path.posix.join(fixturesDirectoryName, 'js', 'test.js'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
