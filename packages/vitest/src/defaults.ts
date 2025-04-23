@@ -8,23 +8,23 @@ import { plugins } from './plugins.js'
  * @public
  */
 export const vitestProjectDefaults = {
+  define: {
+    'import.meta.vitest': 'undefined',
+  },
+
   plugins,
 
   test: {
     clearMocks: true,
+    globals: true,
 
     typecheck: {
+      enabled: true,
       tsconfig: './tsconfig.json',
     },
 
     unstubEnvs: true,
     unstubGlobals: true,
-
-    globals: true,
-  },
-
-  define: {
-    'import.meta.vitest': 'undefined',
   },
 } as const satisfies UserWorkspaceConfig
 
@@ -41,12 +41,12 @@ export const vitestConfigDefaults = {
     ...vitestProjectDefaults.test,
 
     coverage: {
-      include: ['src'],
       extension: ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs'],
+      include: ['src'],
     },
 
     reporters: process.env.GITHUB_ACTIONS
-      ? ([['github-actions'], ['verbose']] as const)
+      ? ([['verbose', { summary: false }], ['github-actions']] as const)
       : ([['verbose']] as const),
 
     watch: false,
