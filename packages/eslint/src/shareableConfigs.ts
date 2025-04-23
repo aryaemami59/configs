@@ -1,7 +1,8 @@
 import js from '@eslint/js'
 import type { TSESLint } from '@typescript-eslint/utils'
+import type { Linter } from 'eslint'
 import prettierConfig from 'eslint-config-prettier/flat'
-import { config, configs, parser } from 'typescript-eslint'
+import { config, configs } from 'typescript-eslint'
 import { disabledRules } from './disabledRules.js'
 import { globalIgnores } from './globalIgnores.js'
 import { globals } from './globals.js'
@@ -58,19 +59,18 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
     {
       name: `${js.meta.name}/recommended`,
       ...js.configs.recommended,
-    },
+    } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config,
 
     configs.recommended,
     configs.stylistic,
 
     {
-      name: `${packageName}/main`,
+      name: `${packageName}/defaults/overrides`,
       languageOptions: {
         globals,
-        parser,
         parserOptions: {
-          projectService: true,
           ecmaVersion: 'latest',
+          projectService: true,
         },
       },
       rules: {
@@ -225,7 +225,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
       linterOptions: {
         reportUnusedDisableDirectives: 2,
       },
-    },
+    } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config,
 
     {
       name: `${packageName}/commonjs-files`,
@@ -242,7 +242,7 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
           },
         ],
       },
-    },
+    } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config,
 
     prettierConfig,
   )
