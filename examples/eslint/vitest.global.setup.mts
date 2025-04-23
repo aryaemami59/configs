@@ -1,10 +1,9 @@
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import type { TestProject } from 'vitest/node'
-import { fixturesDirectoryPath } from './test-utils.js'
+import { fixturesDirectoryPath } from './tests/test-utils.js'
 
-const TSFileContent =
-  'const someFunction: (...args: any[]) => any = (arg) => arg\n'
+const TSFileContent = 'export interface A {\n\tsomeProperty: string\n}\n'
 
 const JSFileContent = "const someString = ''\n"
 

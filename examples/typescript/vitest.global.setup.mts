@@ -1,7 +1,7 @@
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import type { TestProject } from 'vitest/node'
-import { fixturesDirectoryPath } from './test-utils.js'
+import { fixturesDirectoryPath } from './tests/test-utils.js'
 
 type FixtureFile = {
   content: string

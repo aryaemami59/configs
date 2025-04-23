@@ -18,7 +18,7 @@ const vitestConfig = createVitestProject({
     },
 
     dir: path.join(import.meta.dirname, 'tests'),
-    globalSetup: ['./tests/vitest.setup.mts'],
+    globalSetup: ['./vitest.global.setup.mts'],
     isolate: false,
     name: packageJson.name,
     root: import.meta.dirname,

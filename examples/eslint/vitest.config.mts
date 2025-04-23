@@ -18,7 +18,7 @@ const vitestConfig = createVitestProject({
     },
 
     dir: path.join(import.meta.dirname, 'tests'),
-    globalSetup: ['./tests/vitest.setup.mts'],
+    globalSetup: ['./vitest.global.setup.mts'],
     isolate: false,
     name: packageJson.name,
     root: import.meta.dirname,
@@ -33,7 +33,7 @@ const vitestConfig = createVitestProject({
       },
     },
 
-    testTimeout: process.env.CI ? 60_000 : undefined,
+    testTimeout: process.env.CI ? 60_000 : 10_000,
   },
 })
 
