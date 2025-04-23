@@ -7,16 +7,6 @@ const vitestConfig = createVitestProject({
   root: import.meta.dirname,
 
   test: {
-    dir: path.join(import.meta.dirname, 'tests'),
-    name: packageJson.name,
-    root: import.meta.dirname,
-
-    server: {
-      deps: {
-        external: [tsConfigPackageJson.name, 'typescript'],
-      },
-    },
-
     deps: {
       interopDefault: false,
 
@@ -27,13 +17,21 @@ const vitestConfig = createVitestProject({
       },
     },
 
+    dir: path.join(import.meta.dirname, 'tests'),
     globalSetup: ['./tests/vitest.setup.mts'],
+    isolate: false,
+    name: packageJson.name,
+    root: import.meta.dirname,
 
     sequence: {
       concurrent: true,
     },
 
-    isolate: false,
+    server: {
+      deps: {
+        external: [tsConfigPackageJson.name, 'typescript'],
+      },
+    },
   },
 })
 

@@ -7,16 +7,6 @@ const vitestConfig = createVitestProject({
   root: import.meta.dirname,
 
   test: {
-    dir: path.join(import.meta.dirname, 'tests'),
-    name: packageJson.name,
-    root: import.meta.dirname,
-
-    server: {
-      deps: {
-        external: [eslintConfigPackageJson.name, 'eslint', 'jiti'],
-      },
-    },
-
     deps: {
       interopDefault: false,
 
@@ -27,15 +17,23 @@ const vitestConfig = createVitestProject({
       },
     },
 
+    dir: path.join(import.meta.dirname, 'tests'),
     globalSetup: ['./tests/vitest.setup.mts'],
-
-    testTimeout: process.env.CI ? 60_000 : undefined,
+    isolate: false,
+    name: packageJson.name,
+    root: import.meta.dirname,
 
     sequence: {
       concurrent: true,
     },
 
-    isolate: false,
+    server: {
+      deps: {
+        external: [eslintConfigPackageJson.name, 'eslint', 'jiti'],
+      },
+    },
+
+    testTimeout: process.env.CI ? 60_000 : undefined,
   },
 })
 
