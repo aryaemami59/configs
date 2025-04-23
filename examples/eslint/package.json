@@ -21,6 +21,7 @@
     "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^22.14.1",
     "eslint": "^9.25.1",
+    "globals": "^16.0.0",
     "jiti": "^2.4.2",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3",

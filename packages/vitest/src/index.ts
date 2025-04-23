@@ -1,3 +1,5 @@
+export { default as tsconfigPaths } from 'vite-tsconfig-paths'
+export type { PluginOptions } from 'vite-tsconfig-paths'
 export { vitestConfigDefaults, vitestProjectDefaults } from './defaults.js'
 export { plugins } from './plugins.js'
 export { vitestConfig, vitestProject } from './shareableConfigs.js'
