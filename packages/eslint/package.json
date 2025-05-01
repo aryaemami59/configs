@@ -67,16 +67,16 @@
     "test-types": "tsc -p $INIT_CWD/tsconfig.json"
   },
   "dependencies": {
-    "@eslint/js": "^9.25.1",
-    "@typescript-eslint/utils": "^8.31.1",
-    "eslint-config-prettier": "^10.1.2",
-    "globals": "^16.0.0",
-    "typescript-eslint": "^8.31.1"
+    "@eslint/js": "^9.26.0",
+    "@typescript-eslint/utils": "^8.32.1",
+    "eslint-config-prettier": "^10.1.5",
+    "globals": "^16.1.0",
+    "typescript-eslint": "^8.32.1"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.4",
+    "@arethetypeswrong/cli": "^0.18.1",
     "@aryaemami59/tsconfig": "workspace:^",
-    "eslint": "^9.25.1",
+    "eslint": "^9.26.0",
     "publint": "^0.3.12",
     "rimraf": "^6.0.1",
     "tsup": "^8.4.0",
