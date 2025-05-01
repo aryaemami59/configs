@@ -25,5 +25,7 @@ export const globalIgnores = {
     '**/.yarn/',
     '**/.docusaurus/',
     '**/.next/',
+    '**/.expo/',
+    '**/*.snap',
   ],
 } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config
