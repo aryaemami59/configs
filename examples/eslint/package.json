@@ -7,7 +7,7 @@
   "type": "commonjs",
   "files": [],
   "scripts": {
-    "clean": "rimraf $INIT_CWD/dist/ $INIT_CWD/coverage/ $INIT_CWD/temp/",
+    "clean": "rimraf $INIT_CWD/dist/ $INIT_CWD/coverage/ $INIT_CWD/temp/ $INIT_CWD/tsconfig.vitest-temp.json",
     "format-check": "yarn run -T format-check",
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",

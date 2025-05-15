@@ -11,6 +11,10 @@ const vitestConfig = createVitestProject({
     environment: 'jsdom',
     name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
     root: __dirname,
+
+    typecheck: {
+      tsconfig: path.join(__dirname, 'tsconfig.json'),
+    },
     // Other additional overrides
   },
 })

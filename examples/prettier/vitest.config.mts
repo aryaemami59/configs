@@ -19,18 +19,19 @@ const vitestConfig = createVitestProject({
 
     dir: path.join(import.meta.dirname, 'tests'),
     globalSetup: ['./vitest.global.setup.mts'],
-    isolate: false,
     name: packageJson.name,
     root: import.meta.dirname,
-
-    sequence: {
-      concurrent: true,
-    },
 
     server: {
       deps: {
         external: [prettierConfigPackageJson.name, 'prettier'],
       },
+    },
+
+    testTimeout: process.env.CI ? 60_000 : 10_000,
+
+    typecheck: {
+      tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),
     },
   },
 })

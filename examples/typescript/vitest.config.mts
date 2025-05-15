@@ -19,18 +19,17 @@ const vitestConfig = createVitestProject({
 
     dir: path.join(import.meta.dirname, 'tests'),
     globalSetup: ['./vitest.global.setup.mts'],
-    isolate: false,
     name: packageJson.name,
     root: import.meta.dirname,
-
-    sequence: {
-      concurrent: true,
-    },
 
     server: {
       deps: {
         external: [tsConfigPackageJson.name, 'typescript'],
       },
+    },
+
+    typecheck: {
+      tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),
     },
   },
 })
