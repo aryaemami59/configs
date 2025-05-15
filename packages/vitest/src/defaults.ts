@@ -1,4 +1,4 @@
-import type { UserWorkspaceConfig, ViteUserConfig } from 'vitest/config'
+import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
 import { plugins } from './plugins.js'
 
 /**
@@ -19,7 +19,7 @@ export const vitestProjectDefaults = {
   },
 
   /**
-   * @default [tsconfigPaths({ projects: ['./tsconfig.json'], configNames: ['tsconfig.json'] })]
+   * @default [tsconfigPaths({ configNames: ['tsconfig.json'], projects: ['./tsconfig.json'] })]
    */
   plugins,
 
@@ -89,11 +89,11 @@ export const vitestConfigDefaults = {
     },
 
     /**
-     * @default process.env.GITHUB_ACTIONS ? [['verbose', { summary: false }], ['github-actions']] : [['verbose']]
+     * @default process.env.GITHUB_ACTIONS ? [['default', { summary: false }], ['github-actions']] : [['default']]
      */
     reporters: process.env.GITHUB_ACTIONS
-      ? ([['verbose', { summary: false }], ['github-actions']] as const)
-      : ([['verbose']] as const),
+      ? ([['default', { summary: false }], ['github-actions']] as const)
+      : ([['default']] as const),
 
     /**
      * @default false

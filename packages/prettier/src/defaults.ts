@@ -32,7 +32,7 @@ import type { Config } from 'prettier'
  * @public
  * @since 0.0.3
  */
-export const prettierConfig: Config = {
+export const prettierConfig = {
   semi: false,
   singleQuote: true,
-}
+} as const satisfies Config

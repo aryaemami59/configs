@@ -1,9 +1,23 @@
-import tsconfigPaths from 'vite-tsconfig-paths'
-import type { Plugin } from 'vitest/config'
+import type { Plugin, PluginOptions } from './external.js'
+import { tsconfigPaths } from './external.js'
 
-export const plugins: [Plugin] = [
-  /* @__PURE__ */ tsconfigPaths({
-    projects: ['./tsconfig.json'],
-    configNames: ['tsconfig.json'],
-  }),
+/**
+ * Default configuration for {@linkcode tsconfigPaths}.
+ *
+ * @since 0.0.5
+ * @public
+ */
+export const tsconfigPathsOptions = {
+  configNames: ['tsconfig.json'],
+  projects: ['./tsconfig.json'],
+} as const satisfies PluginOptions
+
+/**
+ * plugins for {@linkcode vitestProjectDefaults}.
+ *
+ * @since 0.0.5
+ * @public
+ */
+export const plugins = [
+  /* @__PURE__ */ tsconfigPaths(tsconfigPathsOptions),
 ] as const satisfies [Plugin]

@@ -1,9 +1,9 @@
-import type { UserWorkspaceConfig, ViteUserConfig } from 'vitest/config'
-import { defineConfig, defineProject } from 'vitest/config'
 import { vitestConfigDefaults } from './defaults.js'
+import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
+import { defineConfig, defineProject } from './external.js'
 
 /**
- * Shareable **{@link https://vitest.dev | Vitest}**
+ * Shareable {@link https://vitest.dev | **Vitest**}
  * configuration tailored for projects using TypeScript.
  *
  * @example
@@ -49,7 +49,7 @@ export const vitestConfig: ViteUserConfig =
   /* @__PURE__ */ defineConfig(vitestConfigDefaults)
 
 /**
- * Shareable **{@link https://vitest.dev | Vitest}**
+ * Shareable {@link https://vitest.dev | **Vitest**}
  * configuration tailored for projects using TypeScript.
  *
  * @example

@@ -29,7 +29,10 @@ export const vitestGlobals = {
   afterEach: 'writable',
   onTestFailed: 'writable',
   onTestFinished: 'writable',
-} as const satisfies Linter.Globals
+} as const satisfies Linter.Globals satisfies Record<
+  keyof typeof vitest,
+  Extract<Linter.GlobalConf, 'writable'>
+>
 
 /**
  * An object that specifies which global
