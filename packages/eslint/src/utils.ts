@@ -1,6 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils'
-import type { ConfigWithExtends } from 'typescript-eslint'
-import { config } from 'typescript-eslint'
+import type { ConfigWithExtends } from './external.js'
+import { config } from './external.js'
 import { flatESLintConfig } from './shareableConfigs.js'
 
 /**

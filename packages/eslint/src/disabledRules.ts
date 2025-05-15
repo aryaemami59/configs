@@ -31,4 +31,7 @@ export const disabledRules = {
       minimumDescriptionLength: 3,
     },
   ],
-} as const satisfies Linter.RulesRecord
+} as const satisfies Linter.RulesRecord satisfies Record<
+  keyof Linter.RulesRecord,
+  [Extract<Linter.Severity, 0>, ...(readonly unknown[])]
+>

@@ -1,9 +1,7 @@
-import js from '@eslint/js'
 import type { TSESLint } from '@typescript-eslint/utils'
 import type { Linter } from 'eslint'
-import prettierConfig from 'eslint-config-prettier/flat'
-import { config, configs } from 'typescript-eslint'
 import { disabledRules } from './disabledRules.js'
+import { config, configs, js, prettierConfig } from './external.js'
 import { globalIgnores } from './globalIgnores.js'
 import { globals } from './globals.js'
 import { packageName } from './packageName.js'
@@ -212,10 +210,10 @@ export const flatESLintConfig: TSESLint.FlatConfig.Config[] =
           2,
           'always',
           {
+            avoidExplicitReturnArrows: true,
             avoidQuotes: true,
             ignoreConstructors: true,
             methodsIgnorePattern: '',
-            avoidExplicitReturnArrows: true,
           },
         ],
 
