@@ -67,7 +67,7 @@
     "test-types": "tsc -p $INIT_CWD/tsconfig.json"
   },
   "dependencies": {
-    "@eslint/js": "^9.26.0",
+    "@eslint/js": "^9.27.0",
     "@typescript-eslint/utils": "^8.32.1",
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.1.0",
@@ -76,10 +76,10 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.1",
     "@aryaemami59/tsconfig": "workspace:^",
-    "eslint": "^9.26.0",
+    "eslint": "^9.27.0",
     "publint": "^0.3.12",
     "rimraf": "^6.0.1",
-    "tsup": "^8.4.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
