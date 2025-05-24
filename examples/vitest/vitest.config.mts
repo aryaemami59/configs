@@ -1,10 +1,21 @@
-import { createVitestConfig } from '@aryaemami59/vitest-config'
+import { createVitestProject } from '@aryaemami59/vitest-config'
+import * as path from 'node:path'
+import packageJson from './package.json' with { type: 'json' }
 
-export default createVitestConfig({
+const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    dir: 'tests',
+    dir: path.join(import.meta.dirname, 'tests'),
     environment: 'jsdom',
-    reporters: [['verbose']],
+    name: `${packageJson.name}-${path.extname(import.meta.filename).replace('.', '')}`,
+    root: import.meta.dirname,
+
+    typecheck: {
+      tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),
+    },
     // Other additional overrides
   },
 })
+
+export default vitestConfig

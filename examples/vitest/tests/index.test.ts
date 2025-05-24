@@ -1,3 +1,3 @@
 test('testing config files', () => {
-  expect(window).toBeTruthy()
+  expect(window).toBeDefined()
 })

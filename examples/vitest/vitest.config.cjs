@@ -1,10 +1,21 @@
-const { createVitestConfig } = require('@aryaemami59/vitest-config')
+const path = require('node:path')
+const packageJson = require('./package.json')
+const { createVitestProject } = require('@aryaemami59/vitest-config')
 
-module.exports = createVitestConfig({
+const vitestConfig = createVitestProject({
+  root: __dirname,
+
   test: {
-    dir: 'tests',
+    dir: path.join(__dirname, 'tests'),
     environment: 'jsdom',
-    reporters: [['verbose']],
+    name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
+    root: __dirname,
+
+    typecheck: {
+      tsconfig: path.join(__dirname, 'tsconfig.json'),
+    },
     // Other additional overrides
   },
 })
+
+module.exports = vitestConfig

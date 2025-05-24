@@ -1,34 +1,34 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { execFile } from './test-utils.js'
+import { fixturesDirectoryName, runESLintCLI } from './test-utils.js'
 
 describe('linting JS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.resolve('temp', 'js', 'test.js'),
+    fileToBeLinted: path.posix.join(fixturesDirectoryName, 'js', 'test.js'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
-    await expect(
-      execFile(`eslint`, ['--no-ignore', fileToBeLinted], { shell: true }),
-    ).resolves.toEqual({
+    await expect(runESLintCLI([fileToBeLinted])).resolves.toStrictEqual({
       stderr: '',
       stdout: '',
     })
   })
 
   localTest.for([
-    `eslint.config.js`,
+    'eslint.config.js',
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = ['--no-ignore', fileToBeLinted, '--config', configFileName]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).resolves.toEqual({
+    const nodeVersion = parseFloat(process.versions.node)
+
+    await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr:
-        process.versions.node.startsWith('23') &&
+        nodeVersion >= 22 &&
+        nodeVersion < 22.13 &&
         configFileName === 'eslint.config.cjs'
-          ? expect.stringContaining(`ExperimentalWarning: CommonJS module`)
+          ? expect.stringContaining('ExperimentalWarning: CommonJS module')
           : '',
       stdout: '',
     })
@@ -39,17 +39,9 @@ describe('linting JS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = [
-      '--no-ignore',
-      '--flag',
-      'unstable_ts_config',
-      fileToBeLinted,
-      '--config',
-      configFileName,
-    ]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).resolves.toEqual({
+    await expect(runESLintCLI(CLIArguments)).resolves.toStrictEqual({
       stderr: '',
       stdout: '',
     })

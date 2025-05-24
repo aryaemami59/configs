@@ -1,43 +1,37 @@
-import { createVitestConfig } from '@aryaemami59/vitest-config'
-import { cpus } from 'node:os'
+import tsConfigPackageJson from '@aryaemami59/tsconfig/package.json' with { type: 'json' }
+import { createVitestProject } from '@aryaemami59/vitest-config'
+import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
-export default createVitestConfig({
+const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    name: packageJson.name,
-    root: import.meta.dirname,
-    dir: 'tests',
-
-    server: {
-      deps: {
-        fallbackCJS: false,
-        external: ['@aryaemami59/tsconfig', 'typescript'],
-      },
-    },
-
     deps: {
       interopDefault: false,
+
       optimizer: {
         ssr: {
-          exclude: ['@aryaemami59/tsconfig', 'typescript'],
+          exclude: [tsConfigPackageJson.name, 'typescript'],
         },
       },
     },
 
-    reporters: process.env.GITHUB_ACTIONS
-      ? [['github-actions'], ['verbose']]
-      : [['verbose']],
+    dir: path.join(import.meta.dirname, 'tests'),
+    globalSetup: ['./vitest.global.setup.mts'],
+    name: packageJson.name,
+    root: import.meta.dirname,
 
-    poolOptions: {
-      forks: {
-        isolate: false,
-        maxForks: cpus().length,
-        minForks: cpus().length,
+    server: {
+      deps: {
+        external: [tsConfigPackageJson.name, 'typescript'],
       },
     },
 
-    maxConcurrency: cpus().length,
-    sequence: { concurrent: true },
-    isolate: false,
+    typecheck: {
+      tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),
+    },
   },
 })
+
+export default vitestConfig

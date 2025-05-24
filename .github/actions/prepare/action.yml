@@ -18,6 +18,7 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: 'yarn'
         cache-dependency-path: ./yarn.lock
+        check-latest: true
 
     - name: Install dependencies on ${{ inputs.node-version }}
       run: yarn install

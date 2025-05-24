@@ -55,20 +55,25 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn clean && tsup",
-    "check-exports": "attw --pack",
-    "check-package-json": "publint --strict .",
-    "clean": "rimraf dist",
-    "prepack": "yarn build"
+    "build": "tsup --config=$INIT_CWD/tsup.config.mts",
+    "check-exports": "attw --pack $INIT_CWD",
+    "check-package-json": "publint --strict $INIT_CWD",
+    "clean": "rimraf $INIT_CWD/dist/",
+    "format-check": "yarn run -T format-check",
+    "format": "yarn run -T format",
+    "lint-fix": "yarn run -T lint-fix",
+    "lint": "yarn run -T lint",
+    "prepack": "yarn clean && yarn build",
+    "test-types": "tsc -p $INIT_CWD/tsconfig.json"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
+    "@arethetypeswrong/cli": "^0.18.1",
     "@aryaemami59/tsconfig": "workspace:^",
-    "prettier": "^3.3.3",
-    "publint": "^0.2.12",
+    "prettier": "^3.5.3",
+    "publint": "^0.3.12",
     "rimraf": "^6.0.1",
-    "tsup": "^8.3.5",
-    "typescript": "^5.6.3"
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "prettier": ">=3"

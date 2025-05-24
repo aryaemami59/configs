@@ -1,45 +1,39 @@
-import { createVitestConfig, vitestConfig } from '@aryaemami59/vitest-config'
-import { cpus } from 'node:os'
+import eslintConfigPackageJson from '@aryaemami59/eslint-config/package.json' with { type: 'json' }
+import { createVitestProject } from '@aryaemami59/vitest-config'
+import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
-export default createVitestConfig({
+const vitestConfig = createVitestProject({
+  root: import.meta.dirname,
+
   test: {
-    name: packageJson.name,
-    root: import.meta.dirname,
-    dir: 'tests',
-
-    server: {
-      deps: {
-        fallbackCJS: false,
-        external: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
-      },
-    },
-
     deps: {
       interopDefault: false,
+
       optimizer: {
         ssr: {
-          exclude: ['@aryaemami59/eslint-config', 'eslint', 'jiti'],
+          exclude: [eslintConfigPackageJson.name, 'eslint', 'jiti'],
         },
       },
     },
-    globalSetup: ['./tests/vitest.setup.mts'],
-    poolOptions: {
-      forks: {
-        isolate: false,
-        maxForks: cpus().length,
-        minForks: cpus().length,
+
+    dir: path.join(import.meta.dirname, 'tests'),
+    globalSetup: ['./vitest.global.setup.mts'],
+    name: packageJson.name,
+    root: import.meta.dirname,
+
+    server: {
+      deps: {
+        external: [eslintConfigPackageJson.name, 'eslint', 'jiti'],
       },
     },
 
-    maxConcurrency: cpus().length,
+    testTimeout: process.env.CI ? 60_000 : 10_000,
 
-    reporters: process.env.GITHUB_ACTIONS
-      ? [['github-actions'], ['verbose']]
-      : [['verbose']],
-
-    testTimeout: process.env.CI ? 30_000 : vitestConfig.test?.testTimeout,
-    sequence: { concurrent: true },
-    isolate: false,
+    typecheck: {
+      tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),
+    },
   },
 })
+
+export default vitestConfig

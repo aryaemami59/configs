@@ -1,34 +1,41 @@
 import * as path from 'node:path'
 import type { LocalTestContext } from './test-utils.js'
-import { execFile } from './test-utils.js'
+import {
+  defaultCLIArguments,
+  defaultCLICommand,
+  fixturesDirectoryName,
+  runESLintCLI,
+} from './test-utils.js'
 
 describe('linting TS files', () => {
   const localTest = test.extend<LocalTestContext>({
-    fileToBeLinted: path.resolve('temp', 'ts', 'test.ts'),
+    fileToBeLinted: path.posix.join(fixturesDirectoryName, 'ts', 'test.ts'),
   })
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = ['--no-ignore', fileToBeLinted]
+    const CLIArguments = [fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).rejects.toThrow(
-      Error(`Command failed: ${command} ${args.join(' ')}\n`),
+    await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
+      Error(
+        `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
+      ).message,
     )
   })
 
   localTest.for([
-    `eslint.config.js`,
+    'eslint.config.js',
     'eslint.config.mjs',
     'eslint.config.cjs',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = ['--no-ignore', fileToBeLinted, '--config', configFileName]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).rejects.toThrow(
-      process.versions.node.startsWith('23') &&
+    await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
+      process.versions.node.startsWith('22') &&
         configFileName === 'eslint.config.cjs'
-        ? `Command failed: ${command} ${args.join(' ')}\n`
-        : Error(`Command failed: ${command} ${args.join(' ')}\n`),
+        ? `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`
+        : Error(
+            `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
+          ).message,
     )
   })
 
@@ -37,18 +44,12 @@ describe('linting TS files', () => {
     'eslint.config.mts',
     'eslint.config.cts',
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
-    const command = `eslint`
-    const args = [
-      '--no-ignore',
-      '--flag',
-      'unstable_ts_config',
-      fileToBeLinted,
-      '--config',
-      configFileName,
-    ]
+    const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(execFile(command, args, { shell: true })).rejects.toThrow(
-      Error(`Command failed: ${command} ${args.join(' ')}\n`),
+    await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
+      Error(
+        `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
+      ).message,
     )
   })
 })

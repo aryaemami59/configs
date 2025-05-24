@@ -1,9 +1,36 @@
-import { exec as _exec } from 'node:child_process'
+import type { ExecFileOptionsWithOtherEncoding } from 'node:child_process'
+import * as childProcess from 'node:child_process'
+import * as path from 'node:path'
 import { promisify } from 'node:util'
 
-export const exec = promisify(_exec)
+export const execFile = promisify(childProcess.execFile)
 
-export const cli = `tsc -p`
+export const defaultCLICommand = 'tsc'
+
+export const defaultCLIArguments = [] as const satisfies readonly string[]
+
+export const defaultExecFileOptions = {
+  cwd: path.join(__dirname, '..'),
+  encoding: 'utf-8',
+  shell: true,
+} as const satisfies ExecFileOptionsWithOtherEncoding
+
+export const runTypeScriptCLI = (
+  CLIArguments: readonly string[] = [],
+  execFileOptions?: Partial<ExecFileOptionsWithOtherEncoding>,
+) =>
+  execFile(defaultCLICommand, [...defaultCLIArguments, ...CLIArguments], {
+    ...defaultExecFileOptions,
+    ...execFileOptions,
+  })
+
+export const fixturesDirectoryName = 'temp'
+
+export const fixturesDirectoryPath = path.join(
+  __dirname,
+  '..',
+  fixturesDirectoryName,
+)
 
 /**
  * Represents the context for a local test.
@@ -12,12 +39,7 @@ export const cli = `tsc -p`
  */
 export type LocalTestContext = {
   /**
-   * Temporary directory path which houses the file to be type checked.
+   * Path to the parent directory containing files to be type-checked.
    */
-  tempDirectory: string
-
-  /**
-   * Path to the file to be type checked.
-   */
-  fileToGetTypeChecked: string
+  parentDirectoryToGetTypeChecked: string
 }

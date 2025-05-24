@@ -24,26 +24,47 @@
   "type": "module",
   "exports": {
     ".": "./base/tsconfig.json",
+    "./tsconfig.json": "./base/tsconfig.json",
     "./base": "./base/tsconfig.json",
+    "./Base": "./base/tsconfig.json",
     "./bundler": "./bundler/esnext/tsconfig.json",
+    "./Bundler": "./bundler/esnext/tsconfig.json",
     "./bundler/esnext": "./bundler/esnext/tsconfig.json",
+    "./Bundler/esnext": "./bundler/esnext/tsconfig.json",
+    "./Bundler/ESNext": "./bundler/esnext/tsconfig.json",
     "./bundler/preserve": "./bundler/preserve/tsconfig.json",
+    "./Bundler/preserve": "./bundler/preserve/tsconfig.json",
+    "./Bundler/Preserve": "./bundler/preserve/tsconfig.json",
     "./cra": "./create-react-app/tsconfig.json",
     "./create-react-app": "./create-react-app/tsconfig.json",
     "./node": "./base/tsconfig.json",
+    "./Node": "./base/tsconfig.json",
     "./node-10": "./node-10/tsconfig.json",
+    "./node10": "./node-10/tsconfig.json",
+    "./Node10": "./node-10/tsconfig.json",
     "./node-16": "./node-16/tsconfig.json",
+    "./node16": "./node-16/tsconfig.json",
+    "./Node16": "./node-16/tsconfig.json",
     "./node-next": "./node-next/tsconfig.json",
+    "./nodenext": "./node-next/tsconfig.json",
+    "./NodeNext": "./node-next/tsconfig.json",
+    "./node-next/with-js": "./node-next/with-js/tsconfig.json",
+    "./nodenext/with-js": "./node-next/with-js/tsconfig.json",
+    "./NodeNext/with-js": "./node-next/with-js/tsconfig.json",
     "./package.json": "./package.json"
   },
-  "main": "base/tsconfig.json",
+  "main": "./base/tsconfig.json",
   "scripts": {
-    "check-exports": "attw --pack",
-    "check-package-json": "publint --strict ."
+    "check-exports": "attw --pack $INIT_CWD",
+    "check-package-json": "publint --strict $INIT_CWD",
+    "format-check": "yarn run -T format-check",
+    "format": "yarn run -T format",
+    "lint-fix": "yarn run -T lint-fix",
+    "lint": "yarn run -T lint"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.0",
-    "publint": "^0.2.12"
+    "@arethetypeswrong/cli": "^0.18.1",
+    "publint": "^0.3.12"
   },
   "publishConfig": {
     "access": "public",

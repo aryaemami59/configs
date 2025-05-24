@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "description": "A set of config files for ease of use",
-  "homepage": "https://github.com/aryaemami59/configs",
+  "homepage": "https://github.com/aryaemami59/configs#readme",
   "bugs": {
     "url": "https://github.com/aryaemami59/configs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aryaemami59/configs.git"
+    "url": "git+https://github.com/aryaemami59/configs.git",
+    "directory": "."
   },
   "license": "MIT",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
@@ -22,21 +23,26 @@
   "scripts": {
     "build": "yarn workspaces foreach -Atp run build",
     "clean": "yarn workspaces foreach -Atp run clean",
-    "format": "prettier -w .",
-    "format-check": "prettier -c .",
-    "install": "yarn build",
-    "lint": "eslint",
-    "lint-fix": "eslint --fix"
+    "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -c $INIT_CWD",
+    "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -w $INIT_CWD",
+    "lint-fix": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern --fix $INIT_CWD",
+    "lint": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern $INIT_CWD",
+    "postinstall": "yarn build",
+    "test": "vitest --run --config=$INIT_CWD/vitest.config.mts"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.1",
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "@types/node": "^22.9.0",
-    "eslint": "^9.15.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3"
+    "@types/node": "^22.15.21",
+    "@typescript-eslint/utils": "^8.32.1",
+    "@vitest/eslint-plugin": "^1.2.1",
+    "eslint": "^9.27.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
   },
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "yarn@4.9.1"
 }

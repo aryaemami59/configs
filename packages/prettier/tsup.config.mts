@@ -1,42 +1,51 @@
+import * as path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Options } from 'tsup'
 import { defineConfig } from 'tsup'
+import packageJson from './package.json' with { type: 'json' }
 
-const tsconfig = 'tsconfig.build.json' satisfies Options['tsconfig']
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const tsupConfig = defineConfig((overrideOptions): Options[] => {
   const commonOptions = {
     clean: true,
-    entry: { index: 'src/index.ts' },
+    entry: {
+      index: path.join(__dirname, 'src', 'index.ts'),
+    },
     removeNodeProtocol: false,
     shims: true,
     sourcemap: true,
     splitting: false,
-    target: ['esnext'],
-    tsconfig,
+    target: ['esnext', 'node20'],
+    tsconfig: path.join(__dirname, 'tsconfig.build.json'),
     ...overrideOptions,
   } satisfies Options
 
   return [
     {
       ...commonOptions,
-      name: 'Modern ESM',
+      name: `${packageJson.name} Modern ESM`,
       format: ['esm'],
     },
     {
       ...commonOptions,
-      name: 'CJS Development',
+      name: `${packageJson.name} CJS Development`,
       format: ['cjs'],
     },
     {
       ...commonOptions,
-      name: 'ESM Type definitions',
-      dts: { only: true },
+      name: `${packageJson.name} ESM Type definitions`,
+      dts: {
+        only: true,
+      },
       format: ['esm'],
     },
     {
       ...commonOptions,
-      name: 'CJS Type definitions',
-      dts: { only: true },
+      name: `${packageJson.name} CJS Type definitions`,
+      dts: {
+        only: true,
+      },
       format: ['cjs'],
     },
   ]

@@ -6,10 +6,6 @@ concurrency:
   group: '${{ github.workflow }} - ${{ github.head_ref || github.ref }}'
   cancel-in-progress: true
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   check-lint-and-formatting:
     name: Check lint and formatting with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
@@ -19,7 +15,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        node-version: [22]
+        node-version: [22, latest]
         os: [ubuntu-latest]
 
     steps:
@@ -40,11 +36,32 @@ jobs:
       - name: Lint files
         run: yarn workspaces foreach -Ap -j unlimited run lint
 
+  test-types:
+    name: Test types with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        node-version: [22, latest]
+        os: [ubuntu-latest]
+        ts: [5.3, 5.4, 5.5, 5.6, 5.7, 5.8]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+        uses: ./.github/actions/prepare
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install TypeScript ${{ matrix.ts }}
+        run: yarn up typescript@${{ matrix.ts }}
+
       - name: Run type tests
         run: yarn workspaces foreach -Ap -j unlimited run test-types
-
-      - name: Run publint
-        run: yarn workspaces foreach -Ap -j unlimited run check-package-json
 
   build:
     name: Build ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
@@ -55,7 +72,7 @@ jobs:
 
       matrix:
         node-version: [18, 20, 22, latest]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         package:
           [
             { directory: 'eslint', name: '@aryaemami59/eslint-config' },
@@ -106,7 +123,7 @@ jobs:
             { directory: 'typescript', name: '@aryaemami59/tsconfig' },
             { directory: 'vitest', name: '@aryaemami59/vitest-config' },
           ]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
@@ -149,7 +166,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        node-version: [22]
+        node-version: [22, latest]
         package:
           [
             { directory: 'eslint', name: '@aryaemami59/eslint-config' },
@@ -178,7 +195,51 @@ jobs:
         run: ls -l .
 
       - name: Run are-the-types-wrong for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        run: npx @arethetypeswrong/cli@latest packages/${{ matrix.package.directory }}/package.tgz --format table
+        run: yarn attw packages/${{ matrix.package.directory }}/package.tgz --format table
+
+      - name: Did we fail?
+        if: failure()
+        run: ls -R
+
+  publint:
+    name: Check if the package.json for ${{ matrix.package.name }} is correct with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    needs: [build]
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        node-version: [22, latest]
+        package:
+          [
+            { directory: 'eslint', name: '@aryaemami59/eslint-config' },
+            { directory: 'prettier', name: '@aryaemami59/prettier-config' },
+            { directory: 'typescript', name: '@aryaemami59/tsconfig' },
+            { directory: 'vitest', name: '@aryaemami59/vitest-config' },
+          ]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+        uses: ./.github/actions/prepare
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
+          path: packages/${{ matrix.package.directory }}
+
+      - name: Display folder structure
+        run: ls -l .
+
+      - name: Run publint for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        run: yarn packages/${{ matrix.package.directory }} run publint --strict ./package.tgz
 
       - name: Did we fail?
         if: failure()
