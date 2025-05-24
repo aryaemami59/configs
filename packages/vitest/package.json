@@ -1,6 +1,6 @@
 {
   "name": "@aryaemami59/vitest-config",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Vitest configuration for TypeScript projects",
   "keywords": [
     "config",
