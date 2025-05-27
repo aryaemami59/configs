@@ -12,13 +12,20 @@ export const disabledRules = {
   '@typescript-eslint/no-unused-vars': [
     0,
     {
-      args: 'all',
+      args: 'after-used',
+      // Not included in default options
       argsIgnorePattern: '^_',
       caughtErrors: 'all',
+      // Not included in default options
       caughtErrorsIgnorePattern: '^_',
+      // Not included in default options
       destructuredArrayIgnorePattern: '^_',
+      ignoreClassWithStaticInitBlock: false,
+      ignoreRestSiblings: false,
+      reportUsedIgnorePattern: false,
+      vars: 'all',
+      // Not included in default options
       varsIgnorePattern: '^_',
-      ignoreRestSiblings: true,
     },
   ],
   '@typescript-eslint/ban-ts-comment': [
