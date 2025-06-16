@@ -71,7 +71,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        node-version: [18, 20, 22, latest]
+        node-version: [20, 22, latest]
         os: [ubuntu-latest, windows-latest, macos-latest]
         package:
           [
@@ -115,7 +115,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        node-version: [18, 20, 22, latest]
+        node-version: [20, 22, latest]
         package:
           [
             { directory: 'eslint', name: '@aryaemami59/eslint-config' },
