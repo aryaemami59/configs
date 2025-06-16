@@ -19,5 +19,6 @@ export const tsconfigPathsOptions = {
  * @public
  */
 export const plugins = [
-  /* @__PURE__ */ tsconfigPaths(tsconfigPathsOptions),
+  // FIXME: this is a workaround for the `tsconfigPaths` type.
+  /* @__PURE__ */ tsconfigPaths(tsconfigPathsOptions) as Plugin,
 ] as const satisfies [Plugin]

@@ -67,7 +67,7 @@
     "test-types": "tsc -p $INIT_CWD/tsconfig.json"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.1",
+    "@arethetypeswrong/cli": "^0.18.2",
     "@aryaemami59/tsconfig": "workspace:^",
     "prettier": "^3.5.3",
     "publint": "^0.3.12",
