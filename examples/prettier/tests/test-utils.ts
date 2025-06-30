@@ -1,7 +1,7 @@
 import type { ExecFileOptionsWithOtherEncoding } from 'node:child_process'
 import * as childProcess from 'node:child_process'
 import * as path from 'node:path'
-import { promisify } from 'node:util'
+import { promisify, stripVTControlCharacters } from 'node:util'
 
 export const execFile = promisify(childProcess.execFile)
 
@@ -18,14 +18,43 @@ export const defaultExecFileOptions = {
   shell: true,
 } as const satisfies ExecFileOptionsWithOtherEncoding
 
-export const runPrettierCLI = (
+// TODO: Fix error messages in tests.
+/**
+ * @todo Fix error messages in tests.
+ */
+export const runPrettierCLI = async (
   CLIArguments: readonly string[] = [],
   execFileOptions?: Partial<ExecFileOptionsWithOtherEncoding>,
-) =>
-  execFile(defaultCLICommand, [...defaultCLIArguments, ...CLIArguments], {
-    ...defaultExecFileOptions,
-    ...execFileOptions,
-  })
+) => {
+  try {
+    const execFileResults = await execFile(
+      defaultCLICommand,
+      [...defaultCLIArguments, ...CLIArguments],
+      {
+        ...defaultExecFileOptions,
+        ...execFileOptions,
+      },
+    )
+
+    const { stdout, stderr } = execFileResults
+
+    if (stdout) {
+      console.log(stdout)
+    }
+
+    if (stderr) {
+      console.error(stderr)
+    }
+
+    return execFileResults
+  } catch (error) {
+    if (error instanceof Error) {
+      error.message = stripVTControlCharacters(error.message)
+    }
+
+    throw error
+  }
+}
 
 export const fixturesDirectoryName = 'temp'
 
