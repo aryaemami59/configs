@@ -15,7 +15,6 @@ export const globalIgnores = {
   ignores: [
     '**/dist/',
     '**/build/',
-    '**/lib/',
     '**/coverage/',
     '**/__snapshots__/',
     '**/temp/',
