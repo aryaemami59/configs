@@ -1,6 +1,5 @@
-import type { TSESLint } from '@typescript-eslint/utils'
-import type { ConfigWithExtends } from './external.js'
-import { config } from './external.js'
+import type { Linter } from 'eslint'
+import { defineConfig } from 'eslint/config'
 import { flatESLintConfig } from './shareableConfigs.js'
 
 /**
@@ -88,6 +87,6 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * @public
  */
 export const createESLintConfig = (
-  additionalOverrides: ConfigWithExtends[] = [],
-): TSESLint.FlatConfig.Config[] =>
-  /* @__PURE__ */ config(...flatESLintConfig, ...additionalOverrides)
+  additionalOverrides: Parameters<typeof defineConfig> = [],
+): Linter.Config[] =>
+  /* @__PURE__ */ defineConfig(...flatESLintConfig, ...additionalOverrides)

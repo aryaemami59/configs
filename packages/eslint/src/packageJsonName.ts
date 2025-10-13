@@ -6,4 +6,4 @@
  * @since 0.0.5
  * @internal
  */
-export const packageName = '@aryaemami59/eslint-config'
+export const packageJsonName = '@aryaemami59/eslint-config'

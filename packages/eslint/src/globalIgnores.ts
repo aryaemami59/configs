@@ -1,6 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils'
 import type { Linter } from 'eslint'
-import { packageName } from './packageName.js'
+import { packageJsonName } from './packageJsonName.js'
 
 /**
  * An object representing
@@ -11,14 +11,17 @@ import { packageName } from './packageName.js'
  * @public
  */
 export const globalIgnores = {
-  name: `${packageName}/global-ignores`,
+  name: `${packageJsonName}/global-ignores`,
   ignores: [
     '**/__snapshots__/',
     '**/.docusaurus/',
     '**/.expo/',
     '**/.next/',
+    '**/.playwright/',
     '**/.temp/',
     '**/.tmp/',
+    '**/.turbo/',
+    '**/.wrangler/',
     '**/.yalc/',
     '**/.yarn/',
     '**/*.snap',
