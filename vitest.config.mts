@@ -10,7 +10,7 @@ const vitestConfig = createVitestConfig({
     name: packageJson.name,
     root: import.meta.dirname,
 
-    workspace: [
+    projects: [
       'examples/!(vitest)/vitest.config.mts',
       'examples/vitest/vitest.config.?(c|m)[tj]s',
     ],

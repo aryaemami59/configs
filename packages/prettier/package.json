@@ -70,10 +70,10 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@aryaemami59/tsconfig": "workspace:^",
     "prettier": "^3.6.2",
-    "publint": "^0.3.12",
+    "publint": "^0.3.15",
     "rimraf": "^6.0.1",
     "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "prettier": ">=3"
