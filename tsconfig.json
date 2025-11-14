@@ -2,7 +2,8 @@
   "extends": "@aryaemami59/tsconfig/node-next/with-js",
   "compilerOptions": {
     "noEmit": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "./"
   },
   "exclude": ["dist", "**/dist/"],
   "include": ["**/*.*"]

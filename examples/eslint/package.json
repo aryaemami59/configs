@@ -7,24 +7,24 @@
   "type": "commonjs",
   "files": [],
   "scripts": {
-    "clean": "rimraf $INIT_CWD/dist/ $INIT_CWD/coverage/ $INIT_CWD/temp/ $INIT_CWD/tsconfig.vitest-temp.json",
+    "clean": "rimraf ${INIT_CWD}/dist/ ${INIT_CWD}/coverage/ ${INIT_CWD}/temp/ ${INIT_CWD}/tsconfig.vitest-temp.json",
     "format-check": "yarn run -T format-check",
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",
     "lint": "yarn run -T lint",
-    "test-types": "yarn clean && tsc -p $INIT_CWD/tsconfig.json",
+    "test-types": "yarn clean && tsc -p ${INIT_CWD}/tsconfig.json",
     "test": "yarn run -T test"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "@types/node": "^24.9.1",
-    "eslint": "^9.38.0",
-    "globals": "^16.4.0",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
     "jiti": "^2.6.1",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.9"
   }
 }

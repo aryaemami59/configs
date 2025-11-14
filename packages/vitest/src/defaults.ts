@@ -80,12 +80,11 @@ export const vitestConfigDefaults = {
       /**
        * @default ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs']
        */
-      extension: ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs'],
 
       /**
-       * @default ['src']
+       * @default ['src/**\/*.(c|m)?(j|t)s?(x)']
        */
-      include: ['src'],
+      include: ['src/**/*.(c|m)?(j|t)s?(x)'],
     },
 
     /**

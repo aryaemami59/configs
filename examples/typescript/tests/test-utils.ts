@@ -1,4 +1,4 @@
-import type { ExecFileOptionsWithOtherEncoding } from 'node:child_process'
+import type { ExecFileOptions } from 'node:child_process'
 import * as childProcess from 'node:child_process'
 import * as path from 'node:path'
 import { promisify } from 'node:util'
@@ -13,11 +13,11 @@ export const defaultExecFileOptions = {
   cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
   shell: true,
-} as const satisfies ExecFileOptionsWithOtherEncoding
+} as const satisfies ExecFileOptions
 
 export const runTypeScriptCLI = (
   CLIArguments: readonly string[] = [],
-  execFileOptions?: Partial<ExecFileOptionsWithOtherEncoding>,
+  execFileOptions?: Partial<ExecFileOptions>,
 ) =>
   execFile(defaultCLICommand, [...defaultCLIArguments, ...CLIArguments], {
     ...defaultExecFileOptions,

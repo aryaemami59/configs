@@ -1,25 +1,22 @@
 import * as path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { Options } from 'tsup'
 import { defineConfig } from 'tsup'
 import packageJson from './package.json' with { type: 'json' }
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const tsupConfig = defineConfig((overrideOptions): Options[] => {
   const commonOptions = {
     clean: true,
     entry: {
-      index: path.join(__dirname, 'src', 'index.ts'),
+      index: path.join(import.meta.dirname, 'src', 'index.ts'),
     },
     removeNodeProtocol: false,
     shims: true,
     sourcemap: true,
     splitting: false,
-    target: ['esnext', 'node20'],
-    tsconfig: path.join(__dirname, 'tsconfig.build.json'),
+    target: ['esnext', 'node22'],
+    tsconfig: path.join(import.meta.dirname, 'tsconfig.build.json'),
     ...overrideOptions,
-  } satisfies Options
+  } as const satisfies Options
 
   return [
     {
