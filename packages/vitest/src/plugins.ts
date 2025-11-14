@@ -20,4 +20,4 @@ export const tsconfigPathsOptions = {
  */
 export const plugins = [
   /* @__PURE__ */ tsconfigPaths(tsconfigPathsOptions),
-] as const satisfies [Plugin]
+] as const satisfies [Plugin] as [Plugin]

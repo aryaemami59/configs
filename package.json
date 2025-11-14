@@ -21,7 +21,7 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -Atp run build",
+    "build": "yarn workspaces foreach -Aiv run build",
     "clean": "yarn workspaces foreach -Atp run clean",
     "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -c $INIT_CWD",
     "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -w $INIT_CWD",

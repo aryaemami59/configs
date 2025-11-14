@@ -91,8 +91,11 @@ export const vitestConfigDefaults = {
      * @default process.env.GITHUB_ACTIONS ? [['default', { summary: false }], ['github-actions']] : [['default']]
      */
     reporters: process.env.GITHUB_ACTIONS
-      ? ([['default', { summary: false }], ['github-actions']] as const)
-      : ([['default']] as const),
+      ? ([
+          ['default', { summary: false }],
+          ['github-actions', {}],
+        ] as const)
+      : ([['default', {}]] as const),
 
     /**
      * @default false
