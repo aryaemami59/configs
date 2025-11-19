@@ -55,7 +55,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup --config=\"${INIT_CWD}/tsup.config.mts\"",
+    "build": "yarn run clean && tsup --config=\"${INIT_CWD}/tsup.config.mts\"",
     "check-exports": "attw --pack ${INIT_CWD}",
     "check-package-json": "publint --strict ${INIT_CWD}",
     "clean": "rimraf ${INIT_CWD}/dist/",
@@ -63,7 +63,7 @@
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",
     "lint": "yarn run -T lint",
-    "prepack": "yarn clean && yarn build",
+    "prepack": "yarn run build",
     "test-types": "tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "devDependencies": {

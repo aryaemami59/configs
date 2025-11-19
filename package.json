@@ -21,7 +21,7 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -Aiv run build",
+    "build": "yarn workspaces foreach -At -v -v --no-private run build",
     "clean": "yarn workspaces foreach -Atp run clean",
     "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -c $INIT_CWD",
     "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs -w $INIT_CWD",
@@ -37,12 +37,12 @@
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^24.10.1",
-    "@typescript-eslint/utils": "^8.46.4",
-    "@vitest/eslint-plugin": "^1.4.2",
+    "@typescript-eslint/utils": "^8.47.0",
+    "@vitest/eslint-plugin": "^1.4.3",
     "eslint": "^9.39.1",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.9"
+    "vitest": "^4.0.10"
   },
   "packageManager": "yarn@4.11.0"
 }
