@@ -82,9 +82,9 @@ export const vitestConfigDefaults = {
        */
 
       /**
-       * @default ['src/**\/*.(c|m)?(j|t)s?(x)']
+       * @default ['src/**\/*.?(c|m)[jt]s?(x)']
        */
-      include: ['src/**/*.(c|m)?(j|t)s?(x)'],
+      include: ['src/**/*.?(c|m)[jt]s?(x)'],
     },
 
     /**
