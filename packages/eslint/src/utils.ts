@@ -8,7 +8,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * It's made mainly to provide intellisense and eliminate
  * the need for manual type annotations using JSDoc comments.
  *
- * @param [additionalOverrides] - **Optional** additional overrides to apply to the configuration.
+ * @param [additionalOverrides=[]] - **Optional** additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode flatESLintConfig}, incorporating any provided overrides.
  *
  * @example

@@ -1,4 +1,4 @@
-import type { ExecFileOptions } from 'node:child_process'
+import type { ExecFileOptionsWithStringEncoding } from 'node:child_process'
 import * as childProcess from 'node:child_process'
 import * as path from 'node:path'
 import { promisify, stripVTControlCharacters } from 'node:util'
@@ -16,7 +16,7 @@ export const defaultExecFileOptions = {
   cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
   shell: true,
-} as const satisfies ExecFileOptions
+} as const satisfies ExecFileOptionsWithStringEncoding
 
 // TODO: Fix error messages in tests.
 /**
@@ -24,7 +24,7 @@ export const defaultExecFileOptions = {
  */
 export const runPrettierCLI = async (
   CLIArguments: readonly string[] = [],
-  execFileOptions?: Partial<ExecFileOptions>,
+  execFileOptions?: Partial<ExecFileOptionsWithStringEncoding>,
 ) => {
   try {
     const execFileResults = await execFile(

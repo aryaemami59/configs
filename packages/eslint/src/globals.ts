@@ -1,7 +1,5 @@
 import type { Linter } from 'eslint'
-import globalIdentifiers from 'globals'
-
-const { browser, node, nodeBuiltin, vitest } = globalIdentifiers
+import { browser, node, nodeBuiltin, vitest } from './external.js'
 
 /**
  * An object representing the

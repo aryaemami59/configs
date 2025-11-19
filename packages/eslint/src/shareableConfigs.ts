@@ -1,6 +1,6 @@
-import type { TSESLint } from '@typescript-eslint/utils'
 import type { Linter } from 'eslint'
 import { disabledRules } from './disabledRules.js'
+import type { FlatConfig } from './external.js'
 import { configs, js, prettierConfig } from './external.js'
 import { globalIgnores } from './globalIgnores.js'
 import { globals } from './globals.js'
@@ -56,12 +56,12 @@ export const flatESLintConfig = [
   {
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
-  } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config,
+  } as const satisfies FlatConfig.Config satisfies Linter.Config,
 
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
-  ...(configs.recommended as Linter.Config[]),
+  ...(configs.recommended satisfies Linter.Config[] as Linter.Config[]),
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
-  ...(configs.stylistic as Linter.Config[]),
+  ...(configs.stylistic satisfies Linter.Config[] as Linter.Config[]),
 
   {
     name: `${packageJsonName}/defaults/overrides`,
@@ -70,7 +70,7 @@ export const flatESLintConfig = [
       parserOptions: {
         ecmaVersion: 'latest',
         projectService: true,
-      },
+      } as const satisfies FlatConfig.ParserOptions satisfies Linter.ParserOptions,
     },
     rules: {
       '@typescript-eslint/consistent-type-imports': [
@@ -225,14 +225,14 @@ export const flatESLintConfig = [
       reportUnusedDisableDirectives: 2,
       reportUnusedInlineConfigs: 2,
     },
-  } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config,
+  } as const satisfies Linter.Config,
 
   {
     name: `${packageJsonName}/commonjs-files`,
     files: ['**/*.cjs'],
     languageOptions: {
       sourceType: 'commonjs',
-    },
+    } as const satisfies FlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
     rules: {
       '@typescript-eslint/no-require-imports': [
         0,
@@ -242,7 +242,7 @@ export const flatESLintConfig = [
         },
       ],
     },
-  } as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config,
+  } as const satisfies Linter.Config,
 
   prettierConfig,
 ] as const satisfies Linter.Config[]

@@ -6,7 +6,7 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * A function that returns {@linkcode vitestConfig}
  * along with optional additional overrides.
  *
- * @param [additionalOverrides] - **Optional** additional overrides to apply to the configuration.
+ * @param [additionalOverrides={}] - **Optional** additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode vitestConfig}, incorporating any provided overrides.
  *
  * @example
@@ -77,7 +77,7 @@ export const createVitestConfig = (
  * A function that returns {@linkcode vitestProject}
  * along with optional additional overrides.
  *
- * @param [additionalOverrides] - **Optional** additional overrides to apply to the configuration.
+ * @param [additionalOverrides={}] - **Optional** additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode vitestProject}, incorporating any provided overrides.
  *
  * @example

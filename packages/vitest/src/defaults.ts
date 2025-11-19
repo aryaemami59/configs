@@ -74,13 +74,9 @@ export const vitestConfigDefaults = {
     ...vitestProjectDefaults.test,
 
     /**
-     * @default { extension: ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs'], include: ['src'] }
+     * @default { include: ['src/**\/*.?(c|m)[jt]s?(x)'] }
      */
     coverage: {
-      /**
-       * @default ['.ts', '.tsx', '.js', '.jsx', '.mts', '.mjs', '.cts', '.cjs']
-       */
-
       /**
        * @default ['src/**\/*.?(c|m)[jt]s?(x)']
        */
@@ -88,7 +84,7 @@ export const vitestConfigDefaults = {
     },
 
     /**
-     * @default process.env.GITHUB_ACTIONS ? [['default', { summary: false }], ['github-actions']] : [['default']]
+     * @default process.env.GITHUB_ACTIONS ? [['default', { summary: false }], ['github-actions', {}]] : [['default', {}]]
      */
     reporters: process.env.GITHUB_ACTIONS
       ? ([

@@ -1,5 +1,4 @@
-import type { TSESLint } from '@typescript-eslint/utils'
-import type { Linter } from 'eslint'
+import type { Config } from 'eslint/config'
 import { packageJsonName } from './packageJsonName.js'
 
 /**
@@ -30,4 +29,4 @@ export const globalIgnores = {
     '**/dist/',
     '**/temp/',
   ],
-} as const satisfies TSESLint.FlatConfig.Config satisfies Linter.Config
+} as const satisfies Config

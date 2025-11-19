@@ -14,6 +14,7 @@ const eslintConfig = createESLintConfig([
     name: `${basename}/main`,
     rules: {
       'no-console': [2],
+      'no-undef': [2],
     },
   },
   {

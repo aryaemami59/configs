@@ -56,10 +56,10 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn run clean && tsup --config=\"${INIT_CWD}/tsup.config.mts\"",
+    "build": "yarn run clean && tsdown --config-loader='unrun' --config=\"${INIT_CWD}/tsdown.config.mts\"",
     "check-exports": "attw --pack ${INIT_CWD}",
     "check-package-json": "publint --strict ${INIT_CWD}",
-    "clean": "rimraf ${INIT_CWD}/dist/",
+    "clean": "rimraf ${INIT_CWD}/dist/ ${INIT_CWD}/.rolldown/",
     "format-check": "yarn run -T format-check",
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",
@@ -75,8 +75,8 @@
     "@aryaemami59/tsconfig": "workspace:^",
     "@types/node": "^24.10.1",
     "publint": "^0.3.15",
-    "rimraf": "^6.1.0",
-    "tsup": "^8.5.1",
+    "rimraf": "^6.1.2",
+    "tsdown": "^0.16.5",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
     "vitest": "^4.0.10"

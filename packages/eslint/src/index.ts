@@ -11,6 +11,7 @@ export type {
   Config,
   ConfigArray,
   ConfigWithExtends,
+  FlatConfig,
   InfiniteDepthConfigWithExtends,
 } from './external.js'
 export { globalIgnores } from './globalIgnores.js'

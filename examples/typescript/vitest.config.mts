@@ -6,6 +6,11 @@ import packageJson from './package.json' with { type: 'json' }
 const vitestConfig = createVitestProject({
   root: import.meta.dirname,
 
+  json: {
+    namedExports: false,
+    stringify: 'auto',
+  },
+
   test: {
     deps: {
       interopDefault: false,
@@ -19,14 +24,12 @@ const vitestConfig = createVitestProject({
 
     dir: path.join(import.meta.dirname, 'tests'),
     globalSetup: ['./vitest.global.setup.mts'],
-    name: packageJson.name,
-    root: import.meta.dirname,
 
-    server: {
-      deps: {
-        external: [tsConfigPackageJson.name, 'typescript'],
-      },
+    name: {
+      label: packageJson.name,
     },
+
+    root: import.meta.dirname,
 
     typecheck: {
       tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),

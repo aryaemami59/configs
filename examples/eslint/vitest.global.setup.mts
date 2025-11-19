@@ -5,7 +5,8 @@ import { fixturesDirectoryPath } from './tests/test-utils.js'
 
 const TSFileContent = 'export interface A {\n\tsomeProperty: string\n}\n'
 
-const JSFileContent = "const someString = ''\n"
+const JSFileContent =
+  "const someString = ''\n\nmodule.exports = { someString }\n"
 
 const tempDirPathTS = path.join(fixturesDirectoryPath, 'ts')
 
