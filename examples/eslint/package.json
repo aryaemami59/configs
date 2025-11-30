@@ -12,8 +12,8 @@
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",
     "lint": "yarn run -T lint",
-    "test-types": "yarn clean && tsc -p ${INIT_CWD}/tsconfig.json",
-    "test": "yarn run -T test"
+    "test": "yarn run -T test",
+    "typecheck": "yarn run clean && tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "devDependencies": {
     "@aryaemami59/eslint-config": "workspace:^",

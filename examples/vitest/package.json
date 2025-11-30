@@ -12,8 +12,8 @@
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",
     "lint": "yarn run -T lint",
-    "test-types": "yarn clean && tsc -p ${INIT_CWD}/tsconfig.json",
-    "test": "vitest && vitest -c ${INIT_CWD}/vitest.config.ts && vitest -c ${INIT_CWD}/vitest.config.mts && vitest -c ${INIT_CWD}/vitest.config.cts && vitest -c ${INIT_CWD}/vitest.config.js && vitest -c ${INIT_CWD}/vitest.config.mjs && vitest -c ${INIT_CWD}/vitest.config.cjs"
+    "test": "vitest && vitest -c ${INIT_CWD}/vitest.config.ts && vitest -c ${INIT_CWD}/vitest.config.mts && vitest -c ${INIT_CWD}/vitest.config.cts && vitest -c ${INIT_CWD}/vitest.config.js && vitest -c ${INIT_CWD}/vitest.config.mjs && vitest -c ${INIT_CWD}/vitest.config.cjs",
+    "typecheck": "yarn run clean && tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",

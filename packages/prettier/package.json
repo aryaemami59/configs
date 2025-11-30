@@ -64,7 +64,7 @@
     "lint-fix": "yarn run -T lint-fix",
     "lint": "yarn run -T lint",
     "prepack": "yarn run build",
-    "test-types": "tsc -p ${INIT_CWD}/tsconfig.json"
+    "typecheck": "tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",

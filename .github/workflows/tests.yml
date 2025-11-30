@@ -36,7 +36,7 @@ jobs:
       - name: Lint files
         run: yarn workspaces foreach -Ap -j unlimited run lint
 
-  test-types:
+  typecheck:
     name: Test types with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
 
@@ -61,7 +61,7 @@ jobs:
         run: yarn up typescript@${{ matrix.ts }}
 
       - name: Run type tests
-        run: yarn workspaces foreach -Ap -j unlimited run test-types
+        run: yarn workspaces foreach -Ap -j unlimited run typecheck
 
   build:
     name: Build ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
