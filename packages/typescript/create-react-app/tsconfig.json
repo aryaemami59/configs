@@ -6,7 +6,7 @@
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "noEmit": true,
-    "target": "ES5",
+    "target": "es5",
     "types": null
   },
   "display": "TypeScript configuration for `create-react-app` projects"

@@ -2,7 +2,7 @@
   "extends": "@aryaemami59/tsconfig/base",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "moduleResolution": "Node10"
+    "moduleResolution": "node10"
   },
-  "display": "TypeScript configuration with `Node10` module resolution. It serves as a backwards compatible replacement for the deprecated `Node` module resolution."
+  "display": "TypeScript configuration with `node10` module resolution. It serves as a backwards compatible replacement for the deprecated `node` module resolution."
 }

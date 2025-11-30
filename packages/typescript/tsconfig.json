@@ -1,0 +1,12 @@
+{
+  "extends": "@aryaemami59/tsconfig/node-next/with-js",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "noEmit": true,
+    "outDir": "./dist",
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "./",
+    "types": ["node"]
+  }
+}

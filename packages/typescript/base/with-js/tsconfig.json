@@ -1,0 +1,9 @@
+{
+  "extends": "@aryaemami59/tsconfig/base",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true
+  },
+  "display": "TypeScript configuration with `node` module resolution and JavaScript support"
+}

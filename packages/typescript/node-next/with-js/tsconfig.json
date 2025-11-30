@@ -5,5 +5,5 @@
     "allowJs": true,
     "checkJs": true
   },
-  "display": "TypeScript configuration with `NodeNext` module resolution and JavaScript support"
+  "display": "TypeScript configuration with `nodenext` module resolution and JavaScript support"
 }

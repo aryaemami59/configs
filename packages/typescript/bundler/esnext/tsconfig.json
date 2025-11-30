@@ -2,7 +2,7 @@
   "extends": "@aryaemami59/tsconfig/base",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "moduleResolution": "Bundler"
+    "moduleResolution": "bundler"
   },
-  "display": "TypeScript configuration with module set to `ESNext` and module resolution set to `Bundler`"
+  "display": "TypeScript configuration with module set to `esnext` and module resolution set to `bundler`"
 }
