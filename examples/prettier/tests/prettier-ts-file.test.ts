@@ -15,7 +15,7 @@ describe('formatting TS files', () => {
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
     const CLIArguments = ['--check', fileToBeFormatted]
 
-    await expect(runPrettierCLI(CLIArguments)).rejects.toThrow(
+    await expect(runPrettierCLI(CLIArguments)).rejects.toThrowError(
       Error(
         `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n[warn] ${fileToBeFormatted}\n[warn] Code style issues found in the above file. Run Prettier with --write to fix.\n`,
       ).message,
@@ -37,7 +37,7 @@ describe('formatting TS files', () => {
       fileToBeFormatted,
     ]
 
-    await expect(runPrettierCLI(CLIArguments)).rejects.toThrow(
+    await expect(runPrettierCLI(CLIArguments)).rejects.toThrowError(
       process.versions.node.startsWith('22') &&
         (configFileName === 'prettier.config.cjs' ||
           configFileName === '.prettierrc.cjs')

@@ -27,9 +27,9 @@ describe('type-checking TS files', () => {
 
       const execFileResults = runTypeScriptCLI(CLIArguments)
 
-      await expect(execFileResults).rejects.toThrow(Error)
+      await expect(execFileResults).rejects.toThrowError(Error)
 
-      await expect(execFileResults).rejects.toThrow(
+      await expect(execFileResults).rejects.toThrowError(
         Error(
           `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
         ).message,
@@ -37,9 +37,9 @@ describe('type-checking TS files', () => {
 
       const distFolder = path.join(directoryToGetTypeChecked, 'dist')
 
-      await expect(fs.access(distFolder)).rejects.toThrow(Error)
+      await expect(fs.access(distFolder)).rejects.toThrowError(Error)
 
-      await expect(fs.access(distFolder)).rejects.toThrow(
+      await expect(fs.access(distFolder)).rejects.toThrowError(
         Error(`ENOENT: no such file or directory, access '${distFolder}'`)
           .message,
       )
