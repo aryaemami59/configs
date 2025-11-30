@@ -34,7 +34,7 @@ bun add --dev @aryaemami59/tsconfig
 
 ```json
 {
-  "extends": "@aryaemami59/tsconfig/base",
+  "extends": "@aryaemami59/tsconfig/node",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src"
