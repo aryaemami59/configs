@@ -1,9 +1,9 @@
 {
-  "extends": "@aryaemami59/tsconfig/node-next",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true
   },
-  "display": "TypeScript configuration with `nodenext` module resolution and JavaScript support"
+  "display": "TypeScript configuration with module set to `nodenext`, module resolution set to `nodenext`, and JavaScript files support enabled",
+  "extends": "@aryaemami59/tsconfig/node-next"
 }

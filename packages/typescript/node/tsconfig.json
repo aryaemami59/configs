@@ -26,5 +26,5 @@
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": true
   },
-  "display": "Base TypeScript configuration for legacy Node.js (pre-TypeScript 5.0)"
+  "display": "TypeScript configuration with module set to `esnext` and module resolution set to `node`, intended for TypeScript versions earlier than 5.0."
 }

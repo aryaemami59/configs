@@ -1,9 +1,9 @@
 {
-  "extends": "@aryaemami59/tsconfig/node",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "module": "node16",
     "moduleResolution": "node16"
   },
-  "display": "TypeScript configuration with `node16` module resolution"
+  "display": "TypeScript configuration with module set to `node16` and module resolution set to `node16`",
+  "extends": "@aryaemami59/tsconfig/node"
 }

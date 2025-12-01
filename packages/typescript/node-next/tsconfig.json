@@ -1,9 +1,9 @@
 {
-  "extends": "@aryaemami59/tsconfig/node",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext"
   },
-  "display": "TypeScript configuration with `nodenext` module resolution"
+  "display": "TypeScript configuration with module set to `nodenext` and module resolution set to `nodenext`",
+  "extends": "@aryaemami59/tsconfig/node"
 }

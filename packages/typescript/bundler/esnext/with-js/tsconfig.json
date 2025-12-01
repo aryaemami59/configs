@@ -1,9 +1,9 @@
 {
-  "extends": "@aryaemami59/tsconfig/bundler/esnext",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true
   },
-  "display": "TypeScript configuration with `bundler` module resolution and JavaScript support"
+  "display": "TypeScript configuration with module set to `esnext`, module resolution set to `bundler`, and JavaScript files support enabled",
+  "extends": "@aryaemami59/tsconfig/bundler/esnext"
 }
