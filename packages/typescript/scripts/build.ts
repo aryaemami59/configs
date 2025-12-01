@@ -15,7 +15,7 @@ import type {
 } from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
 
-const { ModuleResolutionKind, ModuleKind } = ts.server.protocol
+const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
 
 type ModuleResolutionKindType = typeof ModuleResolutionKind
 
@@ -53,7 +53,6 @@ type LowerCaseToCapitalizedModuleResolutionKinds = {
 
 type PossibleModuleKinds = Simplify<{
   readonly [K in CapitalizedModuleResolutionKinds]: {
-    readonly moduleResolution: Lowercase<K>
     readonly module: Lowercase<K> extends 'bundler'
       ? readonly ['esnext', 'preserve']
       : Lowercase<K> extends 'node' | 'node10'
@@ -63,6 +62,7 @@ type PossibleModuleKinds = Simplify<{
           : Lowercase<K> extends 'nodenext'
             ? readonly ['nodenext']
             : readonly ['esnext']
+    readonly moduleResolution: Lowercase<K>
   }
 }>
 
@@ -141,9 +141,9 @@ type AdditionalConfigs = {
 
 const additionalConfigs = {
   bundler: {
-    moduleResolution: 'bundler',
-    module: 'preserve',
     directory: 'bundler',
+    module: 'preserve',
+    moduleResolution: 'bundler',
     subDirectory: 'preserve',
   },
 } as const satisfies AdditionalConfigs

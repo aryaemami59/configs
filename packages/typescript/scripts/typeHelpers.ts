@@ -164,5 +164,5 @@ export type ExtractCapitalized<StringType extends string> =
 
 export type StringLiteralUnion<StringType extends string> =
   StringType extends StringType
-    ? StringType | (string & AnyNonNullishValue)
+    ? (string & AnyNonNullishValue) | StringType
     : never

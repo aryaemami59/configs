@@ -1,5 +1,6 @@
 import { createESLintConfig } from '@aryaemami59/eslint-config'
 import vitestPlugin from '@vitest/eslint-plugin'
+import perfectionistPlugin from 'eslint-plugin-perfectionist'
 import packageJson from './package.json' with { type: 'json' }
 
 const eslintConfig = createESLintConfig([
@@ -7,7 +8,11 @@ const eslintConfig = createESLintConfig([
   vitestPlugin.configs.env,
 
   {
-    name: `${packageJson.name}/overrides`,
+    name: `${perfectionistPlugin.meta.name}/recommended-natural`,
+    ...perfectionistPlugin.configs['recommended-natural'],
+  },
+
+  {
     languageOptions: {
       parserOptions: {
         projectService: {
@@ -22,8 +27,32 @@ const eslintConfig = createESLintConfig([
         },
       },
     },
+    name: `${packageJson.name}/overrides`,
 
     rules: {
+      'perfectionist/sort-array-includes': [2],
+      'perfectionist/sort-imports': [0],
+      'perfectionist/sort-interfaces': [2],
+      'perfectionist/sort-intersection-types': [0],
+      'perfectionist/sort-modules': [0],
+      'perfectionist/sort-object-types': [2],
+      'perfectionist/sort-objects': [
+        2,
+        {
+          order: 'asc',
+          type: 'alphabetical',
+        },
+      ],
+      'perfectionist/sort-sets': [2],
+      'perfectionist/sort-switch-case': [2],
+      'perfectionist/sort-union-types': [
+        2,
+        {
+          order: 'asc',
+          partitionByComment: true,
+          type: 'alphabetical',
+        },
+      ],
       'vitest/no-alias-methods': [2],
       'vitest/no-disabled-tests': [2],
       'vitest/no-focused-tests': [2],
