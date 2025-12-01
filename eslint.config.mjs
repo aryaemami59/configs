@@ -1,5 +1,6 @@
 import { createESLintConfig } from '@aryaemami59/eslint-config'
 import vitestPlugin from '@vitest/eslint-plugin'
+// import { jsdoc } from 'eslint-plugin-jsdoc'
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
 import packageJson from './package.json' with { type: 'json' }
 
@@ -11,6 +12,20 @@ const eslintConfig = createESLintConfig([
     name: `${perfectionistPlugin.meta.name}/recommended-natural`,
     ...perfectionistPlugin.configs['recommended-natural'],
   },
+
+  // jsdoc({
+  //   config: 'flat/recommended-typescript-error',
+  //   rules: {
+  //     'jsdoc/require-template': [2],
+  //     'jsdoc/tag-lines': [
+  //       2,
+  //       'any',
+  //       {
+  //         startLines: 1,
+  //       },
+  //     ],
+  //   },
+  // }),
 
   {
     languageOptions: {

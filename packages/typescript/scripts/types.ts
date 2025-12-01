@@ -2,7 +2,8 @@ import type { StringLiteralUnion } from './typeHelpers.ts'
 
 export type BuildOptions = {
   /**
-   * Have recompiles in projects that use `incremental` and `watch` mode assume
+   * Have recompiles in projects that use
+   * {@linkcode BuildOptions.incremental | incremental} and `watch` mode assume
    * that changes within a file will only affect files directly depending on it.
    *
    * @default false
@@ -412,7 +413,7 @@ export type CompilerOptions = {
    * not affect code emit, just typechecking.
    *
    * @since v1.8.0
-   * @default module === 'system' || esModuleInterop
+   * @default module === "system" || esModuleInterop
    */
   allowSyntheticDefaultImports?: boolean
 
@@ -441,7 +442,7 @@ export type CompilerOptions = {
   allowUnusedLabels?: boolean
 
   /**
-   * Parse in strict mode and emit `'use strict'` for each source file.
+   * Parse in strict mode and emit `"use strict"` for each source file.
    *
    * @since v2.1.0
    * @default false
@@ -467,7 +468,7 @@ export type CompilerOptions = {
   /**
    * The character set of the input files.
    *
-   * @default 'utf8'
+   * @default "utf8"
    * @since v1.0.0
    * @deprecated This option will be removed in TypeScript 5.5.
    */
@@ -667,7 +668,7 @@ export type CompilerOptions = {
    * Emit a v8 CPU profile of the compiler run for debugging.
    *
    * @since v3.7.0
-   * @default 'profile.cpuprofile'
+   * @default "profile.cpuprofile"
    */
   generateCpuProfile?: StringLiteralUnion<'profile.cpuprofile'>
 
@@ -695,10 +696,18 @@ export type CompilerOptions = {
 
   /**
    * Specify emit/checking behavior for imports that are only used for types.
+   * This flag controls how `import` works, there are 3 different options:
+   * - **`"remove"`**: The default behavior of dropping `import` statements which only reference types.
+   * - **`"preserve"`**: Preserves all `import` statements whose values or types are never used. This can cause imports/side-effects to be preserved.
+   * - **`"error"`**: This preserves all imports (the same as the preserve option), but will error when a value import is only used as a type. This might be useful if you want to ensure no values are being accidentally imported, but still make side-effect imports explicit.
+   *
+   * This flag works because you can use `import type` to explicitly create an
+   * `import` statement which should never be emitted into JavaScript.
    *
    * @since v3.8.0
-   * @default 'remove'
+   * @default "remove"
    * @deprecated Use {@linkcode CompilerOptions.verbatimModuleSyntax | verbatimModuleSyntax} instead.
+   * @see {@link https://www.typescriptlang.org/tsconfig#importsNotUsedAsValues | **TSConfig Reference**}
    */
   importsNotUsedAsValues?: ImportsNotUsedAsValues
 
@@ -748,25 +757,25 @@ export type CompilerOptions = {
    * Specify what JSX code is generated.
    *
    * @since v1.6.0
-   * @default 'preserve'
+   * @default "preserve"
    */
   jsx?: JSX
 
   /**
    * Specify the JSX factory function to use when targeting React JSX emit,
-   * e.g. `'React.createElement'` or `'h'`.
+   * e.g. `"React.createElement"` or `"h"`.
    *
    * @since v2.2.0
-   * @default 'React.createElement'
+   * @default "React.createElement"
    */
   jsxFactory?: StringLiteralUnion<'React.createElement'>
 
   /**
    * Specify the JSX Fragment reference used for fragments when targeting React
-   * JSX emit e.g. `'React.Fragment'` or `'Fragment'`.
+   * JSX emit e.g. `"React.Fragment"` or `"Fragment"`.
    *
    * @since v4.0.0
-   * @default 'React.Fragment'
+   * @default "React.Fragment"
    */
   jsxFragmentFactory?: StringLiteralUnion<'React.Fragment'>
 
@@ -775,7 +784,7 @@ export type CompilerOptions = {
    * using `jsx: react-jsx*`.
    *
    * @since v4.1.0
-   * @default 'react'
+   * @default "react"
    */
   jsxImportSource?: StringLiteralUnion<'react'>
 
@@ -847,38 +856,44 @@ export type CompilerOptions = {
 
   /**
    * Specify module code generation:
-   * - **`'AMD'`**
-   * - **`'CommonJS'`**
-   * - **`'ES2015'`**
-   * - **`'ES6'`**
-   * - **`'ESNext'`**
-   * - **`'None'`**
-   * - **`'System'`**
-   * - **`'UMD'`**
+   * - **`"AMD"`**
+   * - **`"CommonJS"`**
+   * - **`"ES2015"`**
+   * - **`"ES6"`**
+   * - **`"ESNext"`**
+   * - **`"None"`**
+   * - **`"System"`**
+   * - **`"UMD"`**
    *
-   * Only `'AMD'` and `'System'` can be used in conjunction with `--outFile`.
-   * `'ES6'` and `'ES2015'` values may be used when targeting `'ES5'` or lower.
+   * Only `"AMD"` and `"System"` can be used in conjunction with `--outFile`.
+   * `"ES6"` and `"ES2015"` values may be used when targeting `"ES5"` or lower.
    *
    * @since v1.0.0
-   * @default ['ES3', 'ES5'].includes(target) ? 'CommonJS' : 'ES6'
+   * @default ["ES3", "ES5"].includes(target) ? "CommonJS" : "ES6"
    */
   module?: Module
 
   /**
-   * Control what method is used to detect module-format JS files.
+   * This setting controls how TypeScript determines whether a file is a
+   * {@link https://www.typescriptlang.org/docs/handbook/modules/theory.html#scripts-and-modules-in-javascript | **script or a module**}.
+   * There are three choices:
+   * - **`"auto"` (default)** - TypeScript will not only look for import and export statements, but it will also check whether the `"type"` field in a `package.json` is set to `"module"` when running with {@linkcode CompilerOptions.module | module}: `nodenext` or `node16`, and check whether the current file is a JSX file when running under {@linkcode CompilerOptions.jsx | jsx}: `react-jsx`.
+   * - **`"legacy"`** - The same behavior as 4.6 and prior, usings import and export statements to determine whether a file is a module.
+   * - **`"force"`** - Ensures that every non-declaration file is treated as a module.
    *
    * @since v4.7.0
-   * @default 'auto'
+   * @default "auto"
+   * @see {@link https://www.typescriptlang.org/tsconfig/#moduleDetection | **TSConfig Reference**}
    */
   moduleDetection?: ModuleDetection
 
   /**
    * Specifies module resolution. Strategy:
-   * - **`'classic'` (TypeScript pre 1.6)**
-   * - **`'node'` (Node)**
+   * - **`"classic"` (TypeScript pre 1.6)**
+   * - **`"node"` (Node)**
    *
    * @since v1.6.0
-   * @default ['AMD', 'System', 'ES6'].includes(module) ? 'classic' : 'node'
+   * @default ["AMD", "System", "ES6"].includes(module) ? "classic" : "node"
    */
   moduleResolution?: ModuleResolution
 
@@ -891,11 +906,11 @@ export type CompilerOptions = {
 
   /**
    * Specifies the end of line sequence to be used when emitting files:
-   * - **`'crlf'` (Windows)**
-   * - **`'lf'` (Unix)**
+   * - **`"crlf"` (Windows)**
+   * - **`"lf"` (Unix)**
    *
    * @since v1.5.0
-   * @default 'lf'
+   * @default "lf"
    */
   newLine?: NewLine
 
@@ -983,7 +998,7 @@ export type CompilerOptions = {
   noImplicitThis?: boolean
 
   /**
-   * Do not emit `'use strict'` directives in module output.
+   * Do not emit `"use strict"` directives in module output.
    *
    * @since v1.8.0
    * @default false
@@ -1140,10 +1155,10 @@ export type CompilerOptions = {
 
   /**
    * Specifies the object invoked for `createElement` and `__spread` when
-   * targeting `'react'` JSX emit.
+   * targeting `"react"` JSX emit.
    *
    * @since v1.8.0
-   * @default 'React'
+   * @default "React"
    */
   reactNamespace?: StringLiteralUnion<'React'>
 
@@ -1183,7 +1198,7 @@ export type CompilerOptions = {
   resolvePackageJsonImports?: boolean
 
   /**
-   * Rewrite `'.ts'`, `'.tsx'`, `'.mts'`, and `'.cts'` file extensions in
+   * Rewrite `.ts`, `.tsx`, `.mts`, and `.cts` file extensions in
    * relative import paths to their JavaScript equivalent in output files.
    *
    * @since v5.7.0
@@ -1223,7 +1238,7 @@ export type CompilerOptions = {
   skipLibCheck?: boolean
 
   /**
-   * Generates corresponding `'.map'` file.
+   * Generates corresponding `.map` file.
    *
    * @since v1.0.0
    * @default false
@@ -1318,7 +1333,7 @@ export type CompilerOptions = {
    * Specify ECMAScript target version.
    *
    * @since v1.0.0
-   * @default 'es3'
+   * @default "es3"
    */
   target?: Target
 
@@ -1334,7 +1349,7 @@ export type CompilerOptions = {
    * Specify file to store incremental compilation information.
    *
    * @since v3.4.0
-   * @default '.tsbuildinfo'
+   * @default ".tsbuildinfo"
    */
   tsBuildInfoFile?: StringLiteralUnion<'.tsbuildinfo'>
 
@@ -1390,7 +1405,7 @@ export type CompilerOptions = {
    * recursive file-watching functionality.
    *
    * @since v3.8.0
-   * @default 'useFsEvents'
+   * @default "useFsEvents"
    * @deprecated Use {@linkcode WatchOptions.watchDirectory | watchOptions.watchDirectory} instead.
    */
   watchDirectory?: WatchDirectory
@@ -1399,7 +1414,7 @@ export type CompilerOptions = {
    * Specify the strategy for watching individual files.
    *
    * @since v3.8.0
-   * @default 'useFsEvents'
+   * @default "useFsEvents"
    * @deprecated Use {@linkcode WatchOptions.watchFile | watchOptions.watchFile} instead.
    */
   watchFile?: WatchFile
@@ -1495,13 +1510,13 @@ export type TypeAcquisition = {
 
   /**
    * Specifies a list of export type declarations to be excluded from
-   * auto export type acquisition. For example, `['jquery', 'lodash']`.
+   * auto export type acquisition. For example, `["jquery", "lodash"]`.
    */
   exclude?: string[]
 
   /**
    * Specifies a list of export type declarations to be included in
-   * auto export type acquisition. For example, `['jquery', 'lodash']`.
+   * auto export type acquisition. For example, `["jquery", "lodash"]`.
    */
   include?: string[]
 }
