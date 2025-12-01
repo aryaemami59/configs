@@ -715,7 +715,7 @@ export type CompilerOptions = {
    * Enable incremental compilation.
    *
    * @since v3.4.0
-   * @default compilerOptions.composite === true
+   * @default composite === true
    */
   incremental?: boolean
 
@@ -1476,7 +1476,7 @@ export type WatchOptions = {
    * recursive file-watching functionality.
    *
    * @since v3.8.0
-   * @default 'UseFsEvents'
+   * @default "UseFsEvents"
    */
   watchDirectory?: Lowercase<WatchDirectoryKind> | WatchDirectoryKind
 
@@ -1484,7 +1484,7 @@ export type WatchOptions = {
    * Specify the strategy for watching individual files.
    *
    * @since v3.8.0
-   * @default 'UseFsEvents'
+   * @default "UseFsEvents"
    */
   watchFile?: Lowercase<WatchFileKind> | WatchFileKind
 }

@@ -3,7 +3,7 @@
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import { format, resolveConfig } from 'prettier'
-import * as ts from 'typescript'
+import ts from 'typescript'
 import packageJson from '../package.json' with { type: 'json' }
 import type {
   ExcludeStrict,
