@@ -4,9 +4,9 @@ import type { TestProject } from 'vitest/node'
 import { fixturesDirectoryPath } from './tests/test-utils.js'
 
 type FixtureFile = {
+  absolutePath: string
   content: string
   fileName: string
-  absolutePath: string
 }
 
 /**
@@ -40,29 +40,72 @@ type FixtureFiles<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> = [
   'js' | 'ts',
 ] extends [FileExtension]
   ?
-      | Record<'ts' | 'mts' | 'cts', FixtureFile>
-      | Record<'js' | 'mjs' | 'cjs', FixtureFile>
+      | Record<'cjs' | 'js' | 'mjs', FixtureFile>
+      | Record<'cts' | 'mts' | 'ts', FixtureFile>
   : ['js'] extends [FileExtension]
-    ? Record<'js' | 'mjs' | 'cjs', FixtureFile>
+    ? Record<'cjs' | 'js' | 'mjs', FixtureFile>
     : ['ts'] extends [FileExtension]
-      ? Record<'ts' | 'mts' | 'cts', FixtureFile>
-      : Record<'ts' | 'mts' | 'cts', FixtureFile> &
-          Record<'js' | 'mjs' | 'cjs', FixtureFile>
+      ? Record<'cts' | 'mts' | 'ts', FixtureFile>
+      : Record<'cts' | 'mts' | 'ts', FixtureFile> &
+          Record<'cjs' | 'js' | 'mjs', FixtureFile>
 
 type Fixture<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> = {
+  files: FixtureFiles<FileExtension>
   fixtureDirectory: string
   tsconfigPath: string
-  files: FixtureFiles<FileExtension>
 }
 
 class FileFixtures<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> {
-  public constructor(public readonly fileExtension: FileExtension) {}
-
-  public getFixtureDirectory(type: 'good' | 'bad'): string {
-    return path.join(fixturesDirectoryPath, this.fileExtension, type)
+  public get bad(): Fixture<FileExtension> {
+    return this.getFixtures('bad')
   }
 
-  public getFileContent(type: 'good' | 'bad'): string {
+  public get good(): Fixture<FileExtension> {
+    return this.getFixtures('good')
+  }
+
+  public get tsconfigContent(): string {
+    if (this.isTSFile()) {
+      return JSON.stringify(
+        {
+          compilerOptions: {
+            noEmitOnError: true,
+            outDir: './dist',
+          },
+          extends: '@aryaemami59/tsconfig/node-next',
+          files: [this.good.files.ts.fileName, this.good.files.mts.fileName],
+        },
+        null,
+        2,
+      )
+    } else if (this.isJSFile()) {
+      return JSON.stringify(
+        {
+          compilerOptions: {
+            noEmitOnError: true,
+            outDir: './dist',
+          },
+          extends: '@aryaemami59/tsconfig/node-next/with-js',
+          files: [this.good.files.js.fileName, this.good.files.mjs.fileName],
+        },
+        null,
+        2,
+      )
+    }
+
+    throw new Error('Unsupported file extension')
+  }
+
+  public constructor(public readonly fileExtension: FileExtension) {}
+
+  public getAbsolutePath(
+    fixtureDirectory: string,
+    variant: 'CJS' | 'ESM' | 'neutral',
+  ): string {
+    return path.join(fixtureDirectory, this.getFileName(variant))
+  }
+
+  public getFileContent(type: 'bad' | 'good'): string {
     if (this.fileExtension === 'ts') {
       return type === 'good'
         ? 'export const someNumber: number = 1\n'
@@ -76,115 +119,72 @@ class FileFixtures<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> {
     throw new Error('Unsupported file extension')
   }
 
-  public getFileName(variant: 'neutral' | 'ESM' | 'CJS'): string {
+  public getFileName(variant: 'CJS' | 'ESM' | 'neutral'): string {
     const prefix =
       variant === 'ESM' ? `m${this.fileExtension}` : this.fileExtension
     return `.test-${prefix}.${prefix}`
   }
 
-  public getAbsolutePath(
-    fixtureDirectory: string,
-    variant: 'neutral' | 'ESM' | 'CJS',
-  ): string {
-    return path.join(fixtureDirectory, this.getFileName(variant))
+  public getFixtureDirectory(type: 'bad' | 'good'): string {
+    return path.join(fixturesDirectoryPath, this.fileExtension, type)
   }
 
-  public getFixtures(type: 'good' | 'bad'): Fixture<FileExtension> {
+  public getFixtures(type: 'bad' | 'good'): Fixture<FileExtension> {
     const fixtureDirectory = this.getFixtureDirectory(type)
 
     return {
-      fixtureDirectory,
-
-      tsconfigPath: path.join(fixtureDirectory, 'tsconfig.json'),
-
       files: this.isTSFile()
         ? ({
-            ts: {
+            cts: {
+              absolutePath: this.getAbsolutePath(fixtureDirectory, 'CJS'),
               content: this.getFileContent(type),
-              fileName: this.getFileName('neutral'),
-              absolutePath: this.getAbsolutePath(fixtureDirectory, 'neutral'),
+              fileName: this.getFileName('CJS'),
             },
 
             mts: {
+              absolutePath: this.getAbsolutePath(fixtureDirectory, 'ESM'),
               content: this.getFileContent(type),
               fileName: this.getFileName('ESM'),
-              absolutePath: this.getAbsolutePath(fixtureDirectory, 'ESM'),
             },
 
-            cts: {
+            ts: {
+              absolutePath: this.getAbsolutePath(fixtureDirectory, 'neutral'),
               content: this.getFileContent(type),
-              fileName: this.getFileName('CJS'),
-              absolutePath: this.getAbsolutePath(fixtureDirectory, 'CJS'),
+              fileName: this.getFileName('neutral'),
             },
           } satisfies FixtureFiles<'ts'> as FixtureFiles<'ts'>)
         : ({
+            cjs: {
+              absolutePath: this.getAbsolutePath(fixtureDirectory, 'CJS'),
+              content: this.getFileContent(type),
+              fileName: this.getFileName('CJS'),
+            },
+
             js: {
+              absolutePath: this.getAbsolutePath(fixtureDirectory, 'neutral'),
               content: this.getFileContent(type),
               fileName: this.getFileName('neutral'),
-              absolutePath: this.getAbsolutePath(fixtureDirectory, 'neutral'),
             },
 
             mjs: {
+              absolutePath: this.getAbsolutePath(fixtureDirectory, 'ESM'),
               content: this.getFileContent(type),
               fileName: this.getFileName('ESM'),
-              absolutePath: this.getAbsolutePath(fixtureDirectory, 'ESM'),
-            },
-
-            cjs: {
-              content: this.getFileContent(type),
-              fileName: this.getFileName('CJS'),
-              absolutePath: this.getAbsolutePath(fixtureDirectory, 'CJS'),
             },
           } satisfies FixtureFiles<'js'> as FixtureFiles<'js'>),
+
+      fixtureDirectory,
+
+      tsconfigPath: path.join(fixtureDirectory, 'tsconfig.json'),
     } as Fixture<FileExtension>
-  }
-
-  public get good(): Fixture<FileExtension> {
-    return this.getFixtures('good')
-  }
-
-  public get bad(): Fixture<FileExtension> {
-    return this.getFixtures('bad')
-  }
-
-  public isTSFile(): this is FileFixtures<'ts'> {
-    return this.fileExtension === 'ts'
   }
 
   public isJSFile(): this is FileFixtures<'js'> {
     return this.fileExtension === 'js'
   }
 
-  public get tsconfigContent(): string {
-    if (this.isTSFile()) {
-      return JSON.stringify(
-        {
-          extends: '@aryaemami59/tsconfig/node-next',
-          compilerOptions: {
-            noEmitOnError: true,
-            outDir: './dist',
-          },
-          files: [this.good.files.ts.fileName, this.good.files.mts.fileName],
-        },
-        null,
-        2,
-      )
-    } else if (this.isJSFile()) {
-      return JSON.stringify(
-        {
-          extends: '@aryaemami59/tsconfig/node-next/with-js',
-          compilerOptions: {
-            noEmitOnError: true,
-            outDir: './dist',
-          },
-          files: [this.good.files.js.fileName, this.good.files.mjs.fileName],
-        },
-        null,
-        2,
-      )
-    }
-
-    throw new Error('Unsupported file extension')
+  public isTSFile(): this is FileFixtures<'ts'> {
+    return this.fileExtension === 'ts'
   }
 }
 

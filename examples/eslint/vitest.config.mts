@@ -4,12 +4,12 @@ import * as path from 'node:path'
 import packageJson from './package.json' with { type: 'json' }
 
 const vitestConfig = createVitestProject({
-  root: import.meta.dirname,
-
   json: {
     namedExports: false,
     stringify: 'auto',
   },
+
+  root: import.meta.dirname,
 
   test: {
     deps: {

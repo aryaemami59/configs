@@ -8,12 +8,12 @@ const vitestConfig = createVitestConfig({
   test: {
     dir: path.join(import.meta.dirname, 'examples'),
     name: packageJson.name,
-    root: import.meta.dirname,
-
     projects: [
       'examples/!(vitest)/vitest.config.mts',
       'examples/vitest/vitest.config.?(c|m)[tj]s',
     ],
+
+    root: import.meta.dirname,
   },
 })
 

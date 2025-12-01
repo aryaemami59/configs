@@ -64,7 +64,6 @@ export const flatESLintConfig = [
   ...(configs.stylistic satisfies Linter.Config[] as Linter.Config[]),
 
   {
-    name: `${packageJsonName}/defaults/overrides`,
     languageOptions: {
       globals,
       parserOptions: {
@@ -72,7 +71,18 @@ export const flatESLintConfig = [
         projectService: true,
       } as const satisfies FlatConfig.ParserOptions satisfies Linter.ParserOptions,
     },
+    linterOptions: {
+      reportUnusedDisableDirectives: 2,
+      reportUnusedInlineConfigs: 2,
+    },
+    name: `${packageJsonName}/defaults/overrides`,
+
     rules: {
+      '@typescript-eslint/consistent-type-definitions': [2, 'type'],
+      '@typescript-eslint/consistent-type-exports': [
+        2,
+        { fixMixedExportsWithInlineTypeSpecifier: false },
+      ],
       '@typescript-eslint/consistent-type-imports': [
         2,
         {
@@ -81,9 +91,27 @@ export const flatESLintConfig = [
           prefer: 'type-imports',
         },
       ],
-      '@typescript-eslint/consistent-type-exports': [
+      '@typescript-eslint/no-confusing-void-expression': [
         2,
-        { fixMixedExportsWithInlineTypeSpecifier: false },
+        {
+          ignoreArrowShorthand: false,
+          ignoreVoidOperator: false,
+          ignoreVoidReturningFunctions: false,
+        },
+      ],
+      '@typescript-eslint/no-duplicate-type-constituents': [
+        2,
+        {
+          ignoreIntersections: false,
+          ignoreUnions: false,
+        },
+      ],
+      '@typescript-eslint/no-empty-object-type': [
+        2,
+        {
+          allowInterfaces: 'never',
+          allowObjectTypes: 'never',
+        },
       ],
       '@typescript-eslint/no-explicit-any': [
         2,
@@ -92,11 +120,33 @@ export const flatESLintConfig = [
           ignoreRestArgs: false,
         },
       ],
-      '@typescript-eslint/no-empty-object-type': [
+      '@typescript-eslint/no-inferrable-types': [
         2,
         {
-          allowInterfaces: 'never',
-          allowObjectTypes: 'never',
+          ignoreParameters: false,
+          ignoreProperties: false,
+        },
+      ],
+      '@typescript-eslint/no-invalid-void-type': [
+        2,
+        {
+          allowAsThisParameter: false,
+          allowInGenericTypeArguments: true,
+        },
+      ],
+      '@typescript-eslint/no-namespace': [
+        2,
+        {
+          allowDeclarations: false,
+          allowDefinitionFiles: true,
+        },
+      ],
+      '@typescript-eslint/no-redundant-type-constituents': [2],
+      '@typescript-eslint/no-require-imports': [
+        2,
+        {
+          allow: [],
+          allowAsImport: true,
         },
       ],
       '@typescript-eslint/no-restricted-types': [
@@ -121,61 +171,12 @@ export const flatESLintConfig = [
           },
         },
       ],
-      '@typescript-eslint/no-namespace': [
-        2,
-        {
-          allowDeclarations: false,
-          allowDefinitionFiles: true,
-        },
-      ],
-      '@typescript-eslint/consistent-type-definitions': [2, 'type'],
-      'sort-imports': [
-        2,
-        {
-          allowSeparatedGroups: true,
-          ignoreCase: false,
-          ignoreDeclarationSort: true,
-          ignoreMemberSort: false,
-          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-        },
-      ],
-      '@typescript-eslint/unified-signatures': [
-        2,
-        {
-          ignoreDifferentlyNamedParameters: false,
-          ignoreOverloadsWithDifferentJSDoc: false,
-        },
-      ],
-      '@typescript-eslint/no-unnecessary-type-parameters': [2],
-      '@typescript-eslint/no-invalid-void-type': [
-        2,
-        {
-          allowAsThisParameter: false,
-          allowInGenericTypeArguments: true,
-        },
-      ],
-      '@typescript-eslint/no-confusing-void-expression': [
-        2,
-        {
-          ignoreArrowShorthand: false,
-          ignoreVoidOperator: false,
-          ignoreVoidReturningFunctions: false,
-        },
-      ],
-      '@typescript-eslint/no-duplicate-type-constituents': [
-        2,
-        {
-          ignoreIntersections: false,
-          ignoreUnions: false,
-        },
-      ],
-      '@typescript-eslint/require-await': [2],
-      '@typescript-eslint/no-redundant-type-constituents': [2],
       '@typescript-eslint/no-unnecessary-type-arguments': [2],
       '@typescript-eslint/no-unnecessary-type-assertion': [
         2,
         { typesToIgnore: [] },
       ],
+      '@typescript-eslint/no-unnecessary-type-parameters': [2],
       '@typescript-eslint/prefer-nullish-coalescing': [
         2,
         {
@@ -193,18 +194,12 @@ export const flatESLintConfig = [
           ignoreTernaryTests: false,
         },
       ],
-      '@typescript-eslint/no-inferrable-types': [
+      '@typescript-eslint/require-await': [2],
+      '@typescript-eslint/unified-signatures': [
         2,
         {
-          ignoreParameters: false,
-          ignoreProperties: false,
-        },
-      ],
-      '@typescript-eslint/no-require-imports': [
-        2,
-        {
-          allow: [],
-          allowAsImport: true,
+          ignoreDifferentlyNamedParameters: false,
+          ignoreOverloadsWithDifferentJSDoc: false,
         },
       ],
       'object-shorthand': [
@@ -217,22 +212,27 @@ export const flatESLintConfig = [
           methodsIgnorePattern: '',
         },
       ],
+      'sort-imports': [
+        2,
+        {
+          allowSeparatedGroups: true,
+          ignoreCase: false,
+          ignoreDeclarationSort: true,
+          ignoreMemberSort: false,
+          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        },
+      ],
 
       ...disabledRules,
-    },
-
-    linterOptions: {
-      reportUnusedDisableDirectives: 2,
-      reportUnusedInlineConfigs: 2,
     },
   } as const satisfies Linter.Config,
 
   {
-    name: `${packageJsonName}/commonjs-files`,
     files: ['**/*.cjs'],
     languageOptions: {
       sourceType: 'commonjs',
     } as const satisfies FlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
+    name: `${packageJsonName}/commonjs-files`,
     rules: {
       '@typescript-eslint/no-require-imports': [
         0,

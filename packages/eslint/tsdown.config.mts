@@ -8,15 +8,15 @@ const tsdownConfig = defineConfig((cliOptions) => {
     cwd: import.meta.dirname,
     debug: {},
     dts: {
-      emitDtsOnly: false,
       build: false,
       cwd: import.meta.dirname,
       dtsInput: false,
       eager: true,
+      emitDtsOnly: false,
       emitJs: false,
       incremental: false,
-      oxc: false,
       newContext: true,
+      oxc: false,
       parallel: false,
       resolver: 'tsc',
       sideEffects: false,
@@ -45,13 +45,13 @@ const tsdownConfig = defineConfig((cliOptions) => {
   return [
     {
       ...commonOptions,
-      name: `${packageJson.name} Modern ESM`,
       format: ['es'],
+      name: `${packageJson.name} Modern ESM`,
     },
     {
       ...commonOptions,
-      name: `${packageJson.name} CJS Development`,
       format: ['cjs'],
+      name: `${packageJson.name} CJS Development`,
     },
   ] as const satisfies UserConfig[]
 })

@@ -10,7 +10,6 @@ import { packageJsonName } from './packageJsonName.js'
  * @public
  */
 export const globalIgnores = {
-  name: `${packageJsonName}/global-ignores`,
   ignores: [
     '**/__snapshots__/',
     '**/.docusaurus/',
@@ -29,4 +28,5 @@ export const globalIgnores = {
     '**/dist/',
     '**/temp/',
   ],
+  name: `${packageJsonName}/global-ignores`,
 } as const satisfies Config

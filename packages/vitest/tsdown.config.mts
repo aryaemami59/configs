@@ -8,15 +8,15 @@ const tsdownConfig = defineConfig((cliOptions) => {
     cwd: import.meta.dirname,
     debug: {},
     dts: {
-      emitDtsOnly: false,
       build: false,
       cwd: import.meta.dirname,
       dtsInput: false,
       eager: true,
+      emitDtsOnly: false,
       emitJs: false,
       incremental: false,
-      oxc: false,
       newContext: true,
+      oxc: false,
       parallel: false,
       resolver: 'tsc',
       sideEffects: false,
@@ -45,20 +45,20 @@ const tsdownConfig = defineConfig((cliOptions) => {
   return [
     {
       ...commonOptions,
-      name: `${packageJson.name} Modern ESM`,
       format: ['es'],
+      name: `${packageJson.name} Modern ESM`,
     },
     {
       ...commonOptions,
-      name: `${packageJson.name} CJS Development`,
+      external: ['debug', 'globrex', 'tsconfck'],
       format: ['cjs'],
 
+      name: `${packageJson.name} CJS Development`,
       // Causes `ERR_REQUIRE_ESM` error in CommonJS modules since
       // it is an ESM module (has `"type": "module"` in its `package.json`),
       // and cannot be imported using the `require` syntax,
       // we can inline it to get around this problem.
       noExternal: ['vite-tsconfig-paths'],
-      external: ['debug', 'globrex', 'tsconfck'],
     },
   ] as const satisfies UserConfig[]
 })

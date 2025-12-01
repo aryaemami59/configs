@@ -8,10 +8,14 @@ import type { Linter } from 'eslint'
  * @public
  */
 export const disabledRules = {
-  'no-undef': [
+  '@typescript-eslint/ban-ts-comment': [
     0,
     {
-      typeof: false,
+      minimumDescriptionLength: 3,
+      'ts-check': false,
+      'ts-expect-error': 'allow-with-description',
+      'ts-ignore': true,
+      'ts-nocheck': true,
     },
   ],
   '@typescript-eslint/no-unused-vars': [
@@ -33,14 +37,10 @@ export const disabledRules = {
       varsIgnorePattern: '^_',
     },
   ],
-  '@typescript-eslint/ban-ts-comment': [
+  'no-undef': [
     0,
     {
-      'ts-check': false,
-      'ts-expect-error': 'allow-with-description',
-      'ts-ignore': true,
-      'ts-nocheck': true,
-      minimumDescriptionLength: 3,
+      typeof: false,
     },
   ],
 } as const satisfies Linter.RulesRecord satisfies Record<

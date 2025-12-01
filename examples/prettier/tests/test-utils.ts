@@ -36,7 +36,7 @@ export const runPrettierCLI = async (
       },
     )
 
-    const { stdout, stderr } = execFileResults
+    const { stderr, stdout } = execFileResults
 
     if (stdout) {
       console.log(stdout)
