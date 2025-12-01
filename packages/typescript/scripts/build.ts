@@ -5,6 +5,14 @@ import * as path from 'node:path'
 import { format, resolveConfig } from 'prettier'
 import * as ts from 'typescript'
 import packageJson from '../package.json' with { type: 'json' }
+import type {
+  ExcludeStrict,
+  ExtractCapitalized,
+  ExtractLowercase,
+  ExtractStrict,
+  KebabCase,
+  Simplify,
+} from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
 
 const { ModuleResolutionKind, ModuleKind } = ts.server.protocol
@@ -14,81 +22,6 @@ type ModuleResolutionKindType = typeof ModuleResolutionKind
 type ModuleKindType = typeof ModuleKind
 
 const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
-
-type DistributedOmit<
-  ObjectType,
-  KeyType extends keyof ObjectType,
-> = ObjectType extends unknown ? Omit<ObjectType, KeyType> : never
-
-/**
- * Any function with unknown arguments.
- *
- * @internal
- */
-type UnknownFunction = (...args: unknown[]) => unknown
-
-/**
- * An alias for type `{}`. Represents any value that is not `null` or `undefined`.
- * It is mostly used for semantic purposes to help distinguish between an
- * empty object type and `{}` as they are not the same.
- *
- * @internal
- */
-type AnyNonNullishValue = NonNullable<unknown>
-
-/**
- * Useful to flatten the type output to improve type hints shown in editors.
- * And also to transform an interface into a type to aide with assignability.
- * @see {@link https://github.com/sindresorhus/type-fest/blob/main/source/simplify.d.ts Source}
- *
- * @internal
- */
-export type Simplify<T> = T extends UnknownFunction
-  ? T
-  : {
-      [KeyType in keyof T]: T[KeyType]
-    } & AnyNonNullishValue
-
-export type ExtractStrict<
-  T,
-  U extends [U] extends [
-    // Ensure every member of `U` extracts something from `T`
-    U extends unknown ? (Extract<T, U> extends never ? never : U) : never,
-  ]
-    ? unknown
-    : T,
-> = Extract<T, U>
-
-export type ExcludeStrict<
-  T,
-  U extends [U] extends [
-    // Ensure every member of `U` excludes something from `T`
-    U extends unknown ? ([T] extends [Exclude<T, U>] ? never : U) : never,
-  ]
-    ? unknown
-    : T,
-> = Exclude<T, U>
-
-type KebabCase<
-  StringType extends string,
-  FirstRun extends boolean = true,
-> = StringType extends `${infer FirstLetter}${infer Rest}`
-  ? `${FirstLetter extends Lowercase<FirstLetter>
-      ? FirstLetter extends `${number}`
-        ? Rest extends `${number}`
-          ? '-'
-          : ''
-        : ''
-      : FirstRun extends true
-        ? ''
-        : '-'}${Lowercase<FirstLetter>}${KebabCase<Rest, false>}`
-  : StringType
-
-type ExtractLowercase<StringType extends string> =
-  StringType extends Lowercase<StringType> ? StringType : never
-
-type ExtractCapitalized<StringType extends string> =
-  StringType extends Capitalize<StringType> ? StringType : never
 
 type LowerCaseModuleResolutionKinds = ExcludeStrict<
   ExtractLowercase<ModuleResolution>,

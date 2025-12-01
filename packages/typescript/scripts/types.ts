@@ -1,3 +1,5 @@
+import type { StringLiteralUnion } from './typeHelpers.ts'
+
 export type JSX =
   | 'preserve'
   | 'react'
@@ -303,6 +305,9 @@ export type WatchFile =
 
 export type ModuleResolution =
   | 'classic'
+  /**
+   * @deprecated since v5.0.0 - Use `'node10'` instead.
+   */
   | 'node'
   | 'node10'
   | 'node16'
@@ -310,6 +315,9 @@ export type ModuleResolution =
   | 'bundler'
   // Pascal-cased alternatives
   | 'Classic'
+  /**
+   * @deprecated since v5.0.0 - Use `'node10'` instead.
+   */
   | 'Node'
   | 'Node10'
   | 'Node16'
@@ -318,13 +326,22 @@ export type ModuleResolution =
 
 export type ModuleDetection = 'auto' | 'legacy' | 'force'
 
-export type IgnoreDeprecations = '5.0'
+export type IgnoreDeprecations =
+  /**
+   * @since v5.5.0
+   */
+  | '5.0'
+  /**
+   * @since v6.0.0
+   */
+  | '6.0'
 
 export type CompilerOptions = {
   /**
    * The character set of the input files.
    *
    * @default 'utf8'
+   * @since v1.0.0
    * @deprecated This option will be removed in TypeScript 5.5.
    */
   charset?: string
@@ -332,25 +349,30 @@ export type CompilerOptions = {
   /**
    * Enables building for project references.
    *
+   * @since v3.0.0
    * @default true
    */
   composite?: boolean
 
   /**
-   * Generates corresponding d.ts files.
+   * Generates corresponding `d.ts` files.
    *
+   * @since v1.0.0
    * @default false
    */
   declaration?: boolean
 
   /**
    * Specify output directory for generated declaration files.
+   *
+   * @since v2.0.0
    */
   declarationDir?: string
 
   /**
    * Show diagnostic information.
    *
+   * @since v1.0.0
    * @default false
    */
   diagnostics?: boolean
@@ -358,6 +380,7 @@ export type CompilerOptions = {
   /**
    * Reduce the number of projects loaded automatically by TypeScript.
    *
+   * @since v4.0.0
    * @default false
    */
   disableReferencedProjectLoad?: boolean
@@ -365,6 +388,7 @@ export type CompilerOptions = {
   /**
    * Enforces using indexed accessors for keys declared using an indexed type.
    *
+   * @since v4.2.0
    * @default false
    */
   noPropertyAccessFromIndexSignature?: boolean
@@ -372,6 +396,7 @@ export type CompilerOptions = {
   /**
    * Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
    *
+   * @since v1.0.0
    * @default false
    */
   emitBOM?: boolean
@@ -379,13 +404,16 @@ export type CompilerOptions = {
   /**
    * Only emit `.d.ts` declaration files.
    *
+   * @since v2.8.0
    * @default false
    */
   emitDeclarationOnly?: boolean
 
   /**
-   * Differentiate between undefined and not present when export type checking.
+   * Differentiate between `undefined` and not present when export type
+   * checking.
    *
+   * @since v4.4.0
    * @default false
    */
   exactOptionalPropertyTypes?: boolean
@@ -393,29 +421,32 @@ export type CompilerOptions = {
   /**
    * Enable incremental compilation.
    *
-   * @default `composite`
+   * @since v3.4.0
+   * @default compilerOptions.composite === true
    */
   incremental?: boolean
 
   /**
    * Specify file to store incremental compilation information.
    *
+   * @since v3.4.0
    * @default '.tsbuildinfo'
    */
-  tsBuildInfoFile?: string
+  tsBuildInfoFile?: StringLiteralUnion<'.tsbuildinfo'>
 
   /**
    * Emit a single file with source maps instead of having a separate file.
    *
+   * @since v1.5.0
    * @default false
    */
   inlineSourceMap?: boolean
 
   /**
-   * Emit the source alongside the sourcemaps within a single file.
+   * Emit the source alongside the sourcemaps within a single file. Requires
+   * `--inlineSourceMap` to be set.
    *
-   * Requires `--inlineSourceMap` to be set.
-   *
+   * @since v1.5.0
    * @default false
    */
   inlineSources?: boolean
@@ -423,6 +454,7 @@ export type CompilerOptions = {
   /**
    * Specify what JSX code is generated.
    *
+   * @since v1.6.0
    * @default 'preserve'
    */
   jsx?: JSX
@@ -431,77 +463,98 @@ export type CompilerOptions = {
    * Specifies the object invoked for `createElement` and `__spread` when
    * targeting `'react'` JSX emit.
    *
+   * @since v1.8.0
    * @default 'React'
    */
-  reactNamespace?: string
+  reactNamespace?: StringLiteralUnion<'React'>
 
   /**
    * Specify the JSX factory function to use when targeting React JSX emit,
-   * e.g. `React.createElement` or `h`.
+   * e.g. `'React.createElement'` or `'h'`.
    *
+   * @since v2.2.0
    * @default 'React.createElement'
    */
-  jsxFactory?: string
+  jsxFactory?: StringLiteralUnion<'React.createElement'>
 
   /**
-   * Specify the JSX Fragment reference used for fragments when targeting
-   * React JSX emit e.g. 'React.Fragment' or 'Fragment'.
+   * Specify the JSX Fragment reference used for fragments when targeting React
+   * JSX emit e.g. `'React.Fragment'` or `'Fragment'`.
    *
+   * @since v4.0.0
    * @default 'React.Fragment'
    */
-  jsxFragmentFactory?: string
+  jsxFragmentFactory?: StringLiteralUnion<'React.Fragment'>
 
   /**
-   * Specify module specifier used to import the JSX factory functions
-   * when using `jsx: react-jsx*`.
+   * Specify module specifier used to import the JSX factory functions when
+   * using `jsx: react-jsx*`.
    *
+   * @since v4.1.0
    * @default 'react'
    */
-  jsxImportSource?: string
+  jsxImportSource?: StringLiteralUnion<'react'>
 
   /**
    * Print names of files part of the compilation.
    *
+   * @since v1.5.0
    * @default false
    */
   listFiles?: boolean
 
   /**
-   * Specifies the location where debugger should locate map files instead
-   * of generated locations.
+   * Specifies the location where debugger should locate map files instead of
+   * generated locations.
+   *
+   * @since v1.0.0
    */
   mapRoot?: string
 
   /**
    * Specify module code generation:
-   * None', 'CommonJS', 'AMD', 'System', 'UMD', 'ES6', 'ES2015' or 'ESNext'.
-   * Only 'AMD' and 'System' can be used in conjunction with `--outFile`.
-   * 'ES6' and 'ES2015' values may be used when targeting 'ES5' or lower.
+   * - **`'None'`**
+   * - **`'CommonJS'`**
+   * - **`'AMD'`**
+   * - **`'System'`**
+   * - **`'UMD'`**
+   * - **`'ES6'`**
+   * - **`'ES2015'`**
+   * - **`'ESNext'`**
    *
+   * Only `'AMD'` and `'System'` can be used in conjunction with `--outFile`.
+   * `'ES6'` and `'ES2015'` values may be used when targeting `'ES5'` or lower.
+   *
+   * @since v1.0.0
    * @default ['ES3', 'ES5'].includes(target) ? 'CommonJS' : 'ES6'
    */
   module?: Module
 
   /**
-   * Specifies module resolution
-   * strategy: 'node' (Node) or 'classic' (TypeScript pre 1.6).
+   * Specifies module resolution. Strategy:
+   * - **`'node'` (Node)**
+   * - **`'classic'` (TypeScript pre 1.6)**
    *
+   * @since v1.6.0
    * @default ['AMD', 'System', 'ES6'].includes(module) ? 'classic' : 'node'
    */
   moduleResolution?: ModuleResolution
 
   /**
-   * Specifies the end of line sequence to be used
-   * when emitting files: 'crlf' (Windows) or 'lf' (Unix).
+   * Specifies the end of line sequence to be used when emitting files:
+   * - **`'crlf'` (Windows)**
+   * - **`'lf'` (Unix)**
    *
-   * @default 'LF'
+   * @since v1.5.0
+   * @default 'lf'
    */
   newLine?: NewLine
 
   /**
-   * Disable full export type
-   * checking (only critical parse and emit errors will be reported).
+   * Disable full export type checking
+   * (only critical parse and emit errors will be reported).
    *
+   * @since v5.6.0
    * @default false
    */
   noCheck?: boolean
@@ -509,14 +562,16 @@ export type CompilerOptions = {
   /**
    * Do not emit output.
    *
+   * @since v1.5.0
    * @default false
    */
   noEmit?: boolean
 
   /**
-   * Do not generate custom helper functions like
-   * `__extends` in compiled output.
+   * Do not generate custom helper functions like `__extends` in compiled
+   * output.
    *
+   * @since v1.5.0
    * @default false
    */
   noEmitHelpers?: boolean
@@ -524,20 +579,23 @@ export type CompilerOptions = {
   /**
    * Do not emit outputs if any export type checking errors were reported.
    *
+   * @since v1.4.0
    * @default false
    */
   noEmitOnError?: boolean
 
   /**
-   * Warn on expressions and declarations with an implied 'any' type.
+   * Warn on expressions and declarations with an implied `any` type.
    *
+   * @since v1.0.0
    * @default false
    */
   noImplicitAny?: boolean
 
   /**
-   * Raise error on 'this' expressions with an implied any type.
+   * Raise error on `this` expressions with an implied `any` type.
    *
+   * @since v2.0.0
    * @default false
    */
   noImplicitThis?: boolean
@@ -545,6 +603,7 @@ export type CompilerOptions = {
   /**
    * Report errors on unused locals.
    *
+   * @since v2.0.0
    * @default false
    */
   noUnusedLocals?: boolean
@@ -552,21 +611,24 @@ export type CompilerOptions = {
   /**
    * Report errors on unused parameters.
    *
+   * @since v2.0.0
    * @default false
    */
   noUnusedParameters?: boolean
 
   /**
-   * Do not include the default library file (lib.d.ts).
+   * Do not include the default library file (`lib.d.ts`).
    *
+   * @since v1.0.0
    * @default false
    */
   noLib?: boolean
 
   /**
-   * Do not add triple-slash references or module import targets to the
-   * list of compiled files.
+   * Do not add triple-slash references or module import targets to the list of
+   * compiled files.
    *
+   * @since v1.0.0
    * @default false
    */
   noResolve?: boolean
@@ -574,44 +636,64 @@ export type CompilerOptions = {
   /**
    * Disable strict checking of generic signatures in function types.
    *
+   * @since v2.5.0
    * @default false
    * @deprecated This option will be removed in TypeScript 5.5.
    */
   noStrictGenericChecks?: boolean
 
   /**
-   * @deprecated use `skipLibCheck` instead.
+   * It computes the final file location in a way that is not predictable or
+   * consistent.
+   *
+   * @since v1.0.0
+   * @deprecated Use {@linkcode CompilerOptions.outFile | outFile} instead.
+   */
+  out?: string
+
+  /**
+   * Skip type checking of default library declaration files.
+   *
+   * @since v1.6.0
+   * @deprecated Use {@linkcode CompilerOptions.skipLibCheck | skipLibCheck} instead.
    */
   skipDefaultLibCheck?: boolean
 
   /**
    * Skip export type checking of declaration files.
    *
+   * @since v2.0.0
    * @default false
    */
   skipLibCheck?: boolean
 
   /**
    * Concatenate and emit output to single file.
+   *
+   * @since v1.6.0
    */
   outFile?: string
 
   /**
    * Redirect output structure to the directory.
+   *
+   * @since v1.0.0
    */
   outDir?: string
 
   /**
-   * Do not erase const enum declarations in generated code.
+   * Do not erase `const enum` declarations in generated code.
    *
+   * @since v1.4.0
    * @default false
    */
   preserveConstEnums?: boolean
 
   /**
-   * Do not resolve symlinks to their real path;
-   * treat a symlinked file like a real one.
+   * Do not resolve symlinks to their real path; treat a symlinked file like a
+   * real one.
    *
+   * @since v2.5.0
    * @default false
    */
   preserveSymlinks?: boolean
@@ -619,6 +701,7 @@ export type CompilerOptions = {
   /**
    * Keep outdated console output in watch mode instead of clearing the screen.
    *
+   * @since v2.8.0
    * @default false
    */
   preserveWatchOutput?: boolean
@@ -626,6 +709,7 @@ export type CompilerOptions = {
   /**
    * Stylize errors and messages using color and context (experimental).
    *
+   * @since v1.8.0
    * @default true // Unless piping to another program or redirecting output to a file.
    */
   pretty?: boolean
@@ -633,28 +717,32 @@ export type CompilerOptions = {
   /**
    * Do not emit comments to output.
    *
+   * @since v1.0.0
    * @default false
    */
   removeComments?: boolean
 
   /**
-   * Rewrite '.ts', '.tsx', '.mts', and '.cts' file extensions in relative
-   * import paths to their JavaScript equivalent in output files.
+   * Rewrite `'.ts'`, `'.tsx'`, `'.mts'`, and `'.cts'` file extensions in
+   * relative import paths to their JavaScript equivalent in output files.
    *
+   * @since v5.7.0
    * @default false
    */
   rewriteRelativeImportExtensions?: boolean
 
   /**
-   * Specifies the root directory of input files.
+   * Specifies the root directory of input files. Use to control the output
+   * directory structure with `--outDir`.
    *
-   * Use to control the output directory structure with `--outDir`.
+   * @since v1.5.0
    */
   rootDir?: string
 
   /**
    * Unconditionally emit imports for unresolved files.
    *
+   * @since v1.5.0
    * @default false
    */
   isolatedModules?: boolean
@@ -663,14 +751,15 @@ export type CompilerOptions = {
    * Require sufficient annotation on exports so other tools can trivially
    * generate declaration files.
    *
-   * @default false
    * @since v5.5.0
+   * @default false
    */
   isolatedDeclarations?: boolean
 
   /**
-   * Generates corresponding '.map' file.
+   * Generates corresponding `'.map'` file.
    *
+   * @since v1.0.0
    * @default false
    */
   sourceMap?: boolean
@@ -678,21 +767,25 @@ export type CompilerOptions = {
   /**
    * Specifies the location where debugger should locate TypeScript files
    * instead of source locations.
+   *
+   * @since v1.0.0
    */
   sourceRoot?: string
 
   /**
    * Suppress excess property checks for object literals.
    *
+   * @since v1.6.0
    * @default false
    * @deprecated This option will be removed in TypeScript 5.5.
    */
   suppressExcessPropertyErrors?: boolean
 
   /**
-   * Suppress noImplicitAny errors for indexing objects
-   * lacking index signatures.
+   * Suppress {@linkcode CompilerOptions.noImplicitAny | noImplicitAny}
+   * errors for indexing objects lacking index signatures.
    *
+   * @since v1.4.0
    * @default false
    * @deprecated This option will be removed in TypeScript 5.5.
    */
@@ -700,19 +793,23 @@ export type CompilerOptions = {
 
   /**
    * Do not emit declarations for code that has an `@internal` annotation.
+   *
+   * @since v1.5.0
    */
   stripInternal?: boolean
 
   /**
    * Specify ECMAScript target version.
    *
+   * @since v1.0.0
    * @default 'es3'
    */
   target?: Target
 
   /**
-   * Default catch clause variables as `unknown` instead of `any`.
+   * Default `catch` clause variables as `unknown` instead of `any`.
    *
+   * @since v4.4.0
    * @default false
    */
   useUnknownInCatchVariables?: boolean
@@ -721,38 +818,42 @@ export type CompilerOptions = {
    * Watch input files.
    *
    * @default false
-   * @deprecated Use watchOptions instead.
+   * @deprecated Use {@linkcode TsConfigJson.watchOptions | watchOptions} instead.
    */
   watch?: boolean
 
   /**
-   * Specify the polling strategy to use when the system runs out of or
-   * doesn't support native file watchers.
+   * Specify the polling strategy to use when the system runs out of or doesn't
+   * support native file watchers.
    *
-   * @deprecated Use watchOptions.fallbackPolling instead.
+   * @since v3.8.0
+   * @deprecated Use {@linkcode WatchOptions.fallbackPolling | watchOptions.fallbackPolling} instead.
    */
   fallbackPolling?: FallbackPolling
 
   /**
-   * Specify the strategy for watching directories under systems that
-   * lack recursive file-watching functionality.
+   * Specify the strategy for watching directories under systems that lack
+   * recursive file-watching functionality.
    *
+   * @since v3.8.0
    * @default 'useFsEvents'
-   * @deprecated Use watchOptions.watchDirectory instead.
+   * @deprecated Use {@linkcode WatchOptions.watchDirectory | watchOptions.watchDirectory} instead.
    */
   watchDirectory?: WatchDirectory
 
   /**
    * Specify the strategy for watching individual files.
    *
+   * @since v3.8.0
    * @default 'useFsEvents'
-   * @deprecated Use watchOptions.watchFile instead.
+   * @deprecated Use {@linkcode WatchOptions.watchFile | watchOptions.watchFile} instead.
    */
   watchFile?: WatchFile
 
   /**
    * Enables experimental support for ES7 decorators.
    *
+   * @since v1.5.0
    * @default false
    */
   experimentalDecorators?: boolean
@@ -760,6 +861,7 @@ export type CompilerOptions = {
   /**
    * Emit design-export type metadata for decorated declarations in source.
    *
+   * @since v1.5.0
    * @default false
    */
   emitDecoratorMetadata?: boolean
@@ -767,6 +869,7 @@ export type CompilerOptions = {
   /**
    * Do not report errors on unused labels.
    *
+   * @since v1.8.0
    * @default false
    */
   allowUnusedLabels?: boolean
@@ -774,6 +877,7 @@ export type CompilerOptions = {
   /**
    * Report error when not all code paths in function return a value.
    *
+   * @since v1.8.0
    * @default false
    */
   noImplicitReturns?: boolean
@@ -781,6 +885,7 @@ export type CompilerOptions = {
   /**
    * Add `undefined` to a export type when accessed using an index.
    *
+   * @since v4.1.0
    * @default false
    */
   noUncheckedIndexedAccess?: boolean
@@ -788,21 +893,24 @@ export type CompilerOptions = {
   /**
    * Report error if failed to find a source file for a side effect import.
    *
+   * @since v5.6.0
    * @default false
    */
   noUncheckedSideEffectImports?: boolean
 
   /**
-   * Report errors for fallthrough cases in switch statement.
+   * Report errors for fallthrough cases in `switch` statement.
    *
+   * @since v1.8.0
    * @default false
    */
   noFallthroughCasesInSwitch?: boolean
 
   /**
-   * Ensure overriding members in derived classes are marked with an override
+   * Ensure overriding members in derived classes are marked with an `override`
    * modifier.
    *
+   * @since v4.3.0
    * @default false
    */
   noImplicitOverride?: boolean
@@ -810,6 +918,7 @@ export type CompilerOptions = {
   /**
    * Do not report errors on unreachable code.
    *
+   * @since v1.8.0
    * @default false
    */
   allowUnreachableCode?: boolean
@@ -817,6 +926,7 @@ export type CompilerOptions = {
   /**
    * Disallow inconsistently-cased references to the same file.
    *
+   * @since v1.8.0
    * @default true
    */
   forceConsistentCasingInFileNames?: boolean
@@ -824,56 +934,74 @@ export type CompilerOptions = {
   /**
    * Emit a v8 CPU profile of the compiler run for debugging.
    *
+   * @since v3.7.0
    * @default 'profile.cpuprofile'
    */
-  generateCpuProfile?: string
+  generateCpuProfile?: StringLiteralUnion<'profile.cpuprofile'>
 
   /**
    * Generates an event trace and a list of types.
+   *
+   * @since v4.1.0
    */
   generateTrace?: boolean
 
   /**
    * Base directory to resolve non-relative module names.
+   *
+   * @since v2.0.0
    */
   baseUrl?: string
 
   /**
-   * Specify path mapping to be computed relative to baseUrl option.
+   * Specify path mapping to be computed relative to
+   * {@linkcode CompilerOptions.baseUrl | baseUrl} option.
+   *
+   * @since v2.0.0
    */
   paths?: Record<string, string[]>
 
   /**
    * List of TypeScript language server plugins to load.
+   *
+   * @since v2.2.0
    */
   plugins?: Plugin[]
 
   /**
    * Specify list of root directories to be used when resolving modules.
+   *
+   * @since v2.0.0
    */
   rootDirs?: string[]
 
   /**
    * Specify list of directories for export type definition files to be
    * included.
+   *
+   * @since v2.0.0
    */
   typeRoots?: string[]
 
   /**
    * Type declaration files to be included in compilation.
+   *
+   * @since v2.0.0
    */
   types?: string[]
 
   /**
    * Enable tracing of the name resolution process.
    *
+   * @since v2.0.0
    * @default false
    */
   traceResolution?: boolean
 
   /**
-   * Allow javascript files to be compiled.
+   * Allow JavaScript files to be compiled.
    *
+   * @since v1.8.0
    * @default false
    */
   allowJs?: boolean
@@ -881,14 +1009,16 @@ export type CompilerOptions = {
   /**
    * Do not truncate error messages.
    *
+   * @since v1.0.0
    * @default false
    */
   noErrorTruncation?: boolean
 
   /**
-   * Allow default imports from modules with no default export.
-   * This does not affect code emit, just typechecking.
+   * Allow `default` imports from modules with no `default` export. This does
+   * not affect code emit, just typechecking.
    *
+   * @since v1.8.0
    * @default module === 'system' || esModuleInterop
    */
   allowSyntheticDefaultImports?: boolean
@@ -896,6 +1026,7 @@ export type CompilerOptions = {
   /**
    * Do not emit `'use strict'` directives in module output.
    *
+   * @since v1.8.0
    * @default false
    * @deprecated This option will be removed in TypeScript 5.5.
    */
@@ -904,6 +1035,7 @@ export type CompilerOptions = {
   /**
    * Enable to list all emitted files.
    *
+   * @since v2.0.0
    * @default false
    */
   listEmittedFiles?: boolean
@@ -911,33 +1043,39 @@ export type CompilerOptions = {
   /**
    * Disable size limit for JavaScript project.
    *
+   * @since v2.0.0
    * @default false
    */
   disableSizeLimit?: boolean
 
   /**
    * List of library files to be included in the compilation.
+   *
+   * @since v2.0.0
    */
   lib?: Lib[]
 
   /**
    * Enable strict null checks.
    *
+   * @since v2.0.0
    * @default false
    */
   strictNullChecks?: boolean
 
   /**
-   * The maximum dependency depth to search under `node_modules` and
-   * load JavaScript files. Only applicable with `--allowJs`.
+   * The maximum dependency depth to search under `node_modules` and load
+   * JavaScript files. Only applicable with `--allowJs`.
    *
+   * @since v2.0.0
    * @default 0
    */
   maxNodeModuleJsDepth?: number
 
   /**
-   * Import emit helpers (e.g. `__extends`, `__rest`, etc..) from tslib.
+   * Import emit helpers (e.g. `__extends`, `__rest`, etc..) from `tslib`.
    *
+   * @since v2.1.0
    * @default false
    */
   importHelpers?: boolean
@@ -945,14 +1083,16 @@ export type CompilerOptions = {
   /**
    * Specify emit/checking behavior for imports that are only used for types.
    *
+   * @since v3.8.0
    * @default 'remove'
-   * @deprecated Use `verbatimModuleSyntax` instead.
+   * @deprecated Use {@linkcode CompilerOptions.verbatimModuleSyntax | verbatimModuleSyntax} instead.
    */
   importsNotUsedAsValues?: ImportsNotUsedAsValues
 
   /**
    * Parse in strict mode and emit `'use strict'` for each source file.
    *
+   * @since v2.1.0
    * @default false
    */
   alwaysStrict?: boolean
@@ -960,14 +1100,16 @@ export type CompilerOptions = {
   /**
    * Enable all strict export type checking options.
    *
+   * @since v2.3.0
    * @default false
    */
   strict?: boolean
 
   /**
-   * Enable stricter checking of of the `bind`, `call`, and
-   * `apply` methods on functions.
+   * Enable stricter checking of of the `bind`, `call`, and `apply` methods on
+   * functions.
    *
+   * @since v3.2.0
    * @default false
    */
   strictBindCallApply?: boolean
@@ -976,6 +1118,7 @@ export type CompilerOptions = {
    * Provide full support for iterables in `for-of`, spread, and
    * destructuring when targeting `ES5` or `ES3`.
    *
+   * @since v2.3.0
    * @default false
    */
   downlevelIteration?: boolean
@@ -983,14 +1126,16 @@ export type CompilerOptions = {
   /**
    * Report errors in `.js` files.
    *
+   * @since v2.3.0
    * @default false
    */
   checkJs?: boolean
 
   /**
    * Built-in iterators are instantiated with a `TReturn` export type of
-   * undefined instead of `any`.
+   * `undefined` instead of `any`.
    *
+   * @since v5.6.0
    * @default false
    */
   strictBuiltinIteratorReturn?: boolean
@@ -998,6 +1143,7 @@ export type CompilerOptions = {
   /**
    * Disable bivariant parameter checking for function types.
    *
+   * @since v2.6.0
    * @default false
    */
   strictFunctionTypes?: boolean
@@ -1005,6 +1151,7 @@ export type CompilerOptions = {
   /**
    * Ensure non-undefined class properties are initialized in the constructor.
    *
+   * @since v2.7.0
    * @default false
    */
   strictPropertyInitialization?: boolean
@@ -1014,6 +1161,7 @@ export type CompilerOptions = {
    * ecosystem compatibility and enable `--allowSyntheticDefaultImports` for
    * typesystem compatibility.
    *
+   * @since v2.7.0
    * @default false
    */
   esModuleInterop?: boolean
@@ -1021,6 +1169,7 @@ export type CompilerOptions = {
   /**
    * Allow accessing UMD globals from modules.
    *
+   * @since v3.5.0
    * @default false
    */
   allowUmdGlobalAccess?: boolean
@@ -1029,6 +1178,7 @@ export type CompilerOptions = {
    * Resolve `keyof` to string valued
    * property names only (no numbers or symbols).
    *
+   * @since v2.9.0
    * @default false
    * @deprecated This option will be removed in TypeScript 5.5.
    */
@@ -1037,6 +1187,7 @@ export type CompilerOptions = {
   /**
    * Emit ECMAScript standard class fields.
    *
+   * @since v3.7.0
    * @default false
    */
   useDefineForClassFields?: boolean
@@ -1044,6 +1195,7 @@ export type CompilerOptions = {
   /**
    * Generates a sourcemap for each corresponding `.d.ts` file.
    *
+   * @since v2.3.0
    * @default false
    */
   declarationMap?: boolean
@@ -1051,14 +1203,16 @@ export type CompilerOptions = {
   /**
    * Include modules imported with `.json` extension.
    *
+   * @since v2.9.0
    * @default false
    */
   resolveJsonModule?: boolean
 
   /**
-   * Have recompiles in '--incremental' and '--watch' assume that changes
+   * Have recompiles in `--incremental` and `--watch` assume that changes
    * within a file will only affect files directly depending on it.
    *
+   * @since v3.8.0
    * @default false
    */
   assumeChangesOnlyAffectDirectDependencies?: boolean
@@ -1066,6 +1220,7 @@ export type CompilerOptions = {
   /**
    * Output more detailed compiler performance information after building.
    *
+   * @since v2.0.0
    * @default false
    */
   extendedDiagnostics?: boolean
@@ -1082,6 +1237,7 @@ export type CompilerOptions = {
    * Disable preferring source files instead of declaration files when
    * referencing composite projects.
    *
+   * @since v3.7.0
    * @default true if composite, false otherwise
    */
   disableSourceOfProjectReferenceRedirect?: boolean
@@ -1089,6 +1245,7 @@ export type CompilerOptions = {
   /**
    * Opt a project out of multi-project reference checking when editing.
    *
+   * @since v3.8.0
    * @default false
    */
   disableSolutionSearching?: boolean
@@ -1097,6 +1254,7 @@ export type CompilerOptions = {
    * Print names of files which TypeScript sees as a part of your project and
    * the reason they are part of the compilation.
    *
+   * @since v4.2.0
    * @default false
    */
   explainFiles?: boolean
@@ -1105,44 +1263,51 @@ export type CompilerOptions = {
    * Preserve unused imported values in the JavaScript output that
    * would otherwise be removed.
    *
+   * @since v4.5.0
    * @default true
-   * @deprecated Use `verbatimModuleSyntax` instead.
+   * @deprecated Use {@linkcode CompilerOptions.verbatimModuleSyntax | verbatimModuleSyntax} instead.
    */
   preserveValueImports?: boolean
 
   /**
    * List of file name suffixes to search when resolving a module.
+   *
+   * @since v4.7.0
    */
   moduleSuffixes?: string[]
 
   /**
    * Control what method is used to detect module-format JS files.
    *
+   * @since v4.7.0
    * @default 'auto'
    */
   moduleDetection?: ModuleDetection
 
   /**
    * Allows TypeScript files to import each other with a
-   * TypeScript-specific extension like .ts, .mts, or .tsx.
+   * TypeScript-specific extension like `.ts`, `.mts`, or `.tsx`.
    *
+   * @since v5.0.0
    * @default false
    */
   allowImportingTsExtensions?: boolean
 
   /**
-   * Forces TypeScript to consult the exports field of package.json files
-   * if it ever reads from a package in node_modules.
+   * Forces TypeScript to consult the exports field of `package.json` files
+   * if it ever reads from a package in `node_modules`.
    *
+   * @since v5.0.0
    * @default false
    */
   resolvePackageJsonExports?: boolean
 
   /**
-   * Forces TypeScript to consult the imports field of package.json files
-   * when performing a lookup that starts with # from a file whose
-   * ancestor directory contains a package.json.
+   * Forces TypeScript to consult the imports field of `package.json` files
+   * when performing a lookup that starts with `#` from a file whose
+   * ancestor directory contains a `package.json`.
    *
+   * @since v5.0.0
    * @default false
    */
   resolvePackageJsonImports?: boolean
@@ -1150,31 +1315,38 @@ export type CompilerOptions = {
   /**
    * Suppress errors for file formats that TypeScript does not understand.
    *
+   * @since v5.0.0
    * @default false
    */
   allowArbitraryExtensions?: boolean
 
   /**
    * List of additional conditions that should succeed when TypeScript
-   * resolves from package.json.
+   * resolves from `package.json`.
+   *
+   * @since v5.0.0
    */
   customConditions?: string[]
 
   /**
    * Anything that uses the export type modifier is dropped entirely.
    *
+   * @since v5.0.0
    * @default false
    */
   verbatimModuleSyntax?: boolean
 
   /**
    * Suppress deprecation warnings
+   *
+   * @since v5.5.0
    */
   ignoreDeprecations?: IgnoreDeprecations
 
   /**
    * Do not allow runtime constructs that are not part of ECMAScript.
    *
+   * @since v5.8.0
    * @default false
    */
   erasableSyntaxOnly?: boolean
@@ -1182,6 +1354,7 @@ export type CompilerOptions = {
   /**
    * Enable lib replacement.
    *
+   * @since v5.8.0
    * @default true
    */
   libReplacement?: boolean
@@ -1211,6 +1384,7 @@ export type WatchOptions = {
   /**
    * Specify the strategy for watching individual files.
    *
+   * @since v3.8.0
    * @default 'UseFsEvents'
    */
   watchFile?: WatchFileKind | Lowercase<WatchFileKind>
@@ -1219,39 +1393,50 @@ export type WatchOptions = {
    * Specify the strategy for watching directories under systems that lack
    * recursive file-watching functionality.
    *
+   * @since v3.8.0
    * @default 'UseFsEvents'
    */
   watchDirectory?: WatchDirectoryKind | Lowercase<WatchDirectoryKind>
 
   /**
-   * Specify the polling strategy to use when the system runs out of or
-   * doesn't support native file watchers.
+   * Specify the polling strategy to use when the system runs out of or doesn't
+   * support native file watchers.
+   *
+   * @since v3.8.0
    */
   fallbackPolling?: PollingWatchKind | Lowercase<PollingWatchKind>
 
   /**
-   * Enable synchronous updates on directory watchers for platforms
-   * that don't support recursive watching natively.
+   * Enable synchronous updates on directory watchers for platforms that don't
+   * support recursive watching natively.
+   *
+   * @since v3.8.0
    */
   synchronousWatchDirectory?: boolean
 
   /**
    * Specifies a list of directories to exclude from watch.
+   *
+   * @since v4.2.0
    */
   excludeDirectories?: string[]
 
   /**
    * Specifies a list of files to exclude from watch.
+   *
+   * @since v4.2.0
    */
   excludeFiles?: string[]
 }
 
 /**
- * Auto export type (.d.ts) acquisition options for this project.
+ * Auto export type (`.d.ts`) acquisition options for this project.
  */
 export type TypeAcquisition = {
   /**
    * Enable auto export type acquisition.
+   *
+   * @default false
    */
   enable?: boolean
 
@@ -1270,6 +1455,8 @@ export type TypeAcquisition = {
   /**
    * Disable inferring what types should be added based on filenames in a
    * project.
+   *
+   * @since v4.1.0
    */
   disableFilenameBasedTypeAcquisition?: boolean
 }
@@ -1287,9 +1474,8 @@ export type References = {
 
   /**
    * True if the output of this reference should be prepended to the
-   * output of this project.
+   * output of this project. Only valid for `--outFile` compilations.
    *
-   * Only valid for `--outFile` compilations.
    * @deprecated This option will be removed in TypeScript 5.5.
    */
   prepend?: boolean
@@ -1302,11 +1488,11 @@ export type References = {
 
 /**
  * Type for
- * [TypeScript's `tsconfig.json` file](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+ * {@link https://www.typescriptlang.org/docs/handbook/tsconfig-json.html | TypeScript's `tsconfig.json` file}
  * (TypeScript 3.7).
  */
 export type TsConfigJson = {
-  $schema?: string
+  $schema?: 'https://json.schemastore.org/tsconfig'
 
   display?: string
 
@@ -1317,11 +1503,15 @@ export type TsConfigJson = {
 
   /**
    * Instructs the TypeScript compiler how to watch files.
+   *
+   * @since v3.8.0
    */
   watchOptions?: WatchOptions
 
   /**
    * Auto export type (.d.ts) acquisition options for this project.
+   *
+   * @since v2.1.0
    */
   typeAcquisition?: TypeAcquisition
 
@@ -1332,39 +1522,52 @@ export type TsConfigJson = {
 
   /**
    * Path to base configuration file to inherit from.
+   *
+   * @since v2.1.0
    */
   extends?: string | string[]
 
   /**
-   * If no `files` or `include` property is present in a `tsconfig.json`,
-   * the compiler defaults to including all files in the containing directory
-   * and subdirectories except those specified by `exclude`. When a
-   * `files` property is specified, only those files and those specified by
-   * `include` are included.
+   * If no {@linkcode TsConfigJson.files | files} or
+   * {@linkcode TsConfigJson.include | include} property is present in a
+   * `tsconfig.json`, the compiler defaults to including all files in the
+   * containing directory and subdirectories except those specified by
+   * {@linkcode TsConfigJson.exclude | exclude}. When a
+   * {@linkcode TsConfigJson.files | files} property is specified, only those
+   * files and those specified by {@linkcode TsConfigJson.include | include}
+   * are included.
+   *
+   * @since v1.5.0
    */
   files?: string[]
 
   /**
-   * Specifies a list of files to be excluded from compilation.
-   * The `exclude` property only affects the files included via
-   * the `include` property and not the `files` property.
+   * Specifies a list of files to be excluded from compilation. The
+   * {@linkcode TsConfigJson.exclude | exclude} property only affects the files
+   * included via the {@linkcode TsConfigJson.include | include} property and
+   * not the {@linkcode TsConfigJson.files | files} property. Glob patterns
+   * require TypeScript version 2.0 or later.
    *
-   * Glob patterns require TypeScript version 2.0 or later.
+   * @since v2.0.0
    */
   exclude?: string[]
 
   /**
    * Specifies a list of glob patterns that match files to be included in
-   * compilation.
+   * compilation. If no {@linkcode TsConfigJson.files | files} or
+   * {@linkcode TsConfigJson.include | include} property is present in a
+   * `tsconfig.json`, the compiler defaults to including all files in the
+   * containing directory and subdirectories except those specified by
+   * {@linkcode TsConfigJson.exclude | exclude}.
    *
-   * If no `files` or `include` property is present in a `tsconfig.json`,
-   * the compiler defaults to including all files in the containing directory
-   * and subdirectories except those specified by `exclude`.
+   * @since v2.0.0
    */
   include?: string[]
 
   /**
    * Referenced projects.
+   *
+   * @since v3.0.0
    */
   references?: References[]
 }
