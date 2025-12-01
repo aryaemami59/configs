@@ -18,56 +18,208 @@
     "url": "git+https://github.com/aryaemami59/configs.git",
     "directory": "packages/typescript"
   },
+  "files": [
+    "src",
+    "scripts"
+  ],
   "license": "MIT",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./node/tsconfig.json",
-    "./tsconfig.json": "./node/tsconfig.json",
-    "./node": "./node/tsconfig.json",
-    "./Node": "./node/tsconfig.json",
-    "./node/with-js": "./node/with-js/tsconfig.json",
-    "./Node/with-js": "./node/with-js/tsconfig.json",
-    "./bundler": "./bundler/esnext/tsconfig.json",
-    "./Bundler": "./bundler/esnext/tsconfig.json",
-    "./bundler/with-js": "./bundler/esnext/with-js/tsconfig.json",
-    "./Bundler/with-js": "./bundler/esnext/with-js/tsconfig.json",
-    "./bundler/esnext": "./bundler/esnext/tsconfig.json",
-    "./Bundler/esnext": "./bundler/esnext/tsconfig.json",
-    "./Bundler/ESNext": "./bundler/esnext/tsconfig.json",
-    "./bundler/esnext/with-js": "./bundler/esnext/with-js/tsconfig.json",
-    "./Bundler/esnext/with-js": "./bundler/esnext/with-js/tsconfig.json",
-    "./Bundler/ESNext/with-js": "./bundler/esnext/with-js/tsconfig.json",
-    "./bundler/preserve": "./bundler/preserve/tsconfig.json",
-    "./Bundler/preserve": "./bundler/preserve/tsconfig.json",
-    "./Bundler/Preserve": "./bundler/preserve/tsconfig.json",
-    "./bundler/preserve/with-js": "./bundler/preserve/with-js/tsconfig.json",
-    "./Bundler/preserve/with-js": "./bundler/preserve/with-js/tsconfig.json",
-    "./Bundler/Preserve/with-js": "./bundler/preserve/with-js/tsconfig.json",
-    "./cra": "./create-react-app/tsconfig.json",
-    "./create-react-app": "./create-react-app/tsconfig.json",
-    "./node-10": "./node-10/tsconfig.json",
-    "./node10": "./node-10/tsconfig.json",
-    "./Node10": "./node-10/tsconfig.json",
-    "./node-10/with-js": "./node-10/with-js/tsconfig.json",
-    "./node10/with-js": "./node-10/with-js/tsconfig.json",
-    "./Node10/with-js": "./node-10/with-js/tsconfig.json",
-    "./node-16": "./node-16/tsconfig.json",
-    "./node16": "./node-16/tsconfig.json",
-    "./Node16": "./node-16/tsconfig.json",
-    "./node-16/with-js": "./node-16/with-js/tsconfig.json",
-    "./node16/with-js": "./node-16/with-js/tsconfig.json",
-    "./Node16/with-js": "./node-16/with-js/tsconfig.json",
-    "./node-next": "./node-next/tsconfig.json",
-    "./nodenext": "./node-next/tsconfig.json",
-    "./NodeNext": "./node-next/tsconfig.json",
-    "./node-next/with-js": "./node-next/with-js/tsconfig.json",
-    "./nodenext/with-js": "./node-next/with-js/tsconfig.json",
-    "./NodeNext/with-js": "./node-next/with-js/tsconfig.json",
+    ".": "./src/node/tsconfig.json",
+    "./tsconfig.json": "./src/node/tsconfig.json",
+    "./node": "./src/node/tsconfig.json",
+    "./node/tsconfig.json": "./src/node/tsconfig.json",
+    "./Node": "./src/node/tsconfig.json",
+    "./node/with-js": "./src/node/with-js/tsconfig.json",
+    "./Node/with-js": "./src/node/with-js/tsconfig.json",
+    "./bundler": "./src/bundler/esnext/tsconfig.json",
+    "./bundler/tsconfig.json": "./src/bundler/esnext/tsconfig.json",
+    "./Bundler": "./src/bundler/esnext/tsconfig.json",
+    "./bundler/with-js": "./src/bundler/esnext/with-js/tsconfig.json",
+    "./Bundler/with-js": "./src/bundler/esnext/with-js/tsconfig.json",
+    "./bundler/esnext": "./src/bundler/esnext/tsconfig.json",
+    "./Bundler/esnext": "./src/bundler/esnext/tsconfig.json",
+    "./Bundler/ESNext": "./src/bundler/esnext/tsconfig.json",
+    "./bundler/esnext/with-js": "./src/bundler/esnext/with-js/tsconfig.json",
+    "./Bundler/esnext/with-js": "./src/bundler/esnext/with-js/tsconfig.json",
+    "./Bundler/ESNext/with-js": "./src/bundler/esnext/with-js/tsconfig.json",
+    "./bundler/preserve": "./src/bundler/preserve/tsconfig.json",
+    "./Bundler/preserve": "./src/bundler/preserve/tsconfig.json",
+    "./Bundler/Preserve": "./src/bundler/preserve/tsconfig.json",
+    "./bundler/preserve/with-js": "./src/bundler/preserve/with-js/tsconfig.json",
+    "./Bundler/preserve/with-js": "./src/bundler/preserve/with-js/tsconfig.json",
+    "./Bundler/Preserve/with-js": "./src/bundler/preserve/with-js/tsconfig.json",
+    "./cra": "./src/create-react-app/tsconfig.json",
+    "./create-react-app": "./src/create-react-app/tsconfig.json",
+    "./node-10": "./src/node-10/tsconfig.json",
+    "./node10": "./src/node-10/tsconfig.json",
+    "./node10/tsconfig.json": "./src/node-10/tsconfig.json",
+    "./Node10": "./src/node-10/tsconfig.json",
+    "./node-10/with-js": "./src/node-10/with-js/tsconfig.json",
+    "./node10/with-js": "./src/node-10/with-js/tsconfig.json",
+    "./Node10/with-js": "./src/node-10/with-js/tsconfig.json",
+    "./node-16": "./src/node-16/tsconfig.json",
+    "./node16": "./src/node-16/tsconfig.json",
+    "./node16/tsconfig.json": "./src/node-16/tsconfig.json",
+    "./Node16": "./src/node-16/tsconfig.json",
+    "./node-16/with-js": "./src/node-16/with-js/tsconfig.json",
+    "./node16/with-js": "./src/node-16/with-js/tsconfig.json",
+    "./Node16/with-js": "./src/node-16/with-js/tsconfig.json",
+    "./node-next": "./src/node-next/tsconfig.json",
+    "./nodenext": "./src/node-next/tsconfig.json",
+    "./nodenext/tsconfig.json": "./src/node-next/tsconfig.json",
+    "./NodeNext": "./src/node-next/tsconfig.json",
+    "./node-next/with-js": "./src/node-next/with-js/tsconfig.json",
+    "./nodenext/with-js": "./src/node-next/with-js/tsconfig.json",
+    "./NodeNext/with-js": "./src/node-next/with-js/tsconfig.json",
     "./package.json": "./package.json"
   },
-  "main": "./node/tsconfig.json",
+  "main": "./src/node/tsconfig.json",
+  "types": "./src/node/tsconfig.json",
+  "typesVersions": {
+    "*": {
+      "tsconfig.json": [
+        "src/node/tsconfig.json"
+      ],
+      "node": [
+        "src/node/tsconfig.json"
+      ],
+      "node/tsconfig.json": [
+        "src/node/tsconfig.json"
+      ],
+      "node/with-js": [
+        "src/node/with-js/tsconfig.json"
+      ],
+      "Node": [
+        "src/node/tsconfig.json"
+      ],
+      "Node/with-js": [
+        "src/node/with-js/tsconfig.json"
+      ],
+      "bundler": [
+        "src/bundler/esnext/tsconfig.json"
+      ],
+      "bundler/tsconfig.json": [
+        "src/bundler/esnext/tsconfig.json"
+      ],
+      "bundler/esnext": [
+        "src/bundler/esnext/tsconfig.json"
+      ],
+      "bundler/esnext/with-js": [
+        "src/bundler/esnext/with-js/tsconfig.json"
+      ],
+      "bundler/with-js": [
+        "src/bundler/esnext/with-js/tsconfig.json"
+      ],
+      "bundler/preserve": [
+        "src/bundler/preserve/tsconfig.json"
+      ],
+      "bundler/preserve/with-js": [
+        "src/bundler/preserve/with-js/tsconfig.json"
+      ],
+      "Bundler": [
+        "src/bundler/esnext/tsconfig.json"
+      ],
+      "Bundler/esnext": [
+        "src/bundler/esnext/tsconfig.json"
+      ],
+      "Bundler/esnext/with-js": [
+        "src/bundler/esnext/with-js/tsconfig.json"
+      ],
+      "Bundler/ESNext": [
+        "src/bundler/esnext/tsconfig.json"
+      ],
+      "Bundler/ESNext/with-js": [
+        "src/bundler/esnext/with-js/tsconfig.json"
+      ],
+      "Bundler/with-js": [
+        "src/bundler/esnext/with-js/tsconfig.json"
+      ],
+      "Bundler/preserve": [
+        "src/bundler/preserve/tsconfig.json"
+      ],
+      "Bundler/Preserve": [
+        "src/bundler/preserve/tsconfig.json"
+      ],
+      "Bundler/preserve/with-js": [
+        "src/bundler/preserve/with-js/tsconfig.json"
+      ],
+      "Bundler/Preserve/with-js": [
+        "src/bundler/preserve/with-js/tsconfig.json"
+      ],
+      "cra": [
+        "src/create-react-app/tsconfig.json"
+      ],
+      "create-react-app": [
+        "src/create-react-app/tsconfig.json"
+      ],
+      "node-10": [
+        "src/node-10/tsconfig.json"
+      ],
+      "node-10/with-js": [
+        "src/node-10/with-js/tsconfig.json"
+      ],
+      "node10": [
+        "src/node-10/tsconfig.json"
+      ],
+      "node10/tsconfig.json": [
+        "src/node-10/tsconfig.json"
+      ],
+      "node10/with-js": [
+        "src/node-10/with-js/tsconfig.json"
+      ],
+      "Node10": [
+        "src/node-10/tsconfig.json"
+      ],
+      "Node10/with-js": [
+        "src/node-10/with-js/tsconfig.json"
+      ],
+      "node-16": [
+        "src/node-16/tsconfig.json"
+      ],
+      "node-16/with-js": [
+        "src/node-16/with-js/tsconfig.json"
+      ],
+      "node16": [
+        "src/node-16/tsconfig.json"
+      ],
+      "node16/tsconfig.json": [
+        "src/node-16/tsconfig.json"
+      ],
+      "node16/with-js": [
+        "src/node-16/with-js/tsconfig.json"
+      ],
+      "Node16": [
+        "src/node-16/tsconfig.json"
+      ],
+      "Node16/with-js": [
+        "src/node-16/with-js/tsconfig.json"
+      ],
+      "node-next": [
+        "src/node-next/tsconfig.json"
+      ],
+      "node-next/with-js": [
+        "src/node-next/with-js/tsconfig.json"
+      ],
+      "nodenext": [
+        "src/node-next/tsconfig.json"
+      ],
+      "nodenext/tsconfig.json": [
+        "src/node-next/tsconfig.json"
+      ],
+      "nodenext/with-js": [
+        "src/node-next/with-js/tsconfig.json"
+      ],
+      "NodeNext": [
+        "src/node-next/tsconfig.json"
+      ],
+      "NodeNext/with-js": [
+        "src/node-next/with-js/tsconfig.json"
+      ]
+    }
+  },
   "scripts": {
     "build": "node scripts/build.ts",
     "check-exports": "attw --pack $INIT_CWD",

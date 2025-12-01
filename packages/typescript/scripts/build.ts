@@ -155,7 +155,12 @@ const build = async () => {
         ,
         { directory, module: moduleKind, moduleResolution, subDirectory },
       ]) => {
-        const directoryPath = path.join(ROOT_DIRECTORY, directory, subDirectory)
+        const directoryPath = path.join(
+          ROOT_DIRECTORY,
+          'src',
+          directory,
+          subDirectory,
+        )
 
         const tsconfigJsonPath = path.join(directoryPath, 'tsconfig.json')
 
