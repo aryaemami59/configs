@@ -221,7 +221,7 @@ const build = async () => {
               sourceMap: true,
               strict: true,
               target: 'esnext',
-              types: ['node', 'vitest/globals', 'vitest/importMeta'],
+              types: ['node'],
               useDefineForClassFields: true,
               useUnknownInCatchVariables: true,
             }),

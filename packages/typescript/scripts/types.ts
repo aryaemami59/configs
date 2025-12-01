@@ -1,5 +1,50 @@
 import type { StringLiteralUnion } from './typeHelpers.ts'
 
+export type BuildOptions = {
+  /**
+   * Have recompiles in projects that use `incremental` and `watch` mode assume
+   * that changes within a file will only affect files directly depending on it.
+   *
+   * @default false
+   */
+  assumeChangesOnlyAffectDirectDependencies?: boolean
+
+  /**
+   * Show what would be built (or deleted, if specified with `--clean`).
+   *
+   * @default false
+   */
+  dry?: boolean
+
+  /**
+   * Build all projects, including those that appear to be up to date.
+   *
+   * @default false
+   */
+  force?: boolean
+
+  /**
+   * Save `.tsbuildinfo` files to allow for incremental compilation of projects.
+   *
+   * @default false
+   */
+  incremental?: boolean
+
+  /**
+   * Log paths used during the `moduleResolution` process.
+   *
+   * @default false
+   */
+  traceResolution?: boolean
+
+  /**
+   * Enable verbose logging.
+   *
+   * @default false
+   */
+  verbose?: boolean
+}
+
 export type JSX =
   | 'preserve'
   | 'react'
@@ -1495,6 +1540,8 @@ export type TsConfigJson = {
   $schema?: 'https://json.schemastore.org/tsconfig'
 
   display?: string
+
+  buildOptions?: BuildOptions
 
   /**
    * Instructs the TypeScript compiler how to compile `.ts` files.
