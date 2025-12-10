@@ -18,9 +18,9 @@
   "devDependencies": {
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "jsdom": "^27.2.0",
+    "jsdom": "^27.3.0",
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.14"
+    "vitest": "^4.0.15"
   }
 }
