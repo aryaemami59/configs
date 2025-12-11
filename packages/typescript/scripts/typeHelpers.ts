@@ -136,11 +136,9 @@ export type Simplify<BaseType> = BaseType extends BaseType
  *
  * type Union = A | B;
  *
- * function createOmittedUnion(): Omit<Union, "foo"> {
- *   return { discriminant: "A" };
- * }
- *
- * const omittedUnion = createOmittedUnion();
+ * const omittedUnion: Omit<Union, "foo"> = {
+ *   discriminant: "A",
+ * };
  *
  * if (omittedUnion.discriminant === "A") {
  *   // We would like to narrow `omittedUnion`'s type to `A` here,
@@ -151,14 +149,10 @@ export type Simplify<BaseType> = BaseType extends BaseType
  *   // => ❌ Error: Property 'a' does not exist on type '{ discriminant: "A" | "B" }'
  * }
  *
- * function createDistributedOmittedUnion(): DistributedOmit<Union, "foo"> {
- *   return {
- *     a: 123,
- *     discriminant: "A",
- *   };
- * }
- *
- * const distributedOmittedUnion = createDistributedOmittedUnion();
+ * const distributedOmittedUnion: DistributedOmit<Union, "foo"> = {
+ *   a: 123,
+ *   discriminant: "A",
+ * };
  *
  * if (distributedOmittedUnion.discriminant === "A") {
  *   // We can successfully narrow `distributedOmittedUnion`'s type to `A` here,
@@ -178,6 +172,99 @@ export type DistributedOmit<
   ObjectType,
   KeyType extends keyof ObjectType,
 > = ObjectType extends unknown ? Omit<ObjectType, KeyType> : never
+
+/**
+ * Picks keys from a type, **distributing** the operation over a union.
+ * TypeScript's {@linkcode Pick} does **not** distribute over unions,
+ * which can lead to the erasure of unique properties from union members
+ * when picking keys. This causes the resulting type to retain only
+ * properties common to all union members, making it impossible to access
+ * member-specific properties after using {@linkcode Pick}.
+ * In other words, using {@linkcode Pick} on a union merges its members into
+ * a less specific type, breaking type narrowing and property access based
+ * on discriminants. This utility solves that limitation by applying
+ * {@linkcode Pick} distributively to each union member.
+ *
+ * @example
+ * <caption>Demonstrating `Pick` vs `DistributedPick`</caption>
+ *
+ * ```ts
+ * type A = {
+ *   discriminant: "A";
+ *   extraneous: boolean;
+ *   foo: {
+ *     bar: string;
+ *   };
+ * };
+ *
+ * type B = {
+ *   discriminant: "B";
+ *   extraneous: boolean;
+ *   foo: {
+ *     baz: string;
+ *   };
+ * };
+ *
+ * // Notice that `foo.bar` exists in `A` but not in `B`.
+ *
+ * type Union = A | B;
+ *
+ * const pickedUnion: Pick<Union, "discriminant" | "foo"> = {
+ *   discriminant: "A",
+ *   foo: {
+ *     bar: "",
+ *   },
+ * };
+ *
+ * if (pickedUnion.discriminant === "A") {
+ *   // We would like to narrow to `A` here,
+ *   // but we can't because `Pick` doesn't distribute over unions.
+ *
+ *   // @ts-expect-error
+ *   pickedUnion.foo.bar;
+ *   //=> ❌ Error: Property 'bar' does not exist on type '{ bar: string; } | { baz: string; }'.
+ *
+ *   // @ts-expect-error
+ *   pickedUnion.extraneous;
+ *   //=> ❌ Error: Property 'extraneous' does not exist on type 'Pick<Union, "discriminant" | "foo">'.
+ *
+ *   // @ts-expect-error
+ *   pickedUnion.foo.baz;
+ *   // => ❌ Error: Property 'baz' does not exist on type '{ bar: string; } | { baz: string; }'.
+ * }
+ *
+ * const distributedPickedUnion: DistributedPick<Union, "discriminant" | "foo"> = {
+ *   discriminant: "A",
+ *   foo: {
+ *     bar: "",
+ *   },
+ * };
+ *
+ * if (distributedPickedUnion.discriminant === "A") {
+ *   // Narrowing works correctly because the pick is applied per union member.
+ *
+ *   distributedPickedUnion.foo.bar;
+ *   // => ✅ OK
+ *
+ *   // @ts-expect-error
+ *   distributedPickedUnion.extraneous;
+ *   //=> ❌ Error: Property 'extraneous' does not exist on type 'Pick<A, "discriminant" | "foo">'.
+ *
+ *   // @ts-expect-error
+ *   distributedPickedUnion.foo.baz;
+ *   //=> ❌ Error: Property 'baz' does not exist on type '{ bar: string; }'.
+ * }
+ * ```
+ *
+ * @template ObjectType - The base object or union type to pick properties from.
+ * @template KeyType - The keys of {@linkcode ObjectType} to pick.
+ * @since v0.0.6 of **`@aryaemami59/tsconfig`**
+ * @internal
+ */
+export type DistributedPick<
+  ObjectType,
+  KeyType extends keyof ObjectType,
+> = ObjectType extends unknown ? Pick<ObjectType, KeyType> : never
 
 /**
  * A stricter version of
@@ -255,6 +342,7 @@ export type ExcludeStrict<
  *
  * @template StringType - The string literal type to convert to kebab-case.
  * @template FirstRun - Internal helper to avoid prefixing the first character with a hyphen.
+ * @since v0.0.6 of **`@aryaemami59/tsconfig`**
  * @internal
  * @see {@link https://stackoverflow.com/a/66140779 Source}
  */
