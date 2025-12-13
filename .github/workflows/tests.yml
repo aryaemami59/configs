@@ -1,6 +1,9 @@
 name: CI
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: '${{ github.workflow }} - ${{ github.head_ref || github.ref }}'
@@ -20,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
         uses: ./.github/actions/prepare
@@ -50,7 +53,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
         uses: ./.github/actions/prepare
@@ -83,7 +86,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
         uses: ./.github/actions/prepare
@@ -96,7 +99,7 @@ jobs:
         run: yarn pack
 
       - name: Upload artifact ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         id: artifact-upload-step
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
@@ -127,7 +130,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
         uses: ./.github/actions/prepare
@@ -135,7 +138,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
           path: examples/${{ matrix.package.directory }}
@@ -178,7 +181,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
         uses: ./.github/actions/prepare
@@ -186,7 +189,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
           path: packages/${{ matrix.package.directory }}
@@ -222,7 +225,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
         uses: ./.github/actions/prepare
@@ -230,7 +233,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
           path: packages/${{ matrix.package.directory }}

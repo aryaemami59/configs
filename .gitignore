@@ -30,3 +30,4 @@ tsconfig*.vitest-temp.json
 tsconfig*.tsbuildinfo
 .docusaurus/
 .rolldown/
+.vitest-dump/

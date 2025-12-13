@@ -5,8 +5,11 @@ import packageJson from './package.json' with { type: 'json' }
 
 const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
+    clean: false,
     cwd: import.meta.dirname,
-    debug: {},
+    debug: {
+      clean: false,
+    },
     dts: {
       build: false,
       cwd: import.meta.dirname,
@@ -14,6 +17,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
       eager: true,
       emitDtsOnly: false,
       emitJs: false,
+      enabled: true,
       incremental: false,
       newContext: true,
       oxc: false,
@@ -37,7 +41,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
     platform: 'node',
     shims: true,
     sourcemap: true,
-    target: ['esnext', 'node22'],
+    target: ['esnext'],
     tsconfig: path.join(import.meta.dirname, 'tsconfig.build.json'),
     ...cliOptions,
   } as const satisfies InlineConfig
