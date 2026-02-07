@@ -7,7 +7,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
     clean: false,
     cwd: import.meta.dirname,
-    debug: {
+    devtools: {
       clean: false,
     },
     dts: {
@@ -42,6 +42,9 @@ const tsdownConfig = defineConfig((cliOptions) => {
     shims: true,
     sourcemap: true,
     target: ['esnext'],
+    treeshake: {
+      moduleSideEffects: false,
+    },
     tsconfig: path.join(import.meta.dirname, 'tsconfig.build.json'),
     ...cliOptions,
   } as const satisfies InlineConfig
@@ -54,7 +57,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
     },
     {
       ...commonOptions,
-      external: ['debug', 'globrex', 'tsconfck'],
+      // external: ['debug', 'globrex', 'tsconfck'],
       format: ['cjs'],
 
       name: `${packageJson.name} CJS Development`,
@@ -62,7 +65,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
       // it is an ESM module (has `"type": "module"` in its `package.json`),
       // and cannot be imported using the `require` syntax,
       // we can inline it to get around this problem.
-      noExternal: ['vite-tsconfig-paths'],
+      // inlineOnly: ['vite-tsconfig-paths'],
     },
   ] as const satisfies UserConfig[]
 })

@@ -59,9 +59,9 @@ export const flatESLintConfig = [
   } as const satisfies FlatConfig.Config satisfies Linter.Config,
 
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
-  ...(configs.recommended satisfies Linter.Config[] as Linter.Config[]),
+  ...(configs.recommended satisfies Linter.Config[] as Linter.Config<any>[]),
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
-  ...(configs.stylistic satisfies Linter.Config[] as Linter.Config[]),
+  ...(configs.stylistic satisfies Linter.Config[] as Linter.Config<any>[]),
 
   {
     languageOptions: {

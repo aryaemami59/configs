@@ -7,7 +7,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
     clean: false,
     cwd: import.meta.dirname,
-    debug: {
+    devtools: {
       clean: false,
     },
     dts: {
@@ -42,6 +42,9 @@ const tsdownConfig = defineConfig((cliOptions) => {
     shims: true,
     sourcemap: true,
     target: ['esnext'],
+    treeshake: {
+      moduleSideEffects: false,
+    },
     tsconfig: path.join(import.meta.dirname, 'tsconfig.build.json'),
     ...cliOptions,
   } as const satisfies InlineConfig

@@ -233,9 +233,9 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@types/node": "^25.0.7",
-    "prettier": "^3.7.4",
-    "publint": "^0.3.16",
+    "@types/node": "^25.2.1",
+    "prettier": "^3.8.1",
+    "publint": "^0.3.17",
     "typescript": "^5.9.3"
   },
   "publishConfig": {
