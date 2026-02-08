@@ -1,0 +1,50 @@
+name: Publish Package to npmjs
+on:
+  # keeping it purely manual for now as to not accidentally trigger a release
+  #release:
+  #  types: [published]
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package'
+        required: true
+        type: choice
+        options:
+          - '@aryaemami59/eslint-config'
+          - '@aryaemami59/prettier-config'
+          - '@aryaemami59/typescript-config'
+          - '@aryaemami59/vitest-config'
+      tag:
+        description: 'NPM dist-tag (latest, alpha, beta, next)'
+        required: true
+        default: 'latest'
+        type: choice
+        options:
+          - latest
+          - next
+          - alpha
+          - beta
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+          check-latest: true
+      - run: yarn install
+      - run: yarn workspaces foreach --all --no-private --jobs unlimited run build
+      - run: yarn workspaces foreach --all --no-private --jobs unlimited npm publish --access public --provenance --tag ${{ inputs.tag }}
