@@ -12,7 +12,7 @@ on:
         options:
           - '@aryaemami59/eslint-config'
           - '@aryaemami59/prettier-config'
-          - '@aryaemami59/typescript-config'
+          - '@aryaemami59/tsconfig'
           - '@aryaemami59/vitest-config'
       tag:
         description: 'NPM dist-tag (latest, alpha, beta, next)'
@@ -47,4 +47,4 @@ jobs:
           check-latest: true
       - run: yarn install
       - run: yarn workspaces foreach --all --no-private --jobs unlimited run build
-      - run: yarn workspaces foreach --all --no-private --jobs unlimited npm publish --access public --provenance --tag ${{ inputs.tag }}
+      - run: yarn workspace ${{ inputs.package }} exec npm publish --access public --provenance --tag ${{ inputs.tag }}
