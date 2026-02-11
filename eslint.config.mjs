@@ -9,7 +9,7 @@ const eslintConfig = createESLintConfig([
   vitestPlugin.configs.env,
 
   {
-    name: `${perfectionistPlugin.meta.name}/recommended-natural`,
+    name: `${perfectionistPlugin.meta?.name}/recommended-natural`,
     ...perfectionistPlugin.configs['recommended-natural'],
   },
 
