@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint'
+import type { Linter } from './external.js'
 import { browser, node, nodeBuiltin, vitest } from './external.js'
 
 /**

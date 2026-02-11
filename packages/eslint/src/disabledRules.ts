@@ -1,4 +1,4 @@
-import type { Linter } from 'eslint'
+import type { Linter } from './external.js'
 
 /**
  * An object comprised of ESLint rules to disable.

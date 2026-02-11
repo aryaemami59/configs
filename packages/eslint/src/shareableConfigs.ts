@@ -1,9 +1,9 @@
+import packageJson from '../package.json' with { type: 'json' }
 import { disabledRules } from './disabledRules.js'
 import type { Config, FlatConfig, Linter } from './external.js'
 import { js, prettierConfig } from './external.js'
 import { globalIgnores } from './globalIgnores.js'
 import { globals } from './globals.js'
-import { packageJsonName } from './packageJsonName.js'
 
 /**
  * Flat ESLint configuration tailored for projects using TypeScript.
@@ -76,7 +76,7 @@ export const flatESLintConfig = [
       reportUnusedDisableDirectives: 2,
       reportUnusedInlineConfigs: 2,
     },
-    name: `${packageJsonName}/defaults/overrides`,
+    name: `${packageJson.name}/defaults/overrides`,
 
     rules: {
       // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
@@ -234,7 +234,7 @@ export const flatESLintConfig = [
     languageOptions: {
       sourceType: 'commonjs',
     } as const satisfies FlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
-    name: `${packageJsonName}/commonjs-files`,
+    name: `${packageJson.name}/commonjs-files`,
     rules: {
       '@typescript-eslint/no-require-imports': [
         0,

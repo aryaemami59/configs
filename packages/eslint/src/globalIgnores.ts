@@ -1,5 +1,5 @@
-import type { Config } from 'eslint/config'
-import { packageJsonName } from './packageJsonName.js'
+import packageJson from '../package.json' with { type: 'json' }
+import type { Config } from './external.js'
 
 /**
  * An object representing
@@ -28,5 +28,5 @@ export const globalIgnores = {
     '**/dist/',
     '**/temp/',
   ],
-  name: `${packageJsonName}/global-ignores`,
+  name: `${packageJson.name}/global-ignores`,
 } as const satisfies Config
