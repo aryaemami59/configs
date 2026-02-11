@@ -2,7 +2,8 @@
 
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
-import { format, resolveConfig } from 'prettier'
+import type { Options } from 'prettier'
+import { format } from 'prettier'
 import ts from 'typescript'
 import packageJson from '../package.json' with { type: 'json' }
 import type {
@@ -237,7 +238,10 @@ const build = async () => {
           }),
         } as const satisfies TsConfigJson
 
-        const prettierConfig = (await resolveConfig(tsconfigJsonPath)) ?? {}
+        const prettierConfig = {
+          semi: false,
+          singleQuote: true,
+        } as const satisfies Options
 
         fs.writeFile(
           tsconfigJsonPath,

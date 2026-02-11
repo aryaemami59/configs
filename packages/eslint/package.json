@@ -67,18 +67,18 @@
     "typecheck": "tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "dependencies": {
-    "@eslint/js": "^10",
-    "@typescript-eslint/utils": "^8.54.0",
+    "@eslint/js": "^9.39.2",
+    "@typescript-eslint/utils": "^8.55.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.3.0",
-    "typescript-eslint": "^8.54.0"
+    "typescript-eslint": "^8.55.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@aryaemami59/tsconfig": "workspace:^",
     "@eslint/core": "^1.1.0",
-    "@types/node": "^25.2.1",
-    "eslint": "^10.0.0",
+    "@types/node": "^25.2.3",
+    "eslint": "^9.39.2",
     "publint": "^0.3.17",
     "rimraf": "^6.1.2",
     "tsdown": "^0.20.3",
@@ -86,7 +86,7 @@
   },
   "peerDependencies": {
     "@eslint/core": "*",
-    "eslint": ">=9",
+    "eslint": "^9 || ^10",
     "typescript": "*"
   },
   "peerDependenciesMeta": {

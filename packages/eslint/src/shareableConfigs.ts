@@ -1,6 +1,5 @@
-import type { Linter } from 'eslint'
 import { disabledRules } from './disabledRules.js'
-import type { FlatConfig } from './external.js'
+import type { Config, FlatConfig, Linter } from './external.js'
 import { js, prettierConfig } from './external.js'
 import { globalIgnores } from './globalIgnores.js'
 import { globals } from './globals.js'
@@ -56,14 +55,14 @@ export const flatESLintConfig = [
   {
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
-  } as const satisfies FlatConfig.Config satisfies Linter.Config,
+  } as const satisfies FlatConfig.Config satisfies Config,
 
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  // ...(configs.recommended satisfies Linter.Config[] as Linter.Config<any>[]),
+  // ...(configs.recommended satisfies Config[] as Config<any>[]),
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  // ...(configs.stylistic satisfies Linter.Config[] as Linter.Config<any>[]),
+  // ...(configs.stylistic satisfies Config[] as Config<any>[]),
 
   {
     languageOptions: {
@@ -228,7 +227,7 @@ export const flatESLintConfig = [
 
       ...disabledRules,
     },
-  } as const satisfies Linter.Config,
+  } as const satisfies Config,
 
   {
     files: ['**/*.cjs'],
@@ -245,7 +244,7 @@ export const flatESLintConfig = [
         },
       ],
     },
-  } as const satisfies Linter.Config,
+  } as const satisfies Config,
 
   prettierConfig,
-] as const satisfies Linter.Config[]
+] as const satisfies Config[]

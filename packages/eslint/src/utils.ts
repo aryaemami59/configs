@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint'
-import { defineConfig } from 'eslint/config'
+import type { Config } from './external.js'
+import { defineConfig } from './external.js'
 import { flatESLintConfig } from './shareableConfigs.js'
 
 /**
@@ -88,5 +88,5 @@ import { flatESLintConfig } from './shareableConfigs.js'
  */
 export const createESLintConfig = (
   additionalOverrides: Parameters<typeof defineConfig> = [],
-): Linter.Config[] =>
+): Config[] =>
   /* @__PURE__ */ defineConfig(...flatESLintConfig, ...additionalOverrides)

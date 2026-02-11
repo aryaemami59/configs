@@ -40,7 +40,7 @@ jobs:
         run: yarn workspaces foreach -Ap -j unlimited run lint
 
   typecheck:
-    name: Test types with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
+    name: Type-check with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -49,7 +49,7 @@ jobs:
       matrix:
         node-version: [24, latest]
         os: [ubuntu-latest]
-        ts: [5.4, 5.5, 5.6, 5.7, 5.8, 5.9]
+        ts: ['5.5', '5.6', '5.7', '5.8', '5.9']
 
     steps:
       - name: Checkout repository

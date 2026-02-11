@@ -19,7 +19,7 @@
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "@types/node": "^25.2.1",
+    "@types/node": "^25.2.3",
     "prettier": "^3.8.1",
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3",

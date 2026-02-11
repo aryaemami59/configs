@@ -2,6 +2,7 @@ export { disabledRules } from './disabledRules.js'
 export {
   config,
   configs,
+  defineConfig,
   js,
   parser,
   plugin,
@@ -13,6 +14,8 @@ export type {
   ConfigWithExtends,
   FlatConfig,
   InfiniteDepthConfigWithExtends,
+  Linter,
+  TSESlintConfig,
 } from './external.js'
 export { globalIgnores } from './globalIgnores.js'
 export { globals, vitestGlobals } from './globals.js'
