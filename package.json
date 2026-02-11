@@ -1,6 +1,6 @@
 {
   "name": "configs-monorepo",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "description": "A set of config files for ease of use",
   "homepage": "https://github.com/aryaemami59/configs#readme",
