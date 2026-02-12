@@ -1,9 +1,9 @@
-import type { ExecFileOptionsWithStringEncoding } from 'node:child_process'
+import type { ExecOptionsWithStringEncoding } from 'node:child_process'
 import * as childProcess from 'node:child_process'
 import * as path from 'node:path'
 import { promisify, stripVTControlCharacters } from 'node:util'
 
-export const execFile = promisify(childProcess.execFile)
+export const exec = promisify(childProcess.exec)
 
 export const defaultCLICommand = 'prettier'
 
@@ -12,11 +12,10 @@ export const defaultCLIArguments = [
   'null',
 ] as const satisfies readonly string[]
 
-export const defaultExecFileOptions = {
+export const defaultExecOptions = {
   cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
-  shell: true,
-} as const satisfies ExecFileOptionsWithStringEncoding
+} as const satisfies ExecOptionsWithStringEncoding
 
 // TODO: Fix error messages in tests.
 /**
@@ -24,19 +23,18 @@ export const defaultExecFileOptions = {
  */
 export const runPrettierCLI = async (
   CLIArguments: readonly string[] = [],
-  execFileOptions?: Partial<ExecFileOptionsWithStringEncoding>,
+  execOptions?: Partial<ExecOptionsWithStringEncoding>,
 ) => {
   try {
-    const execFileResults = await execFile(
-      defaultCLICommand,
-      [...defaultCLIArguments, ...CLIArguments],
+    const execResults = await exec(
+      [defaultCLICommand, ...defaultCLIArguments, ...CLIArguments].join(' '),
       {
-        ...defaultExecFileOptions,
-        ...execFileOptions,
+        ...defaultExecOptions,
+        ...execOptions,
       },
     )
 
-    const { stderr, stdout } = execFileResults
+    const { stderr, stdout } = execResults
 
     if (stdout) {
       console.log(stdout)
@@ -46,7 +44,7 @@ export const runPrettierCLI = async (
       console.error(stderr)
     }
 
-    return execFileResults
+    return execResults
   } catch (error) {
     if (error instanceof Error) {
       error.message = stripVTControlCharacters(error.message)

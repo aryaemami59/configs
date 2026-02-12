@@ -1,27 +1,26 @@
-import type { ExecFileOptionsWithStringEncoding } from 'node:child_process'
+import type { ExecOptionsWithStringEncoding } from 'node:child_process'
 import * as childProcess from 'node:child_process'
 import * as path from 'node:path'
 import { promisify } from 'node:util'
 
-export const execFile = promisify(childProcess.execFile)
+export const exec = promisify(childProcess.exec)
 
 export const defaultCLICommand = 'eslint'
 
 export const defaultCLIArguments = [] as const satisfies readonly string[]
 
-export const defaultExecFileOptions = {
+export const defaultExecOptions = {
   cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
-  shell: true,
-} as const satisfies ExecFileOptionsWithStringEncoding
+} as const satisfies ExecOptionsWithStringEncoding
 
 export const runESLintCLI = (
   CLIArguments: readonly string[] = [],
-  execFileOptions?: Partial<ExecFileOptionsWithStringEncoding>,
+  execOptions?: Partial<ExecOptionsWithStringEncoding>,
 ) =>
-  execFile(defaultCLICommand, [...defaultCLIArguments, ...CLIArguments], {
-    ...defaultExecFileOptions,
-    ...execFileOptions,
+  exec([defaultCLICommand, ...defaultCLIArguments, ...CLIArguments].join(' '), {
+    ...defaultExecOptions,
+    ...execOptions,
   })
 
 export const fixturesDirectoryName = 'temp'
