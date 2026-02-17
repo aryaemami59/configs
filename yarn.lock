@@ -74,9 +74,6 @@ __metadata:
     "@eslint/core": "*"
     eslint: ^9 || ^10
     typescript: "*"
-  dependenciesMeta:
-    "@eslint/core":
-      optional: true
   peerDependenciesMeta:
     "@eslint/core":
       optional: true

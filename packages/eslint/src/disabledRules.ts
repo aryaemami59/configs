@@ -20,7 +20,7 @@ export const disabledRules = {
   ],
 
   // TODO: Remove this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  '@typescript-eslint/consistent-generic-constructors': [0],
+  // '@typescript-eslint/consistent-generic-constructors': [0],
 
   '@typescript-eslint/no-unused-vars': [
     0,

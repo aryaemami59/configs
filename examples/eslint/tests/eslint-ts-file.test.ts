@@ -8,7 +8,7 @@ import {
 } from './test-utils.js'
 
 // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-describe('linting TS files', { todo: true }, () => {
+describe('linting TS files', () => {
   const localTest = test.extend<LocalTestContext>({
     fileToBeLinted: path.posix.join(fixturesDirectoryName, 'ts', 'test.ts'),
   })

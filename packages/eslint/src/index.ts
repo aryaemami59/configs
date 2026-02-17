@@ -10,12 +10,13 @@ export {
 } from './external.js'
 export type {
   Config,
+  ESLint,
   Linter,
-  TSESlintConfig,
-  TSESlintConfigArray,
-  TSESlintConfigWithExtends,
-  TSESlintFlatConfig,
-  TSESlintInfiniteDepthConfigWithExtends,
+  TSESLintConfig,
+  TSESLintConfigArray,
+  TSESLintConfigWithExtends,
+  TSESLintFlatConfig,
+  TSESLintInfiniteDepthConfigWithExtends,
 } from './external.js'
 export { globalIgnores } from './globalIgnores.js'
 export { sharedEnvironmentGlobals, vitestGlobals } from './globals.js'

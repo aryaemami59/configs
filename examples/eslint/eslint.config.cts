@@ -19,6 +19,9 @@ const eslintConfig = createESLintConfig([
   },
   {
     name: `${basename}/additional`,
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': [2, 'type'],
+    },
     // ...Other additional overrides
   },
 ])

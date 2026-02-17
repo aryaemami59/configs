@@ -8,7 +8,9 @@ const vitestConfig = createVitestProject({
   test: {
     dir: path.join(__dirname, 'tests'),
     environment: 'jsdom',
-    name: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
+    name: {
+      label: `${packageJson.name}-${path.extname(__filename).replace('.', '')}`,
+    },
     root: __dirname,
 
     typecheck: {
