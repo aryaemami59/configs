@@ -68,14 +68,14 @@
     "typecheck": "tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "dependencies": {
-    "vite-tsconfig-paths": "^6.1.0"
+    "vite-tsconfig-paths": "^6.1.1"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@aryaemami59/tsconfig": "workspace:^",
     "@types/node": "^25.2.3",
     "publint": "^0.3.17",
-    "rimraf": "^6.1.2",
+    "rimraf": "^6.1.3",
     "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",

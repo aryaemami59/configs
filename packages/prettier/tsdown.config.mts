@@ -1,5 +1,5 @@
 import * as path from 'node:path'
-import type { InlineConfig, UserConfig } from 'tsdown'
+import type { InlineConfig, Rolldown, UserConfig } from 'tsdown'
 import { defineConfig } from 'tsdown'
 import packageJson from './package.json' with { type: 'json' }
 
@@ -37,7 +37,31 @@ const tsdownConfig = defineConfig((cliOptions) => {
     fixedExtension: false,
     hash: false,
     inlineOnly: [],
+    inputOptions: (options) =>
+      ({
+        ...options,
+        experimental: {
+          ...options.experimental,
+          lazyBarrel: true,
+        },
+      }) as const satisfies Rolldown.InputOptions,
     nodeProtocol: true,
+    outputOptions: (options, format, context) =>
+      ({
+        ...options,
+        codeSplitting: false,
+        // comments: {
+        //   annotation: true,
+        //   jsdoc: false,
+        //   legal: true,
+        // },
+        legalComments: 'none',
+        ...(format === 'cjs' && !context.cjsDts
+          ? {
+              intro: '"use strict";',
+            }
+          : {}),
+      }) as const satisfies Rolldown.OutputOptions,
     platform: 'node',
     shims: true,
     sourcemap: true,

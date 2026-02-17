@@ -1,4 +1,4 @@
-import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
+import type { Plugin, UserWorkspaceConfig, ViteUserConfig } from './external.js'
 import { plugins } from './plugins.js'
 
 /**
@@ -21,7 +21,7 @@ export const vitestProjectDefaults = {
   /**
    * @default [tsconfigPaths({ configNames: ['tsconfig.json'], projects: ['./tsconfig.json'] })]
    */
-  plugins,
+  plugins: plugins satisfies [Plugin],
 
   test: {
     /**

@@ -1,5 +1,10 @@
 import type { Linter } from './external.js'
-import { browser, node, nodeBuiltin, vitest } from './external.js'
+import {
+  browserGlobals,
+  nodeBuiltinGlobals,
+  nodeGlobals,
+  vitestTestGlobals,
+} from './external.js'
 
 /**
  * An object representing the
@@ -28,7 +33,7 @@ export const vitestGlobals = {
   vi: 'writable',
   vitest: 'writable',
 } as const satisfies Linter.Globals satisfies Record<
-  keyof typeof vitest,
+  keyof typeof vitestTestGlobals,
   Extract<Linter.GlobalConf, 'writable'>
 >
 
@@ -39,17 +44,17 @@ export const vitestGlobals = {
  * @since 0.0.3
  * @public
  */
-export const globals =
+export const sharedEnvironmentGlobals =
   /* @__PURE__ */
   Object.assign(
     {
-      ...browser,
-      ...node,
-      ...nodeBuiltin,
+      ...browserGlobals,
+      ...nodeGlobals,
+      ...nodeBuiltinGlobals,
     } as const satisfies Linter.Globals,
 
     {
-      ...vitest,
+      ...vitestTestGlobals,
       ...vitestGlobals,
     } as const satisfies Linter.Globals,
   ) satisfies Linter.Globals

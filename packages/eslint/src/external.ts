@@ -1,16 +1,26 @@
 import js from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier/flat'
-import globalIdentifiers from 'globals'
+import globals from 'globals'
 export type { Linter } from 'eslint'
 export { defineConfig } from 'eslint/config'
 export type { Config } from 'eslint/config'
-export { config, configs, parser, plugin } from 'typescript-eslint'
+export {
+  config as tseslintConfig,
+  configs as tseslintConfigs,
+  parser as tseslintParser,
+  plugin as tseslintPlugin,
+} from 'typescript-eslint'
 export type {
-  ConfigArray,
-  ConfigWithExtends,
-  FlatConfig,
-  InfiniteDepthConfigWithExtends,
   Config as TSESlintConfig,
+  ConfigArray as TSESlintConfigArray,
+  ConfigWithExtends as TSESlintConfigWithExtends,
+  FlatConfig as TSESlintFlatConfig,
+  InfiniteDepthConfigWithExtends as TSESlintInfiniteDepthConfigWithExtends,
 } from 'typescript-eslint'
 export { js, prettierConfig }
-export const { browser, node, nodeBuiltin, vitest } = globalIdentifiers
+export const {
+  browser: browserGlobals,
+  node: nodeGlobals,
+  nodeBuiltin: nodeBuiltinGlobals,
+  vitest: vitestTestGlobals,
+} = globals

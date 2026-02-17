@@ -1,10 +1,13 @@
-import type { globals, vitestGlobals } from '@aryaemami59/eslint-config'
+import type {
+  sharedEnvironmentGlobals,
+  vitestGlobals,
+} from '@aryaemami59/eslint-config'
 import type { browser, node, vitest as vitestGlobalsType } from 'globals'
 import type { Simplify } from './test-utils.js'
 
 describe('vitest globals', () => {
-  type Globals = typeof globals
-  it('type of `globals` should match the readonly merged type of all constituents', () => {
+  type Globals = typeof sharedEnvironmentGlobals
+  it('type of `sharedEnvironmentGlobals` should match the readonly merged type of all constituents', () => {
     type ExpectedType = Readonly<
       Simplify<
         typeof browser &

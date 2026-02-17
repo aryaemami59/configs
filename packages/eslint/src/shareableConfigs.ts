@@ -1,9 +1,9 @@
 import packageJson from '../package.json' with { type: 'json' }
 import { disabledRules } from './disabledRules.js'
-import type { Config, FlatConfig, Linter } from './external.js'
+import type { Config, Linter, TSESlintFlatConfig } from './external.js'
 import { js, prettierConfig } from './external.js'
 import { globalIgnores } from './globalIgnores.js'
-import { globals } from './globals.js'
+import { sharedEnvironmentGlobals } from './globals.js'
 
 /**
  * Flat ESLint configuration tailored for projects using TypeScript.
@@ -55,7 +55,7 @@ export const flatESLintConfig = [
   {
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
-  } as const satisfies FlatConfig.Config satisfies Config,
+  } as const satisfies TSESlintFlatConfig.Config satisfies Config,
 
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
@@ -66,11 +66,11 @@ export const flatESLintConfig = [
 
   {
     languageOptions: {
-      globals,
+      globals: sharedEnvironmentGlobals,
       parserOptions: {
         ecmaVersion: 'latest',
         projectService: true,
-      } as const satisfies FlatConfig.ParserOptions satisfies Linter.ParserOptions,
+      } as const satisfies TSESlintFlatConfig.ParserOptions satisfies Linter.ParserOptions,
     },
     linterOptions: {
       reportUnusedDisableDirectives: 2,
@@ -233,7 +233,7 @@ export const flatESLintConfig = [
     files: ['**/*.cjs'],
     languageOptions: {
       sourceType: 'commonjs',
-    } as const satisfies FlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
+    } as const satisfies TSESlintFlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
     name: `${packageJson.name}/commonjs-files`,
     rules: {
       '@typescript-eslint/no-require-imports': [

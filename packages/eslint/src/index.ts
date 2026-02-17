@@ -1,23 +1,23 @@
 export { disabledRules } from './disabledRules.js'
 export {
-  config,
-  configs,
   defineConfig,
   js,
-  parser,
-  plugin,
   prettierConfig,
+  tseslintConfig,
+  tseslintConfigs,
+  tseslintParser,
+  tseslintPlugin,
 } from './external.js'
 export type {
   Config,
-  ConfigArray,
-  ConfigWithExtends,
-  FlatConfig,
-  InfiniteDepthConfigWithExtends,
   Linter,
   TSESlintConfig,
+  TSESlintConfigArray,
+  TSESlintConfigWithExtends,
+  TSESlintFlatConfig,
+  TSESlintInfiniteDepthConfigWithExtends,
 } from './external.js'
 export { globalIgnores } from './globalIgnores.js'
-export { globals, vitestGlobals } from './globals.js'
+export { sharedEnvironmentGlobals, vitestGlobals } from './globals.js'
 export { flatESLintConfig } from './shareableConfigs.js'
 export { createESLintConfig } from './utils.js'
