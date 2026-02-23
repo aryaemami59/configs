@@ -20,7 +20,7 @@
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^25.3.0",
-    "eslint": "^10.0.1",
+    "eslint": "^10.0.2",
     "globals": "^17.3.0",
     "jiti": "^2.6.1",
     "rimraf": "^6.1.3",
