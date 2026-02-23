@@ -68,10 +68,10 @@
   },
   "dependencies": {
     "@eslint/js": "^10.0.1",
-    "@typescript-eslint/utils": "^8.56.0",
+    "@typescript-eslint/utils": "^8.56.1",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.3.0",
-    "typescript-eslint": "^8.56.0"
+    "typescript-eslint": "^8.56.1"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
@@ -86,7 +86,7 @@
   },
   "peerDependencies": {
     "@eslint/core": "*",
-    "eslint": "^9 || ^10",
+    "eslint": "^9.0.0 || ^10.0.0",
     "typescript": "*"
   },
   "peerDependenciesMeta": {

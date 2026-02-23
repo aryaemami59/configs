@@ -37,7 +37,7 @@
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^25.3.0",
-    "@typescript-eslint/utils": "^8.56.0",
+    "@typescript-eslint/utils": "^8.56.1",
     "@vitest/eslint-plugin": "^1.6.9",
     "eslint": "^10.0.1",
     "eslint-plugin-jsdoc": "^62.7.0",
