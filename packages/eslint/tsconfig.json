@@ -1,8 +1,8 @@
 {
-  "extends": "@aryaemami59/tsconfig/node-next",
   "compilerOptions": {
     "noEmit": true,
     "outDir": "./dist",
     "rootDir": "./"
-  }
+  },
+  "extends": "@aryaemami59/tsconfig/node-next"
 }

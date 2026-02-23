@@ -1,8 +1,9 @@
 {
-  "extends": "@aryaemami59/tsconfig/node-next/with-js",
   "compilerOptions": {
     "outDir": "./dist",
+    "rootDir": "./",
     "types": ["node", "vitest/globals", "vitest/importMeta"]
   },
+  "extends": "@aryaemami59/tsconfig/node-next/with-js",
   "include": ["**/*.*"]
 }
