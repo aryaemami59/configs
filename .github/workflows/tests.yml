@@ -1,5 +1,9 @@
 name: CI
 
+defaults:
+  run:
+    shell: bash
+
 on:
   push:
   pull_request:
@@ -11,21 +15,21 @@ concurrency:
 
 jobs:
   check-lint-and-formatting:
-    name: Check lint and formatting with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Check lint and formatting with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
 
     strategy:
       fail-fast: false
 
       matrix:
         node-version: [24, latest]
-        os: [ubuntu-latest]
+        runs-on: [ubuntu-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.runs-on }}
         uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node-version }}
@@ -40,22 +44,22 @@ jobs:
         run: yarn workspaces foreach -Ap -j unlimited run lint
 
   typecheck:
-    name: Type-check with TypeScript ${{ matrix.ts }} on ${{ matrix.os }} and Node.js ${{ matrix.node-version }}
-    runs-on: ${{ matrix.os }}
+    name: Type-check with TypeScript ${{ matrix.ts }} on ${{ matrix.runs-on }} and Node.js ${{ matrix.node-version }}
+    runs-on: ${{ matrix.runs-on }}
 
     strategy:
       fail-fast: false
 
       matrix:
         node-version: [24, latest]
-        os: [ubuntu-latest]
-        ts: ['5.5', '5.6', '5.7', '5.8', '5.9']
+        runs-on: [ubuntu-latest]
+        ts: ['5.5', '5.6', '5.7', '5.8', '5.9', 'next']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.runs-on }}
         uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node-version }}
@@ -67,15 +71,14 @@ jobs:
         run: yarn workspaces foreach -Ap -j unlimited run typecheck
 
   build:
-    name: Build ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Build ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
 
     strategy:
       fail-fast: false
 
       matrix:
         node-version: [24, latest]
-        os: [ubuntu-latest, windows-latest, macos-latest]
         package:
           [
             { directory: 'eslint', name: '@aryaemami59/eslint-config' },
@@ -83,26 +86,27 @@ jobs:
             { directory: 'typescript', name: '@aryaemami59/tsconfig' },
             { directory: 'vitest', name: '@aryaemami59/vitest-config' },
           ]
+        runs-on: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.runs-on }}
         uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Pack ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Pack ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         working-directory: packages/${{ matrix.package.directory }}
         id: pack
         run: yarn pack
 
-      - name: Upload artifact ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Upload artifact ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         uses: actions/upload-artifact@v6
         id: artifact-upload-step
         with:
-          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
+          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: packages/${{ matrix.package.directory }}/package.tgz
 
       - name: Did we fail?
@@ -110,9 +114,9 @@ jobs:
         run: ls -R packages/${{ matrix.package.directory }}
 
   test:
-    name: Test ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+    name: Test ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
     needs: [build]
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.runs-on }}
 
     strategy:
       fail-fast: false
@@ -126,31 +130,31 @@ jobs:
             { directory: 'typescript', name: '@aryaemami59/tsconfig' },
             { directory: 'vitest', name: '@aryaemami59/vitest-config' },
           ]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        runs-on: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.runs-on }}
         uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         uses: actions/download-artifact@v7
         with:
-          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
+          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: examples/${{ matrix.package.directory }}
 
       - name: Display folder structure of examples/${{ matrix.package.directory }}
         run: ls -R examples/${{ matrix.package.directory }}
 
-      - name: Install build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Install build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         working-directory: examples/${{ matrix.package.directory }}
         run: yarn add -D ./package.tgz
 
-      - name: Test examples for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Test examples for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         working-directory: examples/${{ matrix.package.directory }}
         run: yarn test
 
@@ -161,8 +165,8 @@ jobs:
           ls -R
 
   are-the-types-wrong:
-    name: Check if the type definitions for ${{ matrix.package.name }} are correct with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Check if the type definitions for ${{ matrix.package.name }} are correct with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
     needs: [build]
 
     strategy:
@@ -177,27 +181,27 @@ jobs:
             { directory: 'typescript', name: '@aryaemami59/tsconfig' },
             { directory: 'vitest', name: '@aryaemami59/vitest-config' },
           ]
-        os: [ubuntu-latest]
+        runs-on: [ubuntu-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.runs-on }}
         uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         uses: actions/download-artifact@v7
         with:
-          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
+          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: packages/${{ matrix.package.directory }}
 
       - name: Display folder structure
         run: ls -l .
 
-      - name: Run are-the-types-wrong for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Run are-the-types-wrong for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         run: yarn attw packages/${{ matrix.package.directory }}/package.tgz --format table
 
       - name: Did we fail?
@@ -205,8 +209,8 @@ jobs:
         run: ls -R
 
   publint:
-    name: Check if the package.json for ${{ matrix.package.name }} is correct with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Check if the package.json for ${{ matrix.package.name }} is correct with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
     needs: [build]
 
     strategy:
@@ -221,27 +225,27 @@ jobs:
             { directory: 'typescript', name: '@aryaemami59/tsconfig' },
             { directory: 'vitest', name: '@aryaemami59/vitest-config' },
           ]
-        os: [ubuntu-latest]
+        runs-on: [ubuntu-latest]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} and Install dependencies on ${{ matrix.runs-on }}
         uses: ./.github/actions/prepare
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         uses: actions/download-artifact@v7
         with:
-          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.os }}
+          name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: packages/${{ matrix.package.directory }}
 
       - name: Display folder structure
         run: ls -l .
 
-      - name: Run publint for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Run publint for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
         run: yarn packages/${{ matrix.package.directory }} run publint --strict ./package.tgz
 
       - name: Did we fail?

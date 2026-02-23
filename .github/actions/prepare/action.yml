@@ -1,12 +1,27 @@
-name: Prepare
-
 description: Prepares the repo for a typical CI job
 
 inputs:
+  cache-dependency-path:
+    default: './yarn.lock'
+    description: 'Used to specify the path to a dependency file: package-lock.json, yarn.lock, etc.'
+    required: false
+
+  cache:
+    default: 'yarn'
+    description: 'Used to specify a package manager for caching in the default directory. Supported values: npm, yarn, pnpm.'
+    required: false
+
+  check-latest:
+    default: true
+    description: 'Used to specify whether to check for the latest version of Node.js. Supported values: true, false.'
+    required: false
+
   node-version:
+    default: '24'
     description: 'The Node.js version to use'
     required: true
-    default: '24'
+
+name: Prepare
 
 runs:
   using: composite
@@ -15,10 +30,10 @@ runs:
     - name: Setup Node.js ${{ inputs.node-version }}
       uses: actions/setup-node@v6
       with:
+        cache-dependency-path: ${{ inputs.cache-dependency-path }}
+        cache: ${{ inputs.cache }}
+        check-latest: ${{ inputs.check-latest }}
         node-version: ${{ inputs.node-version }}
-        cache: 'yarn'
-        cache-dependency-path: ./yarn.lock
-        check-latest: true
 
     - name: Install dependencies on ${{ inputs.node-version }}
       run: yarn install
