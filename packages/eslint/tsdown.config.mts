@@ -7,6 +7,9 @@ const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
     clean: false,
     cwd: import.meta.dirname,
+    deps: {
+      onlyAllowBundle: [],
+    },
     devtools: {
       clean: false,
     },
@@ -36,7 +39,6 @@ const tsdownConfig = defineConfig((cliOptions) => {
     failOnWarn: true,
     fixedExtension: false,
     hash: false,
-    inlineOnly: [],
     inputOptions: (options) =>
       ({
         ...options,
@@ -50,12 +52,11 @@ const tsdownConfig = defineConfig((cliOptions) => {
       ({
         ...options,
         codeSplitting: false,
-        // comments: {
-        //   annotation: true,
-        //   jsdoc: false,
-        //   legal: true,
-        // },
-        legalComments: 'none',
+        comments: {
+          annotation: true,
+          jsdoc: false,
+          legal: true,
+        },
         ...(format === 'cjs' && !context.cjsDts
           ? {
               externalLiveBindings: false,

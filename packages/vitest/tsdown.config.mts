@@ -7,6 +7,9 @@ const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
     clean: false,
     cwd: import.meta.dirname,
+    deps: {
+      onlyAllowBundle: [],
+    },
     devtools: {
       clean: false,
     },
@@ -36,7 +39,6 @@ const tsdownConfig = defineConfig((cliOptions) => {
     failOnWarn: true,
     fixedExtension: false,
     hash: false,
-    inlineOnly: [],
     inputOptions: (options) =>
       ({
         ...options,
@@ -50,12 +52,11 @@ const tsdownConfig = defineConfig((cliOptions) => {
       ({
         ...options,
         codeSplitting: false,
-        // comments: {
-        //   annotation: true,
-        //   jsdoc: false,
-        //   legal: true,
-        // },
-        legalComments: 'none',
+        comments: {
+          annotation: true,
+          jsdoc: false,
+          legal: true,
+        },
         ...(format === 'cjs' && !context.cjsDts
           ? {
               externalLiveBindings: false,
@@ -82,15 +83,17 @@ const tsdownConfig = defineConfig((cliOptions) => {
     },
     {
       ...commonOptions,
-      // external: ['debug', 'globrex', 'tsconfck'],
-      format: ['cjs'],
-
-      name: `${packageJson.name} CJS Development`,
       // Causes `ERR_REQUIRE_ESM` error in CommonJS modules since
       // it is an ESM module (has `"type": "module"` in its `package.json`),
       // and cannot be imported using the `require` syntax,
       // we can inline it to get around this problem.
-      // inlineOnly: ['vite-tsconfig-paths'],
+      // deps: {
+      //   neverBundle: ['debug', 'globrex', 'tsconfck'],
+      //   onlyAllowBundle: ['vite-tsconfig-paths'],
+      // },
+
+      format: ['cjs'],
+      name: `${packageJson.name} CJS Development`,
     },
   ] as const satisfies UserConfig[]
 })
