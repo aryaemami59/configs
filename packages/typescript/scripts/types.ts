@@ -54,6 +54,9 @@ export type JSX =
   | 'react'
 
 export type Module =
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'AMD'
   | 'CommonJS'
   | 'ES2015'
@@ -65,11 +68,24 @@ export type Module =
   | 'Node18'
   | 'Node20'
   | 'NodeNext'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'None'
   | 'Preserve'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'System'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'UMD'
   // Lowercase alternatives
+
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'amd'
   | 'commonjs'
   | 'es2015'
@@ -81,9 +97,18 @@ export type Module =
   | 'node18'
   | 'node20'
   | 'nodenext'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'none'
   | 'preserve'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'system'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'umd'
 
 export type NewLine =
@@ -104,7 +129,14 @@ export type Target =
   | 'ES2022'
   | 'ES2023'
   | 'ES2024'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025'
   | 'ES3'
+  /**
+   * @deprecated Since v6.0.0
+   */
   | 'ES5'
   | 'ES6'
   | 'ESNext'
@@ -119,7 +151,16 @@ export type Target =
   | 'es2022'
   | 'es2023'
   | 'es2024'
+
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025'
   | 'es3'
+
+  /**
+   * @deprecated Since v6.0.0
+   */
   | 'es5'
   | 'es6'
   | 'esnext'
@@ -141,6 +182,7 @@ export type Lib =
   | 'ES2015.Symbol'
   | 'ES2015'
   | 'ES2016.Array.Include'
+  | 'ES2016.Intl'
   | 'ES2016'
   | 'ES2017.ArrayBuffer'
   | 'ES2017.Date'
@@ -181,7 +223,7 @@ export type Lib =
   | 'ES2022.Intl'
   | 'ES2022.Object'
   | 'ES2022.RegExp'
-  | 'ES2022.SharedMemory'
+  // | 'ES2022.SharedMemory'
   | 'ES2022.String'
   | 'ES2022'
   | 'ES2023.Array'
@@ -196,6 +238,34 @@ export type Lib =
   | 'ES2024.SharedMemory'
   | 'ES2024.String'
   | 'ES2024'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025.Collection'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025.Float16'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025.Intl'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025.Iterator'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025.Promise'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025.Regexp'
+  /**
+   * @since v6.0.0
+   */
+  | 'ES2025'
   | 'ES5'
   | 'ES6'
   | 'ES7'
@@ -203,16 +273,21 @@ export type Lib =
   | 'ESNext.AsyncIterable'
   | 'ESNext.BigInt'
   | 'ESNext.Collection'
+  | 'ESNext.Date'
   | 'ESNext.Decorators'
   | 'ESNext.Disposable'
   | 'ESNext.Error'
+  | 'ESNext.Float16'
   | 'ESNext.Intl'
   | 'ESNext.Iterator'
   | 'ESNext.Object'
   | 'ESNext.Promise'
   | 'ESNext.Regexp'
+  | 'ESNext.SharedMemory'
   | 'ESNext.String'
   | 'ESNext.Symbol'
+  | 'ESNext.Temporal'
+  | 'ESNext.TypedArrays'
   | 'ESNext.WeakRef'
   | 'ESNext'
   | 'ScriptHost'
@@ -237,6 +312,7 @@ export type Lib =
   | 'es2015.symbol'
   | 'es2015'
   | 'es2016.array.include'
+  | 'es2016.intl'
   | 'es2016'
   | 'es2017.arraybuffer'
   | 'es2017.date'
@@ -277,7 +353,7 @@ export type Lib =
   | 'es2022.intl'
   | 'es2022.object'
   | 'es2022.regexp'
-  | 'es2022.sharedmemory'
+  // | 'es2022.sharedmemory'
   | 'es2022.string'
   | 'es2022'
   | 'es2023.array'
@@ -292,6 +368,34 @@ export type Lib =
   | 'es2024.sharedmemory'
   | 'es2024.string'
   | 'es2024'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025.collection'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025.float16'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025.intl'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025.iterator'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025.promise'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025.regexp'
+  /**
+   * @since v6.0.0
+   */
+  | 'es2025'
   | 'es5'
   | 'es6'
   | 'es7'
@@ -299,16 +403,21 @@ export type Lib =
   | 'esnext.asynciterable'
   | 'esnext.bigint'
   | 'esnext.collection'
+  | 'esnext.date'
   | 'esnext.decorators'
   | 'esnext.disposable'
   | 'esnext.error'
+  | 'esnext.float16'
   | 'esnext.intl'
   | 'esnext.iterator'
   | 'esnext.object'
   | 'esnext.promise'
   | 'esnext.regexp'
+  | 'esnext.sharedmemory'
   | 'esnext.string'
   | 'esnext.symbol'
+  | 'esnext.temporal'
+  | 'esnext.typedarrays'
   | 'esnext.weakref'
   | 'esnext'
   | 'scripthost'
@@ -351,21 +460,33 @@ export type WatchFile =
 
 export type ModuleResolution =
   | 'bundler'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'classic'
   /**
-   * @deprecated since v5.0.0 - Use `'node10'` instead.
+   * @deprecated Since v5.0.0 - Use `'node10'` instead.
    */
   | 'node'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'node10'
   | 'node16'
   | 'nodenext'
   // Pascal-cased alternatives
   | 'Bundler'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'Classic'
   /**
-   * @deprecated since v5.0.0 - Use `'node10'` instead.
+   * @deprecated Since v5.0.0 - Use `'node10'` instead.
    */
   | 'Node'
+  /**
+   * @deprecated Since v6.0.0.
+   */
   | 'Node10'
   | 'Node16'
   | 'NodeNext'
@@ -462,6 +583,7 @@ export type CompilerOptions = {
    * Base directory to resolve non-relative module names.
    *
    * @since v2.0.0
+   * @deprecated Since v6.0.0.
    */
   baseUrl?: string
 
@@ -568,6 +690,7 @@ export type CompilerOptions = {
    *
    * @since v2.3.0
    * @default false
+   * @deprecated Since v6.0.0.
    */
   downlevelIteration?: boolean
 
@@ -807,9 +930,11 @@ export type CompilerOptions = {
 
   /**
    * Enable lib replacement.
+   * Prior to v6.0.0, this defaulted to **`true`**. Since v6.0.0, it defaults
+   * to **`false`**.
    *
    * @since v5.8.0
-   * @default true
+   * @default false
    */
   libReplacement?: boolean
 
@@ -867,9 +992,11 @@ export type CompilerOptions = {
    *
    * Only `"AMD"` and `"System"` can be used in conjunction with `--outFile`.
    * `"ES6"` and `"ES2015"` values may be used when targeting `"ES5"` or lower.
+   * Since v6.0.0, this defaults to **`"esnext"`**. Prior to v6.0.0, it
+   * defaulted to **`["ES3", "ES5"].includes(target) ? "CommonJS" : "ES6"`**.
    *
    * @since v1.0.0
-   * @default ["ES3", "ES5"].includes(target) ? "CommonJS" : "ES6"
+   * @default "esnext"
    */
   module?: Module
 
@@ -1050,9 +1177,11 @@ export type CompilerOptions = {
 
   /**
    * Report error if failed to find a source file for a side effect import.
+   * Prior to v6.0.0, this defaulted to **`false`**. Since v6.0.0, it defaults
+   * to **`true`**.
    *
    * @since v5.6.0
-   * @default false
+   * @default true
    */
   noUncheckedSideEffectImports?: boolean
 
@@ -1092,6 +1221,7 @@ export type CompilerOptions = {
    * Concatenate and emit output to single file.
    *
    * @since v1.6.0
+   * @deprecated Since v6.0.0.
    */
   outFile?: string
 
@@ -1209,8 +1339,10 @@ export type CompilerOptions = {
   /**
    * Specifies the root directory of input files. Use to control the output
    * directory structure with `--outDir`.
+   * Defaults to **`"."`** since v6.0.0.
    *
    * @since v1.5.0
+   * @default "."
    */
   rootDir?: string
 
@@ -1254,10 +1386,24 @@ export type CompilerOptions = {
   sourceRoot?: string
 
   /**
+   * Controls whether emitted types and properties use a more stable ordering.
+   * TypeScript currently assigns internal type IDs in encounter order and uses
+   * them to sort union members. A similar process applies to properties. This
+   * can lead to declaration output changing based on declaration order in ways
+   * that may be surprising.
+   *
+   * @since v6.0.0
+   * @default false
+   */
+  stableTypeOrdering?: boolean
+
+  /**
    * Enable all strict export type checking options.
+   * Prior to v6.0.0, this defaulted to **`false`**. Since v6.0.0, it defaults
+   * to **`true`**.
    *
    * @since v2.3.0
-   * @default false
+   * @default true
    */
   strict?: boolean
 
@@ -1331,9 +1477,11 @@ export type CompilerOptions = {
 
   /**
    * Specify ECMAScript target version.
+   * Before v6.0.0, this defaulted to **`"es3"`**. Since v6.0.0, it defaults to
+   * the current year's ECMAScript version.
    *
    * @since v1.0.0
-   * @default "es3"
+   * @default "es2025"
    */
   target?: Target
 
@@ -1363,8 +1511,11 @@ export type CompilerOptions = {
 
   /**
    * Type declaration files to be included in compilation.
+   * Since v6.0.0, this defaults to **`[]`**. To achieve the previous default
+   * behavior, use **`["*"]`**.
    *
    * @since v2.0.0
+   * @default []
    */
   types?: string[]
 
