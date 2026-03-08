@@ -6,6 +6,7 @@ const vitestConfig = createVitestConfig({
   root: import.meta.dirname,
 
   test: {
+    cache: false,
     dir: path.join(import.meta.dirname, 'examples'),
     name: {
       label: packageJson.name,

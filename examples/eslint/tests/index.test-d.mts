@@ -7,6 +7,7 @@ import type { Simplify } from './test-utils.js'
 
 describe('vitest globals', () => {
   type Globals = typeof sharedEnvironmentGlobals
+
   it('type of `sharedEnvironmentGlobals` should match the readonly merged type of all constituents', () => {
     type ExpectedType = Readonly<
       Simplify<

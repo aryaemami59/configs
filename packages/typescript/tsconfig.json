@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "noEmit": true,
+    "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
     "rootDir": "./"
   },

@@ -11,7 +11,8 @@ const tsdownConfig = defineConfig((cliOptions) => {
       onlyAllowBundle: [],
     },
     devtools: {
-      clean: false,
+      clean: true,
+      enabled: true,
     },
     dts: {
       build: false,
@@ -45,8 +46,10 @@ const tsdownConfig = defineConfig((cliOptions) => {
         experimental: {
           ...options.experimental,
           lazyBarrel: true,
+          nativeMagicString: true,
         },
       }) as const satisfies Rolldown.InputOptions,
+    minify: false,
     nodeProtocol: true,
     outputOptions: (options, format, context) =>
       ({
@@ -57,9 +60,10 @@ const tsdownConfig = defineConfig((cliOptions) => {
           jsdoc: false,
           legal: true,
         },
+        strict: true,
         ...(format === 'cjs' && !context.cjsDts
           ? {
-              intro: '"use strict";',
+              externalLiveBindings: false,
             }
           : {}),
       }) as const satisfies Rolldown.OutputOptions,

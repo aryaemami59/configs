@@ -1,4 +1,4 @@
-import packageJson from '../package.json' with { type: 'json' }
+import packageJson from '@aryaemami59/eslint-config/package.json' with { type: 'json' }
 
 /**
  * This is used because if we import the package name from the

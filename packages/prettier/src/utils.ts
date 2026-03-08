@@ -1,5 +1,5 @@
-import type { Config } from 'prettier'
 import { prettierConfig } from './defaults.js'
+import type { Config } from './external.js'
 
 /**
  * A function that returns {@linkcode prettierConfig}

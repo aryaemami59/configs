@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
     "rootDir": "./",
     "types": ["node", "vitest/globals", "vitest/importMeta"]

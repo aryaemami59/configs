@@ -103,7 +103,7 @@ jobs:
         run: yarn pack
 
       - name: Upload artifact ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         id: artifact-upload-step
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}

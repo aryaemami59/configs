@@ -1,4 +1,4 @@
-import packageJson from '../package.json' with { type: 'json' }
+import packageJson from '@aryaemami59/eslint-config/package.json' with { type: 'json' }
 import { disabledRules } from './disabledRules.js'
 import type { Config, ESLint, Linter, TSESLintFlatConfig } from './external.js'
 import {
