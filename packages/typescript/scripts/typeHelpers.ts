@@ -104,7 +104,7 @@ export type Simplify<BaseType> = BaseType extends BaseType
     : AnyNonNullishValue & {
         [KeyType in keyof BaseType]: BaseType[KeyType]
       }
-  : never
+  : BaseType
 
 /**
  * Omits keys from a type, **distributing** the operation over a union.
