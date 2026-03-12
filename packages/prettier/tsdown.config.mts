@@ -8,7 +8,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
     clean: false,
     cwd: import.meta.dirname,
     deps: {
-      onlyAllowBundle: [],
+      onlyBundle: [],
     },
     devtools: {
       clean: true,

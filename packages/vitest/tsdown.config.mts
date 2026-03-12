@@ -8,7 +8,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
     clean: false,
     cwd: import.meta.dirname,
     deps: {
-      onlyAllowBundle: [],
+      onlyBundle: [],
     },
     devtools: {
       clean: true,
@@ -92,7 +92,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
       // we can inline it to get around this problem.
       // deps: {
       //   neverBundle: ['debug', 'globrex', 'tsconfck'],
-      //   onlyAllowBundle: ['vite-tsconfig-paths'],
+      //   onlyBundle: ['vite-tsconfig-paths'],
       // },
 
       format: ['cjs'],

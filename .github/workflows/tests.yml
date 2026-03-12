@@ -142,7 +142,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: examples/${{ matrix.package.directory }}
@@ -193,7 +193,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: packages/${{ matrix.package.directory }}
@@ -237,7 +237,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Download build artifact for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: ${{ matrix.package.directory }}-${{ matrix.node-version }}-${{ matrix.runs-on }}
           path: packages/${{ matrix.package.directory }}
