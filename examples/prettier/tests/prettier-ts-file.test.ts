@@ -8,14 +8,14 @@ import {
 } from './test-utils.js'
 
 describe('formatting TS files', () => {
-  const localTest = test.extend<LocalTestContext>({
+  const localTest = test.extend({
     fileToBeFormatted: path.posix.join(fixturesDirectoryName, 'ts', 'test.ts'),
-  })
+  } as const satisfies LocalTestContext)
 
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
     const CLIArguments = ['--check', fileToBeFormatted]
 
-    await expect(runPrettierCLI(CLIArguments)).rejects.toThrowError(
+    await expect(runPrettierCLI(CLIArguments)).rejects.toThrow(
       Error(
         `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n[warn] ${fileToBeFormatted}\n[warn] Code style issues found in the above file. Run Prettier with --write to fix.\n`,
       ).message,
@@ -37,7 +37,7 @@ describe('formatting TS files', () => {
       fileToBeFormatted,
     ]
 
-    await expect(runPrettierCLI(CLIArguments)).rejects.toThrowError(
+    await expect(runPrettierCLI(CLIArguments)).rejects.toThrow(
       process.versions.node.startsWith('22') &&
         (configFileName === 'prettier.config.cjs' ||
           configFileName === '.prettierrc.cjs')

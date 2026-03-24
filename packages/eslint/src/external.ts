@@ -24,3 +24,7 @@ export const {
   nodeBuiltin: nodeBuiltinGlobals,
   vitest: vitestTestGlobals,
 } = globals
+export type GlobalsBrowser = typeof browserGlobals
+export type GlobalsNode = typeof nodeGlobals
+export type GlobalsNodeBuiltin = typeof nodeBuiltinGlobals
+export type GlobalsVitest = typeof vitestTestGlobals

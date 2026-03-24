@@ -3,9 +3,9 @@ import type { LocalTestContext } from './test-utils.js'
 import { fixturesDirectoryName, runPrettierCLI } from './test-utils.js'
 
 describe('formatting JS files', () => {
-  const localTest = test.extend<LocalTestContext>({
+  const localTest = test.extend({
     fileToBeFormatted: path.posix.join(fixturesDirectoryName, 'js', 'test.js'),
-  })
+  } as const satisfies LocalTestContext)
 
   localTest('no config specified', async ({ expect, fileToBeFormatted }) => {
     const CLIArguments = ['--check', fileToBeFormatted]

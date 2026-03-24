@@ -59,6 +59,8 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * <caption>Basic usage</caption>
  *
  * ```ts
+ * import type { Simplify } from "./typeHelpers.js";
+ *
  * interface SomeInterface {
  *   bar?: string;
  *   baz: number | undefined;
@@ -82,12 +84,12 @@ export type AnyNonNullishValue = NonNullable<unknown>
  *
  * function fn(object: Record<string, unknown>): void {
  *   console.log(object);
- * };
+ * }
  *
  * fn(literal); // ✅ Good: literal object type is sealed
  * fn(someType); // ✅ Good: type is sealed
  * // @ts-expect-error
- * fn(someInterface); // ❌ Error: Index signature for type "string" is missing in type "someInterface". Because `interface` can be re-opened
+ * fn(someInterface); // ❌ Error: Index signature for type 'string' is missing in type 'SomeInterface'. Because `interface` can be re-opened
  * fn(someInterface as Simplify<SomeInterface>); // ✅ Good: transform an `interface` into a `type`
  * ```
  *
@@ -98,13 +100,11 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * @since v0.0.6 of **`@aryaemami59/tsconfig`**
  * @internal
  */
-export type Simplify<BaseType> = BaseType extends BaseType
-  ? BaseType extends UnknownFunction
-    ? BaseType
-    : AnyNonNullishValue & {
-        [KeyType in keyof BaseType]: BaseType[KeyType]
-      }
-  : BaseType
+export type Simplify<BaseType> = BaseType extends (...args: never[]) => unknown
+  ? BaseType
+  : NonNullable<unknown> & {
+      [KeyType in keyof BaseType]: BaseType[KeyType]
+    }
 
 /**
  * Omits keys from a type, **distributing** the operation over a union.
@@ -122,6 +122,8 @@ export type Simplify<BaseType> = BaseType extends BaseType
  * <caption>Demonstrating `Omit` vs `DistributedOmit`</caption>
  *
  * ```ts
+ * import type { DistributedOmit } from "./typeHelpers.js";
+ *
  * type A = {
  *   a: number;
  *   discriminant: "A";
@@ -146,7 +148,7 @@ export type Simplify<BaseType> = BaseType extends BaseType
  *
  *   // @ts-expect-error
  *   omittedUnion.a;
- *   // => ❌ Error: Property 'a' does not exist on type '{ discriminant: "A" | "B" }'
+ *   // => ❌ Error: Property 'a' does not exist on type 'Omit<Union, "foo">'.
  * }
  *
  * const distributedOmittedUnion: DistributedOmit<Union, "foo"> = {
@@ -189,6 +191,8 @@ export type DistributedOmit<
  * <caption>Demonstrating `Pick` vs `DistributedPick`</caption>
  *
  * ```ts
+ * import type { DistributedPick } from "./typeHelpers.js";
+ *
  * type A = {
  *   discriminant: "A";
  *   extraneous: boolean;
@@ -264,7 +268,9 @@ export type DistributedOmit<
 export type DistributedPick<
   ObjectType,
   KeyType extends keyof ObjectType,
-> = ObjectType extends unknown ? Pick<ObjectType, KeyType> : never
+> = ObjectType extends unknown
+  ? Pick<ObjectType, Extract<KeyType, keyof ObjectType>>
+  : never
 
 /**
  * A stricter version of

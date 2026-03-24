@@ -3,9 +3,9 @@ import type { LocalTestContext } from './test-utils.js'
 import { fixturesDirectoryName, runESLintCLI } from './test-utils.js'
 
 describe('linting JS files', () => {
-  const localTest = test.extend<LocalTestContext>({
+  const localTest = test.extend({
     fileToBeLinted: path.posix.join(fixturesDirectoryName, 'js', 'test.js'),
-  })
+  } as const satisfies LocalTestContext)
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
     await expect(runESLintCLI([fileToBeLinted])).resolves.toStrictEqual({

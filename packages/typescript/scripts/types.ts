@@ -82,7 +82,6 @@ export type Module =
    */
   | 'UMD'
   // Lowercase alternatives
-
   /**
    * @deprecated Since v6.0.0.
    */
@@ -151,13 +150,11 @@ export type Target =
   | 'es2022'
   | 'es2023'
   | 'es2024'
-
   /**
    * @since v6.0.0
    */
   | 'es2025'
   | 'es3'
-
   /**
    * @deprecated Since v6.0.0
    */
@@ -1338,8 +1335,7 @@ export type CompilerOptions = {
 
   /**
    * Specifies the root directory of input files. Use to control the output
-   * directory structure with `--outDir`.
-   * Defaults to **`"."`** since v6.0.0.
+   * directory structure with `--outDir`. Defaults to **`"."`** since v6.0.0.
    *
    * @since v1.5.0
    * @default "."

@@ -9,9 +9,9 @@ import {
 } from './test-utils.js'
 
 describe('type-checking TS files', () => {
-  const localTest = test.extend<LocalTestContext>({
+  const localTest = test.extend({
     parentDirectoryToGetTypeChecked: path.join(fixturesDirectoryPath, 'ts'),
-  })
+  } as const satisfies LocalTestContext)
 
   localTest(
     'tsc catches type errors as expected',
@@ -27,9 +27,9 @@ describe('type-checking TS files', () => {
 
       const execFileResults = runTypeScriptCLI(CLIArguments)
 
-      await expect(execFileResults).rejects.toThrowError(Error)
+      await expect(execFileResults).rejects.toThrow(Error)
 
-      await expect(execFileResults).rejects.toThrowError(
+      await expect(execFileResults).rejects.toThrow(
         Error(
           `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
         ).message,
@@ -37,9 +37,9 @@ describe('type-checking TS files', () => {
 
       const distFolder = path.join(directoryToGetTypeChecked, 'dist')
 
-      await expect(fs.access(distFolder)).rejects.toThrowError(Error)
+      await expect(fs.access(distFolder)).rejects.toThrow(Error)
 
-      await expect(fs.access(distFolder)).rejects.toThrowError(
+      await expect(fs.access(distFolder)).rejects.toThrow(
         Error(`ENOENT: no such file or directory, access '${distFolder}'`)
           .message,
       )

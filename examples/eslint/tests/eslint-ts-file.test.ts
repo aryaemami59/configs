@@ -9,14 +9,14 @@ import {
 
 // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
 describe('linting TS files', () => {
-  const localTest = test.extend<LocalTestContext>({
+  const localTest = test.extend({
     fileToBeLinted: path.posix.join(fixturesDirectoryName, 'ts', 'test.ts'),
-  })
+  } as const satisfies LocalTestContext)
 
   localTest('no config specified', async ({ expect, fileToBeLinted }) => {
     const CLIArguments = [fileToBeLinted]
 
-    await expect(runESLintCLI(CLIArguments)).rejects.toThrowError(
+    await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
       Error(
         `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
       ).message,
@@ -30,7 +30,7 @@ describe('linting TS files', () => {
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
     const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(runESLintCLI(CLIArguments)).rejects.toThrowError(
+    await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
       process.versions.node.startsWith('22') &&
         configFileName === 'eslint.config.cjs'
         ? `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`
@@ -47,7 +47,7 @@ describe('linting TS files', () => {
   ] as const)('%s', async (configFileName, { expect, fileToBeLinted }) => {
     const CLIArguments = ['--config', configFileName, fileToBeLinted]
 
-    await expect(runESLintCLI(CLIArguments)).rejects.toThrowError(
+    await expect(runESLintCLI(CLIArguments)).rejects.toThrow(
       Error(
         `Command failed: ${defaultCLICommand} ${[...defaultCLIArguments, ...CLIArguments].join(' ')}\n`,
       ).message,

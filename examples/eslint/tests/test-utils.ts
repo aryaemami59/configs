@@ -68,29 +68,38 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * <caption>Basic usage</caption>
  *
  * ```ts
+ * import type { Simplify } from "./typeHelpers.js";
+ *
  * interface SomeInterface {
- *   foo: number;
  *   bar?: string;
  *   baz: number | undefined;
- * };
+ *   foo: number;
+ * }
  *
  * type SomeType = {
- *   foo: number;
  *   bar?: string;
  *   baz: number | undefined;
+ *   foo: number;
  * };
  *
- * const literal = { foo: 123, bar: 'hello', baz: 456 };
+ * const literal = {
+ *   bar: "hello",
+ *   baz: 456,
+ *   foo: 123,
+ * } as const satisfies SomeType satisfies SomeInterface;
+ *
  * const someType: SomeType = literal;
  * const someInterface: SomeInterface = literal;
  *
- * declare function fn(object: Record<string, unknown>): void;
+ * function fn(object: Record<string, unknown>): void {
+ *   console.log(object);
+ * }
  *
- * fn(literal); // Good: literal object type is sealed
- * fn(someType); // Good: type is sealed
+ * fn(literal); // ✅ Good: literal object type is sealed
+ * fn(someType); // ✅ Good: type is sealed
  * // @ts-expect-error
- * fn(someInterface); // Error: Index signature for type 'string' is missing in type 'someInterface'. Because `interface` can be re-opened
- * fn(someInterface as Simplify<SomeInterface>); // Good: transform an `interface` into a `type`
+ * fn(someInterface); // ❌ Error: Index signature for type 'string' is missing in type 'SomeInterface'. Because `interface` can be re-opened
+ * fn(someInterface as Simplify<SomeInterface>); // ✅ Good: transform an `interface` into a `type`
  * ```
  *
  * @template BaseType - The type to simplify.
@@ -101,6 +110,6 @@ export type AnyNonNullishValue = NonNullable<unknown>
  */
 export type Simplify<BaseType> = BaseType extends (...args: never[]) => unknown
   ? BaseType
-  : AnyNonNullishValue & {
+  : NonNullable<unknown> & {
       [KeyType in keyof BaseType]: BaseType[KeyType]
     }

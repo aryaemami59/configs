@@ -1,4 +1,4 @@
-import type { Linter } from './external.js'
+import type { GlobalsVitest, Linter } from './external.js'
 import {
   browserGlobals,
   nodeBuiltinGlobals,
@@ -17,6 +17,8 @@ import {
 export const vitestGlobals = {
   afterAll: 'writable',
   afterEach: 'writable',
+  aroundAll: 'writable',
+  aroundEach: 'writable',
   assert: 'writable',
   assertType: 'writable',
   beforeAll: 'writable',
@@ -33,7 +35,7 @@ export const vitestGlobals = {
   vi: 'writable',
   vitest: 'writable',
 } as const satisfies Linter.Globals satisfies Record<
-  keyof typeof vitestTestGlobals,
+  'aroundAll' | 'aroundEach' | keyof GlobalsVitest,
   Extract<Linter.GlobalConf, 'writable'>
 >
 
