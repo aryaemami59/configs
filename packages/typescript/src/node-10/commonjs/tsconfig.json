@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "moduleResolution": "node10"
+  },
+  "display": "TypeScript configuration with module set to `commonjs` and module resolution set to `node10`. It serves as a backwards compatible replacement for the deprecated `node` module resolution.",
+  "extends": "@aryaemami59/tsconfig/node/commonjs"
+}

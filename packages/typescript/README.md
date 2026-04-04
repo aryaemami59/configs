@@ -34,7 +34,7 @@ bun add --dev @aryaemami59/tsconfig
 
 ```json
 {
-  "extends": "@aryaemami59/tsconfig/node",
+  "extends": "@aryaemami59/tsconfig/node/esnext",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src"

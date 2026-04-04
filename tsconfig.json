@@ -7,6 +7,6 @@
     "types": ["node", "vitest/globals", "vitest/importMeta"]
   },
   "exclude": ["dist", "**/dist/"],
-  "extends": "@aryaemami59/tsconfig/node-next/with-js",
+  "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js",
   "include": ["**/*.*"]
 }

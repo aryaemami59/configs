@@ -5,5 +5,5 @@
     "checkJs": true
   },
   "display": "TypeScript configuration with module set to `nodenext`, module resolution set to `nodenext`, and JavaScript files support enabled",
-  "extends": "@aryaemami59/tsconfig/node-next"
+  "extends": "@aryaemami59/tsconfig/nodenext/nodenext"
 }

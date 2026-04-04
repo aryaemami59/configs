@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["DOM", "ESNext"],
+    "module": "commonjs",
+    "moduleDetection": "force",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "types": ["node"],
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": true
+  },
+  "display": "TypeScript configuration with module set to `commonjs` and module resolution set to `node`, intended for TypeScript versions earlier than 5.0."
+}

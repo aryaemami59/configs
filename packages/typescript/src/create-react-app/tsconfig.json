@@ -1,5 +1,4 @@
 {
-  "extends": "@aryaemami59/tsconfig/node",
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowJs": true,
@@ -9,5 +8,6 @@
     "target": "es5",
     "types": null
   },
-  "display": "TypeScript configuration for `create-react-app` projects"
+  "display": "TypeScript configuration for `create-react-app` projects",
+  "extends": "@aryaemami59/tsconfig/node/esnext"
 }

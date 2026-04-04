@@ -4,5 +4,5 @@
     "moduleResolution": "bundler"
   },
   "display": "TypeScript configuration with module set to `esnext` and module resolution set to `bundler`",
-  "extends": "@aryaemami59/tsconfig/node"
+  "extends": "@aryaemami59/tsconfig/node/esnext"
 }

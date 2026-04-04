@@ -81,41 +81,39 @@ export type Module =
    * @deprecated Since v6.0.0.
    */
   | 'UMD'
-  // Lowercase alternatives
-  /**
-   * @deprecated Since v6.0.0.
-   */
-  | 'amd'
-  | 'commonjs'
-  | 'es2015'
-  | 'es2020'
-  | 'es2022'
-  | 'es6'
-  | 'esnext'
-  | 'node16'
-  | 'node18'
-  | 'node20'
-  | 'nodenext'
-  /**
-   * @deprecated Since v6.0.0.
-   */
-  | 'none'
-  | 'preserve'
-  /**
-   * @deprecated Since v6.0.0.
-   */
-  | 'system'
-  /**
-   * @deprecated Since v6.0.0.
-   */
-  | 'umd'
+// Lowercase alternatives
+// /**
+//  * @deprecated Since v6.0.0.
+//  */
+// | 'amd'
+// | 'commonjs'
+// | 'es2015'
+// | 'es2020'
+// | 'es2022'
+// | 'es6'
+// | 'esnext'
+// | 'node16'
+// | 'node18'
+// | 'node20'
+// | 'nodenext'
+// /**
+//  * @deprecated Since v6.0.0.
+//  */
+// | 'none'
+// | 'preserve'
+// /**
+//  * @deprecated Since v6.0.0.
+//  */
+// | 'system'
+// /**
+//  * @deprecated Since v6.0.0.
+//  */
+// | 'umd'
 
-export type NewLine =
-  | 'CRLF'
-  | 'LF'
-  // Lowercase alternatives
-  | 'crlf'
-  | 'lf'
+export type NewLine = 'CRLF' | 'LF'
+// Lowercase alternatives
+// | 'crlf'
+// | 'lf'
 
 export type Target =
   | 'ES2015'
@@ -139,28 +137,28 @@ export type Target =
   | 'ES5'
   | 'ES6'
   | 'ESNext'
-  // Lowercase alternatives
-  | 'es2015'
-  | 'es2016'
-  | 'es2017'
-  | 'es2018'
-  | 'es2019'
-  | 'es2020'
-  | 'es2021'
-  | 'es2022'
-  | 'es2023'
-  | 'es2024'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025'
-  | 'es3'
-  /**
-   * @deprecated Since v6.0.0
-   */
-  | 'es5'
-  | 'es6'
-  | 'esnext'
+// Lowercase alternatives
+// | 'es2015'
+// | 'es2016'
+// | 'es2017'
+// | 'es2018'
+// | 'es2019'
+// | 'es2020'
+// | 'es2021'
+// | 'es2022'
+// | 'es2023'
+// | 'es2024'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025'
+// | 'es3'
+// /**
+//  * @deprecated Since v6.0.0
+//  */
+// | 'es5'
+// | 'es6'
+// | 'esnext'
 
 export type Lib =
   | 'Decorators.Legacy'
@@ -292,136 +290,136 @@ export type Lib =
   | 'WebWorker.ImportScripts'
   | 'WebWorker.Iterable'
   | 'WebWorker'
-  // Lowercase alternatives
-  | 'decorators.legacy'
-  | 'decorators'
-  | 'dom.asynciterable'
-  | 'dom.iterable'
-  | 'dom'
-  | 'es2015.collection'
-  | 'es2015.core'
-  | 'es2015.generator'
-  | 'es2015.iterable'
-  | 'es2015.promise'
-  | 'es2015.proxy'
-  | 'es2015.reflect'
-  | 'es2015.symbol.wellknown'
-  | 'es2015.symbol'
-  | 'es2015'
-  | 'es2016.array.include'
-  | 'es2016.intl'
-  | 'es2016'
-  | 'es2017.arraybuffer'
-  | 'es2017.date'
-  | 'es2017.intl'
-  | 'es2017.object'
-  | 'es2017.sharedmemory'
-  | 'es2017.string'
-  | 'es2017.typedarrays'
-  | 'es2017'
-  | 'es2018.asyncgenerator'
-  | 'es2018.asynciterable'
-  | 'es2018.intl'
-  | 'es2018.promise'
-  | 'es2018.regexp'
-  | 'es2018'
-  | 'es2019.array'
-  | 'es2019.intl'
-  | 'es2019.object'
-  | 'es2019.string'
-  | 'es2019.symbol'
-  | 'es2019'
-  | 'es2020.bigint'
-  | 'es2020.date'
-  | 'es2020.intl'
-  | 'es2020.number'
-  | 'es2020.promise'
-  | 'es2020.sharedmemory'
-  | 'es2020.string'
-  | 'es2020.symbol.wellknown'
-  | 'es2020'
-  | 'es2021.intl'
-  | 'es2021.promise'
-  | 'es2021.string'
-  | 'es2021.weakref'
-  | 'es2021'
-  | 'es2022.array'
-  | 'es2022.error'
-  | 'es2022.intl'
-  | 'es2022.object'
-  | 'es2022.regexp'
-  // | 'es2022.sharedmemory'
-  | 'es2022.string'
-  | 'es2022'
-  | 'es2023.array'
-  | 'es2023.collection'
-  | 'es2023.intl'
-  | 'es2023'
-  | 'es2024.arraybuffer'
-  | 'es2024.collection'
-  | 'es2024.object'
-  | 'es2024.promise'
-  | 'es2024.regexp'
-  | 'es2024.sharedmemory'
-  | 'es2024.string'
-  | 'es2024'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025.collection'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025.float16'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025.intl'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025.iterator'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025.promise'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025.regexp'
-  /**
-   * @since v6.0.0
-   */
-  | 'es2025'
-  | 'es5'
-  | 'es6'
-  | 'es7'
-  | 'esnext.array'
-  | 'esnext.asynciterable'
-  | 'esnext.bigint'
-  | 'esnext.collection'
-  | 'esnext.date'
-  | 'esnext.decorators'
-  | 'esnext.disposable'
-  | 'esnext.error'
-  | 'esnext.float16'
-  | 'esnext.intl'
-  | 'esnext.iterator'
-  | 'esnext.object'
-  | 'esnext.promise'
-  | 'esnext.regexp'
-  | 'esnext.sharedmemory'
-  | 'esnext.string'
-  | 'esnext.symbol'
-  | 'esnext.temporal'
-  | 'esnext.typedarrays'
-  | 'esnext.weakref'
-  | 'esnext'
-  | 'scripthost'
-  | 'webworker.asynciterable'
-  | 'webworker.importscripts'
-  | 'webworker.iterable'
-  | 'webworker'
+// Lowercase alternatives
+// | 'decorators.legacy'
+// | 'decorators'
+// | 'dom.asynciterable'
+// | 'dom.iterable'
+// | 'dom'
+// | 'es2015.collection'
+// | 'es2015.core'
+// | 'es2015.generator'
+// | 'es2015.iterable'
+// | 'es2015.promise'
+// | 'es2015.proxy'
+// | 'es2015.reflect'
+// | 'es2015.symbol.wellknown'
+// | 'es2015.symbol'
+// | 'es2015'
+// | 'es2016.array.include'
+// | 'es2016.intl'
+// | 'es2016'
+// | 'es2017.arraybuffer'
+// | 'es2017.date'
+// | 'es2017.intl'
+// | 'es2017.object'
+// | 'es2017.sharedmemory'
+// | 'es2017.string'
+// | 'es2017.typedarrays'
+// | 'es2017'
+// | 'es2018.asyncgenerator'
+// | 'es2018.asynciterable'
+// | 'es2018.intl'
+// | 'es2018.promise'
+// | 'es2018.regexp'
+// | 'es2018'
+// | 'es2019.array'
+// | 'es2019.intl'
+// | 'es2019.object'
+// | 'es2019.string'
+// | 'es2019.symbol'
+// | 'es2019'
+// | 'es2020.bigint'
+// | 'es2020.date'
+// | 'es2020.intl'
+// | 'es2020.number'
+// | 'es2020.promise'
+// | 'es2020.sharedmemory'
+// | 'es2020.string'
+// | 'es2020.symbol.wellknown'
+// | 'es2020'
+// | 'es2021.intl'
+// | 'es2021.promise'
+// | 'es2021.string'
+// | 'es2021.weakref'
+// | 'es2021'
+// | 'es2022.array'
+// | 'es2022.error'
+// | 'es2022.intl'
+// | 'es2022.object'
+// | 'es2022.regexp'
+// // | 'es2022.sharedmemory'
+// | 'es2022.string'
+// | 'es2022'
+// | 'es2023.array'
+// | 'es2023.collection'
+// | 'es2023.intl'
+// | 'es2023'
+// | 'es2024.arraybuffer'
+// | 'es2024.collection'
+// | 'es2024.object'
+// | 'es2024.promise'
+// | 'es2024.regexp'
+// | 'es2024.sharedmemory'
+// | 'es2024.string'
+// | 'es2024'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025.collection'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025.float16'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025.intl'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025.iterator'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025.promise'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025.regexp'
+// /**
+//  * @since v6.0.0
+//  */
+// | 'es2025'
+// | 'es5'
+// | 'es6'
+// | 'es7'
+// | 'esnext.array'
+// | 'esnext.asynciterable'
+// | 'esnext.bigint'
+// | 'esnext.collection'
+// | 'esnext.date'
+// | 'esnext.decorators'
+// | 'esnext.disposable'
+// | 'esnext.error'
+// | 'esnext.float16'
+// | 'esnext.intl'
+// | 'esnext.iterator'
+// | 'esnext.object'
+// | 'esnext.promise'
+// | 'esnext.regexp'
+// | 'esnext.sharedmemory'
+// | 'esnext.string'
+// | 'esnext.symbol'
+// | 'esnext.temporal'
+// | 'esnext.typedarrays'
+// | 'esnext.weakref'
+// | 'esnext'
+// | 'scripthost'
+// | 'webworker.asynciterable'
+// | 'webworker.importscripts'
+// | 'webworker.iterable'
+// | 'webworker'
 
 export type Plugin = {
   /**
@@ -456,21 +454,21 @@ export type WatchFile =
   | 'useFsEventsOnParentDirectory'
 
 export type ModuleResolution =
-  | 'bundler'
-  /**
-   * @deprecated Since v6.0.0.
-   */
-  | 'classic'
-  /**
-   * @deprecated Since v5.0.0 - Use `'node10'` instead.
-   */
-  | 'node'
-  /**
-   * @deprecated Since v6.0.0.
-   */
-  | 'node10'
-  | 'node16'
-  | 'nodenext'
+  // | 'bundler'
+  // /**
+  //  * @deprecated Since v6.0.0.
+  //  */
+  // | 'classic'
+  // /**
+  //  * @deprecated Since v5.0.0 - Use `'node10'` instead.
+  //  */
+  // | 'node'
+  // /**
+  //  * @deprecated Since v6.0.0.
+  //  */
+  // | 'node10'
+  // | 'node16'
+  // | 'nodenext'
   // Pascal-cased alternatives
   | 'Bundler'
   /**
@@ -923,7 +921,7 @@ export type CompilerOptions = {
    *
    * @since v2.0.0
    */
-  lib?: Lib[]
+  lib?: (Lib | Lowercase<Lib>)[]
 
   /**
    * Enable lib replacement.
@@ -995,7 +993,7 @@ export type CompilerOptions = {
    * @since v1.0.0
    * @default "esnext"
    */
-  module?: Module
+  module?: Lowercase<Module> | Module
 
   /**
    * This setting controls how TypeScript determines whether a file is a
@@ -1019,7 +1017,7 @@ export type CompilerOptions = {
    * @since v1.6.0
    * @default ["AMD", "System", "ES6"].includes(module) ? "classic" : "node"
    */
-  moduleResolution?: ModuleResolution
+  moduleResolution?: Lowercase<ModuleResolution> | ModuleResolution
 
   /**
    * List of file name suffixes to search when resolving a module.
@@ -1036,7 +1034,7 @@ export type CompilerOptions = {
    * @since v1.5.0
    * @default "lf"
    */
-  newLine?: NewLine
+  newLine?: Lowercase<NewLine> | NewLine
 
   /**
    * Disable full export type checking
@@ -1479,7 +1477,7 @@ export type CompilerOptions = {
    * @since v1.0.0
    * @default "es2025"
    */
-  target?: Target
+  target?: Lowercase<Target> | Target
 
   /**
    * Enable tracing of the name resolution process.
@@ -1513,7 +1511,7 @@ export type CompilerOptions = {
    * @since v2.0.0
    * @default []
    */
-  types?: string[]
+  types?: StringLiteralUnion<'*' | 'node'>[]
 
   /**
    * Emit ECMAScript standard class fields.

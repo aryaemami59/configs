@@ -5,5 +5,5 @@
     "moduleResolution": "nodenext"
   },
   "display": "TypeScript configuration with module set to `nodenext` and module resolution set to `nodenext`",
-  "extends": "@aryaemami59/tsconfig/node"
+  "extends": "@aryaemami59/tsconfig/node/esnext"
 }

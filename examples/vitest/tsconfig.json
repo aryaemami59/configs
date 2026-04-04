@@ -5,5 +5,5 @@
     "rootDir": "./",
     "types": ["node", "vitest/globals", "vitest/importMeta"]
   },
-  "extends": "@aryaemami59/tsconfig/node-next/with-js"
+  "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js"
 }

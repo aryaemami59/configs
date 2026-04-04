@@ -5,5 +5,5 @@
     "checkJs": true
   },
   "display": "TypeScript configuration with module set to `esnext`, module resolution set to `node`, and JavaScript files support enabled",
-  "extends": "@aryaemami59/tsconfig/node"
+  "extends": "@aryaemami59/tsconfig/node/esnext"
 }

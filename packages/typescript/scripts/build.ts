@@ -6,259 +6,257 @@ import type { Options } from 'prettier'
 import { format } from 'prettier'
 import ts from 'typescript'
 import packageJson from '../package.json' with { type: 'json' }
-import type {
-  ExcludeStrict,
-  ExtractCapitalized,
-  ExtractLowercase,
-  ExtractStrict,
-  KebabCase,
-  Simplify,
-} from './typeHelpers.ts'
+import type { ExcludeStrict, KebabCase, Simplify } from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
 
 const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
 
-type ModuleResolutionKindType = typeof ModuleResolutionKind
+type ModuleResolutionKindType = Simplify<typeof ModuleResolutionKind>
 
-type ModuleKindType = typeof ModuleKind
+type ModuleKindType = Simplify<typeof ModuleKind>
 
 const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
 
-type LowerCaseModuleResolutionKinds = ExcludeStrict<
-  ExtractLowercase<ModuleResolution>,
-  'classic'
->
-
 type CapitalizedModuleResolutionKinds = ExcludeStrict<
-  ExtractCapitalized<ModuleResolution>,
+  ModuleResolution,
   'Classic'
 >
 
+type LowerCaseModuleResolutionKinds =
+  Lowercase<CapitalizedModuleResolutionKinds>
+
 type CapitalizedModuleKinds = ExcludeStrict<
-  ExtractCapitalized<Module>,
+  Module,
   'AMD' | 'None' | 'System' | 'UMD'
 >
 
-type LowerCaseModuleKinds = ExcludeStrict<
-  ExtractLowercase<Module>,
-  'amd' | 'none' | 'system' | 'umd'
->
+type LowerCaseModuleKinds = Lowercase<CapitalizedModuleKinds>
 
 type CapitalizedToLowerCaseModuleResolutionKinds = {
-  readonly [K in CapitalizedModuleResolutionKinds]: Lowercase<K>
+  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds]: Lowercase<PascalCasedModuleResolutionKind>
 }
 
 type LowerCaseToCapitalizedModuleResolutionKinds = {
-  readonly [K in CapitalizedModuleResolutionKinds as Lowercase<K>]: K
+  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds as CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]]: PascalCasedModuleResolutionKind
 }
 
 type PossibleModuleKinds = Simplify<{
-  readonly [K in CapitalizedModuleResolutionKinds]: {
-    readonly module: Lowercase<K> extends 'bundler'
-      ? readonly ['esnext', 'preserve']
-      : Lowercase<K> extends 'node' | 'node10'
-        ? readonly ['esnext']
-        : Lowercase<K> extends 'node16'
-          ? readonly ['node16']
-          : Lowercase<K> extends 'nodenext'
-            ? readonly ['nodenext']
-            : readonly ['esnext']
-    readonly moduleResolution: Lowercase<K>
-  }
+  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds]: Simplify<
+    Readonly<
+      Record<
+        'modules',
+        CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind] extends 'bundler'
+          ? readonly ['commonjs', 'esnext', 'preserve']
+          : CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind] extends
+                | 'node'
+                | 'node10'
+            ? readonly ['commonjs', 'esnext']
+            : readonly [
+                CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind],
+              ]
+      >
+    > & {
+      readonly directory: KebabCase<PascalCasedModuleResolutionKind>
+      readonly moduleResolution: CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]
+    }
+  >
 }>
 
 type BaseConfigs = {
-  readonly [K in CapitalizedModuleResolutionKinds as Lowercase<K>]: Simplify<{
-    readonly directory: KebabCase<K>
-    readonly module: PossibleModuleKinds[K]['module'][0]
-    readonly moduleResolution: Lowercase<K>
-    readonly subDirectory: [1] extends [
-      PossibleModuleKinds[K]['module']['length'],
-    ]
-      ? ''
-      : PossibleModuleKinds[K]['module'][0]
+  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds as CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]]: Simplify<{
+    readonly directory: PossibleModuleKinds[PascalCasedModuleResolutionKind]['directory']
+    readonly moduleResolution: PossibleModuleKinds[PascalCasedModuleResolutionKind]['moduleResolution']
+    readonly modules: PossibleModuleKinds[PascalCasedModuleResolutionKind]['modules']
+    // readonly subDirectories: PossibleModuleKinds[PascalCasedModuleResolutionKind]['subDirectories']
   }>
 }
 
 const baseConfigs = {
   bundler: {
     directory: 'bundler',
-    module: 'esnext',
     moduleResolution: 'bundler',
-    subDirectory: 'esnext',
+    modules: ['commonjs', 'esnext', 'preserve'] as const,
+    // subDirectories: ['commonjs', 'esnext', 'preserve'] as const,
   },
   node: {
     directory: 'node',
-    module: 'esnext',
     moduleResolution: 'node',
-    subDirectory: '',
+    modules: ['commonjs', 'esnext'] as const,
+    // subDirectories: ['commonjs', 'esnext'] as const,
   },
   node10: {
     directory: 'node-10',
-    module: 'esnext',
     moduleResolution: 'node10',
-    subDirectory: '',
+    modules: ['commonjs', 'esnext'] as const,
+    // subDirectories: ['commonjs', 'esnext'] as const,
   },
   node16: {
     directory: 'node-16',
-    module: 'node16',
     moduleResolution: 'node16',
-    subDirectory: '',
+    modules: ['node16'] as const,
+    // subDirectories: ['node16'] as const,
   },
   nodenext: {
     directory: 'node-next',
-    module: 'nodenext',
     moduleResolution: 'nodenext',
-    subDirectory: '',
+    modules: ['nodenext'] as const,
+    // subDirectories: ['nodenext'] as const,
   },
 } as const satisfies BaseConfigs
 
-type AdditionalConfigs = {
-  readonly [K in keyof PossibleModuleKinds as [1] extends [
-    PossibleModuleKinds[K]['module']['length'],
-  ]
-    ? never
-    : [undefined] extends [PossibleModuleKinds[K]['module']['1']]
-      ? never
-      : Lowercase<K>]: {
-    readonly directory: KebabCase<K>
-    readonly moduleResolution: PossibleModuleKinds[K]['moduleResolution']
-  } & {
-    [P in PossibleModuleKinds[K]['module'][ExtractStrict<
-      keyof PossibleModuleKinds[K]['module'],
-      number
-    >]]: {
-      readonly module: P
-      readonly subDirectory: P
-    }
-  }[ExcludeStrict<
-    PossibleModuleKinds[K]['module'][ExtractStrict<
-      keyof PossibleModuleKinds[K]['module'],
-      number
-    >],
-    PossibleModuleKinds[K]['module'][0]
-  >]
-}
+// type AdditionalConfigs = Simplify<{
+//   readonly [K in keyof PossibleModuleKinds as [1] extends [
+//     PossibleModuleKinds[K]['module']['length'],
+//   ]
+//     ? never
+//     : [undefined] extends [PossibleModuleKinds[K]['module']['1']]
+//       ? never
+//       : Lowercase<K>]: Simplify<
+//     {
+//       readonly directory: KebabCase<K>
+//       readonly moduleResolution: PossibleModuleKinds[K]['moduleResolution']
+//     } & {
+//       [P in PossibleModuleKinds[K]['module'][ExtractStrict<
+//         keyof PossibleModuleKinds[K]['module'],
+//         number
+//       >]]: {
+//         readonly module: P
+//         readonly subDirectory: P
+//       }
+//     }[ExcludeStrict<
+//       PossibleModuleKinds[K]['module'][ExtractStrict<
+//         keyof PossibleModuleKinds[K]['module'],
+//         number
+//       >],
+//       PossibleModuleKinds[K]['module'][0]
+//     >]
+//   >
+// }>
 
-const additionalConfigs = {
-  bundler: {
-    directory: 'bundler',
-    module: 'preserve',
-    moduleResolution: 'bundler',
-    subDirectory: 'preserve',
-  },
-} as const satisfies AdditionalConfigs
+// const additionalConfigs = {
+//   bundler: {
+//     directory: 'bundler',
+//     module: 'preserve',
+//     moduleResolution: 'bundler',
+//     subDirectory: 'preserve',
+//   },
+// } as const satisfies AdditionalConfigs
 
 const build = async () => {
   await Promise.all(
-    [...Object.entries(baseConfigs), ...Object.entries(additionalConfigs)].map(
-      async ([
-        ,
-        { directory, module: moduleKind, moduleResolution, subDirectory },
-      ]) => {
-        const directoryPath = path.join(
-          ROOT_DIRECTORY,
-          'src',
-          directory,
-          subDirectory,
-        )
+    Object.entries(baseConfigs).map(
+      async ([, { directory, moduleResolution, modules }]) => {
+        await Promise.all(
+          modules.map(async (moduleKind) => {
+            const directoryPath = path.join(
+              ROOT_DIRECTORY,
+              'src',
+              directory,
+              moduleKind,
+            )
 
-        const tsconfigJsonPath = path.join(directoryPath, 'tsconfig.json')
+            const tsconfigJsonPath = path.join(directoryPath, 'tsconfig.json')
 
-        const withJsDirectoryPath = path.join(directoryPath, 'with-js')
+            const withJsDirectoryPath = path.join(directoryPath, 'with-js')
 
-        const withJsTsConfigJsonPath = path.join(
-          withJsDirectoryPath,
-          'tsconfig.json',
-        )
+            const withJsTsConfigJsonPath = path.join(
+              withJsDirectoryPath,
+              'tsconfig.json',
+            )
 
-        await fs.mkdir(directoryPath, {
-          recursive: true,
-        })
+            await fs.mkdir(directoryPath, {
+              recursive: true,
+            })
 
-        await fs.mkdir(withJsDirectoryPath, {
-          recursive: true,
-        })
+            await fs.mkdir(withJsDirectoryPath, {
+              recursive: true,
+            })
 
-        const baseTsconfigJson = {
-          $schema: 'https://json.schemastore.org/tsconfig',
-          compilerOptions: {},
-          display: `TypeScript configuration with \`${moduleResolution}\` module resolution`,
-        } as const satisfies TsConfigJson
+            const baseTsconfigJson = {
+              $schema: 'https://json.schemastore.org/tsconfig',
+              compilerOptions: {},
+              display: `TypeScript configuration with \`${moduleResolution}\` module resolution`,
+            } as const satisfies TsConfigJson
 
-        const withJsTsConfigJson = {
-          ...baseTsconfigJson,
-          compilerOptions: {
-            allowJs: true,
-            checkJs: true,
-          },
-          display: `TypeScript configuration with module set to \`${moduleKind}\`, module resolution set to \`${moduleResolution}\`, and JavaScript files support enabled`,
-          extends: [packageJson.name, directory, subDirectory]
-            .filter((e) => !!e)
-            .join('/'),
-        } as const satisfies TsConfigJson
+            const withJsTsConfigJson = {
+              ...baseTsconfigJson,
+              compilerOptions: {
+                allowJs: true,
+                checkJs: true,
+              },
+              display: `TypeScript configuration with module set to \`${moduleKind}\`, module resolution set to \`${moduleResolution}\`, and JavaScript files support enabled`,
+              extends: [packageJson.name, moduleResolution, moduleKind]
+                .filter((e) => !!e)
+                .join('/'),
+            } as const satisfies TsConfigJson
 
-        const tsconfigJson = {
-          ...baseTsconfigJson,
-          compilerOptions: {
-            ...(moduleKind !== baseConfigs.node.module && {
-              module: moduleKind,
-            }),
-            ...(moduleResolution !== 'node' && { moduleResolution }),
-            ...(moduleResolution === 'node' && {
-              allowSyntheticDefaultImports: true,
-              declaration: true,
-              esModuleInterop: true,
-              forceConsistentCasingInFileNames: true,
-              isolatedModules: true,
-              jsx: 'react',
-              lib: ['DOM', 'ESNext'],
-              module: 'esnext',
-              moduleDetection: 'force',
-              moduleResolution,
-              noEmit: false,
-              noEmitOnError: true,
-              noErrorTruncation: true,
-              noFallthroughCasesInSwitch: true,
-              noImplicitOverride: true,
-              noImplicitReturns: true,
-              resolveJsonModule: true,
-              skipLibCheck: true,
-              sourceMap: true,
-              strict: true,
-              target: 'esnext',
-              types: ['node'],
-              useDefineForClassFields: true,
-              useUnknownInCatchVariables: true,
-            }),
-          },
-          display: `TypeScript configuration with module set to \`${moduleKind}\` and module resolution set to \`${moduleResolution}\`${moduleResolution === 'node' ? ', intended for TypeScript versions earlier than 5.0.' : moduleResolution === 'node10' ? '. It serves as a backwards compatible replacement for the deprecated `node` module resolution.' : ''}`,
-          ...(moduleResolution !== 'node' && {
-            extends: `${packageJson.name}/node`,
+            const tsconfigJson = {
+              ...baseTsconfigJson,
+              compilerOptions: {
+                ...(moduleKind !== baseConfigs.node.modules[0] &&
+                  moduleKind !== baseConfigs.node.modules[1] && {
+                    module: moduleKind,
+                  }),
+                ...(moduleResolution !== 'node' && {
+                  // module: moduleKind,
+                  moduleResolution,
+                }),
+                ...(moduleResolution === 'node' && {
+                  allowSyntheticDefaultImports: true,
+                  declaration: true,
+                  esModuleInterop: true,
+                  forceConsistentCasingInFileNames: true,
+                  isolatedModules: true,
+                  jsx: 'react',
+                  lib: ['DOM', 'ESNext'],
+                  module: moduleKind,
+                  moduleDetection: 'force',
+                  moduleResolution,
+                  noEmit: false,
+                  noEmitOnError: true,
+                  noErrorTruncation: true,
+                  noFallthroughCasesInSwitch: true,
+                  noImplicitOverride: true,
+                  noImplicitReturns: true,
+                  resolveJsonModule: true,
+                  skipLibCheck: true,
+                  sourceMap: true,
+                  strict: true,
+                  target: 'esnext',
+                  types: ['node'],
+                  useDefineForClassFields: true,
+                  useUnknownInCatchVariables: true,
+                }),
+              },
+              display: `TypeScript configuration with module set to \`${moduleKind}\` and module resolution set to \`${moduleResolution}\`${moduleResolution === 'node' ? ', intended for TypeScript versions earlier than 5.0.' : moduleResolution === 'node10' ? '. It serves as a backwards compatible replacement for the deprecated `node` module resolution.' : ''}`,
+              ...(moduleResolution !== 'node' && {
+                extends: `${packageJson.name}/node/${moduleKind === 'commonjs' || moduleKind === 'esnext' ? moduleKind : 'esnext'}`,
+              }),
+            } as const satisfies TsConfigJson
+
+            const prettierConfig = {
+              semi: false,
+              singleQuote: true,
+            } as const satisfies Options
+
+            fs.writeFile(
+              tsconfigJsonPath,
+              await format(JSON.stringify(tsconfigJson, null, 2), {
+                ...prettierConfig,
+                filepath: tsconfigJsonPath,
+              }),
+              { encoding: 'utf-8' },
+            )
+
+            fs.writeFile(
+              withJsTsConfigJsonPath,
+              await format(JSON.stringify(withJsTsConfigJson, null, 2), {
+                ...prettierConfig,
+                filepath: withJsTsConfigJsonPath,
+              }),
+              { encoding: 'utf-8' },
+            )
           }),
-        } as const satisfies TsConfigJson
-
-        const prettierConfig = {
-          semi: false,
-          singleQuote: true,
-        } as const satisfies Options
-
-        fs.writeFile(
-          tsconfigJsonPath,
-          await format(JSON.stringify(tsconfigJson, null, 2), {
-            ...prettierConfig,
-            filepath: tsconfigJsonPath,
-          }),
-          { encoding: 'utf-8' },
-        )
-
-        fs.writeFile(
-          withJsTsConfigJsonPath,
-          await format(JSON.stringify(withJsTsConfigJson, null, 2), {
-            ...prettierConfig,
-            filepath: withJsTsConfigJsonPath,
-          }),
-          { encoding: 'utf-8' },
         )
       },
     ),
