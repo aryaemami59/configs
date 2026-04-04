@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true
+  },
+  "display": "TypeScript configuration with module set to `node20`, module resolution set to `nodenext`, and JavaScript files support enabled",
+  "extends": "@aryaemami59/tsconfig/nodenext/node20"
+}

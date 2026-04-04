@@ -51,9 +51,17 @@ type PossibleModuleKinds = Simplify<{
                 | 'node'
                 | 'node10'
             ? readonly ['commonjs', 'esnext']
-            : readonly [
-                CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind],
-              ]
+            : CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind] extends
+                  | 'node16'
+                  | 'nodenext'
+              ? readonly [
+                  CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind],
+                  'node18',
+                  'node20',
+                ]
+              : readonly [
+                  CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind],
+                ]
       >
     > & {
       readonly directory: KebabCase<PascalCasedModuleResolutionKind>
@@ -93,13 +101,13 @@ const baseConfigs = {
   node16: {
     directory: 'node-16',
     moduleResolution: 'node16',
-    modules: ['node16'] as const,
+    modules: ['node16', 'node18', 'node20'] as const,
     // subDirectories: ['node16'] as const,
   },
   nodenext: {
     directory: 'node-next',
     moduleResolution: 'nodenext',
-    modules: ['nodenext'] as const,
+    modules: ['nodenext', 'node18', 'node20'] as const,
     // subDirectories: ['nodenext'] as const,
   },
 } as const satisfies BaseConfigs

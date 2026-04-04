@@ -47,8 +47,16 @@
     "./node10/esnext/with-js": "./src/node-10/esnext/with-js/tsconfig.json",
     "./node16/node16": "./src/node-16/node16/tsconfig.json",
     "./node16/node16/with-js": "./src/node-16/node16/with-js/tsconfig.json",
+    "./node16/node18": "./src/node-16/node18/tsconfig.json",
+    "./node16/node18/with-js": "./src/node-16/node18/with-js/tsconfig.json",
+    "./node16/node20": "./src/node-16/node20/tsconfig.json",
+    "./node16/node20/with-js": "./src/node-16/node20/with-js/tsconfig.json",
     "./nodenext/nodenext": "./src/node-next/nodenext/tsconfig.json",
     "./nodenext/nodenext/with-js": "./src/node-next/nodenext/with-js/tsconfig.json",
+    "./nodenext/node18": "./src/node-next/node18/tsconfig.json",
+    "./nodenext/node18/with-js": "./src/node-next/node18/with-js/tsconfig.json",
+    "./nodenext/node20": "./src/node-next/node20/tsconfig.json",
+    "./nodenext/node20/with-js": "./src/node-next/node20/with-js/tsconfig.json",
     "./package.json": "./package.json"
   },
   "main": "./src/node/esnext/tsconfig.json",
@@ -112,11 +120,35 @@
       "node16/node16/with-js": [
         "src/node-16/node16/with-js/tsconfig.json"
       ],
+      "node16/node18": [
+        "src/node-16/node18/tsconfig.json"
+      ],
+      "node16/node18/with-js": [
+        "src/node-16/node18/with-js/tsconfig.json"
+      ],
+      "node16/node20": [
+        "src/node-16/node20/tsconfig.json"
+      ],
+      "node16/node20/with-js": [
+        "src/node-16/node20/with-js/tsconfig.json"
+      ],
       "nodenext/nodenext": [
         "src/node-next/nodenext/tsconfig.json"
       ],
       "nodenext/nodenext/with-js": [
         "src/node-next/nodenext/with-js/tsconfig.json"
+      ],
+      "nodenext/node18": [
+        "src/node-next/node18/tsconfig.json"
+      ],
+      "nodenext/node18/with-js": [
+        "src/node-next/node18/with-js/tsconfig.json"
+      ],
+      "nodenext/node20": [
+        "src/node-next/node20/tsconfig.json"
+      ],
+      "nodenext/node20/with-js": [
+        "src/node-next/node20/with-js/tsconfig.json"
       ]
     }
   },

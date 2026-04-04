@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "node18",
+    "moduleResolution": "nodenext"
+  },
+  "display": "TypeScript configuration with module set to `node18` and module resolution set to `nodenext`",
+  "extends": "@aryaemami59/tsconfig/node/esnext"
+}
