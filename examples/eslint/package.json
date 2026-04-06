@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-example",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "homepage": "https://github.com/aryaemami59/configs",
   "sideEffects": false,
