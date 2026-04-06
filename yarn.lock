@@ -2201,10 +2201,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^11.0.0, lru-cache@npm:^11.0.1, lru-cache@npm:^11.1.0, lru-cache@npm:^11.2.1, lru-cache@npm:^11.2.7":
+"lru-cache@npm:11.3.0":
   version: 11.3.0
   resolution: "lru-cache@npm:11.3.0"
   checksum: 10c0/f50d32064c07b17390e7bf89fa09fcf05c19018d8cb03359a04dad3e16e4213812958af32eb0e29a92239a1f13631b58c26c007367f99946defcf4e495c1c123
+  languageName: node
+  linkType: hard
+
+"lru-cache@patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch":
+  version: 11.3.0
+  resolution: "lru-cache@patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch::version=11.3.0&hash=f162da"
+  checksum: 10c0/f976f581c36885f44f53cbc7649ce8aae5774d97a92d5884f2f2e61a0e822cda5b7da23b4aef8ce02be8601c2f1dd9b4086a5e1be7530e15f7459b4f653d4812
   languageName: node
   linkType: hard
 
@@ -3372,8 +3379,8 @@ __metadata:
   linkType: hard
 
 "vite@npm:^6.0.0 || ^7.0.0 || ^8.0.0, vite@npm:^8.0.3":
-  version: 8.0.3
-  resolution: "vite@npm:8.0.3"
+  version: 8.0.4
+  resolution: "vite@npm:8.0.4"
   dependencies:
     fsevents: "npm:~2.3.3"
     lightningcss: "npm:^1.32.0"
@@ -3384,7 +3391,7 @@ __metadata:
   peerDependencies:
     "@types/node": ^20.19.0 || >=22.12.0
     "@vitejs/devtools": ^0.1.0
-    esbuild: ^0.27.0
+    esbuild: ^0.27.0 || ^0.28.0
     jiti: ">=1.21.0"
     less: ^4.0.0
     sass: ^1.70.0
@@ -3424,7 +3431,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/bed9520358080393a02fe22565b3309b4b3b8f916afe4c97577528f3efb05c1bf4b29f7b552179bc5b3938629e50fbd316231727457411dbc96648fa5c9d14bf
+  checksum: 10c0/28c840fd663acfc6c41720412e607e67e58166e399dc44b5d394372d34fb963f382a80dfb4741ba2b471f3bcbbc6901a137eb83dc1280854970d10ce78fa098b
   languageName: node
   linkType: hard
 
