@@ -4,6 +4,9 @@ import packageJson from './package.json' with { type: 'json' }
 
 const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
+    checks: {
+      circularDependency: true,
+    },
     clean: false,
     cwd: import.meta.dirname,
     deps: {

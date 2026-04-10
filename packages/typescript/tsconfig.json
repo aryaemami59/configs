@@ -6,5 +6,6 @@
     "outDir": "./dist",
     "rootDir": "./"
   },
-  "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js"
+  "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js",
+  "include": ["**/*.*"]
 }
