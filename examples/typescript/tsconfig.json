@@ -5,5 +5,6 @@
     "rootDir": "./",
     "types": ["node", "vitest/globals", "vitest/importMeta"]
   },
-  "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js"
+  "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js",
+  "include": ["**/*.*"]
 }
