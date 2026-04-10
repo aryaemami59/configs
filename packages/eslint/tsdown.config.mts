@@ -1,4 +1,3 @@
-import * as path from 'node:path'
 import type { InlineConfig, Rolldown, UserConfig } from 'tsdown'
 import { defineConfig } from 'tsdown'
 import packageJson from './package.json' with { type: 'json' }
@@ -16,6 +15,8 @@ const tsdownConfig = defineConfig((cliOptions) => {
     },
     dts: {
       build: false,
+      cjsDefault: true,
+      cjsReexport: false,
       cwd: import.meta.dirname,
       dtsInput: false,
       eager: false,
@@ -29,6 +30,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
       resolver: 'tsc',
       sideEffects: false,
       sourcemap: true,
+      tsconfig: 'tsconfig.build.json',
       tsgo: false,
       tsMacro: false,
       vue: false,
@@ -74,7 +76,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
     treeshake: {
       moduleSideEffects: false,
     },
-    tsconfig: path.join(import.meta.dirname, 'tsconfig.build.json'),
+    tsconfig: 'tsconfig.build.json',
     ...cliOptions,
   } as const satisfies InlineConfig
 
@@ -82,12 +84,12 @@ const tsdownConfig = defineConfig((cliOptions) => {
     {
       ...commonOptions,
       format: ['es'],
-      name: `${packageJson.name} Modern ESM`,
+      name: `${packageJson.name} ESM`,
     },
     {
       ...commonOptions,
       format: ['cjs'],
-      name: `${packageJson.name} CJS Development`,
+      name: `${packageJson.name} CJS`,
     },
   ] as const satisfies UserConfig[]
 })
