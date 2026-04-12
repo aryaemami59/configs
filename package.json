@@ -46,12 +46,5 @@
     "typescript": "^6.0.2",
     "vitest": "^4.1.4"
   },
-  "packageManager": "yarn@4.13.0",
-  "resolutions": {
-    "lru-cache@npm:^11.0.0": "patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch",
-    "lru-cache@npm:^11.0.1": "patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch",
-    "lru-cache@npm:^11.2.7": "patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch",
-    "lru-cache@npm:^11.2.1": "patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch",
-    "lru-cache@npm:^11.1.0": "patch:lru-cache@npm%3A11.3.0#~/.yarn/patches/lru-cache-npm-11.3.0-f89d9a30ef.patch"
-  }
+  "packageManager": "yarn@4.13.0"
 }
