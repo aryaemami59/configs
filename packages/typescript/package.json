@@ -166,9 +166,9 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@types/node": "^25.6.0",
-    "prettier": "^3.8.2",
+    "prettier": "^3.8.3",
     "publint": "^0.3.18",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "publishConfig": {
     "access": "public",
