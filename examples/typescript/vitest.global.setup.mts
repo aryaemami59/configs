@@ -152,7 +152,7 @@ class FileFixtures<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> {
               content: this.getFileContent(type),
               fileName: this.getFileName('neutral'),
             },
-          } satisfies FixtureFiles<'ts'> as FixtureFiles<'ts'>)
+          } satisfies FixtureFiles<'ts'>)
         : ({
             cjs: {
               absolutePath: this.getAbsolutePath(fixtureDirectory, 'CJS'),
@@ -171,7 +171,7 @@ class FileFixtures<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> {
               content: this.getFileContent(type),
               fileName: this.getFileName('ESM'),
             },
-          } satisfies FixtureFiles<'js'> as FixtureFiles<'js'>),
+          } satisfies FixtureFiles<'js'>),
 
       fixtureDirectory,
 
