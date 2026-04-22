@@ -74,6 +74,8 @@ export const flatESLintConfig = [
     languageOptions: {
       globals: sharedEnvironmentGlobals,
       parser:
+        // FIXME: Fix the type portability issue.
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
         tseslintParser satisfies TSESLintFlatConfig.Parser satisfies Linter.Parser as Linter.Parser,
       parserOptions: {
         ecmaVersion: 'latest',
@@ -87,6 +89,8 @@ export const flatESLintConfig = [
     name: `${packageJson.name}/defaults/overrides`,
     plugins: {
       '@typescript-eslint':
+        // FIXME: Fix the type portability issue.
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
         tseslintPlugin satisfies TSESLintFlatConfig.Plugin satisfies ESLint.Plugin as ESLint.Plugin,
     },
 
