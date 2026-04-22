@@ -68,10 +68,10 @@
   },
   "dependencies": {
     "@eslint/js": "^10.0.1",
-    "@typescript-eslint/utils": "^8.58.2",
+    "@typescript-eslint/utils": "^8.59.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.5.0",
-    "typescript-eslint": "^8.58.2"
+    "typescript-eslint": "^8.59.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
