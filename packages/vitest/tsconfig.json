@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declarationMap": true,
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
