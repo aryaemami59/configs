@@ -65,8 +65,6 @@ const element1 = `export type CompilerOptions = {\n${Object.entries(element)
    *  *\\/`,
   )
 
-console.dir(element1, { depth: 2, getters: false, sorted: true })
-
 const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
 
 type ModuleResolutionKindType = Simplify<typeof ModuleResolutionKind>
@@ -75,9 +73,9 @@ type ModuleKindType = Simplify<typeof ModuleKind>
 
 const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
 
-fs.writeFile(path.join(ROOT_DIRECTORY, 'output.ts'), element1, {
-  encoding: 'utf-8',
-})
+// fs.writeFile(path.join(ROOT_DIRECTORY, 'output.ts'), element1, {
+//   encoding: 'utf-8',
+// })
 
 type CapitalizedModuleResolutionKinds = ExcludeStrict<
   ModuleResolution,
