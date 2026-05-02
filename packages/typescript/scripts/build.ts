@@ -5,9 +5,67 @@ import * as path from 'node:path'
 import type { Options } from 'prettier'
 import { format } from 'prettier'
 import ts from 'typescript'
+import tsconfigSchemaJson from '../../../tsconfig.schema.json' with { type: 'json' }
 import packageJson from '../package.json' with { type: 'json' }
 import type { ExcludeStrict, KebabCase, Simplify } from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
+
+const element = Object.fromEntries(
+  Object.entries(
+    tsconfigSchemaJson.definitions.compilerOptionsDefinition.properties
+      .compilerOptions.properties,
+  ).map(
+    ([key, value]) =>
+      [
+        key,
+        {
+          ...value,
+          jsdoc: `  /**
+   * ${('markdownDescription' in value
+     ? value.markdownDescription
+     : value.description
+   ).replaceAll(
+     '\n',
+     `
+   * `,
+   )}${'default' in value ? `\n   *\n   * @default ${typeof value.default === 'string' ? `'${value.default}'` : value.default}` : ''}
+   */`,
+          markdownDescription:
+            'markdownDescription' in value
+              ? value.markdownDescription
+              : value.description,
+        },
+      ] as const,
+  ),
+)
+
+const element1 = `export type CompilerOptions = {\n${Object.entries(element)
+  .map(
+    ([key, value]) =>
+      `${value.jsdoc}\n  ${key}?: ${
+        'type' in value
+          ? value.type
+              .filter((e) => e !== 'null')
+              .map((e) => (e === 'array' ? 'string[]' : e))
+              .join(' | ')
+          : 'string'
+      },\n`,
+  )
+  .join('\n')}}\n`
+  .replaceAll('/* app.css */', '\\/* app.css *\\/')
+  .replaceAll(/\/\*(\*?\s[^*]+\s)\*\//gim, '\\/*$1*\\/')
+  .replaceAll(
+    `/**
+   *  * Days available in a week
+   *  * @internal
+   *  */`,
+    `\\/\\*\\*
+   *  \\* Days available in a week
+   *  \\* \\@internal
+   *  *\\/`,
+  )
+
+console.dir(element1, { depth: 2, getters: false, sorted: true })
 
 const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
 
@@ -16,6 +74,10 @@ type ModuleResolutionKindType = Simplify<typeof ModuleResolutionKind>
 type ModuleKindType = Simplify<typeof ModuleKind>
 
 const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
+
+fs.writeFile(path.join(ROOT_DIRECTORY, 'output.ts'), element1, {
+  encoding: 'utf-8',
+})
 
 type CapitalizedModuleResolutionKinds = ExcludeStrict<
   ModuleResolution,
