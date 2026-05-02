@@ -1,5 +1,10 @@
 export { vitestConfigDefaults, vitestProjectDefaults } from './defaults.js'
 export {
+  configDefaults,
+  coverageConfigDefaults,
+  defaultBrowserPort,
+  defaultExclude,
+  defaultInclude,
   defineConfig,
   defineProject,
   mergeConfig,

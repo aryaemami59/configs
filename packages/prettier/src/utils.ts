@@ -1,17 +1,17 @@
-import { prettierConfig } from './defaults.js'
+import { prettierConfigDefaults } from './defaults.js'
 import type { Config } from './external.js'
 
 /**
- * A function that returns {@linkcode prettierConfig}
+ * A function that returns {@linkcode prettierConfigDefaults}
  * along with optional additional overrides.
  * It's made mainly to provide intellisense and eliminate
  * the need for manual type annotations using JSDoc comments.
  *
  * @param [additionalOverrides={}] - **Optional** additional overrides to apply to the configuration.
- * @returns An augmented version of the default {@linkcode prettierConfig}, incorporating any provided overrides.
+ * @returns An augmented version of the default {@linkcode prettierConfigDefaults}, incorporating any provided overrides.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mts` or `prettier.config.mjs`__</caption>
  *
  * ```js
  * import { createPrettierConfig } from '@aryaemami59/prettier-config'
@@ -23,7 +23,7 @@ import type { Config } from './external.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cts` or `prettier.config.cjs` (using `require`)__</caption>
  *
  * ```js
  * const { createPrettierConfig } = require('@aryaemami59/prettier-config')
@@ -35,7 +35,7 @@ import type { Config } from './external.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cts` or `prettier.config.cjs` (using dynamic import)__</caption>
  *
  * ```js
  * module.exports = (async () =>
@@ -48,6 +48,6 @@ import type { Config } from './external.js'
  * @public
  * @since 0.0.3
  */
-export const createPrettierConfig = (
-  additionalOverrides: Config = {},
-): Config => ({ ...prettierConfig, ...additionalOverrides })
+export function createPrettierConfig(additionalOverrides: Config = {}): Config {
+  return { ...prettierConfigDefaults, ...additionalOverrides }
+}

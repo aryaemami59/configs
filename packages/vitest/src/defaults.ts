@@ -1,4 +1,5 @@
 import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
+import type { vitestConfig, vitestProject } from './shareableConfigs.js'
 
 /**
  * Default configuration for {@linkcode vitestProject}.
@@ -7,14 +8,18 @@ import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
  * @public
  */
 export const vitestProjectDefaults = {
-  /**
-   * @default { 'import.meta.vitest': 'undefined' }
-   */
   define: {
     /**
      * @default 'undefined'
      */
     'import.meta.vitest': 'undefined',
+  },
+
+  resolve: {
+    /**
+     * @default true
+     */
+    tsconfigPaths: true,
   },
 
   test: {
@@ -28,9 +33,6 @@ export const vitestProjectDefaults = {
      */
     globals: true,
 
-    /**
-     * @default { enabled: true, tsconfig: './tsconfig.json' }
-     */
     typecheck: {
       /**
        * @default true
@@ -67,9 +69,6 @@ export const vitestConfigDefaults = {
   test: {
     ...vitestProjectDefaults.test,
 
-    /**
-     * @default { include: ['src/**\/*.?(c|m)[jt]s?(x)'] }
-     */
     coverage: {
       /**
        * @default ['src/**\/*.?(c|m)[jt]s?(x)']
