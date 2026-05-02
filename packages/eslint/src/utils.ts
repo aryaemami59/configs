@@ -12,7 +12,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * @returns An augmented version of the default {@linkcode flatESLintConfig}, incorporating any provided overrides.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
  *
  * ```ts
  * import { createESLintConfig } from '@aryaemami59/eslint-config'
@@ -30,7 +30,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
  *
  * ```ts
  * const { createESLintConfig } = require('@aryaemami59/eslint-config')
@@ -48,7 +48,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using dynamic import)__</caption>
  *
  * ```ts
  * module.exports = (async () =>
@@ -65,7 +65,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
  * import eslintConfigModule = require('@aryaemami59/eslint-config')
@@ -86,7 +86,11 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * @since 0.0.3
  * @public
  */
-export const createESLintConfig = (
+export function createESLintConfig(
   additionalOverrides: Parameters<typeof defineConfig> = [],
-): Config[] =>
-  /* @__PURE__ */ defineConfig(...flatESLintConfig, ...additionalOverrides)
+): Config[] {
+  return /* @__PURE__ */ defineConfig(
+    ...flatESLintConfig,
+    ...additionalOverrides,
+  )
+}

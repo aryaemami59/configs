@@ -7,7 +7,7 @@ import { defineConfig, defineProject } from './external.js'
  * configuration tailored for projects using TypeScript.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
  * import { vitestConfig } from '@aryaemami59/vitest-config'
@@ -16,7 +16,7 @@ import { defineConfig, defineProject } from './external.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
  * const { vitestConfig } = require('@aryaemami59/vitest-config')
@@ -25,7 +25,7 @@ import { defineConfig, defineProject } from './external.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
  *
  * ```ts
  * module.exports = (async () =>
@@ -33,7 +33,7 @@ import { defineConfig, defineProject } from './external.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
  * import vitestConfigModule = require('@aryaemami59/vitest-config')
@@ -53,7 +53,7 @@ export const vitestConfig: ViteUserConfig =
  * configuration tailored for projects using TypeScript.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
  * import { vitestProject } from '@aryaemami59/vitest-config'
@@ -62,7 +62,7 @@ export const vitestConfig: ViteUserConfig =
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
  * const { vitestProject } = require('@aryaemami59/vitest-config')
@@ -71,7 +71,7 @@ export const vitestConfig: ViteUserConfig =
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
  *
  * ```ts
  * module.exports = (async () =>
@@ -79,7 +79,7 @@ export const vitestConfig: ViteUserConfig =
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
  * import vitestConfigModule = require('@aryaemami59/vitest-config')

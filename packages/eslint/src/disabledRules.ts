@@ -1,8 +1,9 @@
 import type { Linter } from './external.js'
+import type { flatESLintConfig } from './shareableConfigs.js'
 
 /**
- * An object comprised of ESLint rules to disable.
- * These rules are disabled in {@linkcode flatESLintConfig}.
+ * An object comprised of ESLint rules to disable. These rules are disabled in
+ * {@linkcode flatESLintConfig}.
  *
  * @since 0.0.3
  * @public

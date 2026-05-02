@@ -1,3 +1,4 @@
+import type { vitestProjectDefaults } from './defaults.js'
 import type { Plugin, PluginOptions } from './external.js'
 import { tsconfigPaths } from './external.js'
 
@@ -8,7 +9,14 @@ import { tsconfigPaths } from './external.js'
  * @public
  */
 export const tsconfigPathsOptions = {
+  /**
+   * @default ['tsconfig.json']
+   */
   configNames: ['tsconfig.json'],
+
+  /**
+   * @default ['./tsconfig.json']
+   */
   projects: ['./tsconfig.json'],
 } as const satisfies PluginOptions
 

@@ -1,10 +1,10 @@
-import type { Config } from 'prettier'
+import type { Config } from './external.js'
 
 /**
  * Prettier configuration.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mts` or `prettier.config.mjs`__</caption>
  *
  * ```js
  * import { prettierConfig } from '@aryaemami59/prettier-config'
@@ -13,7 +13,7 @@ import type { Config } from 'prettier'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cts` or `prettier.config.cjs` (using `require`)__</caption>
  *
  * ```js
  * const { prettierConfig } = require('@aryaemami59/prettier-config')
@@ -22,7 +22,7 @@ import type { Config } from 'prettier'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cts` or `prettier.config.cjs` (using dynamic import)__</caption>
  *
  * ```js
  * module.exports = (async () =>
@@ -32,7 +32,7 @@ import type { Config } from 'prettier'
  * @public
  * @since 0.0.3
  */
-export const prettierConfig = {
+export const prettierConfigDefaults = {
   semi: false,
   singleQuote: true,
 } as const satisfies Config

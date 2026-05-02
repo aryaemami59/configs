@@ -10,7 +10,7 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * @returns An augmented version of the default {@linkcode vitestConfig}, incorporating any provided overrides.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
  * import { createVitestConfig } from '@aryaemami59/vitest-config'
@@ -24,7 +24,7 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
  * const { createVitestConfig } = require('@aryaemami59/vitest-config')
@@ -38,7 +38,7 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
  *
  * ```ts
  * module.exports = (async () =>
@@ -51,7 +51,7 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
  * import vitestConfigModule = require('@aryaemami59/vitest-config')
@@ -68,10 +68,11 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * @since 0.0.3
  * @public
  */
-export const createVitestConfig = (
+export function createVitestConfig(
   additionalOverrides: ViteUserConfig = {},
-): ViteUserConfig =>
-  /* @__PURE__ */ mergeConfig(vitestConfig, additionalOverrides)
+): ViteUserConfig {
+  return /* @__PURE__ */ mergeConfig(vitestConfig, additionalOverrides)
+}
 
 /**
  * A function that returns {@linkcode vitestProject}
@@ -81,7 +82,7 @@ export const createVitestConfig = (
  * @returns An augmented version of the default {@linkcode vitestProject}, incorporating any provided overrides.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
  * import { createVitestProject } from '@aryaemami59/vitest-config'
@@ -95,7 +96,7 @@ export const createVitestConfig = (
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
  * const { createVitestProject } = require('@aryaemami59/vitest-config')
@@ -109,7 +110,7 @@ export const createVitestConfig = (
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using dynamic import)__</caption>
  *
  * ```ts
  * module.exports = (async () =>
@@ -122,7 +123,7 @@ export const createVitestConfig = (
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
  * import vitestConfigModule = require('@aryaemami59/vitest-config')
@@ -139,7 +140,8 @@ export const createVitestConfig = (
  * @since 0.0.5
  * @public
  */
-export const createVitestProject = (
+export function createVitestProject(
   additionalOverrides: UserWorkspaceConfig = {},
-): UserWorkspaceConfig =>
-  /* @__PURE__ */ mergeConfig(vitestProject, additionalOverrides)
+): UserWorkspaceConfig {
+  return /* @__PURE__ */ mergeConfig(vitestProject, additionalOverrides)
+}
