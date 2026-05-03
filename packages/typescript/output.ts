@@ -1142,9 +1142,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // @showEmit
-   * // @noErrors
-   * // @jsx: react-jsx
+   * // \@showEmit
+   * // \@noErrors
+   * // \@jsx: react-jsx
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1157,9 +1157,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // @showEmit
-   * // @noErrors
-   * // @jsx: react-jsxdev
+   * // \@showEmit
+   * // \@noErrors
+   * // \@jsx: react-jsxdev
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1172,9 +1172,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // @showEmit
-   * // @noErrors
-   * // @jsx: preserve
+   * // \@showEmit
+   * // \@noErrors
+   * // \@jsx: preserve
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1187,9 +1187,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // @showEmit
-   * // @noErrors
-   * // @jsx: react-native
+   * // \@showEmit
+   * // \@noErrors
+   * // \@jsx: react-native
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1203,8 +1203,8 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // @showEmit
-   * // @noErrors
+   * // \@showEmit
+   * // \@noErrors
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1213,14 +1213,14 @@ export type CompilerOptions = {
    * Always use the classic runtime (`"react"`) for this file:
    *
    * ```tsx
-   * \/* @jsxRuntime classic *\/
+   * //\/* \@jsxRuntime classic *\/\
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
    * Always use the automatic runtime (`"react-jsx"`) for this file:
    *
    * ```tsx
-   * \/* @jsxRuntime automatic *\/
+   * //\/* \@jsxRuntime automatic *\/
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    */
