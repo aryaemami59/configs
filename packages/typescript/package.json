@@ -164,10 +164,10 @@
     "typecheck": "tsc -p ${INIT_CWD}/tsconfig.json"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.2",
-    "@types/node": "^25.6.2",
+    "@arethetypeswrong/cli": "^0.18.3",
+    "@types/node": "^25.9.1",
     "prettier": "^3.8.3",
-    "publint": "^0.3.20",
+    "publint": "^0.3.21",
     "typescript": "^6.0.3"
   },
   "publishConfig": {
