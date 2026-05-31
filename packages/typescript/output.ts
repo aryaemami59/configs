@@ -4,7 +4,7 @@ export type CompilerOptions = {
    * For example, if you are using a CSS loader in a bundler project, you might want to write (or generate) declaration files for those stylesheets:
    *
    * ```css
-   * \/* app.css *\/
+   * ‎/‎* app.css ‎*‎/
    * .cookie-banner {
    *   display: none;
    * }
@@ -48,18 +48,18 @@ export type CompilerOptions = {
    * Allow JavaScript files to be imported inside your project, instead of just `.ts` and `.tsx` files. For example, this JS file:
    *
    * ```js twoslash
-   * // @filename: card.js
+   * // ‎@filename: card.js
    * export const defaultCardDeck = "Heart";
    * ```
    *
    * When imported into a TypeScript file will raise an error:
    *
    * ```ts twoslash
-   * // @errors: 2307
-   * // @filename: card.js
+   * // ‎@errors: 2307
+   * // ‎@filename: card.js
    * module.exports.defaultCardDeck = "Heart";
    * // ---cut---
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import { defaultCardDeck } from "./card";
    *
    * console.log(defaultCardDeck);
@@ -68,11 +68,11 @@ export type CompilerOptions = {
    * Imports fine with `allowJs` enabled:
    *
    * ```ts twoslash
-   * // @filename: card.js
+   * // ‎@filename: card.js
    * module.exports.defaultCardDeck = "Heart";
    * // ---cut---
-   * // @allowJs
-   * // @filename: index.ts
+   * // ‎@allowJs
+   * // ‎@filename: index.ts
    * import { defaultCardDeck } from "./card";
    *
    * console.log(defaultCardDeck);
@@ -104,19 +104,19 @@ export type CompilerOptions = {
    * For example, without `allowSyntheticDefaultImports` as true:
    *
    * ```ts twoslash
-   * // @errors: 1259 1192
-   * // @checkJs
-   * // @allowJs
-   * // @esModuleInterop: false
-   * // @filename: utilFunctions.js
-   * // @noImplicitAny: false
+   * // ‎@errors: 1259 1192
+   * // ‎@checkJs
+   * // ‎@allowJs
+   * // ‎@esModuleInterop: false
+   * // ‎@filename: utilFunctions.js
+   * // ‎@noImplicitAny: false
    * const getStringLength = (str) => str.length;
    *
    * module.exports = {
    *   getStringLength,
    * };
    *
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import utils from "./utilFunctions";
    *
    * const count = utils.getStringLength("Check JS");
@@ -126,7 +126,7 @@ export type CompilerOptions = {
    * For convenience, transpilers like Babel will automatically create a default if one isn't created. Making the module look a bit more like:
    *
    * ```js
-   * // @filename: utilFunctions.js
+   * // ‎@filename: utilFunctions.js
    * const getStringLength = (str) => str.length;
    * const allFunctions = {
    *   getStringLength,
@@ -173,8 +173,8 @@ export type CompilerOptions = {
    * With `"allowUnreachableCode": false`:
    *
    * ```ts twoslash
-   * // @errors: 7027
-   * // @allowUnreachableCode: false
+   * // ‎@errors: 7027
+   * // ‎@allowUnreachableCode: false
    * function fn(n: number) {
    *   if (n > 5) {
    *     return true;
@@ -199,8 +199,8 @@ export type CompilerOptions = {
    * Labels are very rare in JavaScript and typically indicate an attempt to write an object literal:
    *
    * ```ts twoslash
-   * // @errors: 7028
-   * // @allowUnusedLabels: false
+   * // ‎@errors: 7028
+   * // ‎@allowUnusedLabels: false
    * function verifyAge(age: number) {
    *   // Forgot 'return' statement
    *   if (age > 18) {
@@ -256,7 +256,7 @@ export type CompilerOptions = {
 
   /**
    * Works in tandem with [`allowJs`](https://typescriptlang.org/tsconfig/#allowJs). When `checkJs` is enabled then errors are reported in JavaScript files. This is
-   * the equivalent of including `// @ts-check` at the top of all JavaScript files which are included in your project.
+   * the equivalent of including `// ‎@ts-check` at the top of all JavaScript files which are included in your project.
    *
    * For example, this is incorrect JavaScript according to the `parseFloat` type definition which comes with TypeScript:
    *
@@ -268,11 +268,11 @@ export type CompilerOptions = {
    * When imported into a TypeScript module:
    *
    * ```ts twoslash
-   * // @allowJs
-   * // @filename: constants.js
+   * // ‎@allowJs
+   * // ‎@filename: constants.js
    * module.exports.pi = parseFloat(3.142);
    *
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import { pi } from "./constants";
    * console.log(pi);
    * ```
@@ -280,13 +280,13 @@ export type CompilerOptions = {
    * You will not get any errors. However, if you turn on `checkJs` then you will get error messages from the JavaScript file.
    *
    * ```ts twoslash
-   * // @errors: 2345
-   * // @allowjs: true
-   * // @checkjs: true
-   * // @filename: constants.js
+   * // ‎@errors: 2345
+   * // ‎@allowjs: true
+   * // ‎@checkjs: true
+   * // ‎@filename: constants.js
    * module.exports.pi = parseFloat(3.142);
    *
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import { pi } from "./constants";
    * console.log(pi);
    * ```
@@ -367,16 +367,16 @@ export type CompilerOptions = {
    * Will generate an `index.js` file like this:
    *
    * ```ts twoslash
-   * // @showEmit
+   * // ‎@showEmit
    * export let helloWorld = "hi";
    * ```
    *
    * With a corresponding `helloWorld.d.ts`:
    *
    * ```ts twoslash
-   * // @showEmittedFile: index.d.ts
-   * // @showEmit
-   * // @declaration
+   * // ‎@showEmittedFile: index.d.ts
+   * // ‎@showEmit
+   * // ‎@declaration
    * export let helloWorld = "hi";
    * ```
    *
@@ -486,8 +486,8 @@ export type CompilerOptions = {
    * Without `downlevelIteration` enabled, a `for / of` loop on any object is downleveled to a traditional `for` loop:
    *
    * ```ts twoslash
-   * // @target: ES5
-   * // @showEmit
+   * // ‎@target: ES5
+   * // ‎@showEmit
    * const str = "Hello!";
    * for (const s of str) {
    *   console.log(s);
@@ -502,9 +502,9 @@ export type CompilerOptions = {
    * If this implementation is missing, you'll fall back to index-based iteration.
    *
    * ```ts twoslash
-   * // @target: ES5
-   * // @downlevelIteration
-   * // @showEmit
+   * // ‎@target: ES5
+   * // ‎@downlevelIteration
+   * // ‎@showEmit
    * const str = "Hello!";
    * for (const s of str) {
    *   console.log(s);
@@ -514,10 +514,10 @@ export type CompilerOptions = {
    * You can use [tslib](https://www.npmjs.com/package/tslib) via [`importHelpers`](https://typescriptlang.org/tsconfig/#importHelpers) to reduce the amount of inline JavaScript too:
    *
    * ```ts twoslash
-   * // @target: ES5
-   * // @downlevelIteration
-   * // @importHelpers
-   * // @showEmit
+   * // ‎@target: ES5
+   * // ‎@downlevelIteration
+   * // ‎@importHelpers
+   * // ‎@showEmit
    * const str = "Hello!";
    * for (const s of str) {
    *   console.log(s);
@@ -593,7 +593,7 @@ export type CompilerOptions = {
    * For example, here is the TypeScript
    *
    * ```ts twoslash
-   * // @experimentalDecorators
+   * // ‎@experimentalDecorators
    * function LogMethod(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
    *   console.log(target);
    *   console.log(propertyKey);
@@ -613,8 +613,8 @@ export type CompilerOptions = {
    * With `emitDecoratorMetadata` not set to true (default) the emitted JavaScript is:
    *
    * ```ts twoslash
-   * // @experimentalDecorators
-   * // @showEmit
+   * // ‎@experimentalDecorators
+   * // ‎@showEmit
    * function LogMethod(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
    *   console.log(target);
    *   console.log(propertyKey);
@@ -634,9 +634,9 @@ export type CompilerOptions = {
    * With `emitDecoratorMetadata` set to true the emitted JavaScript is:
    *
    * ```ts twoslash
-   * // @experimentalDecorators
-   * // @showEmit
-   * // @emitDecoratorMetadata
+   * // ‎@experimentalDecorators
+   * // ‎@showEmit
+   * // ‎@emitDecoratorMetadata
    * function LogMethod(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
    *   console.log(target);
    *   console.log(propertyKey);
@@ -674,17 +674,17 @@ export type CompilerOptions = {
    *
    * // ❌ error: A namespace with runtime code.
    * namespace container {
-   *     foo.method();
+   *   foo.method();
    *
-   *     export type Bar = string;
+   *   export type Bar = string;
    * }
    *
    * // ❌ error: An `import =` alias
    * import Bar = container.Bar;
    *
    * class Point {
-   *     // ❌ error: Parameter properties
-   *     constructor(public x: number, public y: number) { }
+   *   // ❌ error: Parameter properties
+   *   constructor(public x: number, public y: number) {}
    * }
    *
    * // ❌ error: An `export =` assignment.
@@ -692,10 +692,10 @@ export type CompilerOptions = {
    *
    * // ❌ error: An enum declaration.
    * enum Direction {
-   *     Up,
-   *     Down,
-   *     Left,
-   *     Right,
+   *   Up,
+   *   Down,
+   *   Left,
+   *   Right,
    * }
    *
    * // ❌ error: <prefix>-style type assertion.
@@ -709,9 +709,9 @@ export type CompilerOptions = {
    *
    * ```ts
    * class C {
-   *     constructor(public x: number) { }
-   *     //          ~~~~~~~~~~~~~~~~
-   *     // error! This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+   *   constructor(public x: number) {}
+   *   //          ~~~~~~~~~~~~~~~~
+   *   // error! This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
    * }
    * ```
    *
@@ -748,10 +748,10 @@ export type CompilerOptions = {
    * With `esModuleInterop` disabled:
    *
    * ```ts twoslash
-   * // @noErrors
-   * // @showEmit
-   * // @esModuleInterop: false
-   * // @module: commonjs
+   * // ‎@noErrors
+   * // ‎@showEmit
+   * // ‎@esModuleInterop: false
+   * // ‎@module: commonjs
    * import * as fs from "fs";
    * import _ from "lodash";
    *
@@ -762,10 +762,10 @@ export type CompilerOptions = {
    * With `esModuleInterop` set to `true`:
    *
    * ```ts twoslash
-   * // @noErrors
-   * // @showEmit
-   * // @esModuleInterop
-   * // @module: commonjs
+   * // ‎@noErrors
+   * // ‎@showEmit
+   * // ‎@esModuleInterop
+   * // ‎@module: commonjs
    * import * as fs from "fs";
    * import _ from "lodash";
    *
@@ -778,11 +778,11 @@ export type CompilerOptions = {
    * _Note_: You can make JS emit terser by enabling [`importHelpers`](https://typescriptlang.org/tsconfig/#importHelpers):
    *
    * ```ts twoslash
-   * // @noErrors
-   * // @showEmit
-   * // @esModuleInterop
-   * // @importHelpers
-   * // @module: commonjs
+   * // ‎@noErrors
+   * // ‎@showEmit
+   * // ‎@esModuleInterop
+   * // ‎@importHelpers
+   * // ‎@module: commonjs
    * import * as fs from "fs";
    * import _ from "lodash";
    *
@@ -797,7 +797,7 @@ export type CompilerOptions = {
   esModuleInterop?: boolean
 
   /**
-   * With exactOptionalPropertyTypes enabled, TypeScript applies stricter rules around how it handles properties on `type` or `interfaces` which have a `?` prefix.
+   * With `exactOptionalPropertyTypes` enabled, TypeScript applies stricter rules around how it handles properties on `type` or `interfaces` which have a `?` prefix.
    *
    * For example, this interface declares that there is a property which can be one of two strings: 'dark' or 'light' or it should not be in the object.
    *
@@ -815,8 +815,8 @@ export type CompilerOptions = {
    * `exactOptionalPropertyTypes` makes TypeScript truly enforce the definition provided as an optional property:
    *
    * ```ts twoslash
-   * // @exactOptionalPropertyTypes
-   * // @errors: 2322 2412
+   * // ‎@exactOptionalPropertyTypes
+   * // ‎@errors: 2322 2412
    * interface UserDefaults {
    *   colorThemeOverride?: "dark" | "light";
    * }
@@ -882,9 +882,14 @@ export type CompilerOptions = {
    * This file can be opened in a chromium based browser like Chrome or Edge Developer in [the CPU profiler](https://developers.google.com/web/tools/chrome-devtools/rendering-tools/js-execution) section.
    * You can learn more about understanding the compilers performance in the [TypeScript wiki section on performance](https://github.com/microsoft/TypeScript/wiki/Performance).
    *
-   * @default 'profile.cpuprofile'
+   * @default "profile.cpuprofile"
    */
   generateCpuProfile?: string
+
+  /**
+   * Can be used to silence deprecation warnings about features, that are slated for removal in a future release. For example, if you are using a feature that is deprecated in TypeScript 6.0 but you want to continue using it without seeing warnings until it is removed in TypeScript 7.0, you can set `ignoreDeprecations` to `6.0`.
+   */
+  ignoreDeprecations?: string
 
   /**
    * For certain downleveling operations, TypeScript uses some helper code for operations like extending class, spreading arrays or objects, and async operations.
@@ -906,9 +911,9 @@ export type CompilerOptions = {
    * Turning on [`downlevelIteration`](https://typescriptlang.org/tsconfig/#downlevelIteration) and `importHelpers` is still false:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @target: ES5
-   * // @downleveliteration
+   * // ‎@showEmit
+   * // ‎@target: ES5
+   * // ‎@downleveliteration
    * export function fn(arr: number[]) {
    *   const arr2 = [1, ...arr];
    * }
@@ -917,11 +922,11 @@ export type CompilerOptions = {
    * Then turning on both [`downlevelIteration`](https://typescriptlang.org/tsconfig/#downlevelIteration) and `importHelpers`:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @target: ES5
-   * // @downleveliteration
-   * // @importhelpers
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@target: ES5
+   * // ‎@downleveliteration
+   * // ‎@importhelpers
+   * // ‎@noErrors
    * export function fn(arr: number[]) {
    *   const arr2 = [1, ...arr];
    * }
@@ -946,7 +951,7 @@ export type CompilerOptions = {
    *
    * This flag works because you can use `import type` to explicitly create an `import` statement which should never be emitted into JavaScript.
    *
-   * @default 'remove'
+   * @default "remove"
    */
   importsNotUsedAsValues?: string
 
@@ -972,7 +977,7 @@ export type CompilerOptions = {
    * Converts to this JavaScript:
    *
    * ```ts twoslash
-   * // @showEmit
+   * // ‎@showEmit
    * const helloWorld = "hi";
    * console.log(helloWorld);
    * ```
@@ -981,8 +986,8 @@ export type CompilerOptions = {
    * a source-map for the file.
    *
    * ```ts twoslash
-   * // @inlineSourceMap
-   * // @showEmit
+   * // ‎@inlineSourceMap
+   * // ‎@showEmit
    * const helloWorld = "hi";
    * console.log(helloWorld);
    * ```
@@ -1007,7 +1012,7 @@ export type CompilerOptions = {
    * By default converts to this JavaScript:
    *
    * ```ts twoslash
-   * // @showEmit
+   * // ‎@showEmit
    * const helloWorld = "hi";
    * console.log(helloWorld);
    * ```
@@ -1017,9 +1022,9 @@ export type CompilerOptions = {
    * Note that the end is different from the example in [`inlineSourceMap`](https://typescriptlang.org/tsconfig/#inlineSourceMap) because the source-map now contains the original source code also.
    *
    * ```ts twoslash
-   * // @inlineSources
-   * // @inlineSourceMap
-   * // @showEmit
+   * // ‎@inlineSources
+   * // ‎@inlineSourceMap
+   * // ‎@showEmit
    * const helloWorld = "hi";
    * console.log(helloWorld);
    * ```
@@ -1054,7 +1059,7 @@ export type CompilerOptions = {
    * In TypeScript, you can import a _type_ and then subsequently export it:
    *
    * ```ts twoslash
-   * // @noErrors
+   * // ‎@noErrors
    * import { someType, someFunction } from "someModule";
    *
    * someFunction();
@@ -1075,8 +1080,8 @@ export type CompilerOptions = {
    * If `isolatedModules` is set, namespaces are only allowed in _modules_ (which means it has some form of `import`/`export`). An error occurs if a namespace is found in a non-module file:
    *
    * ```ts twoslash
-   * // @errors: 1277
-   * // @isolatedModules
+   * // ‎@errors: 1277
+   * // ‎@isolatedModules
    * namespace Instantiated {
    *  export const x = 1;
    * }
@@ -1099,8 +1104,8 @@ export type CompilerOptions = {
    * To this JavaScript:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @removeComments
+   * // ‎@showEmit
+   * // ‎@removeComments
    * declare const enum Numbers {
    *   Zero = 0,
    *   One = 1,
@@ -1142,9 +1147,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // \@showEmit
-   * // \@noErrors
-   * // \@jsx: react-jsx
+   * // ‎@showEmit
+   * // ‎@noErrors
+   * // ‎@jsx: react-jsx
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1157,9 +1162,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // \@showEmit
-   * // \@noErrors
-   * // \@jsx: react-jsxdev
+   * // ‎@showEmit
+   * // ‎@noErrors
+   * // ‎@jsx: react-jsxdev
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1172,9 +1177,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // \@showEmit
-   * // \@noErrors
-   * // \@jsx: preserve
+   * // ‎@showEmit
+   * // ‎@noErrors
+   * // ‎@jsx: preserve
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1187,9 +1192,9 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // \@showEmit
-   * // \@noErrors
-   * // \@jsx: react-native
+   * // ‎@showEmit
+   * // ‎@noErrors
+   * // ‎@jsx: react-native
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
@@ -1203,24 +1208,24 @@ export type CompilerOptions = {
    *     [s: string]: any;
    *   }
    * }
-   * // \@showEmit
-   * // \@noErrors
+   * // ‎@showEmit
+   * // ‎@noErrors
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
-   * This option can be used on a per-file basis too using an `@jsxRuntime` comment.
+   * This option can be used on a per-file basis too using an `‎@jsxRuntime` comment.
    *
    * Always use the classic runtime (`"react"`) for this file:
    *
    * ```tsx
-   * //\/* \@jsxRuntime classic *\/\
+   * ‎/‎*‎ ‎@jsxRuntime classic ‎*‎/
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    *
    * Always use the automatic runtime (`"react-jsx"`) for this file:
    *
    * ```tsx
-   * //\/* \@jsxRuntime automatic *\/
+   * ‎/‎*‎ ‎@jsxRuntime automatic ‎*‎/
    * export const HelloWorld = () => <h1>Hello world</h1>;
    * ```
    */
@@ -1241,22 +1246,22 @@ export type CompilerOptions = {
    * With `jsxFactory: "h"` looks like:
    *
    * ```tsx twoslash
-   * // @showEmit
-   * // @showEmittedFile: index.js
-   * // @jsxFactory: h
-   * // @noErrors
-   * // @target: esnext
-   * // @module: commonjs
+   * // ‎@showEmit
+   * // ‎@showEmittedFile: index.js
+   * // ‎@jsxFactory: h
+   * // ‎@noErrors
+   * // ‎@target: esnext
+   * // ‎@module: commonjs
    *
    * import { h, Fragment } from "preact";
    *
    * const HelloWorld = () => <div>Hello</div>;
    * ```
    *
-   * This option can be used on a per-file basis too similar to [Babel's `\/** @jsx h *\/` directive](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#custom).
+   * This option can be used on a per-file basis too similar to [Babel's `‎/‎*‎* ‎@jsx h ‎*‎/` directive](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#custom).
    *
    * ```tsx twoslash
-   * \/** @jsx h *\/
+   * ‎/‎*‎* ‎@jsx h ‎*‎/
    * import { h } from "preact";
    *
    * const HelloWorld = () => <div>Hello</div>;
@@ -1266,7 +1271,7 @@ export type CompilerOptions = {
    *
    * If the factory is defined as `React.createElement` (the default), the compiler will check for `React.JSX` before checking for a global `JSX`. If the factory is defined as `h`, it will check for `h.JSX` before a global `JSX`.
    *
-   * @default 'React.createElement'
+   * @default "React.createElement"
    */
   jsxFactory?: string
 
@@ -1302,13 +1307,13 @@ export type CompilerOptions = {
    * Would look like:
    *
    * ```tsx twoslash
-   * // @showEmit
-   * // @showEmittedFile: index.js
-   * // @jsxFactory: h
-   * // @jsxFragmentFactory: Fragment
-   * // @noErrors
-   * // @target: esnext
-   * // @module: commonjs
+   * // ‎@showEmit
+   * // ‎@showEmittedFile: index.js
+   * // ‎@jsxFactory: h
+   * // ‎@jsxFragmentFactory: Fragment
+   * // ‎@noErrors
+   * // ‎@target: esnext
+   * // ‎@module: commonjs
    *
    * import { h, Fragment } from "preact";
    *
@@ -1319,13 +1324,13 @@ export type CompilerOptions = {
    * );
    * ```
    *
-   * This option can be used on a per-file basis too similar to [Babel's `\/* @jsxFrag h *\/` directive](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#fragments).
+   * This option can be used on a per-file basis too similar to [Babel's `‎/‎*‎ ‎@jsxFrag h ‎*‎/` directive](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#fragments).
    *
    * For example:
    *
    * ```tsx twoslash
-   * \/** @jsx h *\/
-   * \/** @jsxFrag Fragment *\/
+   * ‎/‎*‎* ‎@jsx h ‎*‎/
+   * ‎/‎*‎* ‎@jsxFrag Fragment ‎*‎/
    *
    * import { h, Fragment } from "preact";
    *
@@ -1336,7 +1341,7 @@ export type CompilerOptions = {
    * );
    * ```
    *
-   * @default 'React.Fragment'
+   * @default "React.Fragment"
    */
   jsxFragmentFactory?: string
 
@@ -1370,11 +1375,11 @@ export type CompilerOptions = {
    * The emitted JavaScript from TypeScript is:
    *
    * ```tsx twoslash
-   * // @showEmit
-   * // @noErrors
-   * // @jsx: react-jsx
-   * // @module: commonjs
-   * // @target: esnext
+   * // ‎@showEmit
+   * // ‎@noErrors
+   * // ‎@jsx: react-jsx
+   * // ‎@module: commonjs
+   * // ‎@target: esnext
    * declare module JSX {
    *   interface Element {}
    *   interface IntrinsicElements {
@@ -1405,13 +1410,13 @@ export type CompilerOptions = {
    * Which generates code like:
    *
    * ```tsx twoslash
-   * // @showEmit
-   * // @jsxImportSource: preact
-   * // @types: preact
-   * // @jsx: react-jsx
-   * // @target: esnext
-   * // @module: commonjs
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@jsxImportSource: preact
+   * // ‎@types: preact
+   * // ‎@jsx: react-jsx
+   * // ‎@target: esnext
+   * // ‎@module: commonjs
+   * // ‎@noErrors
    *
    * export function App() {
    *   return <h1>Hello World</h1>;
@@ -1421,7 +1426,7 @@ export type CompilerOptions = {
    * Alternatively, you can use a per-file pragma to set this option, for example:
    *
    * ```tsx
-   * \/** @jsxImportSource preact *\/
+   * ‎/‎*‎* ‎@jsxImportSource preact ‎*‎/
    *
    * export function App() {
    *   return <h1>Hello World</h1>;
@@ -1432,7 +1437,7 @@ export type CompilerOptions = {
    *
    * _Note:_ In order for this to work like you would expect, your `tsx` file must include an `export` or `import` so that it is considered a module.
    *
-   * @default 'react'
+   * @default "react"
    */
   jsxImportSource?: string
 
@@ -1521,8 +1526,8 @@ export type CompilerOptions = {
 
   /**
    * TypeScript 4.5 introduced the possibility of substituting the default `lib` files with custom ones.
-   * All built-in library files would first try to be resolved from packages named `@typescript/lib-*`.
-   * For example, you could lock your `dom` libraries onto a specific version of [the `@types/web` package](https://www.npmjs.com/package/@types/web?activeTab=readme) with the following `package.json`:
+   * All built-in library files would first try to be resolved from packages named `‎@typescript/lib-*`.
+   * For example, you could lock your `dom` libraries onto a specific version of [the `‎@types/web` package](https://www.npmjs.com/package/@types/web?activeTab=readme) with the following `package.json`:
    *
    * ```json
    * {
@@ -1532,13 +1537,13 @@ export type CompilerOptions = {
    * }
    * ```
    *
-   * When installed, a package called `@typescript/lib-dom` should exist, and TypeScript would always look there when searching for `lib.dom.d.ts`.
+   * When installed, a package called `‎@typescript/lib-dom` should exist, and TypeScript would always look there when searching for `lib.dom.d.ts`.
    *
    * The `--libReplacement` flag allows you to disable this behavior.
-   * If you're not using any `@typescript/lib-*` packages, you can now disable those package lookups with `--libReplacement false`.
-   * In the future, `--libReplacement false` may become the default, so if you currently rely on the behavior you should consider explicitly enabling it with `--libReplacement true`.
+   * If you're not using any `‎@typescript/lib-*` packages, you can now disable those package lookups with `--libReplacement false`.
+   * As of TypeScript 6.0, `--libReplacement false` is the default. If you rely on `‎@typescript/lib-*` substitution, explicitly enable it with `--libReplacement true`.
    *
-   * @default true
+   * @default false
    */
   libReplacement?: boolean
 
@@ -1668,10 +1673,10 @@ export type CompilerOptions = {
    * Here's some example output for this file:
    *
    * ```ts twoslash
-   * // @filename: constants.ts
+   * // ‎@filename: constants.ts
    * export const valueOfPi = 3.142;
    * // ---cut---
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1680,9 +1685,9 @@ export type CompilerOptions = {
    * #### `CommonJS`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: commonjs
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: commonjs
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1691,9 +1696,9 @@ export type CompilerOptions = {
    * #### `UMD`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: umd
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: umd
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1702,9 +1707,9 @@ export type CompilerOptions = {
    * #### `AMD`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: amd
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: amd
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1713,9 +1718,9 @@ export type CompilerOptions = {
    * #### `System`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: system
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: system
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1724,9 +1729,9 @@ export type CompilerOptions = {
    * #### `ESNext`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: esnext
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: esnext
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1735,9 +1740,9 @@ export type CompilerOptions = {
    * #### `ES2015`/`ES6`/`ES2020`/`ES2022`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: es2015
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: es2015
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
@@ -1759,9 +1764,9 @@ export type CompilerOptions = {
    * In `--module preserve` ([added](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html#support-for-require-calls-in---moduleresolution-bundler-and---module-preserve) in TypeScript 5.4), ECMAScript imports and exports written in input files are preserved in the output, and CommonJS-style `import x = require("...")` and `export = ...` statements are emitted as CommonJS `require` and `module.exports`. In other words, the format of each individual import or export statement is preserved, rather than being coerced into a single format for the whole compilation (or even a whole file).
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: preserve
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: preserve
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    * import constants = require("./constants");
    *
@@ -1775,13 +1780,17 @@ export type CompilerOptions = {
    * #### `None`
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @module: none
-   * // @noErrors
+   * // ‎@showEmit
+   * // ‎@module: none
+   * // ‎@noErrors
    * import { valueOfPi } from "./constants";
    *
    * export const twoPi = valueOfPi * 2;
    * ```
+   *
+   * As of TypeScript 6.0, the default is `esnext`.
+   *
+   * @default "esnext"
    */
   module?: string
 
@@ -1839,7 +1848,7 @@ export type CompilerOptions = {
   /**
    * Specify the end of line sequence to be used when emitting files: 'CRLF' (dos) or 'LF' (unix).
    *
-   * @default 'lf'
+   * @default "lf"
    */
   newLine?: string
 
@@ -1876,8 +1885,8 @@ export type CompilerOptions = {
    * Which creates quite a lot of JavaScript:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @target: ES5
+   * // ‎@showEmit
+   * // ‎@target: ES5
    * const getAPI = async (url: string) => {
    *   // Get API
    *   return {};
@@ -1887,9 +1896,9 @@ export type CompilerOptions = {
    * Which can be switched out with your own globals via this flag:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @target: ES5
-   * // @noEmitHelpers
+   * // ‎@showEmit
+   * // ‎@target: ES5
+   * // ‎@noEmitHelpers
    * const getAPI = async (url: string) => {
    *   // Get API
    *   return {};
@@ -1915,7 +1924,7 @@ export type CompilerOptions = {
    * With `false`, the default.
    *
    * ```ts twoslash
-   * // @errors: 2322 2454
+   * // ‎@errors: 2322 2454
    * var x: {
    *   propertyWithAnExceedinglyLongName1: string;
    *   propertyWithAnExceedinglyLongName2: string;
@@ -1934,8 +1943,8 @@ export type CompilerOptions = {
    * With `true`
    *
    * ```ts twoslash
-   * // @errors: 2322 2454
-   * // @noErrorTruncation: true
+   * // ‎@errors: 2322 2454
+   * // ‎@noErrorTruncation: true
    * var x: {
    *   propertyWithAnExceedinglyLongName1: string;
    *   propertyWithAnExceedinglyLongName2: string;
@@ -1961,8 +1970,8 @@ export type CompilerOptions = {
    * This means you won't accidentally ship a case fallthrough bug.
    *
    * ```ts twoslash
-   * // @noFallthroughCasesInSwitch
-   * // @errors: 7029
+   * // ‎@noFallthroughCasesInSwitch
+   * // ‎@errors: 7029
    * const a: number = 6;
    *
    * switch (a) {
@@ -1984,7 +1993,7 @@ export type CompilerOptions = {
    * This can cause some errors to be missed, for example:
    *
    * ```ts twoslash
-   * // @noImplicitAny: false
+   * // ‎@noImplicitAny: false
    * function fn(s) {
    *   // No error?
    *   console.log(s.subtr(3));
@@ -1995,7 +2004,7 @@ export type CompilerOptions = {
    * Turning on `noImplicitAny` however TypeScript will issue an error whenever it would have inferred `any`:
    *
    * ```ts twoslash
-   * // @errors: 7006
+   * // ‎@errors: 7006
    * function fn(s) {
    *   console.log(s.subtr(3));
    * }
@@ -2051,8 +2060,8 @@ export type CompilerOptions = {
    * The following example has `noImplicitOverride` enabled, and you can see the error received when `override` is missing:
    *
    * ```ts twoslash
-   * // @noImplicitOverride
-   * // @errors: 4114
+   * // ‎@noImplicitOverride
+   * // ‎@errors: 4114
    * class Album {
    *   setup() {}
    * }
@@ -2074,7 +2083,7 @@ export type CompilerOptions = {
    * When enabled, TypeScript will check all code paths in a function to ensure they return a value.
    *
    * ```ts twoslash
-   * // @errors: 2366 2322
+   * // ‎@errors: 2366 2322
    * function lookupHeadphonesManufacturer(color: "blue" | "black"): string {
    *   if (color === "blue") {
    *     return "beats";
@@ -2095,7 +2104,7 @@ export type CompilerOptions = {
    * for `this` inside the function inside `getAreaFunction` is not the instance of the Rectangle.
    *
    * ```ts twoslash
-   * // @errors: 2683
+   * // ‎@errors: 2683
    * class Rectangle {
    *   width: number;
    *   height: number;
@@ -2139,7 +2148,7 @@ export type CompilerOptions = {
    * Without this flag, TypeScript will allow you to use the dot syntax to access fields which are not defined:
    *
    * ```ts twoslash
-   * // @errors: 4111
+   * // ‎@errors: 4111
    * declare function getSettings(): GameSettings;
    * // ---cut---
    * interface GameSettings {
@@ -2154,21 +2163,21 @@ export type CompilerOptions = {
    *
    * const settings = getSettings();
    * settings.speed;
-   * //       ^?
+   * //       ^ (property) GameSettings.speed: "fast" | "medium" | "slow"
    * settings.quality;
-   * //       ^?
+   * //       ^ (property) GameSettings.quality: "high" | "low"
    *
    * // Unknown key accessors are allowed on
    * // this object, and are `string`
    * settings.username;
-   * //       ^?
+   * //       ^ (index) GameSettings[string]: string
    * ```
    *
    * Turning the flag on will raise an error because the unknown field uses dot syntax instead of indexed syntax.
    *
    * ```ts twoslash
-   * // @errors: 4111
-   * // @noPropertyAccessFromIndexSignature
+   * // ‎@errors: 4111
+   * // ‎@noPropertyAccessFromIndexSignature
    * declare function getSettings(): GameSettings;
    * interface GameSettings {
    *   speed: "fast" | "medium" | "slow";
@@ -2182,7 +2191,7 @@ export type CompilerOptions = {
    *
    * // This would need to be settings["username"];
    * settings.username;
-   * //       ^?
+   * //       ^ (index) GameSettings[string]: string
    * ```
    *
    * The goal of this flag is to signal intent in your calling syntax about how certain you are this property exists.
@@ -2203,7 +2212,7 @@ export type CompilerOptions = {
    * TypeScript will unify type parameters when comparing two generic functions.
    *
    * ```ts twoslash
-   * // @errors: 2322
+   * // ‎@errors: 2322
    *
    * type A = <T, U>(x: T, y: U) => [T, U];
    * type B = <S>(x: S, y: S) => [S, S];
@@ -2237,12 +2246,12 @@ export type CompilerOptions = {
    * // Declared as existing
    * const sysName = env.NAME;
    * const os = env.OS;
-   * //    ^?
+   * //    ^ const os: string
    *
    * // Not declared, but because of the index
    * // signature, then it is considered a string
    * const nodeEnv = env.NODE_ENV;
-   * //    ^?
+   * //    ^ const nodeEnv: string
    * ```
    *
    * Turning on `noUncheckedIndexedAccess` will add `undefined` to any un-declared field in the type.
@@ -2255,19 +2264,19 @@ export type CompilerOptions = {
    *   // Unknown properties are covered by this index signature.
    *   [propName: string]: string;
    * }
-   * // @noUncheckedIndexedAccess
+   * // ‎@noUncheckedIndexedAccess
    * // ---cut---
    * declare const env: EnvironmentVars;
    *
    * // Declared as existing
    * const sysName = env.NAME;
    * const os = env.OS;
-   * //    ^?
+   * //    ^ const os: string
    *
    * // Not declared, but because of the index
    * // signature, then it is considered a string
    * const nodeEnv = env.NODE_ENV;
-   * //    ^?
+   * //    ^ const nodeEnv: string | undefined
    * ```
    */
   noUncheckedIndexedAccess?: boolean
@@ -2321,7 +2330,9 @@ export type CompilerOptions = {
    * In fact, you might already have a file like this in your project!
    * For example, running something like `vite init` might create a similar `vite-env.d.ts`.
    *
-   * @default false
+   * As of TypeScript 6.0, this option defaults to `true`.
+   *
+   * @default true
    */
   noUncheckedSideEffectImports?: boolean
 
@@ -2329,8 +2340,8 @@ export type CompilerOptions = {
    * Report errors on unused local variables.
    *
    * ```ts twoslash
-   * // @noUnusedLocals
-   * // @errors: 6133
+   * // ‎@noUnusedLocals
+   * // ‎@errors: 6133
    * const createKeyboard = (modelID: number) => {
    *   const defaultModelID = 23;
    *   return { type: "keyboard", modelID };
@@ -2345,8 +2356,8 @@ export type CompilerOptions = {
    * Report errors on unused parameters in functions.
    *
    * ```ts twoslash
-   * // @noUnusedParameters
-   * // @errors: 6133
+   * // ‎@noUnusedParameters
+   * // ‎@errors: 6133
    * const createDefaultKeyboard = (modelID: number) => {
    *   const defaultModelID = 23;
    *   return { type: "keyboard", modelID: defaultModelID };
@@ -2356,7 +2367,7 @@ export type CompilerOptions = {
    * Parameters declaration with names starting with an underscore (`_`) are exempt from the unused parameter checking. e.g.:
    *
    * ```ts twoslash
-   * // @noUnusedParameters
+   * // ‎@noUnusedParameters
    * const createDefaultKeyboard = (_modelID: number) => {
    *   return { type: "keyboard" };
    * };
@@ -2498,7 +2509,7 @@ export type CompilerOptions = {
    * to the enum from the JavaScript completely.
    *
    * ```ts twoslash
-   * // @showEmit
+   * // ‎@showEmit
    * const enum Album {
    *   JimmyEatWorldFutures = 1,
    *   TubRingZooHypothesis = 2,
@@ -2514,8 +2525,8 @@ export type CompilerOptions = {
    * With `preserveConstEnums` set to `true`, the `enum` exists at runtime and the numbers are still emitted.
    *
    * ```ts twoslash
-   * // @preserveConstEnums: true
-   * // @showEmit
+   * // ‎@preserveConstEnums: true
+   * // ‎@showEmit
    * const enum Album {
    *   JimmyEatWorldFutures = 1,
    *   TubRingZooHypothesis = 2,
@@ -2580,7 +2591,7 @@ export type CompilerOptions = {
   /**
    * Use [`jsxFactory`](https://typescriptlang.org/tsconfig/#jsxFactory) instead. Specify the object invoked for `createElement` when targeting `react` for TSX files.
    *
-   * @default 'React'
+   * @default "React"
    */
   reactNamespace?: string
 
@@ -2590,25 +2601,25 @@ export type CompilerOptions = {
    * For example, this is a TypeScript file which has a JSDoc comment:
    *
    * ```ts
-   * \/** The translation of 'Hello world' into Portuguese *\/
+   * ‎/‎** The translation of 'Hello world' into Portuguese *‎/
    * export const helloWorldPTBR = "Olá Mundo";
    * ```
    *
    * When `removeComments` is set to `true`:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @removeComments: true
-   * \/** The translation of 'Hello world' into Portuguese *\/
+   * // ‎@showEmit
+   * // ‎@removeComments: true
+   * ‎/‎** The translation of 'Hello world' into Portuguese *‎/
    * export const helloWorldPTBR = "Olá Mundo";
    * ```
    *
    * Without setting `removeComments` or having it as `false`:
    *
    * ```ts twoslash
-   * // @showEmit
-   * // @removeComments: false
-   * \/** The translation of 'Hello world' into Portuguese *\/
+   * // ‎@showEmit
+   * // ‎@removeComments: false
+   * ‎/‎** The translation of 'Hello world' into Portuguese *‎/
    * export const helloWorldPTBR = "Olá Mundo";
    * ```
    *
@@ -2625,14 +2636,14 @@ export type CompilerOptions = {
    * TypeScript does not support resolving JSON files by default:
    *
    * ```ts twoslash
-   * // @errors: 2732
-   * // @filename: settings.json
+   * // ‎@errors: 2732
+   * // ‎@filename: settings.json
    * {
    *     "repo": "TypeScript",
    *     "dry": false,
    *     "debug": false
    * }
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import settings from "./settings.json";
    *
    * settings.debug === true;
@@ -2642,17 +2653,17 @@ export type CompilerOptions = {
    * Enabling the option allows importing JSON, and validating the types in that JSON file.
    *
    * ```ts twoslash
-   * // @errors: 2367
-   * // @resolveJsonModule
-   * // @module: commonjs
-   * // @moduleResolution: node
-   * // @filename: settings.json
+   * // ‎@errors: 2367
+   * // ‎@resolveJsonModule
+   * // ‎@module: commonjs
+   * // ‎@moduleResolution: node
+   * // ‎@filename: settings.json
    * {
    *     "repo": "TypeScript",
    *     "dry": false,
    *     "debug": false
    * }
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import settings from "./settings.json";
    *
    * settings.debug === true;
@@ -2691,7 +2702,7 @@ export type CompilerOptions = {
   rewriteRelativeImportExtensions?: boolean
 
   /**
-   * **Default**: The longest common path of all non-declaration input files. If [`composite`](https://typescriptlang.org/tsconfig/#composite) is set, the default is instead the directory containing the `tsconfig.json` file.
+   * **Default**: The directory containing the `tsconfig.json` file.
    *
    * When TypeScript compiles files, it keeps the same directory structure in the output directory as exists in the input directory.
    *
@@ -2752,6 +2763,8 @@ export type CompilerOptions = {
    * ```
    *
    * It would be an error to specify `rootDir` as `core` _and_ [`include`](https://typescriptlang.org/tsconfig/#include) as `*` because it creates a file (`helpers.ts`) that would need to be emitted _outside_ the [`outDir`](https://typescriptlang.org/tsconfig/#outDir) (i.e. `../helpers.js`).
+   *
+   * @default "."
    */
   rootDir?: string
 
@@ -2811,10 +2824,10 @@ export type CompilerOptions = {
    * For example `./src/index.ts` can import the file `./src/css/main.css` and TypeScript will be aware of the bundler's behavior for that filetype via the corresponding generated declaration file.
    *
    * ```ts twoslash
-   * // @filename: main.css.d.ts
+   * // ‎@filename: main.css.d.ts
    * export const appClass = "mainClassF3EC2";
    * // ---cut---
-   * // @filename: index.ts
+   * // ‎@filename: index.ts
    * import { appClass } from "./main.css";
    * ```
    */
@@ -2912,7 +2925,9 @@ export type CompilerOptions = {
    * Future versions of TypeScript may introduce additional stricter checking under this flag, so upgrades of TypeScript might result in new type errors in your program.
    * When appropriate and possible, a corresponding flag will be added to disable that behavior.
    *
-   * @default false
+   * As of TypeScript 6.0, `strict` defaults to `true`.
+   *
+   * @default true
    */
   strict?: boolean
 
@@ -2920,8 +2935,8 @@ export type CompilerOptions = {
    * When set, TypeScript will check that the built-in methods of functions `call`, `bind`, and `apply` are invoked with correct argument for the underlying function:
    *
    * ```ts twoslash
-   * // @strictBindCallApply: true
-   * // @errors: 2345
+   * // ‎@strictBindCallApply: true
+   * // ‎@errors: 2345
    *
    * // With strictBindCallApply on
    * function fn(x: string) {
@@ -2936,7 +2951,7 @@ export type CompilerOptions = {
    * Otherwise, these functions accept any arguments and will return `any`:
    *
    * ```ts twoslash
-   * // @strictBindCallApply: false
+   * // ‎@strictBindCallApply: false
    *
    * // With strictBindCallApply off
    * function fn(x: string) {
@@ -2964,7 +2979,7 @@ export type CompilerOptions = {
    * Here's a basic example with `strictFunctionTypes` off:
    *
    * ```ts twoslash
-   * // @strictFunctionTypes: false
+   * // ‎@strictFunctionTypes: false
    * function fn(x: string) {
    *   console.log("Hello, " + x.toLowerCase());
    * }
@@ -2980,7 +2995,7 @@ export type CompilerOptions = {
    * With `strictFunctionTypes` _on_, the error is correctly detected:
    *
    * ```ts twoslash
-   * // @errors: 2322
+   * // ‎@errors: 2322
    * function fn(x: string) {
    *   console.log("Hello, " + x.toLowerCase());
    * }
@@ -3024,8 +3039,8 @@ export type CompilerOptions = {
    * write code as though it will:
    *
    * ```ts twoslash
-   * // @strictNullChecks: false
-   * // @target: ES2015
+   * // ‎@strictNullChecks: false
+   * // ‎@target: ES2015
    * declare const loggedInUsername: string;
    *
    * const users = [
@@ -3040,9 +3055,9 @@ export type CompilerOptions = {
    * Setting `strictNullChecks` to `true` will raise an error that you have not made a guarantee that the `loggedInUser` exists before trying to use it.
    *
    * ```ts twoslash
-   * // @errors: 2339 2532 18048
-   * // @target: ES2020
-   * // @strictNullChecks
+   * // ‎@errors: 2339 2532 18048
+   * // ‎@target: ES2020
+   * // ‎@strictNullChecks
    * declare const loggedInUsername: string;
    *
    * const users = [
@@ -3077,7 +3092,7 @@ export type CompilerOptions = {
    * When set to true, TypeScript will raise an error when a class property was declared but not set in the constructor.
    *
    * ```ts twoslash
-   * // @errors: 2564
+   * // ‎@errors: 2564
    * class UserAccount {
    *   name: string;
    *   accountType = "user";
@@ -3104,18 +3119,18 @@ export type CompilerOptions = {
   strictPropertyInitialization?: boolean
 
   /**
-   * Do not emit declarations for code that has an `@internal` annotation in its JSDoc comment.
+   * Do not emit declarations for code that has an `‎@internal` annotation in its JSDoc comment.
    * This is an internal compiler option; use at your own risk, because the compiler does not check that the result is valid.
    * If you are searching for a tool to handle additional levels of visibility within your `d.ts` files, look at [api-extractor](https://api-extractor.com/).
    *
    * ```ts twoslash
-   * \/\*\*
-   *  \* Days available in a week
-   *  \* \@internal
-   *  *\/
+   * ‎/‎*‎*
+   *  * Days available in a week
+   *  * ‎@internal
+   *  ‎*‎/
    * export const daysInAWeek = 7;
    *
-   * \/** Calculate how much someone earns in a week *\/
+   * ‎/‎** Calculate how much someone earns in a week *‎/
    * export function weeklySalary(dayRate: number) {
    *   return daysInAWeek * dayRate;
    * }
@@ -3124,16 +3139,16 @@ export type CompilerOptions = {
    * With the flag set to `false` (default):
    *
    * ```ts twoslash
-   * // @showEmittedFile: index.d.ts
-   * // @showEmit
-   * // @declaration
-   * \/\*\*
-   *  \* Days available in a week
-   *  \* \@internal
-   *  *\/
+   * // ‎@showEmittedFile: index.d.ts
+   * // ‎@showEmit
+   * // ‎@declaration
+   * ‎/‎*‎*
+   *  * Days available in a week
+   *  * ‎@internal
+   *  ‎*‎/
    * export const daysInAWeek = 7;
    *
-   * \/** Calculate how much someone earns in a week *\/
+   * ‎/‎** Calculate how much someone earns in a week *‎/
    * export function weeklySalary(dayRate: number) {
    *   return daysInAWeek * dayRate;
    * }
@@ -3142,17 +3157,17 @@ export type CompilerOptions = {
    * With `stripInternal` set to `true` the `d.ts` emitted will be redacted.
    *
    * ```ts twoslash
-   * // @stripinternal
-   * // @showEmittedFile: index.d.ts
-   * // @showEmit
-   * // @declaration
-   * \/\*\*
-   *  \* Days available in a week
-   *  \* \@internal
-   *  *\/
+   * // ‎@stripinternal
+   * // ‎@showEmittedFile: index.d.ts
+   * // ‎@showEmit
+   * // ‎@declaration
+   * ‎/‎*‎*
+   *  * Days available in a week
+   *  * ‎@internal
+   *  ‎*‎/
    * export const daysInAWeek = 7;
    *
-   * \/** Calculate how much someone earns in a week *\/
+   * ‎/‎** Calculate how much someone earns in a week *‎/
    * export function weeklySalary(dayRate: number) {
    *   return daysInAWeek * dayRate;
    * }
@@ -3166,14 +3181,14 @@ export type CompilerOptions = {
    * This disables reporting of excess property errors, such as the one shown in the following example:
    *
    * ```ts twoslash
-   * // @errors: 2322
+   * // ‎@errors: 2322
    * type Point = { x: number; y: number };
    * const p: Point = { x: 1, y: 3, m: 10 };
    * ```
    *
    * This flag was added to help people migrate to the stricter checking of new object literals in [TypeScript 1.6](https://typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html#stricter-object-literal-assignment-checks).
    *
-   * We don't recommend using this flag in a modern codebase, you can suppress one-off cases where you need it using `// @ts-ignore`.
+   * We don't recommend using this flag in a modern codebase, you can suppress one-off cases where you need it using `// ‎@ts-ignore`.
    *
    * @default false
    */
@@ -3183,21 +3198,21 @@ export type CompilerOptions = {
    * Turning `suppressImplicitAnyIndexErrors` on suppresses reporting the error about implicit anys when indexing into objects, as shown in the following example:
    *
    * ```ts twoslash
-   * // @noImplicitAny: true
-   * // @suppressImplicitAnyIndexErrors: false
-   * // @strict: true
-   * // @errors: 7053
+   * // ‎@noImplicitAny: true
+   * // ‎@suppressImplicitAnyIndexErrors: false
+   * // ‎@strict: true
+   * // ‎@errors: 7053
    * const obj = { x: 10 };
    * console.log(obj["foo"]);
    * ```
    *
-   * Using `suppressImplicitAnyIndexErrors` is quite a drastic approach. It is recommended to use a `@ts-ignore` comment instead:
+   * Using `suppressImplicitAnyIndexErrors` is quite a drastic approach. It is recommended to use a `‎@ts-ignore` comment instead:
    *
    * ```ts twoslash
-   * // @noImplicitAny: true
-   * // @strict: true
+   * // ‎@noImplicitAny: true
+   * // ‎@strict: true
    * const obj = { x: 10 };
-   * // @ts-ignore
+   * // ‎@ts-ignore
    * console.log(obj["foo"]);
    * ```
    *
@@ -3220,7 +3235,9 @@ export type CompilerOptions = {
    * The special `ESNext` value refers to the highest version your version of TypeScript supports.
    * This setting should be used with caution, since it doesn't mean the same thing between different TypeScript versions and can make upgrades less predictable.
    *
-   * @default 'es5'
+   * As of TypeScript 6.0, the default is `es2025`, which advances alongside the ECMAScript standard.
+   *
+   * @default "es2025"
    */
   target?: string
 
@@ -3245,12 +3262,12 @@ export type CompilerOptions = {
    * - If `outDir` is set, then the default is `<outDir>/<config name>.tsbuildInfo`
    * - Otherwise, the default is `<config name>.tsbuildInfo`
    *
-   * @default '.tsbuildinfo'
+   * @default ".tsbuildinfo"
    */
   tsBuildInfoFile?: string
 
   /**
-   * By default all _visible_ "`@types`" packages are included in your compilation.
+   * By default all _visible_ "`‎@types`" packages are included in your compilation.
    * Packages in `node_modules/@types` of any enclosing folder are considered _visible_.
    * For example, that means packages within `./node_modules/@types/`, `../node_modules/@types/`, `../../node_modules/@types/`, and so on.
    *
@@ -3270,7 +3287,7 @@ export type CompilerOptions = {
   typeRoots?: string[]
 
   /**
-   * By default all _visible_ "`@types`" packages are included in your compilation.
+   * By default all _visible_ "`‎@types`" packages are included in your compilation.
    * Packages in `node_modules/@types` of any enclosing folder are considered _visible_.
    * For example, that means packages within `./node_modules/@types/`, `../node_modules/@types/`, `../../node_modules/@types/`, and so on.
    *
@@ -3289,7 +3306,7 @@ export type CompilerOptions = {
    *
    * ### What does this affect?
    *
-   * This option does not affect how `@types/*` are included in your application code, for example if you had the above `compilerOptions` example with code like:
+   * This option does not affect how `‎@types/*` are included in your application code, for example if you had the above `compilerOptions` example with code like:
    *
    * ```ts
    * import * as moment from "moment";
@@ -3305,6 +3322,10 @@ export type CompilerOptions = {
    * - Will not have exports appear as auto-import recommendations
    *
    * This feature differs from [`typeRoots`](https://typescriptlang.org/tsconfig/#typeRoots) in that it is about specifying only the exact types you want included, whereas [`typeRoots`](https://typescriptlang.org/tsconfig/#typeRoots) supports saying you want particular folders.
+   *
+   * As of TypeScript 6.0, the default is `[]` (empty array), meaning no `‎@types` packages are included in the global scope automatically.
+   *
+   * @default []
    */
   types?: string[]
 
@@ -3323,7 +3344,7 @@ export type CompilerOptions = {
    * In TypeScript 4.0, support was added to allow changing the type of the variable in a catch clause from `any` to `unknown`. Allowing for code like:
    *
    * ```ts twoslash
-   * // @useUnknownInCatchVariables
+   * // ‎@useUnknownInCatchVariables
    * try {
    *   // ...
    * } catch (err: unknown) {
@@ -3496,14 +3517,14 @@ export type CompilerOptions = {
   /**
    * Specify the strategy for watching directories under systems that lack recursive file-watching functionality. Requires TypeScript version 3.8 or later.
    *
-   * @default 'useFsEvents'
+   * @default "useFsEvents"
    */
   watchDirectory?: string
 
   /**
    * Specify the strategy for watching individual files. Requires TypeScript version 3.8 or later.
    *
-   * @default 'useFsEvents'
+   * @default "useFsEvents"
    */
   watchFile?: string
 }

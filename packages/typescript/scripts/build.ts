@@ -14,13 +14,18 @@ const element = Object.fromEntries(
   Object.entries(
     tsconfigSchemaJson.definitions.compilerOptionsDefinition.properties
       .compilerOptions.properties,
-  ).map(
-    ([key, value]) =>
-      [
-        key,
-        {
-          ...value,
-          jsdoc: `  /**
+  ).map(([key, value]) => {
+    // console.dir(key, { depth: 2, getters: false, sorted: true })
+
+    // if (!('markdownDescription' in value)) {
+    //   console.dir(key, { depth: 2, getters: false, sorted: true })
+    // }
+
+    return [
+      key,
+      {
+        ...value,
+        jsdoc: `  /**
    * ${('markdownDescription' in value
      ? value.markdownDescription
      : value.description
@@ -28,42 +33,45 @@ const element = Object.fromEntries(
      '\n',
      `
    * `,
-   )}${'default' in value ? `\n   *\n   * @default ${typeof value.default === 'string' ? `'${value.default}'` : value.default}` : ''}
+   )}${'default' in value ? `\n   *\n   * @default ${typeof value.default === 'string' ? `"${value.default}"` : Array.isArray(value.default) ? `[${value.default.join(', ')}]` : value.default}` : ''}
    */`,
-          markdownDescription:
-            'markdownDescription' in value
-              ? value.markdownDescription
-              : value.description,
-        },
-      ] as const,
-  ),
+        markdownDescription:
+          'markdownDescription' in value
+            ? value.markdownDescription
+            : value.description,
+      },
+    ] as const
+  }),
 )
 
 const element1 = `export type CompilerOptions = {\n${Object.entries(element)
   .map(
     ([key, value]) =>
       `${value.jsdoc}\n  ${key}?: ${
-        'type' in value
+        'type' in value && Array.isArray(value.type)
           ? value.type
               .filter((e) => e !== 'null')
               .map((e) => (e === 'array' ? 'string[]' : e))
               .join(' | ')
           : 'string'
-      },\n`,
+      }\n`,
   )
   .join('\n')}}\n`
-  .replaceAll('/* app.css */', '\\/* app.css *\\/')
-  .replaceAll(/\/\*(\*?\s[^*]+\s)\*\//gim, '\\/*$1*\\/')
+  .replaceAll(/\s?\s?\s?\*\s\/\/\s(@.*)/giu, '   * // ‎$1')
+  .replaceAll(/([/])([*])([*]?)\s(@.+)\s(\*\/)/giu, '‎$1‎$2‎$3 ‎$4 ‎*‎/')
+  .replaceAll('/* app.css */', '‎/‎* app.css ‎*‎/')
+  .replaceAll(/\/\*(\*?\s[^*]+\s)\*\//giu, '‎/‎*$1*‎/')
   .replaceAll(
     `/**
    *  * Days available in a week
    *  * @internal
    *  */`,
-    `\\/\\*\\*
-   *  \\* Days available in a week
-   *  \\* \\@internal
-   *  *\\/`,
+    `‎/‎*‎*
+   *  * Days available in a week
+   *  * ‎@internal
+   *  ‎*‎/`,
   )
+  .replaceAll(/`([/]?[/]?\s?)(@[^`]+)`/giu, '`$1‎$2`')
 
 const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
 
@@ -73,9 +81,9 @@ type ModuleKindType = Simplify<typeof ModuleKind>
 
 const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
 
-// fs.writeFile(path.join(ROOT_DIRECTORY, 'output.ts'), element1, {
-//   encoding: 'utf-8',
-// })
+fs.writeFile(path.join(ROOT_DIRECTORY, 'output.ts'), element1, {
+  encoding: 'utf-8',
+})
 
 type CapitalizedModuleResolutionKinds = ExcludeStrict<
   ModuleResolution,

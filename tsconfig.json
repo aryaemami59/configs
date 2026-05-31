@@ -1,4 +1,5 @@
 {
+  "$schema": "./tsconfig.schema.json",
   "compilerOptions": {
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
