@@ -10,22 +10,38 @@ import packageJson from '../package.json' with { type: 'json' }
 import type { ExcludeStrict, KebabCase, Simplify } from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
 
-const element = Object.fromEntries(
-  Object.entries(
-    tsconfigSchemaJson.definitions.compilerOptionsDefinition.properties
-      .compilerOptions.properties,
-  ).map(([key, value]) => {
-    // console.dir(key, { depth: 2, getters: false, sorted: true })
+const DEFAULT_PRETTIER_CONFIG = {
+  semi: false,
+  singleQuote: true,
+} as const satisfies Options
 
-    // if (!('markdownDescription' in value)) {
-    //   console.dir(key, { depth: 2, getters: false, sorted: true })
-    // }
+const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
 
-    return [
-      key,
-      {
-        ...value,
-        jsdoc: `  /**
+const OUTPUT_PATH = path.join(ROOT_DIRECTORY, 'output.ts')
+
+const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
+
+type ModuleResolutionKindType = Simplify<typeof ModuleResolutionKind>
+
+type ModuleKindType = Simplify<typeof ModuleKind>
+
+const generateTypesFromJsonSchema = async () => {
+  const tsConfigCompilerOptions = Object.fromEntries(
+    Object.entries(
+      tsconfigSchemaJson.definitions.compilerOptionsDefinition.properties
+        .compilerOptions.properties,
+    ).map(([key, value]) => {
+      // console.dir(key, { depth: 2, getters: false, sorted: true })
+
+      // if (!('markdownDescription' in value)) {
+      //   console.dir(key, { depth: 2, getters: false, sorted: true })
+      // }
+
+      return [
+        key,
+        {
+          ...value,
+          jsdoc: `  /**
    * ${('markdownDescription' in value
      ? value.markdownDescription
      : value.description
@@ -35,55 +51,56 @@ const element = Object.fromEntries(
    * `,
    )}${'default' in value ? `\n   *\n   * @default ${typeof value.default === 'string' ? `"${value.default}"` : Array.isArray(value.default) ? `[${value.default.join(', ')}]` : value.default}` : ''}
    */`,
-        markdownDescription:
-          'markdownDescription' in value
-            ? value.markdownDescription
-            : value.description,
-      },
-    ] as const
-  }),
-)
-
-const element1 = `export type CompilerOptions = {\n${Object.entries(element)
-  .map(
-    ([key, value]) =>
-      `${value.jsdoc}\n  ${key}?: ${
-        'type' in value && Array.isArray(value.type)
-          ? value.type
-              .filter((e) => e !== 'null')
-              .map((e) => (e === 'array' ? 'string[]' : e))
-              .join(' | ')
-          : 'string'
-      }\n`,
+          markdownDescription:
+            'markdownDescription' in value
+              ? value.markdownDescription
+              : value.description,
+        },
+      ] as const
+    }),
   )
-  .join('\n')}}\n`
-  .replaceAll(/\s?\s?\s?\*\s\/\/\s(@.*)/giu, '   * // ‎$1')
-  .replaceAll(/([/])([*])([*]?)\s(@.+)\s(\*\/)/giu, '‎$1‎$2‎$3 ‎$4 ‎*‎/')
-  .replaceAll('/* app.css */', '‎/‎* app.css ‎*‎/')
-  .replaceAll(/\/\*(\*?\s[^*]+\s)\*\//giu, '‎/‎*$1*‎/')
-  .replaceAll(
-    `/**
+
+  const unformattedOutputContent =
+    `export type CompilerOptions = {\n${Object.entries(tsConfigCompilerOptions)
+      .map(
+        ([key, value]) =>
+          `${value.jsdoc}\n  ${key}?: ${
+            'type' in value && Array.isArray(value.type)
+              ? value.type
+                  .filter((e) => e !== 'null')
+                  .map((e) => (e === 'array' ? 'string[]' : e))
+                  .join(' | ')
+              : 'string'
+          }\n`,
+      )
+      .join('\n')}}\n`
+      .replaceAll(/\s?\s?\s?\*\s\/\/\s(@.*)/giu, '   * // ‎$1')
+      .replaceAll(/([/])([*])([*]?)\s(@.+)\s(\*\/)/giu, '‎$1‎$2‎$3 ‎$4 ‎*‎/')
+      .replaceAll('/* app.css */', '‎/‎* app.css ‎*‎/')
+      .replaceAll(/\/\*(\*?\s[^*]+\s)\*\//giu, '‎/‎*$1*‎/')
+      .replaceAll(
+        `/**
    *  * Days available in a week
    *  * @internal
    *  */`,
-    `‎/‎*‎*
+        `‎/‎*‎*
    *  * Days available in a week
    *  * ‎@internal
    *  ‎*‎/`,
-  )
-  .replaceAll(/`([/]?[/]?\s?)(@[^`]+)`/giu, '`$1‎$2`')
+      )
+      .replaceAll(/`([/]?[/]?\s?)(@[^`]+)`/giu, '`$1‎$2`')
 
-const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
+  const outputContent = await format(unformattedOutputContent, {
+    ...DEFAULT_PRETTIER_CONFIG,
+    filepath: OUTPUT_PATH,
+  })
 
-type ModuleResolutionKindType = Simplify<typeof ModuleResolutionKind>
+  await fs.writeFile(OUTPUT_PATH, outputContent, {
+    encoding: 'utf-8',
+  })
+}
 
-type ModuleKindType = Simplify<typeof ModuleKind>
-
-const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
-
-fs.writeFile(path.join(ROOT_DIRECTORY, 'output.ts'), element1, {
-  encoding: 'utf-8',
-})
+void generateTypesFromJsonSchema()
 
 type CapitalizedModuleResolutionKinds = ExcludeStrict<
   ModuleResolution,
@@ -310,15 +327,10 @@ const build = async () => {
               }),
             } as const satisfies TsConfigJson
 
-            const prettierConfig = {
-              semi: false,
-              singleQuote: true,
-            } as const satisfies Options
-
             fs.writeFile(
               tsconfigJsonPath,
               await format(JSON.stringify(tsconfigJson, null, 2), {
-                ...prettierConfig,
+                ...DEFAULT_PRETTIER_CONFIG,
                 filepath: tsconfigJsonPath,
               }),
               { encoding: 'utf-8' },
@@ -327,7 +339,7 @@ const build = async () => {
             fs.writeFile(
               withJsTsConfigJsonPath,
               await format(JSON.stringify(withJsTsConfigJson, null, 2), {
-                ...prettierConfig,
+                ...DEFAULT_PRETTIER_CONFIG,
                 filepath: withJsTsConfigJsonPath,
               }),
               { encoding: 'utf-8' },
