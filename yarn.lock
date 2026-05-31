@@ -61,7 +61,7 @@ __metadata:
     publint: "npm:^0.3.21"
     rimraf: "npm:^6.1.3"
     tsdown: "npm:^0.22.1"
-    tsx: "npm:^4.22.3"
+    tsx: "npm:^4.22.4"
     typescript: "npm:^6.0.3"
     typescript-eslint: "npm:^8.60.0"
     unrun: "npm:^0.3.0"
@@ -90,7 +90,7 @@ __metadata:
     publint: "npm:^0.3.21"
     rimraf: "npm:^6.1.3"
     tsdown: "npm:^0.22.1"
-    tsx: "npm:^4.22.3"
+    tsx: "npm:^4.22.4"
     typescript: "npm:^6.0.3"
     unrun: "npm:^0.3.0"
   peerDependencies:
@@ -123,7 +123,7 @@ __metadata:
     publint: "npm:^0.3.21"
     rimraf: "npm:^6.1.3"
     tsdown: "npm:^0.22.1"
-    tsx: "npm:^4.22.3"
+    tsx: "npm:^4.22.4"
     typescript: "npm:^6.0.3"
     unrun: "npm:^0.3.0"
     vite: "npm:^8.0.14"
@@ -1415,9 +1415,9 @@ __metadata:
   linkType: hard
 
 "ansis@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "ansis@npm:4.3.0"
-  checksum: 10c0/ef9992c645ca9713f509488e02e600c87986366888c7338fbea300a86a9a82949b011687084275670f6c6a2e009aa2174c06428f6f279aaf3263811b12a25bea
+  version: 4.3.1
+  resolution: "ansis@npm:4.3.1"
+  checksum: 10c0/d1a48090f9c33b18f254a3496e5336a20391a51140b552a1c0bc38710ae7c8bc36a62658f28759797d7bce15e89b893e9ef1962ea1ea42a291d112263f6e593c
   languageName: node
   linkType: hard
 
@@ -3663,9 +3663,9 @@ __metadata:
   linkType: hard
 
 "tinyexec@npm:^1.0.2, tinyexec@npm:^1.1.2":
-  version: 1.2.3
-  resolution: "tinyexec@npm:1.2.3"
-  checksum: 10c0/e4694310797ae576547f55a449bc4be6480ce1cd64ff22ca9768506172bb37475c3d79efa7257e93c88d96374933a8ba2f7567b8f0c7269380008884dec42a9a
+  version: 1.2.4
+  resolution: "tinyexec@npm:1.2.4"
+  checksum: 10c0/153b8db6b080194b558ff145b9cffc36b80a6e07babd644dcfbe49c807eee668c876049d28bdee90b96304476f883352f2dad91b3f86bc23832532f4363e66ff
   languageName: node
   linkType: hard
 
@@ -3825,9 +3825,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.22.3":
-  version: 4.22.3
-  resolution: "tsx@npm:4.22.3"
+"tsx@npm:^4.22.4":
+  version: 4.22.4
+  resolution: "tsx@npm:4.22.4"
   dependencies:
     esbuild: "npm:~0.28.0"
     fsevents: "npm:~2.3.3"
@@ -3836,7 +3836,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10c0/09a5a7d354ff75e5af6285217d709ec80a46c2ee19e0d9b5c5d00eab81047c3ea6b2a5498a2c5255f3960d6e7acd1a1eee34b9433dc56fb32907ca3b38271f41
+  checksum: 10c0/3df31eb4929ff501b40b122163705b201ea57a492581e14312ae95d21eb015b33ded46a3fd564f9c89a0e8083186987fc4f10dd38182c4ad6241605974f6c927
   languageName: node
   linkType: hard
 
