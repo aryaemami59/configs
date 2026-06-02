@@ -52,6 +52,14 @@ const tsdownConfig = defineConfig((cliOptions) => {
           lazyBarrel: true,
           nativeMagicString: true,
         },
+        transform: {
+          ...options.transform,
+          typescript: {
+            ...options.transform?.typescript,
+            optimizeConstEnums: true,
+            optimizeEnums: true,
+          },
+        },
       }) as const satisfies Rolldown.InputOptions,
     minify: false,
     nodeProtocol: true,
