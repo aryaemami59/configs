@@ -3,6 +3,13 @@
   "version": "0.0.8",
   "private": true,
   "description": "A set of config files for ease of use",
+  "keywords": [
+    "config",
+    "eslint",
+    "prettier",
+    "typescript",
+    "vitest"
+  ],
   "homepage": "https://github.com/aryaemami59/configs#readme",
   "bugs": {
     "url": "https://github.com/aryaemami59/configs/issues"
