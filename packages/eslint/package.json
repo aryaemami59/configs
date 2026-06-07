@@ -77,14 +77,14 @@
     "@arethetypeswrong/cli": "^0.18.3",
     "@aryaemami59/tsconfig": "workspace:^",
     "@eslint/core": "^1.2.1",
-    "@types/node": "^25.9.1",
+    "@types/node": "^25.9.2",
     "eslint": "^10.4.1",
     "publint": "^0.3.21",
     "rimraf": "^6.1.3",
-    "tsdown": "^0.22.1",
+    "tsdown": "^0.22.2",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
-    "unrun": "^0.3.0"
+    "unrun": "^0.3.1"
   },
   "peerDependencies": {
     "@eslint/core": "*",
