@@ -33,27 +33,27 @@ bun add --dev @aryaemami59/prettier-config
 **ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`**:
 
 ```js
-import { prettierConfig } from '@aryaemami59/prettier-config'
+import { prettierConfigDefaults } from '@aryaemami59/prettier-config'
 
-export default prettierConfig
+export default prettierConfigDefaults
 ```
 
 **CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using `require`)**:
 
 ```js
-const { prettierConfig } = require('@aryaemami59/prettier-config')
+const { prettierConfigDefaults } = require('@aryaemami59/prettier-config')
 
-module.exports = prettierConfig
+module.exports = prettierConfigDefaults
 ```
 
 **CommonJS (CJS) usage inside a file like `prettier.config.cjs` (using dynamic import)**:
 
 ```js
 module.exports = (async () =>
-  (await import('@aryaemami59/prettier-config')).prettierConfig)()
+  (await import('@aryaemami59/prettier-config')).prettierConfigDefaults)()
 ```
 
-To avoid having to write JSDocs we also provide a `createPrettierConfig` function. This function already includes the default `prettierConfig` and you can pass in additional overrides as an argument.
+To avoid having to write JSDocs we also provide a `createPrettierConfig` function. This function already includes the default `prettierConfigDefaults` and you can pass in additional overrides as an argument.
 
 **ECMAScript Modules (ESM) usage inside a file like `prettier.config.mjs`**:
 

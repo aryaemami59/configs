@@ -101,7 +101,7 @@ export = vitestProject
 
 ### **`createVitestConfig`**
 
-To avoid having to write JSDocs we also provide a `createVitestConfig` function. This function already includes the default **<a href="#vitestConfig">`vitestConfig`</a>** and you can pass in additional overrides as an argument.
+To avoid having to write JSDocs we also provide a `createVitestConfig` function. This function already includes the default **<a href="#vitestconfig">`vitestConfig`</a>** and you can pass in additional overrides as an argument.
 
 **ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`**:
 
@@ -157,7 +157,7 @@ export = createVitestConfig({
 
 ### **`createVitestProject`**
 
-A function that returns **<a href="#vitestProject">`vitestProject`</a>**
+A function that returns **<a href="#vitestproject">`vitestProject`</a>**
 along with optional additional overrides.
 
 **ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`**
