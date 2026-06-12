@@ -19,7 +19,7 @@
     "@aryaemami59/eslint-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "@types/node": "^25.9.2",
+    "@types/node": "^25.9.3",
     "eslint": "^10.4.1",
     "globals": "^17.6.0",
     "jiti": "^2.7.0",
