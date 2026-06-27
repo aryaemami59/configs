@@ -285,6 +285,7 @@ const build = async () => {
 
             const tsconfigJson = {
               ...baseTsconfigJson,
+              // $schema: 'https://www.schemastore.org/tsconfig',
               compilerOptions: {
                 ...(moduleKind !== baseConfigs.node.modules[0] &&
                   moduleKind !== baseConfigs.node.modules[1] && {
@@ -322,6 +323,7 @@ const build = async () => {
                 }),
               },
               display: `TypeScript configuration with module set to \`${moduleKind}\` and module resolution set to \`${moduleResolution}\`${moduleResolution === 'node' ? ', intended for TypeScript versions earlier than 5.0.' : moduleResolution === 'node10' ? '. It serves as a backwards compatible replacement for the deprecated `node` module resolution.' : ''}`,
+              // docs: `https://www.typescriptlang.org/tsconfig#${moduleResolution}${moduleKind !== baseConfigs.node.modules[0] && moduleKind !== baseConfigs.node.modules[1] ? `-${moduleKind}` : ''}`,
               ...(moduleResolution !== 'node' && {
                 extends: `${packageJson.name}/node/${moduleKind === 'commonjs' || moduleKind === 'esnext' ? moduleKind : 'esnext'}`,
               }),
