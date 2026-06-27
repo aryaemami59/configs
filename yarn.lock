@@ -1522,6 +1522,7 @@ __metadata:
     eslint: "npm:^10.6.0"
     eslint-plugin-jsdoc: "npm:^63.0.10"
     eslint-plugin-perfectionist: "npm:^5.9.1"
+    pkg-pr-new: "npm:^0.0.75"
     prettier: "npm:^3.9.0"
     prettier-plugin-jsdoc: "npm:^1.8.1"
     typescript: "npm:^6.0.3"
@@ -3073,6 +3074,15 @@ __metadata:
   version: 4.0.4
   resolution: "picomatch@npm:4.0.4"
   checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
+  languageName: node
+  linkType: hard
+
+"pkg-pr-new@npm:^0.0.75":
+  version: 0.0.75
+  resolution: "pkg-pr-new@npm:0.0.75"
+  bin:
+    pkg-pr-new: bin/cli.js
+  checksum: 10c0/fa5d669d8f36c538016c7cf19789b92c56841d5f2bcb111f1221542d12dff44045d56179193f690d52737c93ec03a0ed5ffa2e77eddf0542353374a3b2957e07
   languageName: node
   linkType: hard
 

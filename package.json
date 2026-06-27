@@ -49,6 +49,7 @@
     "eslint": "^10.6.0",
     "eslint-plugin-jsdoc": "^63.0.10",
     "eslint-plugin-perfectionist": "^5.9.1",
+    "pkg-pr-new": "^0.0.75",
     "prettier": "^3.9.0",
     "prettier-plugin-jsdoc": "^1.8.1",
     "typescript": "^6.0.3",
