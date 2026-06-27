@@ -39,9 +39,8 @@ type FixtureFile = {
 type FixtureFiles<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> = [
   'js' | 'ts',
 ] extends [FileExtension]
-  ?
-      | Record<'cjs' | 'js' | 'mjs', FixtureFile>
-      | Record<'cts' | 'mts' | 'ts', FixtureFile>
+  ? | Record<'cjs' | 'js' | 'mjs', FixtureFile>
+    | Record<'cts' | 'mts' | 'ts', FixtureFile>
   : ['js'] extends [FileExtension]
     ? Record<'cjs' | 'js' | 'mjs', FixtureFile>
     : ['ts'] extends [FileExtension]

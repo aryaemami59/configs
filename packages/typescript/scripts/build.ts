@@ -118,27 +118,31 @@ type CapitalizedModuleKinds = ExcludeStrict<
 type LowerCaseModuleKinds = Lowercase<CapitalizedModuleKinds>
 
 type CapitalizedToLowerCaseModuleResolutionKinds = {
-  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds]: Lowercase<PascalCasedModuleResolutionKind>
+  readonly [
+    PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds
+  ]: Lowercase<PascalCasedModuleResolutionKind>
 }
 
 type LowerCaseToCapitalizedModuleResolutionKinds = {
-  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds as CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]]: PascalCasedModuleResolutionKind
+  readonly [
+    PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds as CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]
+  ]: PascalCasedModuleResolutionKind
 }
 
 type PossibleModuleKinds = Simplify<{
-  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds]: Simplify<
+  readonly [
+    PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds
+  ]: Simplify<
     Readonly<
       Record<
         'modules',
         CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind] extends 'bundler'
           ? readonly ['commonjs', 'esnext', 'preserve']
           : CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind] extends
-                | 'node'
-                | 'node10'
+                'node' | 'node10'
             ? readonly ['commonjs', 'esnext']
             : CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind] extends
-                  | 'node16'
-                  | 'nodenext'
+                  'node16' | 'nodenext'
               ? readonly [
                   CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind],
                   'node18',
@@ -156,7 +160,9 @@ type PossibleModuleKinds = Simplify<{
 }>
 
 type BaseConfigs = {
-  readonly [PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds as CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]]: Simplify<{
+  readonly [
+    PascalCasedModuleResolutionKind in CapitalizedModuleResolutionKinds as CapitalizedToLowerCaseModuleResolutionKinds[PascalCasedModuleResolutionKind]
+  ]: Simplify<{
     readonly directory: PossibleModuleKinds[PascalCasedModuleResolutionKind]['directory']
     readonly moduleResolution: PossibleModuleKinds[PascalCasedModuleResolutionKind]['moduleResolution']
     readonly modules: PossibleModuleKinds[PascalCasedModuleResolutionKind]['modules']

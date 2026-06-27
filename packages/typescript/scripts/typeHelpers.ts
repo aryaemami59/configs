@@ -293,7 +293,7 @@ export type DistributedPick<
  */
 export type ExtractStrict<
   BaseType,
-  TypeToExtract extends [TypeToExtract] extends [
+  TypeToExtract extends ([TypeToExtract] extends [
     TypeToExtract extends unknown
       ? Extract<BaseType, TypeToExtract> extends never
         ? never
@@ -301,7 +301,7 @@ export type ExtractStrict<
       : never,
   ]
     ? unknown
-    : BaseType,
+    : BaseType),
 > = Extract<BaseType, TypeToExtract>
 
 /**
@@ -325,7 +325,7 @@ export type ExtractStrict<
  */
 export type ExcludeStrict<
   BaseType,
-  TypesToExclude extends [TypesToExclude] extends [
+  TypesToExclude extends ([TypesToExclude] extends [
     TypesToExclude extends unknown
       ? [BaseType] extends [Exclude<BaseType, TypesToExclude>]
         ? never
@@ -333,7 +333,7 @@ export type ExcludeStrict<
       : never,
   ]
     ? unknown
-    : BaseType,
+    : BaseType),
 > = Exclude<BaseType, TypesToExclude>
 
 /**

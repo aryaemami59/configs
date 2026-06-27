@@ -47,11 +47,7 @@ export type BuildOptions = {
 }
 
 export type JSX =
-  | 'preserve'
-  | 'react-jsx'
-  | 'react-jsxdev'
-  | 'react-native'
-  | 'react'
+  'preserve' | 'react-jsx' | 'react-jsxdev' | 'react-native' | 'react'
 
 export type Module =
   /**
@@ -1580,10 +1576,7 @@ export type WatchDirectoryKind =
   | 'UseFsEvents'
 
 export type PollingWatchKind =
-  | 'DynamicPriority'
-  | 'FixedChunkSize'
-  | 'FixedInterval'
-  | 'PriorityInterval'
+  'DynamicPriority' | 'FixedChunkSize' | 'FixedInterval' | 'PriorityInterval'
 
 export type WatchOptions = {
   /**
