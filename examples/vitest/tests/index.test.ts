@@ -1,3 +1,3 @@
 test('testing config files', () => {
-  expect(window).toBeDefined()
+  expect(globalThis.window).toBeDefined()
 })
