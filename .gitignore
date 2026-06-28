@@ -29,5 +29,5 @@ tsconfig*.vitest-temp.json
 .eslintcache
 tsconfig*.tsbuildinfo
 .docusaurus/
-.rolldown/
 .vitest-dump/
+.vitest/

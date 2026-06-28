@@ -30,12 +30,12 @@
   "scripts": {
     "build": "yarn workspaces foreach -Atp run build",
     "clean": "yarn workspaces foreach -Atp run clean",
-    "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs --check $INIT_CWD",
-    "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mjs --write $INIT_CWD",
-    "lint-fix": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern --fix $INIT_CWD",
-    "lint": "eslint --config=$PROJECT_CWD/eslint.config.mjs --no-error-on-unmatched-pattern $INIT_CWD",
+    "format-check": "prettier --ignore-path=${PROJECT_CWD}/.gitignore --config=${PROJECT_CWD}/prettier.config.mjs --check ${INIT_CWD}",
+    "format": "prettier --ignore-path=${PROJECT_CWD}/.gitignore --config=${PROJECT_CWD}/prettier.config.mjs --write ${INIT_CWD}",
+    "lint-fix": "eslint --config=${PROJECT_CWD}/eslint.config.mjs --no-error-on-unmatched-pattern --fix ${INIT_CWD}",
+    "lint": "eslint --config=${PROJECT_CWD}/eslint.config.mjs --no-error-on-unmatched-pattern ${INIT_CWD}",
     "postinstall": "yarn run build",
-    "test": "vitest --run --config=$INIT_CWD/vitest.config.mts"
+    "test": "vitest --run --config=${INIT_CWD}/vitest.config.mts"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.4",
@@ -50,7 +50,7 @@
     "eslint-plugin-jsdoc": "^63.0.10",
     "eslint-plugin-perfectionist": "^5.9.1",
     "pkg-pr-new": "^0.0.75",
-    "prettier": "^3.9.0",
+    "prettier": "^3.9.1",
     "prettier-plugin-jsdoc": "^1.8.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"

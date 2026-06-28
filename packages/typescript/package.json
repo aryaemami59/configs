@@ -19,8 +19,8 @@
     "directory": "packages/typescript"
   },
   "files": [
-    "src",
-    "scripts"
+    "src/",
+    "scripts/"
   ],
   "license": "MIT",
   "author": "Arya Emami <aryaemami59@yahoo.com> (https://github.com/aryaemami59)",
@@ -155,8 +155,8 @@
   "scripts": {
     "build": "node scripts/build.ts",
     "download-schema": "node scripts/downloadSchema.ts",
-    "check-exports": "attw --pack $INIT_CWD",
-    "check-package-json": "publint --strict $INIT_CWD",
+    "check-exports": "attw --pack ${INIT_CWD}",
+    "check-package-json": "publint --strict ${INIT_CWD}",
     "format-check": "yarn run -T format-check",
     "format": "yarn run -T format",
     "lint-fix": "yarn run -T lint-fix",
@@ -167,7 +167,7 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.4",
     "@types/node": "^26.0.1",
-    "prettier": "^3.9.0",
+    "prettier": "^3.9.1",
     "publint": "^0.3.21",
     "typescript": "^6.0.3"
   },
