@@ -2,11 +2,44 @@ import type { InlineConfig, Rolldown, UserConfig } from 'tsdown'
 import { defineConfig } from 'tsdown'
 import packageJson from './package.json' with { type: 'json' }
 
+const RE_DTS = /\.d\.([cm]?)ts$/
+
+/**
+ * A {@linkcode Rolldown.Plugin | Rolldown plugin} to remove generated CommonJS
+ * (`.cjs`) JavaScript outputs from DTS-only builds. When generating type
+ * definition builds we may still emit stray `.cjs` files; this plugin deletes
+ * those entries from the generated bundle to ensure only declaration artifacts
+ * remain.
+ *
+ * @returns A {@linkcode Rolldown.Plugin | Rolldown plugin} that prunes `.cjs` files from the bundle.
+ * @internal
+ */
+const removeCJSOutputsFromDTSBuilds = (): Rolldown.Plugin => ({
+  generateBundle: {
+    handler(outputOptions, bundle, isWrite) {
+      if (outputOptions.format === 'cjs' && isWrite) {
+        Object.values(bundle).forEach((outputChunk) => {
+          if (
+            outputChunk.type === 'chunk' &&
+            outputChunk.isEntry &&
+            !RE_DTS.test(outputChunk.fileName)
+          ) {
+            delete bundle[outputChunk.fileName]
+            delete bundle[`${outputChunk.fileName}.map`]
+          }
+        })
+      }
+    },
+  },
+  name: `${packageJson.name}:remove-cjs-outputs-from-dts-builds`,
+})
+
 const tsdownConfig = defineConfig((cliOptions) => {
   const commonOptions = {
     checks: {
       circularDependency: true,
     },
+    cjsDefault: false,
     clean: false,
     cwd: import.meta.dirname,
     deps: {
@@ -16,33 +49,13 @@ const tsdownConfig = defineConfig((cliOptions) => {
       clean: true,
       enabled: true,
     },
-    dts: {
-      build: false,
-      cjsDefault: true,
-      cjsReexport: false,
-      cwd: import.meta.dirname,
-      dtsInput: false,
-      eager: false,
-      emitDtsOnly: false,
-      emitJs: false,
-      enabled: true,
-      incremental: false,
-      newContext: true,
-      oxc: false,
-      parallel: false,
-      resolver: 'tsc',
-      sideEffects: false,
-      sourcemap: true,
-      tsconfig: 'tsconfig.build.json',
-      tsgo: false,
-      tsMacro: false,
-      vue: false,
-    },
+    dts: false,
     entry: {
       index: 'src/index.ts',
     },
     failOnWarn: true,
     fixedExtension: false,
+    format: ['cjs', 'esm'],
     hash: false,
     inputOptions: (options) =>
       ({
@@ -62,7 +75,9 @@ const tsdownConfig = defineConfig((cliOptions) => {
         },
       }) as const satisfies Rolldown.InputOptions,
     minify: false,
+    name: packageJson.name,
     nodeProtocol: true,
+    outDir: 'dist',
     outputOptions: (options, format, context) =>
       ({
         ...options,
@@ -72,12 +87,12 @@ const tsdownConfig = defineConfig((cliOptions) => {
           jsdoc: false,
           legal: true,
         },
-        strict: true,
         ...(format === 'cjs' && !context.cjsDts
           ? {
               externalLiveBindings: false,
             }
           : {}),
+        strict: true,
       }) as const satisfies Rolldown.OutputOptions,
     platform: 'node',
     root: 'src',
@@ -94,13 +109,40 @@ const tsdownConfig = defineConfig((cliOptions) => {
   return [
     {
       ...commonOptions,
-      format: ['es'],
+      format: ['esm'],
       name: `${packageJson.name} ESM`,
     },
     {
       ...commonOptions,
       format: ['cjs'],
       name: `${packageJson.name} CJS`,
+    },
+    {
+      ...commonOptions,
+      dts: {
+        build: false,
+        cjsDefault: false,
+        cjsReexport: false,
+        cwd: commonOptions.cwd,
+        dtsInput: false,
+        eager: false,
+        emitDtsOnly: true,
+        emitJs: false,
+        enabled: true,
+        incremental: false,
+        newContext: false,
+        oxc: false,
+        parallel: false,
+        resolver: 'tsc',
+        sideEffects: false,
+        sourcemap: true,
+        tsconfig: commonOptions.tsconfig,
+        tsgo: false,
+        tsMacro: false,
+        vue: false,
+      },
+      name: `${packageJson.name} DTS`,
+      plugins: [removeCJSOutputsFromDTSBuilds()],
     },
   ] as const satisfies UserConfig[]
 })

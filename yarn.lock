@@ -60,6 +60,7 @@ __metadata:
     globals: "npm:^17.7.0"
     publint: "npm:^0.3.21"
     rimraf: "npm:^6.1.3"
+    rolldown: "npm:^1.1.3"
     tsdown: "npm:^0.22.3"
     tsx: "npm:^4.22.4"
     typescript: "npm:^6.0.3"
@@ -89,6 +90,7 @@ __metadata:
     prettier: "npm:^3.9.1"
     publint: "npm:^0.3.21"
     rimraf: "npm:^6.1.3"
+    rolldown: "npm:^1.1.3"
     tsdown: "npm:^0.22.3"
     tsx: "npm:^4.22.4"
     typescript: "npm:^6.0.3"
@@ -122,6 +124,7 @@ __metadata:
     "@types/node": "npm:^26.0.1"
     publint: "npm:^0.3.21"
     rimraf: "npm:^6.1.3"
+    rolldown: "npm:^1.1.3"
     tsdown: "npm:^0.22.3"
     tsx: "npm:^4.22.4"
     typescript: "npm:^6.0.3"
@@ -294,14 +297,14 @@ __metadata:
   linkType: hard
 
 "@csstools/css-syntax-patches-for-csstree@npm:^1.1.3":
-  version: 1.1.5
-  resolution: "@csstools/css-syntax-patches-for-csstree@npm:1.1.5"
+  version: 1.1.6
+  resolution: "@csstools/css-syntax-patches-for-csstree@npm:1.1.6"
   peerDependencies:
     css-tree: ^3.2.1
   peerDependenciesMeta:
     css-tree:
       optional: true
-  checksum: 10c0/a31f0cfb74e2b5ce8a283c47969a202fc3b23c3ee05c6b6beab7f5c14d89c50b82533e446df74f7df0bf88bf23810ed59431353db26e00d5b013995c1ebf07a2
+  checksum: 10c0/4f1322833df87dfb19ec5b23cba5475ceeff8391940dd0eeaf9b28df362f23c354c31f704c4bdef9bd749ae5f0825ded022df3fea1fab39af9b6aab42370ba53
   languageName: node
   linkType: hard
 
@@ -3087,13 +3090,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.5.15":
-  version: 8.5.15
-  resolution: "postcss@npm:8.5.15"
+  version: 8.5.16
+  resolution: "postcss@npm:8.5.16"
   dependencies:
     nanoid: "npm:^3.3.12"
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
-  checksum: 10c0/7f2e63ae22fbe43aace1bf652bd99da4e90737c64194d49e51ddc9cd0f9e51ff2861a7d734379b494deffa03a880a5c65eec70bc29ee9ebaa7136dde3eee8f31
+  checksum: 10c0/625de7a02f662f3a340964d14b487bd5097adf16f5f171e257d19005ba37aea8768ee446557500e88e91ca46b4d14d6cb4a0bf033c6ec0c8c0b660d85719f1ef
   languageName: node
   linkType: hard
 
@@ -3247,7 +3250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rolldown@npm:^1.0.0, rolldown@npm:~1.1.1, rolldown@npm:~1.1.2":
+"rolldown@npm:^1.0.0, rolldown@npm:^1.1.3, rolldown@npm:~1.1.1, rolldown@npm:~1.1.2":
   version: 1.1.3
   resolution: "rolldown@npm:1.1.3"
   dependencies:
@@ -3517,21 +3520,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^7.4.4":
-  version: 7.4.4
-  resolution: "tldts-core@npm:7.4.4"
-  checksum: 10c0/0e7d44b503a573237d7683ccc4798105b8e455aa2e8fcf4bfde626ab9a55d85116604d9e3ac2341858fe342b100a4740ba109d54a0d3afe6cc69f301fe7dc960
+"tldts-core@npm:^7.4.5":
+  version: 7.4.5
+  resolution: "tldts-core@npm:7.4.5"
+  checksum: 10c0/7b6077980cba29fb65f56432c889b6b58ce6b2bc1ddb86ce5b13abfc2a6caec67e955f57084e96fcb92caa5eb60565a2474db79ee5d48555f13091d1a5485067
   languageName: node
   linkType: hard
 
 "tldts@npm:^7.0.5":
-  version: 7.4.4
-  resolution: "tldts@npm:7.4.4"
+  version: 7.4.5
+  resolution: "tldts@npm:7.4.5"
   dependencies:
-    tldts-core: "npm:^7.4.4"
+    tldts-core: "npm:^7.4.5"
   bin:
     tldts: bin/cli.js
-  checksum: 10c0/e0a85d7ec71af40b7d01d1e8bd054669d8a22a2950567ce81381c5b7d7232c80b55f018b5e9fdea81217071c4fdc0d881e26237bb9b37aa6a52993732d3f754f
+  checksum: 10c0/c2b4c0b6015330c9ca73f9e6f334d555799a7119137f13bfad871ffaa1545b4136d765edfe84334585ffa5ad4c881bc707748673533b0acd5b476197dab1aff8
   languageName: node
   linkType: hard
 

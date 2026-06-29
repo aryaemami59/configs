@@ -1,7 +1,7 @@
 import js from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier/flat'
 import globals from 'globals'
-export type { ESLint, Linter } from 'eslint'
+export type { AST, ESLint, Linter } from 'eslint'
 export { defineConfig } from 'eslint/config'
 export type { Config } from 'eslint/config'
 export {
@@ -11,6 +11,10 @@ export {
   plugin as tseslintPlugin,
 } from 'typescript-eslint'
 export type {
+  CompatibleConfig as TSESLintCompatibleConfig,
+  CompatibleConfigArray as TSESLintCompatibleConfigArray,
+  CompatibleParser as TSESLintCompatibleParser,
+  CompatiblePlugin as TSESLintCompatiblePlugin,
   Config as TSESLintConfig,
   ConfigArray as TSESLintConfigArray,
   ConfigWithExtends as TSESLintConfigWithExtends,

@@ -53,7 +53,8 @@ export type AnyNonNullishValue = NonNullable<unknown>
 
 /**
  * Useful to flatten the type output to improve type hints shown in editors.
- * And also to transform an interface into a type to aide with assignability.
+ * And also to transform an `interface` into a `type` to aid with
+ * assignability.
  *
  * @example
  * <caption>Basic usage</caption>
@@ -95,7 +96,7 @@ export type AnyNonNullishValue = NonNullable<unknown>
  *
  * @template BaseType - The type to simplify.
  *
- * @see {@link https://github.com/sindresorhus/type-fest/blob/2300245cb6f0b28ee36c2bb852ade872254073b8/source/simplify.d.ts Source}
+ * @see {@link https://github.com/sindresorhus/type-fest/blob/8e5c69af9a18b1abb1047037a9cde3a103121dcb/source/simplify.d.ts | Source}
  * @see {@link https://github.com/microsoft/TypeScript/issues/15300 | TypeScript Issue}
  * @since v0.0.6 of **`@aryaemami59/tsconfig`**
  * @internal

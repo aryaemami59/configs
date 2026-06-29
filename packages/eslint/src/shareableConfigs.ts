@@ -61,27 +61,25 @@ export const flatESLintConfig = [
   {
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
-  } as const satisfies TSESLintFlatConfig.Config satisfies Config,
+  } satisfies TSESLintFlatConfig.Config satisfies Config,
 
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  ...(tseslintConfigs.recommended satisfies TSESLintFlatConfig.Config[] satisfies Config[] as Config[]),
+  ...(tseslintConfigs.recommended satisfies TSESLintFlatConfig.Config[] satisfies Config[]),
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  ...(tseslintConfigs.stylistic satisfies TSESLintFlatConfig.Config[] satisfies Config[] as Config[]),
+  ...(tseslintConfigs.stylistic satisfies TSESLintFlatConfig.Config[] satisfies Config[]),
 
   {
     languageOptions: {
       globals: sharedEnvironmentGlobals,
       parser:
-        // FIXME: Fix the type portability issue.
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-        tseslintParser satisfies TSESLintFlatConfig.Parser satisfies Linter.Parser as Linter.Parser,
+        tseslintParser satisfies TSESLintFlatConfig.Parser satisfies Linter.Parser,
       parserOptions: {
         ecmaVersion: 'latest',
         projectService: true,
-      } as const satisfies TSESLintFlatConfig.ParserOptions satisfies Linter.ParserOptions,
-    } as const satisfies TSESLintFlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
+      } satisfies TSESLintFlatConfig.ParserOptions satisfies Linter.ParserOptions,
+    } satisfies TSESLintFlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
     linterOptions: {
       reportUnusedDisableDirectives: 2,
       reportUnusedInlineConfigs: 2,
@@ -89,9 +87,7 @@ export const flatESLintConfig = [
     name: `${packageJson.name}/defaults/overrides`,
     plugins: {
       '@typescript-eslint':
-        // FIXME: Fix the type portability issue.
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-        tseslintPlugin satisfies TSESLintFlatConfig.Plugin satisfies ESLint.Plugin as ESLint.Plugin,
+        tseslintPlugin satisfies TSESLintFlatConfig.Plugin satisfies ESLint.Plugin,
     },
 
     rules: {
@@ -163,7 +159,7 @@ export const flatESLintConfig = [
       '@typescript-eslint/no-require-imports': [
         2,
         {
-          allow: [],
+          allow: [] satisfies string[],
           allowAsImport: true,
         },
       ],
@@ -192,7 +188,7 @@ export const flatESLintConfig = [
       '@typescript-eslint/no-unnecessary-type-arguments': [2],
       '@typescript-eslint/no-unnecessary-type-assertion': [
         2,
-        { typesToIgnore: [] },
+        { typesToIgnore: [] satisfies string[] },
       ],
       '@typescript-eslint/no-unnecessary-type-parameters': [2],
       '@typescript-eslint/prefer-nullish-coalescing': [
@@ -243,24 +239,24 @@ export const flatESLintConfig = [
 
       ...disabledRules,
     },
-  } as const satisfies Config,
+  } satisfies Config,
 
   {
     files: ['**/*.cjs'],
     languageOptions: {
       sourceType: 'commonjs',
-    } as const satisfies TSESLintFlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
+    } satisfies TSESLintFlatConfig.LanguageOptions satisfies Linter.LanguageOptions,
     name: `${packageJson.name}/commonjs-files`,
     rules: {
       '@typescript-eslint/no-require-imports': [
         0,
         {
-          allow: [],
+          allow: [] satisfies string[],
           allowAsImport: false,
         },
       ],
     },
-  } as const satisfies Config,
+  } satisfies Config,
 
   prettierConfig,
-] as const satisfies Config[]
+] satisfies TSESLintFlatConfig.Config[] satisfies Config[]

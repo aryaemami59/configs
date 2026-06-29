@@ -29,4 +29,4 @@ export const globalIgnores = {
     '**/temp/',
   ],
   name: `${packageJson.name}/global-ignores`,
-} as const satisfies Config
+} satisfies Config satisfies Pick<Config, 'ignores' | 'name'>

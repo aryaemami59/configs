@@ -48,7 +48,7 @@ export const disabledRules = {
       typeof: false,
     },
   ],
-} as const satisfies Linter.RulesRecord satisfies Record<
+} satisfies Linter.RulesRecord satisfies Record<
   keyof Linter.RulesRecord,
   [
     ruleSeverity: Extract<Linter.Severity, 0>,
