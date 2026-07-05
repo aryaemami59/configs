@@ -8,7 +8,7 @@ import {
   tseslintParser,
   tseslintPlugin,
 } from './external.js'
-import { globalIgnoresConfig } from './globalIgnores.js'
+import { globalIgnoresConfig } from './globalIgnoresConfig.js'
 import { sharedEnvironmentGlobals } from './globals.js'
 
 /**
