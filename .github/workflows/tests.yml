@@ -53,7 +53,7 @@ jobs:
       matrix:
         node-version: [24, latest]
         runs-on: [ubuntu-latest]
-        ts: ['5.5', '5.6', '5.7', '5.8', '5.9', '6.0', 'next']
+        ts: ['5.6', '5.7', '5.8', '5.9', '6.0', 'next']
 
     steps:
       - name: Checkout repository
@@ -202,7 +202,7 @@ jobs:
         run: ls -l .
 
       - name: Run are-the-types-wrong for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
-        run: yarn attw packages/${{ matrix.package.directory }}/package.tgz --format table
+        run: yarn packages/${{ matrix.package.directory }} run -B attw ./package.tgz --format table
 
       - name: Did we fail?
         if: failure()
@@ -246,7 +246,7 @@ jobs:
         run: ls -l .
 
       - name: Run publint for ${{ matrix.package.name }} with Node.js ${{ matrix.node-version }} on ${{ matrix.runs-on }}
-        run: yarn packages/${{ matrix.package.directory }} run publint --strict ./package.tgz
+        run: yarn packages/${{ matrix.package.directory }} run -B publint --strict ./package.tgz
 
       - name: Did we fail?
         if: failure()
