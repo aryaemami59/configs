@@ -6,10 +6,12 @@ import type { Config } from './external.js'
  * {@link https://eslint.org/docs/latest/use/configure/ignore#ignoring-files | **global ignore patterns**}
  * for ESLint configuration.
  *
+ * **Note:** Previously referred to as `globalIgnores`.
+ *
  * @since 0.0.3
  * @public
  */
-export const globalIgnores = {
+export const globalIgnoresConfig = {
   ignores: [
     '**/__snapshots__/',
     '**/.docusaurus/',

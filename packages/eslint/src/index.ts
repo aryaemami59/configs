@@ -22,7 +22,7 @@ export type {
   TSESLintFlatConfig,
   TSESLintInfiniteDepthConfigWithExtends,
 } from './external.js'
-export { globalIgnores } from './globalIgnores.js'
+export { globalIgnoresConfig } from './globalIgnores.js'
 export { sharedEnvironmentGlobals, vitestGlobals } from './globals.js'
 export { flatESLintConfig } from './shareableConfigs.js'
 export { createESLintConfig } from './utils.js'

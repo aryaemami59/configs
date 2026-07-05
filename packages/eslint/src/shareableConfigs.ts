@@ -8,7 +8,7 @@ import {
   tseslintParser,
   tseslintPlugin,
 } from './external.js'
-import { globalIgnores } from './globalIgnores.js'
+import { globalIgnoresConfig } from './globalIgnores.js'
 import { sharedEnvironmentGlobals } from './globals.js'
 
 /**
@@ -56,7 +56,7 @@ import { sharedEnvironmentGlobals } from './globals.js'
 export const flatESLintConfig = [
   // `ignores` must be first.
   // config with just `ignores` is the replacement for `.eslintignore`
-  globalIgnores,
+  globalIgnoresConfig,
 
   {
     name: `${js.meta.name}/recommended`,
