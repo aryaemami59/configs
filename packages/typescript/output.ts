@@ -1348,6 +1348,8 @@ export type CompilerOptions = {
   /**
    * Declares the module specifier to be used for importing the `jsx` and `jsxs` factory functions when using [`jsx`](https://typescriptlang.org/tsconfig/#jsx) as `"react-jsx"` or `"react-jsxdev"` which were introduced in TypeScript 4.1.
    *
+   * When using [@vitejs/plugin-vue-jsx](https://www.npmjs.com/package/@vitejs/plugin-vue-jsx), you can set this to `"vue"` for Vue JSX support.
+   *
    * With [React 17](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) the library supports a new form of JSX transformation via a separate import.
    *
    * For example with this code:

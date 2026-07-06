@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
     "allowImportingTsExtensions": true,
+    "declarationMap": true,
+    "exactOptionalPropertyTypes": true,
+    "lib": ["ESNext"],
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
-    "rootDir": "./"
+    "rootDir": "./",
+    "verbatimModuleSyntax": true
   },
+  "exclude": ["dist", "build"],
   "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js",
   "include": ["**/*.*"]
 }

@@ -900,7 +900,7 @@ export type CompilerOptions = {
    * @since v4.1.0
    * @default "react"
    */
-  jsxImportSource?: StringLiteralUnion<'react'>
+  jsxImportSource?: StringLiteralUnion<'preact' | 'react' | 'vue'>
 
   /**
    * Resolve `keyof` to string valued
