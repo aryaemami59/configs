@@ -153,8 +153,8 @@
     }
   },
   "scripts": {
-    "build": "node scripts/build.ts",
-    "download-schema": "node scripts/downloadSchema.ts",
+    "build": "node ${INIT_CWD}/scripts/build.ts",
+    "download-schema": "node ${INIT_CWD}/scripts/downloadSchema.ts",
     "check-exports": "attw --pack ${INIT_CWD}",
     "check-package-json": "publint --strict ${INIT_CWD}",
     "format-check": "yarn run -T format-check",

@@ -47,7 +47,7 @@
     "@typescript-eslint/utils": "^8.62.1",
     "@vitest/eslint-plugin": "^1.6.21",
     "eslint": "^10.6.0",
-    "eslint-plugin-jsdoc": "^63.0.11",
+    "eslint-plugin-jsdoc": "^63.0.12",
     "eslint-plugin-perfectionist": "^5.9.1",
     "pkg-pr-new": "^0.0.75",
     "prettier": "^3.9.4",

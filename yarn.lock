@@ -1523,7 +1523,7 @@ __metadata:
     "@typescript-eslint/utils": "npm:^8.62.1"
     "@vitest/eslint-plugin": "npm:^1.6.21"
     eslint: "npm:^10.6.0"
-    eslint-plugin-jsdoc: "npm:^63.0.11"
+    eslint-plugin-jsdoc: "npm:^63.0.12"
     eslint-plugin-perfectionist: "npm:^5.9.1"
     pkg-pr-new: "npm:^0.0.75"
     prettier: "npm:^3.9.4"
@@ -1828,9 +1828,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^63.0.11":
-  version: 63.0.11
-  resolution: "eslint-plugin-jsdoc@npm:63.0.11"
+"eslint-plugin-jsdoc@npm:^63.0.12":
+  version: 63.0.12
+  resolution: "eslint-plugin-jsdoc@npm:63.0.12"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.88.0"
     "@es-joy/resolve.exports": "npm:1.2.0"
@@ -1848,7 +1848,7 @@ __metadata:
     to-valid-identifier: "npm:^1.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/71b84c085d907b84823e7afe0b123e78a26182856e8399e0e1f4afc42745f89db67b7f3fb95549879153aa85cbd32ca6d2954702456d6999cb45e79fe7c534ea
+  checksum: 10c0/a249245179242ab19fa29181c608ced7749401375c0941dc6a848cfbcbe89ac85f8d183ebfcd2388eb54b11a10308714198d2824f9065b14767c68148c79d805
   languageName: node
   linkType: hard
 
