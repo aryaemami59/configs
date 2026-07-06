@@ -1,20 +1,29 @@
-import type { InlineConfig, Rolldown, UserConfig } from 'tsdown'
+import type {
+  InlineConfig,
+  Rolldown,
+  TsdownPlugin,
+  UserConfig,
+  UserConfigFn,
+} from 'tsdown'
 import { defineConfig } from 'tsdown'
 import packageJson from './package.json' with { type: 'json' }
 
+/**
+ * @internal
+ */
 const RE_DTS = /\.d\.([cm]?)ts$/
 
 /**
- * A {@linkcode Rolldown.Plugin | Rolldown plugin} to remove generated CommonJS
+ * A {@linkcode TsdownPlugin | Tsdown plugin} to remove generated CommonJS
  * (`.cjs`) JavaScript outputs from DTS-only builds. When generating type
  * definition builds we may still emit stray `.cjs` files; this plugin deletes
  * those entries from the generated bundle to ensure only declaration artifacts
  * remain.
  *
- * @returns A {@linkcode Rolldown.Plugin | Rolldown plugin} that prunes `.cjs` files from the bundle.
+ * @returns A {@linkcode TsdownPlugin | Tsdown plugin} that prunes `.cjs` files from the bundle.
  * @internal
  */
-const removeCJSOutputsFromDTSBuilds = (): Rolldown.Plugin => ({
+const removeCJSOutputsFromDTSBuilds = (): TsdownPlugin => ({
   generateBundle: {
     handler(outputOptions, bundle, isWrite) {
       if (outputOptions.format === 'cjs' && isWrite) {
@@ -34,7 +43,7 @@ const removeCJSOutputsFromDTSBuilds = (): Rolldown.Plugin => ({
   name: `${packageJson.name}:remove-cjs-outputs-from-dts-builds`,
 })
 
-const tsdownConfig = defineConfig((cliOptions) => {
+const tsdownConfig: UserConfigFn = defineConfig((cliOptions) => {
   const commonOptions = {
     checks: {
       circularDependency: true,
@@ -110,12 +119,12 @@ const tsdownConfig = defineConfig((cliOptions) => {
     {
       ...commonOptions,
       format: ['esm'],
-      name: `${packageJson.name} ESM`,
+      name: `${packageJson.name}-ESM`,
     },
     {
       ...commonOptions,
       format: ['cjs'],
-      name: `${packageJson.name} CJS`,
+      name: `${packageJson.name}-CJS`,
     },
     {
       ...commonOptions,
@@ -141,7 +150,7 @@ const tsdownConfig = defineConfig((cliOptions) => {
         tsMacro: false,
         vue: false,
       },
-      name: `${packageJson.name} DTS`,
+      name: `${packageJson.name}-DTS`,
       plugins: [removeCJSOutputsFromDTSBuilds()],
     },
   ] as const satisfies UserConfig[]

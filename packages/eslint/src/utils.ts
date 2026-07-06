@@ -3,9 +3,8 @@ import { defineConfig } from './external.js'
 import { flatESLintConfig } from './shareableConfigs.js'
 
 /**
- * A function that returns {@linkcode flatESLintConfig}
- * along with optional additional overrides.
- * It's made mainly to provide intellisense and eliminate
+ * A function that returns {@linkcode flatESLintConfig} along with optional
+ * additional overrides. It's made mainly to provide intellisense and eliminate
  * the need for manual type annotations using JSDoc comments.
  *
  * @param [additionalOverrides=[]] - **Optional** additional overrides to apply to the configuration.

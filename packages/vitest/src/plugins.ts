@@ -1,6 +1,7 @@
+import type { PluginOptions } from 'vite-tsconfig-paths'
+import { default as tsconfigPaths } from 'vite-tsconfig-paths'
 import type { vitestProjectDefaults } from './defaults.js'
-import type { Plugin, PluginOptions } from './external.js'
-import { tsconfigPaths } from './external.js'
+import type { Plugin } from './external.js'
 
 /**
  * Default configuration for {@linkcode tsconfigPaths}.

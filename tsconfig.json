@@ -1,13 +1,14 @@
 {
   "$schema": "./tsconfig.schema.json",
   "compilerOptions": {
+    "exactOptionalPropertyTypes": true,
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
     "rootDir": "./",
     "types": ["node", "vitest/globals", "vitest/importMeta"]
   },
-  "exclude": ["dist", "**/dist/"],
+  "exclude": ["dist", "**/dist/", "build", "**/build/"],
   "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js",
   "include": ["**/*.*"]
 }

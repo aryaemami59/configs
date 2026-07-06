@@ -2,10 +2,9 @@ import { prettierConfigDefaults } from './defaults.js'
 import type { Config } from './external.js'
 
 /**
- * A function that returns {@linkcode prettierConfigDefaults}
- * along with optional additional overrides.
- * It's made mainly to provide intellisense and eliminate
- * the need for manual type annotations using JSDoc comments.
+ * A function that returns {@linkcode prettierConfigDefaults} along with
+ * optional additional overrides. It's made mainly to provide intellisense and
+ * eliminate the need for manual type annotations using JSDoc comments.
  *
  * @param [additionalOverrides={}] - **Optional** additional overrides to apply to the configuration.
  * @returns An augmented version of the default {@linkcode prettierConfigDefaults}, incorporating any provided overrides.

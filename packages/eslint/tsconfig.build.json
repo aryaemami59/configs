@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false,
+    "erasableSyntaxOnly": true,
+    "libReplacement": false,
     "noEmit": false,
+    "noUncheckedSideEffectImports": true,
+    "rewriteRelativeImportExtensions": true,
     "rootDir": "./src"
   },
   "extends": "./tsconfig.json",

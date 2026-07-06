@@ -3,8 +3,8 @@ import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
 import { defineConfig, defineProject } from './external.js'
 
 /**
- * Shareable {@link https://vitest.dev | **Vitest**}
- * configuration tailored for projects using TypeScript.
+ * Shareable {@link https://vitest.dev | **Vitest**} configuration tailored for
+ * projects using TypeScript.
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
@@ -49,8 +49,8 @@ export const vitestConfig: ViteUserConfig =
   /* @__PURE__ */ defineConfig(vitestConfigDefaults)
 
 /**
- * Shareable {@link https://vitest.dev | **Vitest**}
- * configuration tailored for projects using TypeScript.
+ * Shareable {@link https://vitest.dev | **Vitest**} configuration tailored for
+ * projects using TypeScript.
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>

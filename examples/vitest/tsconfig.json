@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
+    "declarationMap": true,
+    "exactOptionalPropertyTypes": true,
+    "lib": ["DOM", "ESNext"],
     "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
     "rootDir": "./",
     "types": ["node", "vitest/globals", "vitest/importMeta"]
   },
+  "exclude": ["dist", "build"],
   "extends": "@aryaemami59/tsconfig/nodenext/nodenext/with-js",
   "include": ["**/*.*"]
 }
