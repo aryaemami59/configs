@@ -67,9 +67,6 @@
     "prepack": "yarn run build",
     "typecheck": "tsc -p ${INIT_CWD}/tsconfig.json"
   },
-  "dependencies": {
-    "vite-tsconfig-paths": "^6.1.1"
-  },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.4",
     "@aryaemami59/tsconfig": "workspace:^",
