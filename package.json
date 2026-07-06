@@ -53,7 +53,7 @@
     "prettier": "^3.9.4",
     "prettier-plugin-jsdoc": "^1.8.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "packageManager": "yarn@4.17.0"
 }
