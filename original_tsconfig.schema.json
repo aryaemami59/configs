@@ -1280,6 +1280,7 @@
             "properties": {
               "path": {
                 "description": "Path to referenced tsconfig or to folder containing tsconfig.",
+                "minLength": 1,
                 "type": "string"
               }
             },
