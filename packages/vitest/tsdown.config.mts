@@ -140,7 +140,6 @@ const tsdownConfig: UserConfigFn = defineConfig((cliOptions) => {
       dts: {
         build: false,
         cjsDefault: false,
-        cjsReexport: false,
         cwd: commonOptions.cwd,
         dtsInput: false,
         eager: false,
@@ -158,7 +157,6 @@ const tsdownConfig: UserConfigFn = defineConfig((cliOptions) => {
         sourcemap: true,
         tsconfig: commonOptions.tsconfig,
         tsgo: false,
-        tsMacro: false,
         vue: false,
       },
       name: `${packageJson.name}-DTS`,

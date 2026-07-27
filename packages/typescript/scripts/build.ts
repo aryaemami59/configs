@@ -1,13 +1,21 @@
 #!/usr/bin/env node
 
+import type {
+  CompilerOptions,
+  ModuleKind,
+} from '@typescript/native-preview/unstable/sync'
 import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 import type { Options } from 'prettier'
 import { format } from 'prettier'
-import ts from 'typescript'
 import tsconfigSchemaJson from '../../../tsconfig.schema.json' with { type: 'json' }
 import packageJson from '../package.json' with { type: 'json' }
-import type { ExcludeStrict, KebabCase, Simplify } from './typeHelpers.ts'
+import type {
+  ExcludeStrict,
+  KebabCase,
+  OmitIndexSignature,
+  Simplify,
+} from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
 
 const DEFAULT_PRETTIER_CONFIG = {
@@ -19,11 +27,13 @@ const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
 
 const OUTPUT_PATH = path.join(ROOT_DIRECTORY, 'output.ts')
 
-const { ModuleKind, ModuleResolutionKind } = ts.server.protocol
+type ModuleResolutionKindType = Simplify<
+  OmitIndexSignature<
+    NonNullable<Required<Simplify<CompilerOptions>>['moduleResolution']>
+  >
+>
 
-type ModuleResolutionKindType = Simplify<typeof ModuleResolutionKind>
-
-type ModuleKindType = Simplify<typeof ModuleKind>
+type ModuleKindType = Simplify<OmitIndexSignature<typeof ModuleKind>>
 
 const generateTypesFromJsonSchema = async () => {
   const tsConfigCompilerOptions = Object.fromEntries(

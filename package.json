@@ -35,7 +35,8 @@
     "lint-fix": "eslint --config=${PROJECT_CWD}/eslint.config.mjs --no-error-on-unmatched-pattern --fix ${INIT_CWD}",
     "lint": "eslint --config=${PROJECT_CWD}/eslint.config.mjs --no-error-on-unmatched-pattern ${INIT_CWD}",
     "postinstall": "yarn run build",
-    "test": "vitest --run --config=${INIT_CWD}/vitest.config.mts"
+    "test": "vitest --run --config=${INIT_CWD}/vitest.config.mts",
+    "typecheck": "tsc -p ${INIT_CWD}/tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
@@ -44,15 +45,16 @@
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
     "@types/node": "^26.1.1",
-    "@typescript-eslint/utils": "^8.64.0",
-    "@vitest/eslint-plugin": "^1.6.23",
-    "eslint": "^10.7.0",
-    "eslint-plugin-jsdoc": "^63.0.13",
+    "@typescript-eslint/utils": "^8.65.0",
+    "@typescript/native-preview": "npm:typescript@^7.0.2",
+    "@vitest/eslint-plugin": "^1.6.24",
+    "eslint": "^10.8.0",
+    "eslint-plugin-jsdoc": "^63.3.0",
     "eslint-plugin-perfectionist": "^5.10.0",
-    "pkg-pr-new": "^0.0.78",
-    "prettier": "^3.9.5",
+    "pkg-pr-new": "^0.0.80",
+    "prettier": "^3.9.6",
     "prettier-plugin-jsdoc": "^1.8.1",
-    "typescript": "^6.0.3",
+    "typescript": "~6.0.3",
     "vitest": "^4.1.10"
   },
   "packageManager": "yarn@4.17.1"
