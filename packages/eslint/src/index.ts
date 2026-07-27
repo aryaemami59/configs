@@ -10,6 +10,7 @@ export {
 } from './external.js'
 export type {
   Config,
+  ConfigObject,
   ESLint,
   Linter,
   TSESLintCompatibleConfig,

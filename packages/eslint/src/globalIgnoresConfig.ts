@@ -1,5 +1,5 @@
 import packageJson from '@aryaemami59/eslint-config/package.json' with { type: 'json' }
-import type { Config } from './external.js'
+import type { ConfigObject } from './external.js'
 
 /**
  * An object representing
@@ -31,4 +31,4 @@ export const globalIgnoresConfig = {
     '**/temp/',
   ],
   name: `${packageJson.name}/global-ignores`,
-} satisfies Config satisfies Pick<Config, 'ignores' | 'name'>
+} satisfies ConfigObject satisfies Pick<ConfigObject, 'ignores' | 'name'>

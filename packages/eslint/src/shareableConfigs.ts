@@ -1,6 +1,11 @@
 import packageJson from '@aryaemami59/eslint-config/package.json' with { type: 'json' }
 import { disabledRules } from './disabledRules.js'
-import type { Config, ESLint, Linter, TSESLintFlatConfig } from './external.js'
+import type {
+  ConfigObject,
+  ESLint,
+  Linter,
+  TSESLintFlatConfig,
+} from './external.js'
 import {
   js,
   prettierConfig,
@@ -61,14 +66,14 @@ export const flatESLintConfig = [
   {
     name: `${js.meta.name}/recommended`,
     ...js.configs.recommended,
-  } satisfies TSESLintFlatConfig.Config satisfies Config,
+  } satisfies TSESLintFlatConfig.Config satisfies ConfigObject,
 
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  ...(tseslintConfigs.recommended satisfies TSESLintFlatConfig.Config[] satisfies Config[]),
+  ...(tseslintConfigs.recommended satisfies TSESLintFlatConfig.Config[] satisfies ConfigObject[]),
   // TODO: You can remove the type assertion in the next major version of `typescript-eslint`.
   // TODO: Uncomment this once https://github.com/typescript-eslint/typescript-eslint/issues/11952 is resolved.
-  ...(tseslintConfigs.stylistic satisfies TSESLintFlatConfig.Config[] satisfies Config[]),
+  ...(tseslintConfigs.stylistic satisfies TSESLintFlatConfig.Config[] satisfies ConfigObject[]),
 
   {
     languageOptions: {
@@ -239,7 +244,7 @@ export const flatESLintConfig = [
 
       ...disabledRules,
     },
-  } satisfies Config,
+  } satisfies ConfigObject,
 
   {
     files: ['**/*.cjs'],
@@ -256,7 +261,7 @@ export const flatESLintConfig = [
         },
       ],
     },
-  } satisfies Config,
+  } satisfies ConfigObject,
 
   prettierConfig,
-] satisfies TSESLintFlatConfig.Config[] satisfies Config[]
+] satisfies TSESLintFlatConfig.Config[] satisfies ConfigObject[]

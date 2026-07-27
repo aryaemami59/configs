@@ -3,7 +3,7 @@ import prettierConfig from 'eslint-config-prettier/flat'
 import globals from 'globals'
 export type { AST, ESLint, Linter } from 'eslint'
 export { defineConfig } from 'eslint/config'
-export type { Config } from 'eslint/config'
+export type { Config, ConfigObject } from 'eslint/config'
 export {
   config as tseslintConfig,
   configs as tseslintConfigs,

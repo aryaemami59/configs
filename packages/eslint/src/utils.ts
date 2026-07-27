@@ -1,4 +1,4 @@
-import type { Config } from './external.js'
+import type { ConfigObject } from './external.js'
 import { defineConfig } from './external.js'
 import { flatESLintConfig } from './shareableConfigs.js'
 
@@ -87,7 +87,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  */
 export function createESLintConfig(
   additionalOverrides: Parameters<typeof defineConfig> = [],
-): Config[] {
+): ConfigObject[] {
   return /* @__PURE__ */ defineConfig(
     ...flatESLintConfig,
     ...additionalOverrides,
