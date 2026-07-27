@@ -272,7 +272,7 @@ const build = async () => {
             })
 
             const baseTsconfigJson = {
-              $schema: 'https://json.schemastore.org/tsconfig',
+              $schema: 'https://www.schemastore.org/tsconfig',
               compilerOptions: {},
               display: `TypeScript configuration with \`${moduleResolution}\` module resolution`,
             } as const satisfies TsConfigJson

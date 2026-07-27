@@ -1690,7 +1690,7 @@ export type References = {
  * (TypeScript 3.7).
  */
 export type TsConfigJson = {
-  $schema?: 'https://json.schemastore.org/tsconfig'
+  $schema?: StringLiteralUnion<'https://www.schemastore.org/tsconfig'>
 
   buildOptions?: BuildOptions
 
