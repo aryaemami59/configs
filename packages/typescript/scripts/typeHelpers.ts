@@ -351,7 +351,7 @@ export type ExcludeStrict<
  * @template FirstRun - Internal helper to avoid prefixing the first character with a hyphen.
  * @since v0.0.6 of **`@aryaemami59/tsconfig`**
  * @internal
- * @see {@link https://stackoverflow.com/a/66140779 Source}
+ * @see {@link https://stackoverflow.com/a/66140779 | Source}
  */
 export type KebabCase<
   StringType extends string,
@@ -473,3 +473,39 @@ export type StringLiteralUnion<StringType extends string> =
   StringType extends StringType
     ? (string & AnyNonNullishValue) | StringType
     : never
+
+/**
+ * Omit any index signatures from the given object type, leaving only
+ * explicitly defined properties.
+ *
+ * __Disclaimer:__ When used on an intersection of a function and an object,
+ * the function is erased.
+ *
+ * @example
+ * <caption>Removing the index signature from an `interface`</caption>
+ *
+ * ```ts
+ * interface Config {
+ *   [key: string]: unknown;
+ *   strict: boolean;
+ * }
+ *
+ * type ExplicitConfig = OmitIndexSignature<Config>;
+ * //   ^? { strict: boolean }
+ * ```
+ *
+ * @template ObjectType - The object type to remove index signatures from.
+ * @see {@link https://github.com/sindresorhus/type-fest/blob/main/source/omit-index-signature.d.ts | Source}
+ * @since v0.0.9 of **`@aryaemami59/tsconfig`**
+ * @internal
+ */
+export type OmitIndexSignature<ObjectType> = {
+  [
+    KeyType in keyof ObjectType as NonNullable<unknown> extends Record<
+      KeyType,
+      unknown
+    >
+      ? never
+      : KeyType
+  ]: ObjectType[KeyType]
+}
