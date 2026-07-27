@@ -53,7 +53,7 @@ __metadata:
     "@aryaemami59/tsconfig": "workspace:^"
     "@eslint/core": "npm:^1.2.1"
     "@eslint/js": "npm:^10.0.1"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript-eslint/utils": "npm:^8.65.0"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     eslint: "npm:^10.8.0"
@@ -87,7 +87,7 @@ __metadata:
   dependencies:
     "@arethetypeswrong/cli": "npm:^0.18.5"
     "@aryaemami59/tsconfig": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     prettier: "npm:^3.9.6"
     publint: "npm:^0.3.22"
@@ -110,7 +110,7 @@ __metadata:
   resolution: "@aryaemami59/tsconfig@workspace:packages/typescript"
   dependencies:
     "@arethetypeswrong/cli": "npm:^0.18.5"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     prettier: "npm:^3.9.6"
     publint: "npm:^0.3.22"
@@ -125,7 +125,7 @@ __metadata:
   dependencies:
     "@arethetypeswrong/cli": "npm:^0.18.5"
     "@aryaemami59/tsconfig": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     publint: "npm:^0.3.22"
     rimraf: "npm:^6.1.3"
@@ -147,43 +147,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@asamuzakjp/css-color@npm:^5.1.11":
-  version: 5.1.11
-  resolution: "@asamuzakjp/css-color@npm:5.1.11"
+"@asamuzakjp/css-color@npm:^6.0.5":
+  version: 6.0.5
+  resolution: "@asamuzakjp/css-color@npm:6.0.5"
   dependencies:
-    "@asamuzakjp/generational-cache": "npm:^1.0.1"
-    "@csstools/css-calc": "npm:^3.2.0"
-    "@csstools/css-color-parser": "npm:^4.1.0"
+    "@csstools/css-calc": "npm:^3.2.1"
+    "@csstools/css-color-parser": "npm:^4.1.9"
     "@csstools/css-parser-algorithms": "npm:^4.0.0"
     "@csstools/css-tokenizer": "npm:^4.0.0"
-  checksum: 10c0/32720bdff8daea6a8847aba6cdfae55baa3b4a2690b51d21db7f0382bbd183f3d9f2d5126df50afd889062635684b2819e47113629ee2e80c99389e75f48d060
+    lru-cache: "npm:^11.5.2"
+  checksum: 10c0/c08cc6bcea92c5e04fac208fbdbd125ed89e0eeca258df48819878347c75f90c3eb3a52940049fcb580ac9afe83c1d6bbf4e4caee0f8c2655cf47286f6ce3f09
   languageName: node
   linkType: hard
 
-"@asamuzakjp/dom-selector@npm:^7.1.1":
-  version: 7.1.1
-  resolution: "@asamuzakjp/dom-selector@npm:7.1.1"
+"@asamuzakjp/dom-selector@npm:^8.2.5":
+  version: 8.3.0
+  resolution: "@asamuzakjp/dom-selector@npm:8.3.0"
   dependencies:
-    "@asamuzakjp/generational-cache": "npm:^1.0.1"
-    "@asamuzakjp/nwsapi": "npm:^2.3.9"
     bidi-js: "npm:^1.0.3"
     css-tree: "npm:^3.2.1"
     is-potential-custom-element-name: "npm:^1.0.1"
-  checksum: 10c0/8cec1c618781c94de5836a215bbe5aafb4d8b835b18c51faf8547f4574afa39f92def3951e40123860062467613dd825f1e1600ff32e8045cc099a91796dcfb8
-  languageName: node
-  linkType: hard
-
-"@asamuzakjp/generational-cache@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@asamuzakjp/generational-cache@npm:1.0.1"
-  checksum: 10c0/1de62de43764e13fca3b9a31b7ea9b1bf0780fe053d266e40378a19ff8c66b543e011e6a0df02d410cd59bf981126706f176cdbb938985165202c4a079fe1057
-  languageName: node
-  linkType: hard
-
-"@asamuzakjp/nwsapi@npm:^2.3.9":
-  version: 2.3.9
-  resolution: "@asamuzakjp/nwsapi@npm:2.3.9"
-  checksum: 10c0/869b81382e775499c96c45c6dbe0d0766a6da04bcf0abb79f5333535c4e19946851acaa43398f896e2ecc5a1de9cf3db7cf8c4b1afac1ee3d15e21584546d74d
+    lru-cache: "npm:^11.5.2"
+  checksum: 10c0/3f541cb7dd4ab1c6762802c0c908487ddbf5a2434b3ddf91b145c84272f0110fa6b02fc9baf879aa5bc3c2968dc702fdbaadfa3b58ee5f42645cb0e2949cbbf6
   languageName: node
   linkType: hard
 
@@ -219,7 +204,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-calc@npm:^3.2.0, @csstools/css-calc@npm:^3.3.0":
+"@csstools/css-calc@npm:^3.2.1, @csstools/css-calc@npm:^3.3.0":
   version: 3.3.0
   resolution: "@csstools/css-calc@npm:3.3.0"
   peerDependencies:
@@ -229,7 +214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-color-parser@npm:^4.1.0":
+"@csstools/css-color-parser@npm:^4.1.9":
   version: 4.1.10
   resolution: "@csstools/css-color-parser@npm:4.1.10"
   dependencies:
@@ -251,7 +236,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-syntax-patches-for-csstree@npm:^1.1.3":
+"@csstools/css-syntax-patches-for-csstree@npm:^1.1.6":
   version: 1.1.7
   resolution: "@csstools/css-syntax-patches-for-csstree@npm:1.1.7"
   peerDependencies:
@@ -595,7 +580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@exodus/bytes@npm:^1.11.0, @exodus/bytes@npm:^1.15.0, @exodus/bytes@npm:^1.6.0":
+"@exodus/bytes@npm:^1.11.0, @exodus/bytes@npm:^1.15.1, @exodus/bytes@npm:^1.6.0":
   version: 1.15.1
   resolution: "@exodus/bytes@npm:1.15.1"
   peerDependencies:
@@ -1035,12 +1020,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^26.1.1":
-  version: 26.1.1
-  resolution: "@types/node@npm:26.1.1"
+"@types/node@npm:^26.1.2":
+  version: 26.1.2
+  resolution: "@types/node@npm:26.1.2"
   dependencies:
     undici-types: "npm:~8.3.0"
-  checksum: 10c0/25ac5093195736dd074d5027adbba85617bc951d5a41506ebd3b9073048acb7233613f3822d5f9b9447f9c0841c91f6387c46283916767e3ef79f23917452c46
+  checksum: 10c0/a45503222c7db8f374afd5c9381db63dd95b6b1f703abea0890dd3d4a09eeb41da489e08a1a45baf18fe89fb77fbf310ff2789f680c490b04dafc41a60800a86
   languageName: node
   linkType: hard
 
@@ -1782,7 +1767,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brace-expansion@npm:^5.0.5":
+"brace-expansion@npm:^5.0.8":
   version: 5.0.8
   resolution: "brace-expansion@npm:5.0.8"
   dependencies:
@@ -1929,12 +1914,12 @@ __metadata:
     "@aryaemami59/prettier-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript-eslint/utils": "npm:^8.65.0"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     "@vitest/eslint-plugin": "npm:^1.6.24"
     eslint: "npm:^10.8.0"
-    eslint-plugin-jsdoc: "npm:^63.3.0"
+    eslint-plugin-jsdoc: "npm:^63.3.1"
     eslint-plugin-perfectionist: "npm:^5.10.0"
     pkg-pr-new: "npm:^0.0.80"
     prettier: "npm:^3.9.6"
@@ -2218,7 +2203,7 @@ __metadata:
     "@aryaemami59/eslint-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     eslint: "npm:^10.8.0"
     globals: "npm:^17.8.0"
@@ -2240,9 +2225,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^63.3.0":
-  version: 63.3.0
-  resolution: "eslint-plugin-jsdoc@npm:63.3.0"
+"eslint-plugin-jsdoc@npm:^63.3.1":
+  version: 63.3.1
+  resolution: "eslint-plugin-jsdoc@npm:63.3.1"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.90.0"
     "@es-joy/resolve.exports": "npm:1.2.0"
@@ -2260,7 +2245,7 @@ __metadata:
     to-valid-identifier: "npm:^1.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/0e409fa2c77939d9aeb1ad389d8457b5cfd2eccddd46ba276ef80a0ab29a4299ff7e1b181cb515c19a18a732b66b805c11a994bbd2f8662cede85b549cd58b20
+  checksum: 10c0/e27da2ae00599c0ce70354e4aff06d6dcacf56cde2c405fcd52ecaa6fe5b61a7d90becbdcdc8a3516c27bf8ebc55eacb62dc1e24067df9c5ecc5ccf955a9ddbf
   languageName: node
   linkType: hard
 
@@ -2683,37 +2668,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:^29.1.1":
-  version: 29.1.1
-  resolution: "jsdom@npm:29.1.1"
+"jsdom@npm:^30.0.0":
+  version: 30.0.0
+  resolution: "jsdom@npm:30.0.0"
   dependencies:
-    "@asamuzakjp/css-color": "npm:^5.1.11"
-    "@asamuzakjp/dom-selector": "npm:^7.1.1"
+    "@asamuzakjp/css-color": "npm:^6.0.5"
+    "@asamuzakjp/dom-selector": "npm:^8.2.5"
     "@bramus/specificity": "npm:^2.4.2"
-    "@csstools/css-syntax-patches-for-csstree": "npm:^1.1.3"
-    "@exodus/bytes": "npm:^1.15.0"
+    "@csstools/css-syntax-patches-for-csstree": "npm:^1.1.6"
+    "@exodus/bytes": "npm:^1.15.1"
     css-tree: "npm:^3.2.1"
     data-urls: "npm:^7.0.0"
     decimal.js: "npm:^10.6.0"
     html-encoding-sniffer: "npm:^6.0.0"
     is-potential-custom-element-name: "npm:^1.0.1"
-    lru-cache: "npm:^11.3.5"
+    lru-cache: "npm:^11.5.2"
     parse5: "npm:^8.0.1"
     saxes: "npm:^6.0.0"
     symbol-tree: "npm:^3.2.4"
-    tough-cookie: "npm:^6.0.1"
-    undici: "npm:^7.25.0"
+    tough-cookie: "npm:^6.0.2"
+    undici: "npm:^8.7.0"
     w3c-xmlserializer: "npm:^5.0.0"
     webidl-conversions: "npm:^8.0.1"
     whatwg-mimetype: "npm:^5.0.0"
-    whatwg-url: "npm:^16.0.1"
+    whatwg-url: "npm:^17.1.0"
     xml-name-validator: "npm:^5.0.0"
   peerDependencies:
-    canvas: ^3.0.0
+    canvas: ^3.2.3
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: 10c0/20e2174b09d9d06393cb48e1392b7a1cb7191d6656a6f7b3b8fbf9853b4ab0ef60b4a42c2c55f71b55ca5da50ffa75bcdc6986210963182e7993c6f9cd4f499b
+  checksum: 10c0/4de89494f817326f9990c8ba830c7bd3bbe83fb50d27b97e63cc2f640d9d18c602acd2d6bfcca846f56d10e1a74e90606c304755b9cd065f298b760f40e2a3a8
   languageName: node
   linkType: hard
 
@@ -2886,7 +2871,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^11.0.0, lru-cache@npm:^11.0.1, lru-cache@npm:^11.3.5":
+"lru-cache@npm:^11.0.0, lru-cache@npm:^11.0.1, lru-cache@npm:^11.5.2":
   version: 11.5.2
   resolution: "lru-cache@npm:11.5.2"
   checksum: 10c0/ece1ad731f5b655e85d67047d04bfc13823dc77aa61c5454924a9869ba600a0104e39cc33d726021feef812bc347ca34a5608a5eb1972a5dd0870b7ecd42c3f2
@@ -3201,11 +3186,11 @@ __metadata:
   linkType: hard
 
 "minimatch@npm:^10.2.2, minimatch@npm:^10.2.4, minimatch@npm:^10.2.5":
-  version: 10.2.5
-  resolution: "minimatch@npm:10.2.5"
+  version: 10.2.6
+  resolution: "minimatch@npm:10.2.6"
   dependencies:
-    brace-expansion: "npm:^5.0.5"
-  checksum: 10c0/6bb058bd6324104b9ec2f763476a35386d05079c1f5fe4fbf1f324a25237cd4534d6813ecd71f48208f4e635c1221899bef94c3c89f7df55698fe373aaae20fd
+    brace-expansion: "npm:^5.0.8"
+  checksum: 10c0/4559a836243b98bd4d17ea9f7edae698717c76399eea7be374f3737f33164e4907f19e9726891ddeb122f750a5a7fa80d2ac43e851d6e5984dc4ff42ec127d3a
   languageName: node
   linkType: hard
 
@@ -3510,7 +3495,7 @@ __metadata:
     "@aryaemami59/prettier-config": "workspace:^"
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     prettier: "npm:^3.9.6"
     rimraf: "npm:^6.1.3"
@@ -4001,7 +3986,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tough-cookie@npm:^6.0.1":
+"tough-cookie@npm:^6.0.2":
   version: 6.0.2
   resolution: "tough-cookie@npm:6.0.2"
   dependencies:
@@ -4128,7 +4113,7 @@ __metadata:
   dependencies:
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
     rimraf: "npm:^6.1.3"
     typescript: "npm:~6.0.3"
@@ -4208,14 +4193,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^7.25.0":
-  version: 7.29.0
-  resolution: "undici@npm:7.29.0"
-  checksum: 10c0/85ea96e91e7f3de24de678cbbc54230fdd641a3b0643005f2aef044af1f1a2db8fbecb88b28e6fa78bb41ffeafda4479b57075b6b6ab92beac4b7b5ab53f9b10
-  languageName: node
-  linkType: hard
-
-"undici@npm:^8.4.1":
+"undici@npm:^8.4.1, undici@npm:^8.7.0":
   version: 8.9.0
   resolution: "undici@npm:8.9.0"
   checksum: 10c0/e3d9fa35a9aa8360d9f56e66bd372f451ee053e25066a97fd9fab3816267035660f67870c6d709a58a5411551657af78c4475be5b31c113b04f70251309900d0
@@ -4271,9 +4249,9 @@ __metadata:
   linkType: hard
 
 "verkit@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "verkit@npm:0.3.0"
-  checksum: 10c0/4ef036210a6bedf2ad7ae861bea46702038cd592d89236e09912402b537ebb2d0915051814c29fa0e50363e955153ac3daf8b50308d6d0930a165d6c0e06d0a8
+  version: 0.3.1
+  resolution: "verkit@npm:0.3.1"
+  checksum: 10c0/e57ea48604b3068f91a0cdf6c79b3fd16823e539bf5d9cb5af5dc25ec3c2fe1aeb21c280834f5428f74c4120de0c910e4d3636161a04ab395af2de4ad00769ee
   languageName: node
   linkType: hard
 
@@ -4340,9 +4318,9 @@ __metadata:
   dependencies:
     "@aryaemami59/tsconfig": "workspace:^"
     "@aryaemami59/vitest-config": "workspace:^"
-    "@types/node": "npm:^26.1.1"
+    "@types/node": "npm:^26.1.2"
     "@typescript/native-preview": "npm:typescript@^7.0.2"
-    jsdom: "npm:^29.1.1"
+    jsdom: "npm:^30.0.0"
     rimraf: "npm:^6.1.3"
     typescript: "npm:~6.0.3"
     vitest: "npm:^4.1.10"
@@ -4440,7 +4418,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"whatwg-url@npm:^16.0.0, whatwg-url@npm:^16.0.1":
+"whatwg-url@npm:^16.0.0":
   version: 16.0.1
   resolution: "whatwg-url@npm:16.0.1"
   dependencies:
@@ -4448,6 +4426,17 @@ __metadata:
     tr46: "npm:^6.0.0"
     webidl-conversions: "npm:^8.0.1"
   checksum: 10c0/e75565566abf3a2cdbd9f06c965dbcccee6ec4e9f0d3728ad5e08ceb9944279848bcaa211d35a29cb6d2df1e467dd05cfb59fbddf8a0adcd7d0bce9ffb703fd2
+  languageName: node
+  linkType: hard
+
+"whatwg-url@npm:^17.1.0":
+  version: 17.1.0
+  resolution: "whatwg-url@npm:17.1.0"
+  dependencies:
+    "@exodus/bytes": "npm:^1.15.1"
+    tr46: "npm:^6.0.0"
+    webidl-conversions: "npm:^8.0.1"
+  checksum: 10c0/08fe809e90e1d20f6de631c9cdf312623fe5526731dc176ad38967c7d0f34e6e9700cbc0bad5ecd3d5ea8c62737a487883948e85937432f3a598746d8e05e80e
   languageName: node
   linkType: hard
 
