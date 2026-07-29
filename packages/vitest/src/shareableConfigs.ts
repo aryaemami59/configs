@@ -10,18 +10,18 @@ import { defineConfig, defineProject } from './external.js'
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
- * import { vitestConfig } from '@aryaemami59/vitest-config'
+ * import { vitestConfig } from '@aryaemami59/vitest-config';
  *
- * export default vitestConfig
+ * export default vitestConfig;
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
- * const { vitestConfig } = require('@aryaemami59/vitest-config')
+ * const { vitestConfig } = require('@aryaemami59/vitest-config');
  *
- * module.exports = vitestConfig
+ * module.exports = vitestConfig;
  * ```
  *
  * @example
@@ -29,17 +29,17 @@ import { defineConfig, defineProject } from './external.js'
  *
  * ```ts
  * module.exports = (async () =>
- *   (await import('@aryaemami59/vitest-config')).vitestConfig)()
+ *   (await import('@aryaemami59/vitest-config')).vitestConfig)();
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
- * import vitestConfigModule = require('@aryaemami59/vitest-config')
- * import vitestConfig = vitestConfigModule.vitestConfig
+ * import vitestConfigModule = require('@aryaemami59/vitest-config');
+ * import vitestConfig = vitestConfigModule.vitestConfig;
  *
- * export = vitestConfig
+ * export = vitestConfig;
  * ```
  *
  * @since 0.0.3
@@ -49,25 +49,26 @@ export const vitestConfig: ViteUserConfig =
   /* @__PURE__ */ defineConfig(vitestConfigDefaults)
 
 /**
- * Shareable {@link https://vitest.dev | **Vitest**} configuration tailored for
- * projects using TypeScript.
+ * Shareable {@link https://vitest.dev | **Vitest**} configuration for a single
+ * workspace project, tailored for projects using TypeScript. Use
+ * {@linkcode vitestConfig} for the root configuration file instead.
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
- * import { vitestProject } from '@aryaemami59/vitest-config'
+ * import { vitestProject } from '@aryaemami59/vitest-config';
  *
- * export default vitestProject
+ * export default vitestProject;
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
- * const { vitestProject } = require('@aryaemami59/vitest-config')
+ * const { vitestProject } = require('@aryaemami59/vitest-config');
  *
- * module.exports = vitestProject
+ * module.exports = vitestProject;
  * ```
  *
  * @example
@@ -75,17 +76,17 @@ export const vitestConfig: ViteUserConfig =
  *
  * ```ts
  * module.exports = (async () =>
- *   (await import('@aryaemami59/vitest-config')).vitestProject)()
+ *   (await import('@aryaemami59/vitest-config')).vitestProject)();
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
- * import vitestConfigModule = require('@aryaemami59/vitest-config')
- * import vitestProject = vitestConfigModule.vitestProject
+ * import vitestConfigModule = require('@aryaemami59/vitest-config');
+ * import vitestProject = vitestConfigModule.vitestProject;
  *
- * export = vitestProject
+ * export = vitestProject;
  * ```
  *
  * @since 0.0.5

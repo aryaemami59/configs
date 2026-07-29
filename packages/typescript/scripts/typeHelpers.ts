@@ -30,14 +30,14 @@ export type UnknownFunction = (...args: unknown[]) => unknown
  * ```ts
  * // ✅ OK
  * const a = 123 as const satisfies AnyNonNullishValue;
- * const b = "hello" as const satisfies AnyNonNullishValue;
+ * const b = 'hello' as const satisfies AnyNonNullishValue;
  * const c = true as const satisfies AnyNonNullishValue;
  * const d = {} as const satisfies AnyNonNullishValue;
  * const e = [] as const satisfies AnyNonNullishValue;
  * const f = (() => {
- *   console.log("hi");
+ *   console.log('hi');
  * }) satisfies AnyNonNullishValue;
- * const g = Symbol("x") satisfies AnyNonNullishValue;
+ * const g = Symbol('x') satisfies AnyNonNullishValue;
  *
  * // ❌ Error
  * // @ts-expect-error
@@ -60,7 +60,7 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * <caption>Basic usage</caption>
  *
  * ```ts
- * import type { Simplify } from "./typeHelpers.js";
+ * import type { Simplify } from './typeHelpers.js';
  *
  * interface SomeInterface {
  *   bar?: string;
@@ -75,7 +75,7 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * };
  *
  * const literal = {
- *   bar: "hello",
+ *   bar: 'hello',
  *   baz: 456,
  *   foo: 123,
  * } as const satisfies SomeType satisfies SomeInterface;
@@ -123,27 +123,27 @@ export type Simplify<BaseType> = BaseType extends (...args: never[]) => unknown
  * <caption>Demonstrating `Omit` vs `DistributedOmit`</caption>
  *
  * ```ts
- * import type { DistributedOmit } from "./typeHelpers.js";
+ * import type { DistributedOmit } from './typeHelpers.js';
  *
  * type A = {
  *   a: number;
- *   discriminant: "A";
+ *   discriminant: 'A';
  *   foo: string;
  * };
  *
  * type B = {
  *   b: string;
- *   discriminant: "B";
+ *   discriminant: 'B';
  *   foo: string;
  * };
  *
  * type Union = A | B;
  *
- * const omittedUnion: Omit<Union, "foo"> = {
- *   discriminant: "A",
+ * const omittedUnion: Omit<Union, 'foo'> = {
+ *   discriminant: 'A',
  * };
  *
- * if (omittedUnion.discriminant === "A") {
+ * if (omittedUnion.discriminant === 'A') {
  *   // We would like to narrow `omittedUnion`'s type to `A` here,
  *   // but we can't because `Omit` doesn't distribute over unions.
  *
@@ -152,12 +152,12 @@ export type Simplify<BaseType> = BaseType extends (...args: never[]) => unknown
  *   // => ❌ Error: Property 'a' does not exist on type 'Omit<Union, "foo">'.
  * }
  *
- * const distributedOmittedUnion: DistributedOmit<Union, "foo"> = {
+ * const distributedOmittedUnion: DistributedOmit<Union, 'foo'> = {
  *   a: 123,
- *   discriminant: "A",
+ *   discriminant: 'A',
  * };
  *
- * if (distributedOmittedUnion.discriminant === "A") {
+ * if (distributedOmittedUnion.discriminant === 'A') {
  *   // We can successfully narrow `distributedOmittedUnion`'s type to `A` here,
  *   // because `DistributedOmit` distributes over unions.
  *
@@ -192,10 +192,10 @@ export type DistributedOmit<
  * <caption>Demonstrating `Pick` vs `DistributedPick`</caption>
  *
  * ```ts
- * import type { DistributedPick } from "./typeHelpers.js";
+ * import type { DistributedPick } from './typeHelpers.js';
  *
  * type A = {
- *   discriminant: "A";
+ *   discriminant: 'A';
  *   extraneous: boolean;
  *   foo: {
  *     bar: string;
@@ -203,7 +203,7 @@ export type DistributedOmit<
  * };
  *
  * type B = {
- *   discriminant: "B";
+ *   discriminant: 'B';
  *   extraneous: boolean;
  *   foo: {
  *     baz: string;
@@ -214,14 +214,14 @@ export type DistributedOmit<
  *
  * type Union = A | B;
  *
- * const pickedUnion: Pick<Union, "discriminant" | "foo"> = {
- *   discriminant: "A",
+ * const pickedUnion: Pick<Union, 'discriminant' | 'foo'> = {
+ *   discriminant: 'A',
  *   foo: {
- *     bar: "",
+ *     bar: '',
  *   },
  * };
  *
- * if (pickedUnion.discriminant === "A") {
+ * if (pickedUnion.discriminant === 'A') {
  *   // We would like to narrow to `A` here,
  *   // but we can't because `Pick` doesn't distribute over unions.
  *
@@ -238,14 +238,14 @@ export type DistributedOmit<
  *   // => ❌ Error: Property 'baz' does not exist on type '{ bar: string; } | { baz: string; }'.
  * }
  *
- * const distributedPickedUnion: DistributedPick<Union, "discriminant" | "foo"> = {
- *   discriminant: "A",
+ * const distributedPickedUnion: DistributedPick<Union, 'discriminant' | 'foo'> = {
+ *   discriminant: 'A',
  *   foo: {
- *     bar: "",
+ *     bar: '',
  *   },
  * };
  *
- * if (distributedPickedUnion.discriminant === "A") {
+ * if (distributedPickedUnion.discriminant === 'A') {
  *   // Narrowing works correctly because the pick is applied per union member.
  *
  *   distributedPickedUnion.foo.bar;
@@ -283,7 +283,7 @@ export type DistributedPick<
  * <caption>Basic Usage</caption>
  *
  * ```ts
- * type Example = ExtractStrict<"l" | "m" | "s" | "xl" | "xs", "s" | "xs">;
+ * type Example = ExtractStrict<'l' | 'm' | 's' | 'xl' | 'xs', 's' | 'xs'>;
  * //=> "s" | "xs"
  * ```
  *
@@ -315,7 +315,7 @@ export type ExtractStrict<
  * <caption>Basic Usage</caption>
  *
  * ```ts
- * type Example = ExcludeStrict<"l" | "m" | "s" | "xl" | "xs", "s" | "xs">;
+ * type Example = ExcludeStrict<'l' | 'm' | 's' | 'xl' | 'xs', 's' | 'xs'>;
  * //=> "l" | "m" | "xl"
  * ```
  *
@@ -344,7 +344,7 @@ export type ExcludeStrict<
  * <caption>Basic usage</caption>
  *
  * ```ts
- * const someVariable = "foo-bar" as const satisfies KebabCase<"fooBar">;
+ * const someVariable = 'foo-bar' as const satisfies KebabCase<'fooBar'>;
  * ```
  *
  * @template StringType - The string literal type to convert to kebab-case.
@@ -379,18 +379,18 @@ export type KebabCase<
  *
  * ```ts
  * type ModuleResolution =
- *   | "bundler"
- *   | "Bundler"
- *   | "classic"
- *   | "Classic"
- *   | "node"
- *   | "Node"
- *   | "node10"
- *   | "Node10"
- *   | "node16"
- *   | "Node16"
- *   | "nodenext"
- *   | "NodeNext";
+ *   | 'bundler'
+ *   | 'Bundler'
+ *   | 'classic'
+ *   | 'Classic'
+ *   | 'node'
+ *   | 'Node'
+ *   | 'node10'
+ *   | 'Node10'
+ *   | 'node16'
+ *   | 'Node16'
+ *   | 'nodenext'
+ *   | 'NodeNext';
  *
  * type LowercaseModuleResolution = ExtractLowercase<ModuleResolution>;
  * //   ^? "bundler" | "classic" | "node" | "node10" | "node16" | "nodenext"
@@ -416,18 +416,18 @@ export type ExtractLowercase<StringType extends string> =
  *
  * ```ts
  * type ModuleResolution =
- *   | "bundler"
- *   | "Bundler"
- *   | "classic"
- *   | "Classic"
- *   | "node"
- *   | "Node"
- *   | "node10"
- *   | "Node10"
- *   | "node16"
- *   | "Node16"
- *   | "nodenext"
- *   | "NodeNext";
+ *   | 'bundler'
+ *   | 'Bundler'
+ *   | 'classic'
+ *   | 'Classic'
+ *   | 'node'
+ *   | 'Node'
+ *   | 'node10'
+ *   | 'Node10'
+ *   | 'node16'
+ *   | 'Node16'
+ *   | 'nodenext'
+ *   | 'NodeNext';
  *
  * type CapitalizedModuleResolution = ExtractCapitalized<ModuleResolution>;
  * //   ^? "Bundler" | "Classic" | "Node" | "Node10" | "Node16" | "NodeNext"
@@ -458,11 +458,11 @@ export type ExtractCapitalized<StringType extends string> =
  * <caption>Preserving autocomplete while allowing any string</caption>
  *
  * ```ts
- * type JsxFactory = StringLiteralUnion<"React.createElement">;
+ * type JsxFactory = StringLiteralUnion<'React.createElement'>;
  * //   ^? "React.createElement" | (string & {})
  *
- * const a = "React.createElement" as const satisfies JsxFactory; // ✅ OK — literal member
- * const b = "h" as const satisfies JsxFactory; // ✅ OK — arbitrary string allowed
+ * const a = 'React.createElement' as const satisfies JsxFactory; // ✅ OK - literal member
+ * const b = 'h' as const satisfies JsxFactory; // ✅ OK - arbitrary string allowed
  * ```
  *
  * @template StringType - The string literal union to widen.

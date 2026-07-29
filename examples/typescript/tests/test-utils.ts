@@ -16,7 +16,7 @@ export const defaultExecOptions = {
 
 export const runTypeScriptCLI = (
   CLIArguments: readonly string[] = [],
-  execOptions?: Partial<ExecOptionsWithStringEncoding>,
+  execOptions: Partial<ExecOptionsWithStringEncoding> = {},
 ) =>
   exec([defaultCLICommand, ...defaultCLIArguments, ...CLIArguments].join(' '), {
     ...defaultExecOptions,

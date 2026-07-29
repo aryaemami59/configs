@@ -23,18 +23,18 @@ import { sharedEnvironmentGlobals } from './globals.js'
  * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
  *
  * ```ts
- * import { flatESLintConfig } from '@aryaemami59/eslint-config'
+ * import { flatESLintConfig } from '@aryaemami59/eslint-config';
  *
- * export default flatESLintConfig
+ * export default flatESLintConfig;
  * ```
  *
  * @example
  * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
  *
  * ```ts
- * const { flatESLintConfig } = require('@aryaemami59/eslint-config')
+ * const { flatESLintConfig } = require('@aryaemami59/eslint-config');
  *
- * module.exports = flatESLintConfig
+ * module.exports = flatESLintConfig;
  * ```
  *
  * @example
@@ -42,17 +42,17 @@ import { sharedEnvironmentGlobals } from './globals.js'
  *
  * ```ts
  * module.exports = (async () =>
- *   (await import('@aryaemami59/eslint-config')).flatESLintConfig)()
+ *   (await import('@aryaemami59/eslint-config')).flatESLintConfig)();
  * ```
  *
  * @example
  * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
- * import eslintConfigModule = require('@aryaemami59/eslint-config')
- * import flatESLintConfig = eslintConfigModule.flatESLintConfig
+ * import eslintConfigModule = require('@aryaemami59/eslint-config');
+ * import flatESLintConfig = eslintConfigModule.flatESLintConfig;
  *
- * export = flatESLintConfig
+ * export = flatESLintConfig;
  * ```
  *
  * @since 0.0.3

@@ -9,6 +9,8 @@ import { defineConfig } from 'tsdown'
 import packageJson from './package.json' with { type: 'json' }
 
 /**
+ * Matches declaration file extensions (`.d.ts`, `.d.cts` and `.d.mts`).
+ *
  * @internal
  */
 const RE_DTS = /\.d\.([cm]?)ts$/

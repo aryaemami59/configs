@@ -2,7 +2,10 @@ import type { UserWorkspaceConfig, ViteUserConfig } from './external.js'
 import type { vitestConfig, vitestProject } from './shareableConfigs.js'
 
 /**
- * Default configuration for {@linkcode vitestProject}.
+ * Default configuration options shared by every
+ * {@link https://vitest.dev | **Vitest**} project.
+ * {@linkcode vitestConfigDefaults} extends these with the root-only options
+ * used by {@linkcode vitestConfig} and {@linkcode vitestProject}.
  *
  * @since 0.0.5
  * @public

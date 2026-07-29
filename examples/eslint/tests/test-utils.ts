@@ -16,7 +16,7 @@ export const defaultExecOptions = {
 
 export const runESLintCLI = (
   CLIArguments: readonly string[] = [],
-  execOptions?: Partial<ExecOptionsWithStringEncoding>,
+  execOptions: Partial<ExecOptionsWithStringEncoding> = {},
 ) =>
   exec([defaultCLICommand, ...defaultCLIArguments, ...CLIArguments].join(' '), {
     ...defaultExecOptions,
@@ -69,7 +69,7 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * <caption>Basic usage</caption>
  *
  * ```ts
- * import type { Simplify } from "./typeHelpers.js";
+ * import type { Simplify } from './typeHelpers.js';
  *
  * interface SomeInterface {
  *   bar?: string;
@@ -84,7 +84,7 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * };
  *
  * const literal = {
- *   bar: "hello",
+ *   bar: 'hello',
  *   baz: 456,
  *   foo: 123,
  * } as const satisfies SomeType satisfies SomeInterface;

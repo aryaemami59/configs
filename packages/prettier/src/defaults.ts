@@ -1,24 +1,24 @@
 import type { Config } from './external.js'
 
 /**
- * Prettier configuration.
+ * Default Prettier configuration options.
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mts` or `prettier.config.mjs`__</caption>
  *
  * ```js
- * import { prettierConfig } from '@aryaemami59/prettier-config'
+ * import { prettierConfigDefaults } from '@aryaemami59/prettier-config';
  *
- * export default prettierConfig
+ * export default prettierConfigDefaults;
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cts` or `prettier.config.cjs` (using `require`)__</caption>
  *
  * ```js
- * const { prettierConfig } = require('@aryaemami59/prettier-config')
+ * const { prettierConfigDefaults } = require('@aryaemami59/prettier-config');
  *
- * module.exports = prettierConfig
+ * module.exports = prettierConfigDefaults;
  * ```
  *
  * @example
@@ -26,7 +26,7 @@ import type { Config } from './external.js'
  *
  * ```js
  * module.exports = (async () =>
- *   (await import('@aryaemami59/prettier-config')).prettierConfig)()
+ *   (await import('@aryaemami59/prettier-config')).prettierConfigDefaults)();
  * ```
  *
  * @public

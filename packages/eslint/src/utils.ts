@@ -14,7 +14,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
  *
  * ```ts
- * import { createESLintConfig } from '@aryaemami59/eslint-config'
+ * import { createESLintConfig } from '@aryaemami59/eslint-config';
  *
  * export default createESLintConfig([
  *   {
@@ -25,14 +25,14 @@ import { flatESLintConfig } from './shareableConfigs.js'
  *   {
  *     // ...Other additional overrides
  *   },
- * ])
+ * ]);
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
  *
  * ```ts
- * const { createESLintConfig } = require('@aryaemami59/eslint-config')
+ * const { createESLintConfig } = require('@aryaemami59/eslint-config');
  *
  * module.exports = createESLintConfig([
  *   {
@@ -43,7 +43,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  *   {
  *     // ...Other additional overrides
  *   },
- * ])
+ * ]);
  * ```
  *
  * @example
@@ -60,15 +60,15 @@ import { flatESLintConfig } from './shareableConfigs.js'
  *     {
  *       // ...Other additional overrides
  *     },
- *   ]))()
+ *   ]))();
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
- * import eslintConfigModule = require('@aryaemami59/eslint-config')
- * import createESLintConfig = eslintConfigModule.createESLintConfig
+ * import eslintConfigModule = require('@aryaemami59/eslint-config');
+ * import createESLintConfig = eslintConfigModule.createESLintConfig;
  *
  * export = createESLintConfig([
  *   {
@@ -79,7 +79,7 @@ import { flatESLintConfig } from './shareableConfigs.js'
  *   {
  *     // ...Other additional overrides
  *   },
- * ])
+ * ]);
  * ```
  *
  * @since 0.0.3

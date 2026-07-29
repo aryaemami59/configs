@@ -23,7 +23,7 @@ export const defaultExecOptions = {
  */
 export const runPrettierCLI = async (
   CLIArguments: readonly string[] = [],
-  execOptions?: Partial<ExecOptionsWithStringEncoding>,
+  execOptions: Partial<ExecOptionsWithStringEncoding> = {},
 ) => {
   try {
     const execResults = await exec(
@@ -47,7 +47,7 @@ export const runPrettierCLI = async (
     return execResults
   } catch (error) {
     if (error instanceof Error) {
-      error.message = stripVTControlCharacters(error.message)
+      throw new Error(stripVTControlCharacters(error.message), { cause: error })
     }
 
     throw error

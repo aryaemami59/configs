@@ -33,7 +33,7 @@ type FixtureFile = {
  *
  *   fixtureDirectory: '',
  *   tsconfigPath: '',
- * } as const satisfies Fixture<'js' | 'ts'>
+ * } as const satisfies Fixture<'js' | 'ts'>;
  * ```
  */
 type FixtureFiles<FileExtension extends 'js' | 'ts' = 'js' | 'ts'> = [
@@ -192,10 +192,10 @@ const TSFiles = new FileFixtures('ts')
 const JSFiles = new FileFixtures('js')
 
 /**
- * setup function for
- * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
+ * Setup function for
+ * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}.
  *
- * @param project - The {@linkcode TestProject} object
+ * @param project - The {@linkcode TestProject} object.
  */
 export async function setup(project: TestProject): Promise<void> {
   await fs.mkdir(TSFiles.bad.fixtureDirectory, { recursive: true })
@@ -278,8 +278,8 @@ export async function setup(project: TestProject): Promise<void> {
 }
 
 /**
- * teardown function for
- * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
+ * Teardown function for
+ * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}.
  */
 export async function teardown(): Promise<void> {
   if (process.env.KEEP_TEMP_DIR !== 'true') {

@@ -13,28 +13,28 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
- * import { createVitestConfig } from '@aryaemami59/vitest-config'
+ * import { createVitestConfig } from '@aryaemami59/vitest-config';
  *
  * export default createVitestConfig({
  *   test: {
  *     environment: 'jsdom',
  *     // Other additional overrides
  *   },
- * })
+ * });
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
- * const { createVitestConfig } = require('@aryaemami59/vitest-config')
+ * const { createVitestConfig } = require('@aryaemami59/vitest-config');
  *
  * module.exports = createVitestConfig({
  *   test: {
  *     environment: 'jsdom',
  *     // Other additional overrides
  *   },
- * })
+ * });
  * ```
  *
  * @example
@@ -47,22 +47,22 @@ import { vitestConfig, vitestProject } from './shareableConfigs.js'
  *       environment: 'jsdom',
  *       // Other additional overrides
  *     },
- *   }))()
+ *   }))();
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
- * import vitestConfigModule = require('@aryaemami59/vitest-config')
- * import createVitestConfig = vitestConfigModule.createVitestConfig
+ * import vitestConfigModule = require('@aryaemami59/vitest-config');
+ * import createVitestConfig = vitestConfigModule.createVitestConfig;
  *
  * export = createVitestConfig({
  *   test: {
  *     environment: 'jsdom',
  *     // Other additional overrides
  *   },
- * })
+ * });
  * ```
  *
  * @since 0.0.3
@@ -85,28 +85,28 @@ export function createVitestConfig(
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `vitest.config.mts` or `vitest.config.mjs`__</caption>
  *
  * ```ts
- * import { createVitestProject } from '@aryaemami59/vitest-config'
+ * import { createVitestProject } from '@aryaemami59/vitest-config';
  *
  * export default createVitestProject({
  *   test: {
  *     environment: 'jsdom',
  *     // Other additional overrides
  *   },
- * })
+ * });
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` or `vitest.config.cjs` (using `require`)__</caption>
  *
  * ```ts
- * const { createVitestProject } = require('@aryaemami59/vitest-config')
+ * const { createVitestProject } = require('@aryaemami59/vitest-config');
  *
  * module.exports = createVitestProject({
  *   test: {
  *     environment: 'jsdom',
  *     // Other additional overrides
  *   },
- * })
+ * });
  * ```
  *
  * @example
@@ -119,22 +119,22 @@ export function createVitestConfig(
  *       environment: 'jsdom',
  *       // Other additional overrides
  *     },
- *   }))()
+ *   }))();
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `vitest.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
- * import vitestConfigModule = require('@aryaemami59/vitest-config')
- * import createVitestProject = vitestConfigModule.createVitestProject
+ * import vitestConfigModule = require('@aryaemami59/vitest-config');
+ * import createVitestProject = vitestConfigModule.createVitestProject;
  *
  * export = createVitestProject({
  *   test: {
  *     environment: 'jsdom',
  *     // Other additional overrides
  *   },
- * })
+ * });
  * ```
  *
  * @since 0.0.5

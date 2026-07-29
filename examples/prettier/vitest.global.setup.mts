@@ -17,10 +17,10 @@ const TSFileToBeLinted = path.join(tempDirPathTS, 'test.ts')
 const JSFileToBeLinted = path.join(tempDirPathJS, 'test.js')
 
 /**
- * setup function for
- * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
+ * Setup function for
+ * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}.
  *
- * @param project - The {@linkcode TestProject} object
+ * @param project - The {@linkcode TestProject} object.
  */
 export async function setup(project: TestProject): Promise<void> {
   await fs.mkdir(tempDirPathTS, { recursive: true })
@@ -33,8 +33,8 @@ export async function setup(project: TestProject): Promise<void> {
 }
 
 /**
- * teardown function for
- * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}
+ * Teardown function for
+ * {@linkcode https://vitest.dev/config/#globalsetup | globalSetup}.
  */
 export async function teardown(): Promise<void> {
   if (process.env.KEEP_TEMP_DIR !== 'true') {

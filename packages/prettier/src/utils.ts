@@ -13,24 +13,24 @@ import type { Config } from './external.js'
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mts` or `prettier.config.mjs`__</caption>
  *
  * ```js
- * import { createPrettierConfig } from '@aryaemami59/prettier-config'
+ * import { createPrettierConfig } from '@aryaemami59/prettier-config';
  *
  * export default createPrettierConfig({
  *   arrowParens: 'avoid',
  *   // ...Other additional overrides
- * })
+ * });
  * ```
  *
  * @example
  * <caption>__CommonJS (CJS) usage inside a file like `prettier.config.cts` or `prettier.config.cjs` (using `require`)__</caption>
  *
  * ```js
- * const { createPrettierConfig } = require('@aryaemami59/prettier-config')
+ * const { createPrettierConfig } = require('@aryaemami59/prettier-config');
  *
  * module.exports = createPrettierConfig({
  *   arrowParens: 'avoid',
  *   // ...Other additional overrides
- * })
+ * });
  * ```
  *
  * @example
@@ -41,7 +41,7 @@ import type { Config } from './external.js'
  *   (await import('@aryaemami59/prettier-config')).createPrettierConfig({
  *     arrowParens: 'avoid',
  *     // ...Other additional overrides
- *   }))()
+ *   }))();
  * ```
  *
  * @public
