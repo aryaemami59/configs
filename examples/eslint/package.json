@@ -22,7 +22,7 @@
     "@types/node": "^26.1.2",
     "@typescript/native-preview": "npm:typescript@^7.0.2",
     "eslint": "^10.8.0",
-    "globals": "^17.8.0",
+    "globals": "^17.9.0",
     "jiti": "^2.7.0",
     "rimraf": "^6.1.3",
     "typescript": "~6.0.3",
