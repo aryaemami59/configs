@@ -1,3 +1,4 @@
+import * as path from 'node:path'
 import type {
   InlineConfig,
   Rolldown,
@@ -7,6 +8,16 @@ import type {
 } from 'tsdown'
 import { defineConfig } from 'tsdown'
 import packageJson from './package.json' with { type: 'json' }
+
+/**
+ * @internal
+ */
+const cwd = import.meta.dirname
+
+/**
+ * @internal
+ */
+const sourceRootDirectory = path.join(cwd, 'src')
 
 /**
  * Matches declaration file extensions (`.d.ts`, `.d.cts` and `.d.mts`).
@@ -27,7 +38,7 @@ const RE_DTS = /\.d\.([cm]?)ts$/
  */
 const removeCJSOutputsFromDTSBuilds = (): TsdownPlugin => ({
   generateBundle: {
-    handler(outputOptions, bundle, isWrite) {
+    handler(outputOptions, bundle, isWrite): void {
       if (outputOptions.format === 'cjs' && isWrite) {
         Object.values(bundle).forEach((outputChunk) => {
           if (
@@ -41,7 +52,10 @@ const removeCJSOutputsFromDTSBuilds = (): TsdownPlugin => ({
         })
       }
     },
+
+    order: 'pre',
   },
+
   name: `${packageJson.name}:remove-cjs-outputs-from-dts-builds`,
 })
 
@@ -52,7 +66,7 @@ const tsdownConfig: UserConfigFn = defineConfig((cliOptions) => {
     },
     cjsDefault: false,
     clean: false,
-    cwd: import.meta.dirname,
+    cwd,
     deps: {
       onlyBundle: [],
     },
@@ -106,14 +120,14 @@ const tsdownConfig: UserConfigFn = defineConfig((cliOptions) => {
         strict: true,
       }) as const satisfies Rolldown.OutputOptions,
     platform: 'node',
-    root: 'src',
+    root: sourceRootDirectory,
     shims: true,
     sourcemap: true,
     target: ['esnext'],
     treeshake: {
       moduleSideEffects: false,
     },
-    tsconfig: 'tsconfig.build.json',
+    tsconfig: path.join(cwd, 'tsconfig.build.json'),
     ...cliOptions,
   } as const satisfies InlineConfig
 
