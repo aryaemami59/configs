@@ -4,8 +4,7 @@ import type { vitestConfig, vitestProject } from './shareableConfigs.js'
 /**
  * Default configuration options shared by every
  * {@link https://vitest.dev | **Vitest**} project.
- * {@linkcode vitestConfigDefaults} extends these with the root-only options
- * used by {@linkcode vitestConfig} and {@linkcode vitestProject}.
+ * {@linkcode vitestConfigDefaults} extends these with the root-only options.
  *
  * @since 0.0.5
  * @public
@@ -61,7 +60,9 @@ export const vitestProjectDefaults = {
 } as const satisfies UserWorkspaceConfig
 
 /**
- * Default configuration for {@linkcode vitestConfig}.
+ * Default configuration used by both {@linkcode vitestConfig} and
+ * {@linkcode vitestProject}. Extends {@linkcode vitestProjectDefaults} with
+ * the root-only options.
  *
  * @since 0.0.5
  * @public

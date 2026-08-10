@@ -18,7 +18,7 @@ type FixtureFile = {
  * So if we specify `ts` the type should not allow us to specify `js`.
  *
  * @example
- * <caption>### Here is an example</caption>
+ * <caption>__Here is an example__</caption>
  *
  * ```ts
  * const fixture = {

@@ -20,7 +20,7 @@ import { sharedEnvironmentGlobals } from './globals.js'
  * Flat ESLint configuration tailored for projects using TypeScript.
  *
  * @example
- * <caption>#### __ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
+ * <caption>__ECMAScript Modules (ESM) usage inside a file like `eslint.config.mts` or `eslint.config.mjs`__</caption>
  *
  * ```ts
  * import { flatESLintConfig } from '@aryaemami59/eslint-config';
@@ -29,7 +29,7 @@ import { sharedEnvironmentGlobals } from './globals.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using `require`)__</caption>
  *
  * ```ts
  * const { flatESLintConfig } = require('@aryaemami59/eslint-config');
@@ -38,7 +38,7 @@ import { sharedEnvironmentGlobals } from './globals.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cjs` or `eslint.config.cts` (using dynamic import)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` or `eslint.config.cjs` (using dynamic import)__</caption>
  *
  * ```ts
  * module.exports = (async () =>
@@ -46,7 +46,7 @@ import { sharedEnvironmentGlobals } from './globals.js'
  * ```
  *
  * @example
- * <caption>#### __CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
+ * <caption>__CommonJS (CJS) usage inside a file like `eslint.config.cts` (using import and export assignment)__</caption>
  *
  * ```ts
  * import eslintConfigModule = require('@aryaemami59/eslint-config');

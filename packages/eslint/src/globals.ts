@@ -41,8 +41,9 @@ export const vitestGlobals = {
 
 /**
  * An object that specifies which global variables are available during
- * linting. Combines the browser, Node.js and {@linkcode vitestGlobals}
- * globals.
+ * linting. Combines {@linkcode browserGlobals}, {@linkcode nodeGlobals},
+ * {@linkcode nodeBuiltinGlobals}, {@linkcode vitestTestGlobals} and
+ * {@linkcode vitestGlobals}.
  *
  * @since 0.0.3
  * @public

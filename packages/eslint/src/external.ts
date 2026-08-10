@@ -22,13 +22,49 @@ export type {
   InfiniteDepthConfigWithExtends as TSESLintInfiniteDepthConfigWithExtends,
 } from 'typescript-eslint'
 export { js, prettierConfig }
+
+/**
+ * The global variable definitions provided by the `globals` package, renamed
+ * so they can be referenced unambiguously across the package.
+ *
+ * @since 0.0.8
+ * @internal
+ */
 export const {
   browser: browserGlobals,
   node: nodeGlobals,
   nodeBuiltin: nodeBuiltinGlobals,
   vitest: vitestTestGlobals,
 } = globals
+
+/**
+ * The type of {@linkcode browserGlobals}.
+ *
+ * @since 0.0.8
+ * @internal
+ */
 export type GlobalsBrowser = typeof browserGlobals
+
+/**
+ * The type of {@linkcode nodeGlobals}.
+ *
+ * @since 0.0.8
+ * @internal
+ */
 export type GlobalsNode = typeof nodeGlobals
+
+/**
+ * The type of {@linkcode nodeBuiltinGlobals}.
+ *
+ * @since 0.0.8
+ * @internal
+ */
 export type GlobalsNodeBuiltin = typeof nodeBuiltinGlobals
+
+/**
+ * The type of {@linkcode vitestTestGlobals}.
+ *
+ * @since 0.0.8
+ * @internal
+ */
 export type GlobalsVitest = typeof vitestTestGlobals

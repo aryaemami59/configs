@@ -1,7 +1,8 @@
 import type { Config } from './external.js'
 
 /**
- * Default Prettier configuration options.
+ * Default
+ * {@link https://prettier.io/docs/configuration | Prettier configuration options}.
  *
  * @example
  * <caption>__ECMAScript Modules (ESM) usage inside a file like `prettier.config.mts` or `prettier.config.mjs`__</caption>
