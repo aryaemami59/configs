@@ -3,17 +3,48 @@ import * as childProcess from 'node:child_process'
 import * as path from 'node:path'
 import { promisify } from 'node:util'
 
+/**
+ * A {@linkcode Promise | promise}-returning version of
+ * {@linkcode https://nodejs.org/api/child_process.html#child_processexeccommand-options-callback | child_process.exec}.
+ *
+ * @internal
+ */
 export const exec = promisify(childProcess.exec)
 
+/**
+ * The CLI executable invoked by {@linkcode runESLintCLI()}.
+ *
+ * @internal
+ */
 export const defaultCLICommand = 'eslint'
 
+/**
+ * Arguments prepended to every {@linkcode runESLintCLI()} invocation.
+ *
+ * @internal
+ */
 export const defaultCLIArguments = [] as const satisfies readonly string[]
 
+/**
+ * The options {@linkcode runESLintCLI()} passes to {@linkcode exec} unless
+ * overridden, rooted at the example project directory.
+ *
+ * @internal
+ */
 export const defaultExecOptions = {
   cwd: path.join(__dirname, '..'),
   encoding: 'utf-8',
 } as const satisfies ExecOptionsWithStringEncoding
 
+/**
+ * Runs the real `eslint` CLI so tests can assert on its actual output.
+ *
+ * @param [CLIArguments=[]] - **Optional** arguments appended after {@linkcode defaultCLIArguments}.
+ * @param [execOptions={}] - **Optional** overrides merged over {@linkcode defaultExecOptions}.
+ * @returns A {@linkcode Promise | promise} that resolves with the `stdout` and `stderr` of the command, and rejects if it exits with a non-zero code.
+ *
+ * @internal
+ */
 export const runESLintCLI = (
   CLIArguments: readonly string[] = [],
   execOptions: Partial<ExecOptionsWithStringEncoding> = {},
@@ -23,8 +54,19 @@ export const runESLintCLI = (
     ...execOptions,
   })
 
+/**
+ * Name of the directory the global setup writes fixture files into.
+ *
+ * @internal
+ */
 export const fixturesDirectoryName = 'temp'
 
+/**
+ * Absolute path to {@linkcode fixturesDirectoryName} inside the example
+ * project.
+ *
+ * @internal
+ */
 export const fixturesDirectoryPath = path.join(
   __dirname,
   '..',
@@ -51,10 +93,10 @@ export type LocalTestContext = {
 export type UnknownFunction = (...args: unknown[]) => unknown
 
 /**
- * An alias for type **`{}`**. Represents any value that is not
- * **`null`** or **`undefined`**. It is mostly used for semantic purposes to
- * help distinguish between an empty object type and **`{}`**
- * as they are not the same.
+ * An alias for **`NonNullable<unknown>`**, which represents any value that is
+ * **not** `null` or `undefined`. It is mostly used for semantic purposes, to
+ * distinguish between the empty object type **`{}`** and any non-nullish
+ * value, as they are not the same.
  *
  * @internal
  */
