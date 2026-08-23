@@ -44,18 +44,18 @@
     "@aryaemami59/prettier-config": "workspace:^",
     "@aryaemami59/tsconfig": "workspace:^",
     "@aryaemami59/vitest-config": "workspace:^",
-    "@types/node": "^26.1.2",
-    "@typescript-eslint/utils": "^8.66.0",
+    "@types/node": "^26.2.0",
+    "@typescript-eslint/utils": "^8.67.0",
     "@typescript/native-preview": "npm:typescript@^7.0.2",
-    "@vitest/eslint-plugin": "^1.6.26",
-    "eslint": "^10.8.0",
-    "eslint-plugin-jsdoc": "^63.3.3",
+    "@vitest/eslint-plugin": "^1.6.27",
+    "eslint": "^10.9.0",
+    "eslint-plugin-jsdoc": "^64.2.1",
     "eslint-plugin-perfectionist": "^5.10.1",
-    "pkg-pr-new": "^0.0.86",
+    "pkg-pr-new": "^0.0.88",
     "prettier": "^3.9.6",
     "prettier-plugin-jsdoc": "^1.8.1",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "packageManager": "yarn@4.18.0"
 }
