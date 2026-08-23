@@ -18,13 +18,24 @@ import type {
 } from './typeHelpers.ts'
 import type { Module, ModuleResolution, TsConfigJson } from './types.ts'
 
+/**
+ * The Prettier options used to format every file this script generates.
+ */
 const DEFAULT_PRETTIER_CONFIG = {
   semi: false,
   singleQuote: true,
 } as const satisfies Options
 
+/**
+ * The root of the `@aryaemami59/tsconfig` package, resolved relative to this
+ * script.
+ */
 const ROOT_DIRECTORY = path.join(import.meta.dirname, '..')
 
+/**
+ * Where {@linkcode generateTypesFromJsonSchema()} writes the generated
+ * {@linkcode CompilerOptions} type.
+ */
 const OUTPUT_PATH = path.join(ROOT_DIRECTORY, 'output.ts')
 
 type ModuleResolutionKindType = Simplify<
@@ -35,6 +46,13 @@ type ModuleResolutionKindType = Simplify<
 
 type ModuleKindType = Simplify<OmitIndexSignature<typeof ModuleKind>>
 
+/**
+ * Generates the {@linkcode CompilerOptions} type from the hand-patched
+ * `tsconfig.schema.json`, carrying each option's description and default
+ * across as a JSDoc block, and writes the result to {@linkcode OUTPUT_PATH}.
+ *
+ * @returns A {@linkcode Promise | promise} that resolves once the generated file has been written to disk.
+ */
 const generateTypesFromJsonSchema = async () => {
   const tsConfigCompilerOptions = Object.fromEntries(
     Object.entries(
@@ -180,6 +198,18 @@ type BaseConfigs = {
   }>
 }
 
+/**
+ * The table that drives {@linkcode build()}. Each entry maps a module
+ * resolution kind to the directory it is emitted under and the module kinds
+ * generated for it. Add an entry here to add a new tsconfig variant - the
+ * matching
+ * {@linkcode https://nodejs.org/docs/latest/api/packages.html#exports | exports}
+ * and
+ * {@linkcode https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions | typesVersions}
+ * entries in
+ * {@linkcode https://nodejs.org/docs/latest/api/packages.html#nodejs-packagejson-field-definitions | package.json}
+ * have to be added by hand.
+ */
 const baseConfigs = {
   bundler: {
     directory: 'bundler',
@@ -251,6 +281,16 @@ const baseConfigs = {
 //   },
 // } as const satisfies AdditionalConfigs
 
+/**
+ * Generates a
+ * {@linkcode https://www.typescriptlang.org/docs/handbook/tsconfig-json.html | tsconfig.json}
+ * for every module kind of every entry in {@linkcode baseConfigs}, plus a
+ * `with-js` variant of each that enables
+ * {@linkcode https://www.typescriptlang.org/tsconfig/#allowJs | allowJs} and
+ * {@linkcode https://www.typescriptlang.org/tsconfig/#checkJs | checkJs}.
+ *
+ * @returns A {@linkcode Promise | promise} that resolves once every generated config has been written to disk.
+ */
 const build = async () => {
   await Promise.all(
     Object.entries(baseConfigs).map(

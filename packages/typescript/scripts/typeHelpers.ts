@@ -98,7 +98,6 @@ export type AnyNonNullishValue = NonNullable<unknown>
  * ```
  *
  * @template BaseType - The type to simplify.
- *
  * @see {@link https://github.com/sindresorhus/type-fest/blob/548e7dfdbc8a70767cd278c0ec8512aef6e16b56/source/simplify.d.ts | Source}
  * @see {@link https://github.com/microsoft/TypeScript/issues/15300 | TypeScript Issue}
  * @since v0.0.6 of **`@aryaemami59/tsconfig`**
@@ -352,9 +351,9 @@ export type ExcludeStrict<
  *
  * @template StringType - The string literal type to convert to kebab-case.
  * @template FirstRun - Internal helper to avoid prefixing the first character with a hyphen.
+ * @see {@link https://stackoverflow.com/a/66140779 | Source}
  * @since v0.0.6 of **`@aryaemami59/tsconfig`**
  * @internal
- * @see {@link https://stackoverflow.com/a/66140779 | Source}
  */
 export type KebabCase<
   StringType extends string,
