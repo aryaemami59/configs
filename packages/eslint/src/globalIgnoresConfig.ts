@@ -6,7 +6,7 @@ import type { ConfigObject } from './external.js'
  * {@link https://eslint.org/docs/latest/use/configure/ignore#ignoring-files | **global ignore patterns**}
  * for ESLint configuration.
  *
- * **Note:** Previously referred to as `globalIgnores`.
+ * **Note:** Previously referred to as `globalIgnores` in versions prior to 0.0.9.
  *
  * @since 0.0.3
  * @public
