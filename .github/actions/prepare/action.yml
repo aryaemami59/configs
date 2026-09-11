@@ -35,6 +35,10 @@ runs:
         check-latest: ${{ inputs.check-latest }}
         node-version: ${{ inputs.node-version }}
 
+    - name: Enable Corepack on ${{ inputs.node-version }}
+      run: corepack enable
+      shell: bash
+
     - name: Install dependencies on ${{ inputs.node-version }}
       run: yarn install
       shell: bash
