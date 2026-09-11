@@ -1,5 +1,9 @@
 name: Release Commit
 
+defaults:
+  run:
+    shell: bash
+
 on:
   push:
   pull_request:
@@ -21,9 +25,6 @@ jobs:
         uses: ./.github/actions/prepare
         with:
           node-version: '24.x'
-
-      - name: Install dependencies
-        run: yarn install
 
       - name: Build
         run: yarn run build
